@@ -1,0 +1,71 @@
+[project]
+name = "portal-aarothbd-com-be"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "celery>=5.4.0",
+    "django>=5.1.3",
+    "django-celery-beat>=2.7.0",
+    "django-celery-results>=2.5.1",
+    "django-cors-headers>=4.6.0",
+    "django-environ>=0.11.2",
+    "django-filter>=24.3",
+    "djangorestframework>=3.15.2",
+    "djangorestframework-simplejwt>=5.3.1",
+    "drf-spectacular>=0.28.0",
+    "psycopg>=3.2.3",
+    "redis>=5.2.0",
+    "tenacity>=9.0.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "devtools>=0.12.2",
+    "pre-commit>=4.0.1",
+    "ruff>=0.8.1",
+]
+
+[tool.ruff]
+exclude = [".pyenv", ".vscode", "/usr/**", "migrations", ".venv"]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+exclude = ["*.pyi", "migrations/*.py"]
+
+[tool.ruff.lint]
+extend-select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "B", # flake8-bugbear
+    "N", # pep8-naming
+    "T20", # flake8-print
+]
+
+ignore = [
+    "E741", # ambiguous variable name (preference)
+    "B008", # do not perform function calls in argument defaults
+]
+
+[tool.ruff.lint.isort]
+known-third-party = [
+    "django",
+    "djangorestframework",
+    "celery",
+    "django-celery-results",
+    "django-celery-beat",
+    "djangorestframework-simplejwt",
+    "django-environ",
+    "django-cors-headers",
+    "tenacity",
+    "drf-spectacular",
+    "django-filter",
+]

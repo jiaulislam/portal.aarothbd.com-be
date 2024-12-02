@@ -1,0 +1,33 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+    -   id: check-added-large-files
+    -   id: check-case-conflict
+    -   id: check-toml
+    -   id: check-yaml
+    -   id: debug-statements
+    -   id: detect-private-key
+    -   id: no-commit-to-branch
+        args:
+            [--branch, staging, --branch, main]
+    -   id: pretty-format-json
+        args: [--autofix]
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-json
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.17.0
+    hooks:
+    -   id: pyupgrade
+        args:
+        - --py3-plus
+        - --keep-runtime-typing
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.6.7
+    hooks:
+    -   id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+ci:
+    autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
+    autoupdate_commit_msg: ⬆ [pre-commit.ci] pre-commit autoupdate

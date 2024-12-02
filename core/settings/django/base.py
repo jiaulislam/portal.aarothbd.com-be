@@ -17,19 +17,28 @@ ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default=[])
 
 # Application definition
 
-INSTALLED_APPS = [
+INTERNAL_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+]
+
+THIRD_PARTY_APPS = [
     "drf_spectacular",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+]
+
+CUSTOM_APPS = [
     "apps.accounts",
 ]
+
+
+INSTALLED_APPS = INTERNAL_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",

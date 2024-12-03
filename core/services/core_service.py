@@ -7,5 +7,6 @@ class CoreService:
     def get_user(self, request: HttpRequest | Request | None) -> AbstractBaseUser | None:
         """gets the authenticated user object from request object"""
         if request and request.user.is_authenticated:
-            return request.user
+            user: AbstractBaseUser = request.user  # type: ignore
+            return user
         return None

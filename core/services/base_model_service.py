@@ -3,7 +3,7 @@ from typing import Generic, Type
 from django.utils.text import slugify
 from rest_framework.generics import get_object_or_404
 
-from ..types import _T, SerializedValidatedData
+from ..types import _T, SerializerValidatedData
 from .core_service import CoreService
 
 
@@ -13,7 +13,7 @@ class BaseModelService(Generic[_T]):
     def __init__(self) -> None:
         self.core_service = CoreService()
 
-    def prepare_data(self, validated_data: SerializedValidatedData, *args, **kwargs):
+    def prepare_data(self, validated_data: SerializerValidatedData, *args, **kwargs):
         """prepares the validated data as per model requirements"""
         return validated_data
 
@@ -44,7 +44,7 @@ class BaseModelService(Generic[_T]):
             raise Exception("Already Exists !")
         return slug
 
-    def create(self, validated_data: SerializedValidatedData, **kwargs) -> _T:
+    def create(self, validated_data: SerializerValidatedData, **kwargs) -> _T:
         """create an model instance with the given validated data"""
         # TODO: the user tagging can be handled by decorator pattern.
         validated_data = self.prepare_data(validated_data)
@@ -56,7 +56,7 @@ class BaseModelService(Generic[_T]):
         instance = model_class.objects.create(**validated_data)
         return instance
 
-    def update(self, instance: _T, validated_data: SerializedValidatedData, **kwargs) -> _T:
+    def update(self, instance: _T, validated_data: SerializerValidatedData, **kwargs) -> _T:
         """update an instance model with the given validated data"""
         request = kwargs.get("request")
         user = self.core_service.get_user(request)

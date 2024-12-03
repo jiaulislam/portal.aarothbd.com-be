@@ -1,29 +1,29 @@
-from typing import Generic
+from typing import Generic, Type
 
 from django.utils.text import slugify
 from rest_framework.generics import get_object_or_404
 
-from ..types import DjangoModel, ValidatedDataType
+from ..types import _T, SerializedValidatedData
 from .core_service import CoreService
 
 
-class BaseModelService(Generic[DjangoModel]):
-    model_class: DjangoModel = None  # type: ignore
+class BaseModelService(Generic[_T]):
+    model_class: Type[_T] = None  # type: ignore
 
     def __init__(self) -> None:
         self.core_service = CoreService()
 
-    def prepare_data(self, validated_data: ValidatedDataType, *args, **kwargs):
+    def prepare_data(self, validated_data: SerializedValidatedData, *args, **kwargs):
         """prepares the validated data as per model requirements"""
         return validated_data
 
-    def get_model_class(self) -> DjangoModel:
+    def get_model_class(self) -> Type[_T]:
         assert self.model_class is not None, (
             "%s should include model_class attribute or override get_model_class() method" % self.__class__.__name__
         )
         return self.model_class
 
-    def get(self, **kwargs) -> DjangoModel:
+    def get(self, **kwargs) -> _T:
         """get the single model object with dynamic key"""
         model_class = self.get_model_class()
         instance = get_object_or_404(model_class, **kwargs)
@@ -44,7 +44,7 @@ class BaseModelService(Generic[DjangoModel]):
             raise Exception("Already Exists !")
         return slug
 
-    def create(self, validated_data: ValidatedDataType, **kwargs) -> DjangoModel:
+    def create(self, validated_data: SerializedValidatedData, **kwargs) -> _T:
         """create an model instance with the given validated data"""
         # TODO: the user tagging can be handled by decorator pattern.
         validated_data = self.prepare_data(validated_data)
@@ -56,7 +56,7 @@ class BaseModelService(Generic[DjangoModel]):
         instance = model_class.objects.create(**validated_data)
         return instance
 
-    def update(self, instance: DjangoModel, validated_data: ValidatedDataType, **kwargs) -> DjangoModel:
+    def update(self, instance: _T, validated_data: SerializedValidatedData, **kwargs) -> _T:
         """update an instance model with the given validated data"""
         request = kwargs.get("request")
         user = self.core_service.get_user(request)

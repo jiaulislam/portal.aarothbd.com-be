@@ -7,6 +7,17 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
   },
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.ruff_cache": true,
+    "**/.svn": true,
+    "**/.venv": true,
+    "**/CVS": true,
+    "**/Thumbs.db": true,
+    "**/__pycache__": true
+  },
   "python.analysis.autoImportCompletions": true,
   "python.analysis.typeCheckingMode": "basic"
 }

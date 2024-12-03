@@ -1,10 +1,14 @@
-from core.env import env
+# ruff: noqa: F405, F403
 
-from .base import *  # noqa: F403
+from typing import List
+
+from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+hosts: List[str] = env.tuple("ALLOWED_HOSTS")
+
+ALLOWED_HOSTS = [host.strip() for host in hosts]
 
 DATABASES = {
     "default": {

@@ -13,8 +13,6 @@ SECRET_KEY = env(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = env("ALLOWED_HOSTS")
-
 # Application definition
 
 INTERNAL_APPS = [

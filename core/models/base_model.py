@@ -9,11 +9,15 @@ class BaseModel(models.Model):
         "user.User",
         related_name="%(app_label)s_%(class)s_created",
         on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True,
     )
     updated_by = models.ForeignKey(
         "user.User",
         related_name="%(app_label)s_%(class)s_updated",
         on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True,
     )
 
     class Meta:

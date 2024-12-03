@@ -25,8 +25,8 @@ class UserSerializer(s.ModelSerializer):
     class Meta:
         model = get_user_model()
         exclude = [
-            "created_on",
-            "updated_on",
+            "created_at",
+            "updated_at",
             "created_by",
             "updated_by",
             "is_superuser",

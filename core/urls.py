@@ -1,3 +1,4 @@
+from debug_toolbar.toolbar import debug_toolbar_urls
 from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import (
@@ -38,3 +39,6 @@ versioned_routes = [v1_routes]
 
 for routes in versioned_routes:
     urlpatterns.extend(routes)
+
+
+urlpatterns += debug_toolbar_urls()

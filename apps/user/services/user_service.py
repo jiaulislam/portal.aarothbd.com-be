@@ -9,4 +9,12 @@ class UserService(BaseModelService[User]):
     model_class = User  # type: ignore
 
     def all(self, **kwargs):
-        return super().all(**kwargs).select_related("profile")
+        return (
+            super()
+            .all(**kwargs)
+            .select_related("profile")
+            .prefetch_related(
+                "groups",
+                "user_permissions",
+            )
+        )

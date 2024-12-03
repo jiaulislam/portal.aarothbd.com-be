@@ -23,15 +23,16 @@ class UserAdmin(BaseUserAdmin):
     list_display = (
         "email",
         "date_joined",
+        "user_type",
         "is_admin",
         "is_superuser",
         "is_active",
     )
-    search_fields = ("email", "first_name", "last_name")
+    search_fields = ("email", "first_name", "last_name", "user_type")
     inlines = [ProfileInline]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "user_type")}),
         (
             _("Permissions"),
             {

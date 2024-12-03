@@ -12,7 +12,7 @@ class UserProfileSerializer(s.ModelSerializer):
         exclude = ("user",)
 
 
-class AccountSerializer(s.ModelSerializer):
+class UserSerializer(s.ModelSerializer):
     password = s.CharField(write_only=True)
     date_joined = s.DateTimeField(read_only=True)
     is_admin = s.BooleanField(read_only=True)
@@ -36,7 +36,7 @@ class AccountSerializer(s.ModelSerializer):
         ]
 
 
-class RegisterAccountSerializer(s.ModelSerializer):
+class RegisterUserSerializer(s.ModelSerializer):
     first_name = s.CharField(max_length=88, allow_blank=True, default="")
     last_name = s.CharField(max_length=88, allow_blank=True, default="")
     password2 = s.CharField(style={"input_type": "password"}, write_only=True)

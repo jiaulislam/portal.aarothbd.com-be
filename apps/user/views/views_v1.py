@@ -1,45 +1,46 @@
 from django.conf import settings
 from django.contrib.auth import authenticate
 from rest_framework import exceptions as e
-from rest_framework import response as r
 from rest_framework import status as s
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.request import Request
+from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from ..serializers.accounts_v1 import (
-    AccountSerializer,
+from ..serializers.user_serializer_v1 import (
     CookieTokenRefreshSerializer,
     LoginSerializer,
-    RegisterAccountSerializer,
+    RegisterUserSerializer,
+    UserSerializer,
 )
 from ..services import generate_user_token, set_auth_cookies, unset_auth_cookies
 
 
-class RegisterAccountView(GenericAPIView):
+class RegisterUserAPIView(GenericAPIView):
     authentication_classes = []
     permission_classes = []
-    serializer_class = RegisterAccountSerializer
+    serializer_class = RegisterUserSerializer
 
-    def post(self, request, format=None):
-        body = RegisterAccountSerializer(data=request.data)
+    def post(self, request: Request, format=None):
+        body = RegisterUserSerializer(data=request.data)
         body.is_valid(raise_exception=True)
 
         user = body.save()
 
         if user is None:
-            return r.Response(
+            return Response(
                 {"status": "error", "msg": "create user failed !"},
                 status=s.HTTP_400_BAD_REQUEST,
             )
-        return r.Response(
+        return Response(
             {"status": "success", "msg": "account created"},
             status=s.HTTP_201_CREATED,
         )
 
 
-class LoginView(GenericAPIView):
+class LoginAPIView(GenericAPIView):
     authentication_classes = []
     permission_classes = []
     serializer_class = LoginSerializer
@@ -60,7 +61,7 @@ class LoginView(GenericAPIView):
 
         tokens = generate_user_token(authorized_user)
 
-        return r.Response(tokens)
+        return Response(tokens)
 
 
 class LogoutView(GenericAPIView):
@@ -69,7 +70,7 @@ class LogoutView(GenericAPIView):
 
     @unset_auth_cookies
     def post(self, request, format=None):
-        return r.Response(status=s.HTTP_204_NO_CONTENT)
+        return Response(status=s.HTTP_204_NO_CONTENT)
 
 
 class CookieTokenRefreshView(TokenRefreshView):
@@ -87,14 +88,14 @@ class CookieTokenRefreshView(TokenRefreshView):
             )
             del response.data["refresh"]
 
-        response["X-CSRFToken"] = request.COOKIES.get("csrftoken")
+        response["X-CSRFToken"] = request.COOKIES.get("csrftoken", "")
         return super().finalize_response(request, response, *args, **kwargs)
 
 
-class MeView(GenericAPIView):
+class MeAPIView(GenericAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-    serializer_class = AccountSerializer
+    serializer_class = UserSerializer
 
     def get(self, request, *args, **kwargs):
-        return r.Response(AccountSerializer(instance=request.user).data)
+        return Response(UserSerializer(instance=request.user).data)

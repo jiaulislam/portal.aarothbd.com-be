@@ -1,8 +1,9 @@
-from apps.user.models import User
+from django.contrib.auth import get_user_model
+
 from core.services import BaseModelService
 
-from ..types import UserType
+User = get_user_model()
 
 
-class UserService(BaseModelService[UserType]):
+class UserService(BaseModelService[User]):
     model_class = User  # type: ignore

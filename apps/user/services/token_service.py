@@ -7,16 +7,23 @@ from rest_framework.request import Request
 from rest_framework_simplejwt import tokens
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from ..types import TokenResponse
 
-def generate_user_token(user: AbstractBaseUser):
+__all__ = [
+    "generate_user_token",
+    "set_auth_cookies",
+    "unset_auth_cookies",
+]
+
+
+def generate_user_token(user: AbstractBaseUser) -> TokenResponse:
     refresh = RefreshToken.for_user(user)
-
-    return {
-        "refresh_token": str(refresh),
-        "access_token": str(refresh.access_token),
-        "iat": refresh.get("iat"),
-        "exp": refresh.get("exp"),
-    }
+    return TokenResponse(
+        refresh_token=str(refresh),
+        access_token=str(refresh.access_token),
+        iat=refresh.get("iat"),
+        exp=refresh.get("exp"),
+    )
 
 
 def set_auth_cookies(view_func):

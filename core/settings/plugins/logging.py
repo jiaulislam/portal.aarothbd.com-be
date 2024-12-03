@@ -1,6 +1,6 @@
 from core.env import env
 
-if env.bool("DJANGO_DEBUG", default=True):
+if env.bool("DEBUG"):
     LOG_LEVEL = "DEBUG"
 else:
     LOG_LEVEL = "WARNING"
@@ -14,8 +14,7 @@ LOGGING = {
     },
     "formatters": {
         "main_formatter": {
-            "format": "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s "
-            "(%(filename)s:%(lineno)d)",
+            "format": "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s " "(%(filename)s:%(lineno)d)",
             "datefmt": "%Y-%m-%d %H:%M:%S",
         },
     },

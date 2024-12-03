@@ -8,14 +8,14 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenRefreshView
+from user.serializers import UserSerializer
 
-from ..serializers.user_serializer_v1 import (
+from ..serializers.auth_serializers_v1 import (
     CookieTokenRefreshSerializer,
     LoginSerializer,
     RegisterUserSerializer,
-    UserSerializer,
 )
-from ..services import generate_user_token, set_auth_cookies, unset_auth_cookies
+from ..services import TokenService
 
 
 class RegisterUserAPIView(GenericAPIView):
@@ -45,7 +45,7 @@ class LoginAPIView(GenericAPIView):
     permission_classes = []
     serializer_class = LoginSerializer
 
-    @set_auth_cookies
+    @TokenService.set_auth_cookies
     def post(self, request, format=None):
         body = LoginSerializer(data=request.data)
 
@@ -59,7 +59,7 @@ class LoginAPIView(GenericAPIView):
         if authorized_user is None:
             raise e.AuthenticationFailed("Email or Password is incorrect")
 
-        tokens = generate_user_token(authorized_user)
+        tokens = TokenService.generate_user_token(authorized_user)
 
         return Response(tokens)
 
@@ -68,7 +68,7 @@ class LogoutView(GenericAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @unset_auth_cookies
+    @TokenService.unset_auth_cookies
     def post(self, request, format=None):
         return Response(status=s.HTTP_204_NO_CONTENT)
 

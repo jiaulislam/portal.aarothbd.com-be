@@ -5,15 +5,15 @@ ENV_PATH = BASE_DIR / ".env"
 env.read_env(ENV_PATH)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str(
-    "DJANGO_SECRET_KEY",
-    default="django-insecure-bzo92jqsu8x&a2u=re-thfmf#c@p-^^nfmusqwm!w%ja)b)ctg",
+SECRET_KEY = env(
+    "SECRET_KEY",
+    default="django-insecure-bzo92jqsu8x&a2u=re-thfmf#c@p-^^nfmusqwm!w%ja)b)ctg",  # type: ignore
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DJANGO_DEBUG", default=False)
+DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -31,10 +31,12 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
+    "django_filters",
 ]
 
 CUSTOM_APPS = [
     "apps.user",
+    "apps.authentication",
 ]
 
 

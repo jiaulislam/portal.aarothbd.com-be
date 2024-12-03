@@ -1,8 +1,8 @@
 from corsheaders.defaults import default_headers
 
-from core.env import env
+from ..django.base import env
 
-CORS_ALLOWED_ORIGINS = env("CORS_ALLOWED_ORIGINS", default=[])
+CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS")
 
 CORS_ALLOW_METHODS = (
     "DELETE",

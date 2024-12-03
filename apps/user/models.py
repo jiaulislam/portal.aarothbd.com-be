@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from core.models import BaseModel
 
+from .constants import UserTypeChoices
 from .manager import UserManager
 
 
@@ -19,6 +20,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
         help_text=_("Designates that this user has all permissions but not as same superuser."),
     )
     date_joined = models.DateTimeField(_("Date Joined"), default=timezone.now)
+    user_type = models.CharField(max_length=55, choices=UserTypeChoices.choices, default=UserTypeChoices.CUSTOMER)
 
     objects = UserManager()
 

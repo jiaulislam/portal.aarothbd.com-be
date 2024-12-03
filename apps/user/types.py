@@ -10,13 +10,6 @@ AbstractUserModel = get_user_model()
 UserType = AbstractUserModel | User
 
 
-class TokenResponse(TypedDict):
-    refresh_token: str
-    access_token: str
-    iat: str
-    exp: int
-
-
 class UserValidatedDataType(TypedDict):
     email: str
     first_name: str | None

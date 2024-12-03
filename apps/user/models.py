@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -32,15 +32,17 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 
     def clean(self) -> None:
         super().clean()
-        self.email = self.__class__.objects.normalize_email(self.email)
+        self.email = BaseUserManager.normalize_email(self.email)
 
     @property
     def full_name(self) -> str:
         full_name = "{} {}".format(self.first_name, self.last_name)
         return full_name.strip()
 
-    def get_short_name(self) -> str:
-        return self.first_name
+    def get_short_name(self) -> str | None:
+        if self.first_name:
+            return self.first_name
+        return None
 
     @property
     def is_staff(self):

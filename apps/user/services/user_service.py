@@ -5,4 +5,4 @@ from ..types import UserType
 
 
 class UserService(BaseModelService[UserType]):
-    model_class: User = User
+    model_class = User

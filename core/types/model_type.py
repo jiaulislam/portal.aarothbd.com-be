@@ -1,8 +1,8 @@
-from typing import MutableMapping, TypedDict, TypeVar, Union
+from typing import MutableMapping, TypeVar, Union
 
-from django.db.models import Manager, Model
+from django.db.models import Manager, Model, QuerySet
 
 __all__ = ["DjangoModel", "ValidatedDataType"]
 
-DjangoModel = TypeVar("DjangoModel", bound=Union[Model, Manager])
-ValidatedDataType = MutableMapping | TypedDict
+DjangoModel = TypeVar("DjangoModel", bound=Union[Model, Manager, QuerySet])
+ValidatedDataType = MutableMapping

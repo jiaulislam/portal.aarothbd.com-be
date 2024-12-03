@@ -35,7 +35,7 @@ class BaseModelService(Generic[DjangoModel]):
         instances = model_class.objects.filter(**kwargs)
         return instances
 
-    def get_slug_or_raise_exception(self, field_value):
+    def get_slug_or_raise_exception(self, field_value: str) -> str:
         """make a slug value and get a slugified value for given field_value"""
         model_class = self.get_model_class()
         slug = slugify(field_value)
@@ -44,7 +44,7 @@ class BaseModelService(Generic[DjangoModel]):
             raise Exception("Already Exists !")
         return slug
 
-    def create(self, validated_data, **kwargs) -> DjangoModel:
+    def create(self, validated_data: ValidatedDataType, **kwargs) -> DjangoModel:
         """create an model instance with the given validated data"""
         # TODO: the user tagging can be handled by decorator pattern.
         validated_data = self.prepare_data(validated_data)
@@ -56,7 +56,7 @@ class BaseModelService(Generic[DjangoModel]):
         instance = model_class.objects.create(**validated_data)
         return instance
 
-    def update(self, instance: DjangoModel, validated_data, **kwargs) -> DjangoModel:
+    def update(self, instance: DjangoModel, validated_data: ValidatedDataType, **kwargs) -> DjangoModel:
         """update an instance model with the given validated data"""
         request = kwargs.get("request")
         user = self.core_service.get_user(request)

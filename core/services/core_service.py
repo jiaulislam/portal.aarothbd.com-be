@@ -4,7 +4,7 @@ from rest_framework.request import Request
 
 
 class CoreService:
-    def get_user(self, request: HttpRequest | Request) -> AbstractBaseUser | None:
+    def get_user(self, request: HttpRequest | Request | None) -> AbstractBaseUser | None:
         """gets the authenticated user object from request object"""
         if request and request.user.is_authenticated:
             return request.user

@@ -6,13 +6,13 @@ from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from ..models import UserProfile
 
 
-class AccountProfileSerializer(s.ModelSerializer):
+class UserProfileSerializer(s.ModelSerializer):
     class Meta:
         model = UserProfile
         exclude = ("user",)
 
 
-class AccountSerializerV1(s.ModelSerializer):
+class AccountSerializer(s.ModelSerializer):
     password = s.CharField(write_only=True)
     date_joined = s.DateTimeField(read_only=True)
     is_admin = s.BooleanField(read_only=True)
@@ -23,7 +23,7 @@ class AccountSerializerV1(s.ModelSerializer):
         many=True,
     )
     user_permissions = s.PrimaryKeyRelatedField(read_only=True, many=True)
-    profile = AccountProfileSerializer(read_only=True)
+    profile = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = get_user_model()

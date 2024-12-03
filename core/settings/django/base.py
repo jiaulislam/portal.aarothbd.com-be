@@ -34,7 +34,7 @@ THIRD_PARTY_APPS = [
 ]
 
 CUSTOM_APPS = [
-    "apps.accounts",
+    "apps.user",
 ]
 
 
@@ -109,7 +109,7 @@ LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "Asia/Dhaka"
 
-USE_I18N = True
+USE_I18N = False
 
 USE_TZ = True
 
@@ -130,7 +130,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-AUTH_USER_MODEL = "accounts.UserAccount"
+AUTH_USER_MODEL = "user.User"
 
 
 # creating app log directory

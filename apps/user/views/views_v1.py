@@ -1,29 +1,20 @@
 from django.conf import settings
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import authenticate
 from rest_framework import exceptions as e
 from rest_framework import response as r
 from rest_framework import status as s
-from rest_framework import viewsets as vs
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from ..serializers.accounts_v1 import (
-    AccountSerializerV1,
+    AccountSerializer,
     CookieTokenRefreshSerializer,
     LoginSerializer,
     RegisterAccountSerializer,
 )
 from ..services import generate_user_token, set_auth_cookies, unset_auth_cookies
-
-
-class AccountViewSetV1(vs.ModelViewSet):
-    serializer_class = AccountSerializerV1
-    permission_class = [IsAuthenticated, IsAdminUser]
-
-    def get_queryset(self):
-        return get_user_model().objects.filter(is_superuser=False)
 
 
 class RegisterAccountView(GenericAPIView):
@@ -103,7 +94,7 @@ class CookieTokenRefreshView(TokenRefreshView):
 class MeView(GenericAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-    serializer_class = AccountSerializerV1
+    serializer_class = AccountSerializer
 
     def get(self, request, *args, **kwargs):
-        return r.Response(AccountSerializerV1(instance=request.user).data)
+        return r.Response(AccountSerializer(instance=request.user).data)

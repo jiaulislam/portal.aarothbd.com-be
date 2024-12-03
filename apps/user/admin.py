@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
 
-from .models import UserAccount, UserProfile
+from .models import User, UserProfile
 
 
 class ProfileInline(admin.StackedInline):
@@ -18,7 +18,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ["user", "phone"]
 
 
-@admin.register(UserAccount)
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     list_display = (
         "email",
@@ -62,9 +62,7 @@ class UserAdmin(BaseUserAdmin):
         "user_permissions",
     )
 
-    def save_model(
-        self, request: HttpRequest, obj: UserAccount, form: ModelForm, change: bool
-    ) -> None:
+    def save_model(self, request: HttpRequest, obj: User, form: ModelForm, change: bool) -> None:
         if change:
             obj.updated_by = request.user
         else:

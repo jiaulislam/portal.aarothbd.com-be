@@ -15,12 +15,10 @@ urlpatterns = [
 ]
 
 v1_routes = [
-    path(api_v1, include(("apps.accounts.urls.urls_v1", "accounts"), namespace="v1")),
+    path(api_v1, include(("apps.user.urls.urls_v1", "users"), namespace="v1")),
     path(
         f"{api_v1}schema/",
-        SpectacularAPIView.as_view(
-            api_version="v1", renderer_classes=api_settings.DEFAULT_RENDERER_CLASSES
-        ),
+        SpectacularAPIView.as_view(api_version="v1", renderer_classes=api_settings.DEFAULT_RENDERER_CLASSES),
         name="schema-v1",
     ),
     path(
@@ -35,29 +33,8 @@ v1_routes = [
     ),
 ]
 
-v2_routes = [
-    path(api_v2, include(("apps.accounts.urls.urls_v2", "accounts"), namespace="v2")),
-    path(
-        f"{api_v2}schema/",
-        SpectacularAPIView.as_view(
-            api_version="v2", renderer_classes=api_settings.DEFAULT_RENDERER_CLASSES
-        ),
-        name="schema-v2",
-    ),
-    path(
-        f"{api_v2}docs/",
-        SpectacularSwaggerView.as_view(url_name="schema-v2"),
-        name="swagger-v2",
-    ),
-    path(
-        f"{api_v2}redoc/",
-        SpectacularRedocView.as_view(url_name="schema-v2"),
-        name="redoc",
-    ),
-]
 
-
-versioned_routes = [v1_routes, v2_routes]
+versioned_routes = [v1_routes]
 
 for routes in versioned_routes:
     urlpatterns.extend(routes)

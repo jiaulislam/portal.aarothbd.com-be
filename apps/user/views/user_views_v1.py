@@ -45,7 +45,7 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
     user_service = UserService()
 
     def get_queryset(self, id: int) -> UserType | None:
-        return self.user_service.all(id=id).first()
+        return self.user_service.all(id=id, is_superuser=False).first()
 
     def get(self, request: Request, id: int, **kwargs) -> Response:
         queryset = self.get_queryset(id)

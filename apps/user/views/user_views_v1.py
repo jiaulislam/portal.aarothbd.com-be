@@ -56,3 +56,18 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
 
     def handle_exception(self, exc: Exception) -> Response:
         return super().handle_exception(exc)
+
+
+class MeRetrieveAPIView(GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = UserSerializer
+    use_service = UserService()
+
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset()
+
+    def get(self, request: Request, *args, **kwargs):
+        queryset = self.get_queryset(**kwargs)
+        serialized = self.serializer_class(queryset)  # type: ignore
+        return Response(serialized.data, status=status.HTTP_200_OK)

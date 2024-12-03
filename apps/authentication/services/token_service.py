@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.middleware import csrf
 from rest_framework.request import Request
 from rest_framework_simplejwt import tokens
-from rest_framework_simplejwt.tokens import AccessToken
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from ..types import TokenResponse
 
@@ -17,7 +17,7 @@ __all__ = [
 class TokenService:
     @staticmethod
     def generate_user_token(user: AbstractBaseUser) -> TokenResponse:
-        refresh = AccessToken.for_user(user)
+        refresh = RefreshToken.for_user(user)
         return TokenResponse(
             refresh_token=str(refresh),
             access_token=str(refresh.access_token),  # type: ignore

@@ -8,7 +8,6 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenRefreshView
-from user.serializers import UserSerializer
 
 from ..serializers.auth_serializers_v1 import (
     CookieTokenRefreshSerializer,
@@ -90,12 +89,3 @@ class CookieTokenRefreshView(TokenRefreshView):
 
         response["X-CSRFToken"] = request.COOKIES.get("csrftoken", "")
         return super().finalize_response(request, response, *args, **kwargs)
-
-
-class MeAPIView(GenericAPIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-    serializer_class = UserSerializer
-
-    def get(self, request, *args, **kwargs):
-        return Response(UserSerializer(instance=request.user).data)

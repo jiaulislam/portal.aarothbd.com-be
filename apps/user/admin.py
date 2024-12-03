@@ -65,7 +65,7 @@ class UserAdmin(BaseUserAdmin):
 
     def save_model(self, request: HttpRequest, obj: User, form: ModelForm, change: bool) -> None:
         if change:
-            obj.updated_by = request.user
+            obj.updated_by = request.user  # type: ignore
         else:
-            obj.created_by = request.user
+            obj.created_by = request.user  # type: ignore
         return super().save_model(request, obj, form, change)

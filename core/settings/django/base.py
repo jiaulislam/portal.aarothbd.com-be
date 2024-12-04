@@ -157,6 +157,8 @@ CSRF_COOKIE_SECURE = True
 
 # DRF UNHANDLED EXCEPTION
 DRF_STANDARDIZED_ERRORS = {"ENABLE_IN_DEBUG_FOR_UNHANDLED_EXCEPTIONS": True}
+DRF_STANDARDIZED_ERRORS = {"EXCEPTION_HANDLER_CLASS": "core.exceptions.handlers.CoreExceptionHandler"}
+
 
 from core.settings.plugins.logging import *  # noqa: E402, F403, I001
 from core.settings.plugins.cors import *  # noqa: E402, F403, I001

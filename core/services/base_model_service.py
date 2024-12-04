@@ -3,6 +3,8 @@ from typing import Generic, Type
 from django.utils.text import slugify
 from rest_framework.generics import get_object_or_404
 
+from core.exceptions import SlugAlreadyExistException
+
 from ..types import _T, SerializerValidatedData
 from .core_service import CoreService
 
@@ -39,9 +41,9 @@ class BaseModelService(Generic[_T]):
         """make a slug value and get a slugified value for given field_value"""
         model_class = self.get_model_class()
         slug = slugify(field_value)
-        if model_class.objects.filter(slug=slug).exists():
-            # TODO: Handle with Generic Exception Class
-            raise Exception("Already Exists !")
+        slug_exists = model_class.objects.filter(slug=slug).exists()
+        if slug_exists:
+            raise SlugAlreadyExistException()
         return slug
 
     def create(self, validated_data: SerializerValidatedData, **kwargs) -> _T:

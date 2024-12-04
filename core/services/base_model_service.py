@@ -27,7 +27,14 @@ class BaseModelService(Generic[_T]):
 
     def get(self, **kwargs) -> _T:
         """get the single model object with dynamic key"""
+        select_related = kwargs.pop("select_related", [])
+        prefetch_related = kwargs.pop("prefetch_related", [])
         model_class = self.get_model_class()
+        queryset = model_class.objects.all()
+        if select_related and type(select_related) is list:
+            queryset = queryset.select_related(*select_related)
+        if prefetch_related and type(prefetch_related) is list:
+            queryset = queryset.prefetch_related(*prefetch_related)
         instance = get_object_or_404(model_class, **kwargs)
         return instance
 

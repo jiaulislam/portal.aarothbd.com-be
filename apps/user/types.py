@@ -7,7 +7,7 @@ from .models import User
 
 AbstractUserModel = get_user_model()
 
-UserType = AbstractUserModel | User
+UserType = User
 
 
 class UserValidatedDataType(TypedDict):

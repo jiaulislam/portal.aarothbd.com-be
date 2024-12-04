@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from rest_framework import status
-from rest_framework.exceptions import NotFound
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -45,12 +44,15 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
     user_service = UserService()
 
     def get_queryset(self, id: int) -> UserType | None:
-        return self.user_service.all(id=id, is_superuser=False).first()
+        return self.user_service.get(
+            id=id,
+            is_superuser=False,
+            select_related=["profile"],
+            prefetch_related=["groups", "user_permissions"],
+        )
 
     def get(self, request: Request, id: int, **kwargs) -> Response:
         queryset = self.get_queryset(id)
-        if not queryset:
-            raise NotFound(detail="No User matches the given query.")
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 

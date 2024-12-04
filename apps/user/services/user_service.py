@@ -2,10 +2,12 @@ from django.contrib.auth import get_user_model
 
 from core.services import BaseModelService
 
+from ..types import UserType
+
 User = get_user_model()
 
 
-class UserService(BaseModelService[User]):
+class UserService(BaseModelService[UserType]):
     model_class = User  # type: ignore
 
     def all(self, **kwargs):

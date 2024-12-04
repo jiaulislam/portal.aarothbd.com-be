@@ -49,7 +49,6 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
 
     def get(self, request: Request, id: int, **kwargs) -> Response:
         queryset = self.get_queryset(id)
-        self.user_service.get_slug_or_raise_exception("test-me")
         if not queryset:
             raise NotFound(detail="No User matches the given query.")
         serialized = self.serializer_class(queryset)  # type: ignore

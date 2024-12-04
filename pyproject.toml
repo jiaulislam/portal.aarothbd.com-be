@@ -75,4 +75,7 @@ known-third-party = [
     "tenacity",
     "drf-spectacular",
     "django-filter",
+    "pillow",
+    "sentry-sdk",
+    "drf-standardized-errors",
 ]

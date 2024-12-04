@@ -396,6 +396,19 @@ wheels = [
 ]
 
 [[package]]
+name = "drf-standardized-errors"
+version = "0.14.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "djangorestframework" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/4d/cc/fd5b8cbc66c361125cba0497573a5ecac94521a715267d7db4d113257a73/drf_standardized_errors-0.14.1.tar.gz", hash = "sha256:0610dcd0096b75365102d276022a22e59a1f8db8825bb0bff05e1b7194ba145d", size = 58730 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/70/589efc32d6f268576e2f3c2a595ef19a305c5d5acbfd26d10ebd45278778/drf_standardized_errors-0.14.1-py3-none-any.whl", hash = "sha256:4941e0f81be94eb0904549999cf221988a5b0f524041c3877530e24f70328ed8", size = 25512 },
+]
+
+[[package]]
 name = "executing"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -514,6 +527,7 @@ dependencies = [
     { name = "djangorestframework" },
     { name = "djangorestframework-simplejwt" },
     { name = "drf-spectacular" },
+    { name = "drf-standardized-errors" },
     { name = "psycopg" },
     { name = "redis" },
     { name = "tenacity" },
@@ -541,6 +555,7 @@ requires-dist = [
     { name = "djangorestframework", specifier = ">=3.15.2" },
     { name = "djangorestframework-simplejwt", specifier = ">=5.3.1" },
     { name = "drf-spectacular", specifier = ">=0.28.0" },
+    { name = "drf-standardized-errors", specifier = ">=0.14.1" },
     { name = "psycopg", specifier = ">=3.2.3" },
     { name = "redis", specifier = ">=5.2.0" },
     { name = "tenacity", specifier = ">=9.0.0" },
@@ -549,7 +564,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "devtools", specifier = ">=0.12.2" },
-    { name = "django-debug-toolbar" },
+    { name = "django-debug-toolbar", specifier = ">=4.4.6" },
     { name = "django-stubs", specifier = ">=5.1.1" },
     { name = "djangorestframework-stubs", specifier = ">=3.15.1" },
     { name = "pre-commit", specifier = ">=4.0.1" },

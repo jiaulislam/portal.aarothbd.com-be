@@ -5,6 +5,8 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from core.services.sentry_service import capture_exception_sentry
+
 from ..filters import UserFilterSet
 from ..serializers.user_serializer_v1 import (
     UserSerializer,
@@ -41,6 +43,7 @@ class UserListCreateAPIView(GenericAPIView):
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def handle_exception(self, exc: Exception) -> Response:
+        capture_exception_sentry(exc, request=self.request)
         return super().handle_exception(exc)
 
 
@@ -64,6 +67,7 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def handle_exception(self, exc: Exception) -> Response:
+        capture_exception_sentry(exc, request=self.request)
         return super().handle_exception(exc)
 
 
@@ -76,7 +80,11 @@ class MeRetrieveAPIView(GenericAPIView):
     def get_queryset(self) -> QuerySet:
         return super().get_queryset()
 
-    def get(self, request: Request, *args, **kwargs):
+    def get(self, _: Request, *args, **kwargs):
         queryset = self.get_queryset(**kwargs)
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def handle_exception(self, exc: Exception) -> Response:
+        capture_exception_sentry(exc, request=self.request)
+        return super().handle_exception(exc)

@@ -4,9 +4,9 @@ REST_FRAMEWORK = {
     "VERSION_PARAM": "version",
     "ALLOWED_VERSIONS": None,  # Allowed all for fixed use ["v1", "v2"]
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "core.authentication.SecureCookieAuthentication",
     ],
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"],
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
     "DEFAULT_SCHEMA_CLASS": "core.drf_schema.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",

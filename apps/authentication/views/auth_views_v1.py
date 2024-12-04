@@ -3,10 +3,8 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions as e
 from rest_framework import status as s
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from ..serializers.auth_serializers_v1 import (
@@ -45,11 +43,9 @@ class LoginAPIView(GenericAPIView):
     serializer_class = LoginSerializer
 
     @TokenService.set_auth_cookies
-    def post(self, request, format=None):
+    def post(self, request: Request, format=None):
         body = LoginSerializer(data=request.data)
-
         body.is_valid(raise_exception=True)
-
         email = body.validated_data["email"]
         password = body.validated_data["password"]
 
@@ -59,17 +55,13 @@ class LoginAPIView(GenericAPIView):
             raise e.AuthenticationFailed("Email or Password is incorrect")
 
         tokens = TokenService.generate_user_token(authorized_user)
-
         return Response(tokens)
 
 
-class LogoutView(GenericAPIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-
+class LogoutAPIView(GenericAPIView):
     @TokenService.unset_auth_cookies
-    def post(self, request, format=None):
-        return Response(status=s.HTTP_204_NO_CONTENT)
+    def post(self, _: Request, *args, **kwargs):
+        return Response({"detail": "Logged out successfully."}, status=s.HTTP_200_OK)
 
 
 class CookieTokenRefreshView(TokenRefreshView):

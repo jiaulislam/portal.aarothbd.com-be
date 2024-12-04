@@ -4,6 +4,7 @@ from django.conf import settings as s
 from django.contrib.auth.models import AbstractBaseUser
 from django.middleware import csrf
 from rest_framework.request import Request
+from rest_framework.response import Response
 from rest_framework_simplejwt import tokens
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -29,7 +30,7 @@ class TokenService:
     def set_auth_cookies(view_func):
         @wraps(view_func)
         def _wrapper(self, request: Request, *args, **kwargs):
-            response = view_func(self, request, *args, **kwargs)
+            response: Response = view_func(self, request, *args, **kwargs)
             access_token = response.data.get("access_token")
             refresh_token = response.data.get("refresh_token")
 
@@ -51,6 +52,11 @@ class TokenService:
                 samesite=s.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
             )
             response["X-CSRFToken"] = csrf.get_token(request)
+            response.data.pop("access_token", "")
+            response.data.pop("refresh_token", "")
+            response.data.pop("iat", "")
+            response.data.pop("exp", "")
+            response.data = {"detail": "Logged in successfully !"}
             return response
 
         return _wrapper

@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from rest_framework import status
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -17,8 +18,6 @@ User = get_user_model()
 
 
 class UserListCreateAPIView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
     serializer_class = UserSerializer
     filterset_class = UserFilterSet
 
@@ -43,8 +42,6 @@ class UserListCreateAPIView(GenericAPIView):
 
 
 class UserRetrieveUpdateAPIView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
     serializer_class = UserSerializer
     user_service = UserService()
 
@@ -63,8 +60,6 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
 
 
 class UserUpdateStatusAPIView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
     user_service = UserService()
     serializer_class = UserUpdateStatusSerializer
 
@@ -85,15 +80,16 @@ class UserUpdateStatusAPIView(GenericAPIView):
 
 
 class MeRetrieveAPIView(GenericAPIView):
-    authentication_classes = []
-    permission_classes = []
     serializer_class = UserSerializer
     use_service = UserService()
 
-    def get_queryset(self) -> QuerySet:
-        return super().get_queryset()
+    def get_queryset(self, current_user_id: int) -> UserType:
+        return self.use_service.get(id=current_user_id)
 
-    def get(self, _: Request, *args, **kwargs):
-        queryset = self.get_queryset(**kwargs)
+    def get(self, request: Request, *args, **kwargs):
+        current_user_id: int | None = request.user.id
+        if not current_user_id:
+            raise AuthenticationFailed()
+        queryset = self.get_queryset(current_user_id)
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)

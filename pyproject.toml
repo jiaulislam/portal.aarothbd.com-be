@@ -19,6 +19,7 @@ dependencies = [
     "redis>=5.2.0",
     "tenacity>=9.0.0",
     "drf-standardized-errors>=0.14.1",
+    "sentry-sdk>=2.19.0",
 ]
 
 [tool.uv]

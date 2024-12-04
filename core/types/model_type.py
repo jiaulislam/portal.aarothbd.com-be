@@ -1,9 +1,20 @@
-from typing import Any, MutableMapping, TypeVar, Union
+from datetime import datetime
+from typing import NotRequired, TypedDict, TypeVar
 
+from django.contrib.auth.models import AbstractBaseUser
 from django.db.models import Model
 
-__all__ = ["_T", "SerializerValidatedData"]
+__all__ = ["_T", "SerializedValidatedDataType"]
 
 _T = TypeVar("_T", bound=Model)
 
-SerializerValidatedData = MutableMapping[str, Union[str, int, Any]]
+
+class MutableBaseSerializerValidatedData(TypedDict):
+    is_active: bool
+    created_at: NotRequired[datetime] | None
+    updated_at: NotRequired[datetime] | None
+    created_by: NotRequired[AbstractBaseUser] | None
+    updated_by: NotRequired[AbstractBaseUser] | None
+
+
+SerializedValidatedDataType = MutableBaseSerializerValidatedData

@@ -5,7 +5,7 @@ from rest_framework.generics import get_object_or_404
 
 from core.exceptions import SlugAlreadyExistException
 
-from ..types import _T, SerializerValidatedData
+from ..types import _T, SerializedValidatedDataType
 from .core_service import CoreService
 
 
@@ -15,7 +15,7 @@ class BaseModelService(Generic[_T]):
     def __init__(self) -> None:
         self.core_service = CoreService()
 
-    def prepare_data(self, validated_data: SerializerValidatedData, *args, **kwargs):
+    def prepare_data(self, validated_data: SerializedValidatedDataType, *args, **kwargs):
         """prepares the validated data as per model requirements"""
         return validated_data
 
@@ -53,7 +53,7 @@ class BaseModelService(Generic[_T]):
             raise SlugAlreadyExistException()
         return slug
 
-    def create(self, validated_data: SerializerValidatedData, **kwargs) -> _T:
+    def create(self, validated_data: SerializedValidatedDataType, **kwargs) -> _T:
         """create an model instance with the given validated data"""
         # TODO: the user tagging can be handled by decorator pattern.
         validated_data = self.prepare_data(validated_data)
@@ -65,7 +65,7 @@ class BaseModelService(Generic[_T]):
         instance = model_class.objects.create(**validated_data)
         return instance
 
-    def update(self, instance: _T, validated_data: SerializerValidatedData, **kwargs) -> _T:
+    def update(self, instance: _T, validated_data: SerializedValidatedDataType, **kwargs) -> _T:
         """update an instance model with the given validated data"""
         request = kwargs.get("request")
         user = self.core_service.get_user(request)

@@ -15,7 +15,7 @@ from ..types import UserType
 User = get_user_model()
 
 
-class UserListAPIView(GenericAPIView):
+class UserListCreateAPIView(GenericAPIView):
     authentication_classes = []
     permission_classes = []
     serializer_class = UserSerializer
@@ -32,6 +32,13 @@ class UserListAPIView(GenericAPIView):
         queryset = self.get_queryset(**kwargs)
         serialized = self.serializer_class(queryset, many=True)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        serialized = self.serializer_class(data=request.data)  # type: ignore
+        serialized.is_valid(raise_exception=True)
+        instance = self.user_service.create(serialized.data)
+        serialized = self.serializer_class(instance=instance)  # type: ignore
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def handle_exception(self, exc: Exception) -> Response:
         return super().handle_exception(exc)

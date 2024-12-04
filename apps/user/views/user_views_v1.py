@@ -5,11 +5,10 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from core.services.sentry_service import capture_exception_sentry
-
 from ..filters import UserFilterSet
-from ..serializers.user_serializer_v1 import (
+from ..serializers import (
     UserSerializer,
+    UserUpdateStatusSerializer,
 )
 from ..services.user_service import UserService
 from ..types import UserType
@@ -42,10 +41,6 @@ class UserListCreateAPIView(GenericAPIView):
         serialized = self.serializer_class(instance=instance)  # type: ignore
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
-    def handle_exception(self, exc: Exception) -> Response:
-        capture_exception_sentry(exc, request=self.request)
-        return super().handle_exception(exc)
-
 
 class UserRetrieveUpdateAPIView(GenericAPIView):
     authentication_classes = []
@@ -66,9 +61,27 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
-    def handle_exception(self, exc: Exception) -> Response:
-        capture_exception_sentry(exc, request=self.request)
-        return super().handle_exception(exc)
+
+class UserUpdateStatusAPIView(GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+    user_service = UserService()
+    serializer_class = UserUpdateStatusSerializer
+
+    def get_queryset(self, id: int) -> UserType:
+        return self.user_service.get(
+            id=id,
+            is_superuser=False,
+            select_related=["profile"],
+            prefetch_related=["groups", "user_permissions"],
+        )
+
+    def post(self, request: Request, id: int, **kwargs):
+        serialized = self.serializer_class(data=request.data)  # type: ignore
+        serialized.is_valid(raise_exception=True)
+        instance = self.get_queryset(id)
+        self.user_service.update(instance, serialized.data, request=request)
+        return Response({"detail": "User Status updated."}, status=status.HTTP_200_OK)
 
 
 class MeRetrieveAPIView(GenericAPIView):
@@ -84,7 +97,3 @@ class MeRetrieveAPIView(GenericAPIView):
         queryset = self.get_queryset(**kwargs)
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
-
-    def handle_exception(self, exc: Exception) -> Response:
-        capture_exception_sentry(exc, request=self.request)
-        return super().handle_exception(exc)

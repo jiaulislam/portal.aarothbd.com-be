@@ -6,6 +6,12 @@ from rest_framework.exceptions import ValidationError
 
 from ..models import User, UserProfile
 
+__all__ = [
+    "UserProfileSerializer",
+    "UserSerializer",
+    "UserUpdateStatusSerializer",
+]
+
 
 class UserProfileSerializer(s.ModelSerializer):
     class Meta:
@@ -43,3 +49,16 @@ class UserSerializer(s.ModelSerializer[User]):
             "is_superuser",
         ]
         read_only_fields = ("groups", "user_permissions")
+
+
+class UserUpdateStatusSerializer(s.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ("id", "is_active")
+
+    def validate(self, data):
+        try:
+            _ = data["is_active"]
+        except KeyError as _:
+            raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
+        return data

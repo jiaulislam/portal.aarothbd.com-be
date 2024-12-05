@@ -26,7 +26,8 @@ class RegisterUserAPIView(GenericAPIView):
         serialized.is_valid(raise_exception=True)
         plain_text_password = serialized.validated_data["password"]
         serialized.validated_data["password"] = self.user_service.hash_password(plain_text_password)
-        _ = self.user_service.create(serialized.validated_data)
+        _ = self.user_service.create_customer(serialized.validated_data)
+        # TODO: customer email verification task should implement here [Celery Task]
         return Response(
             {"detail": "Successfully Registered."},
             status=s.HTTP_201_CREATED,
@@ -39,10 +40,10 @@ class LoginAPIView(GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request: Request, *args, **kwargs) -> Response:
-        body = LoginSerializer(data=request.data)
-        body.is_valid(raise_exception=True)
-        email = body.validated_data["email"]
-        password = body.validated_data["password"]
+        serialized = LoginSerializer(data=request.data)
+        serialized.is_valid(raise_exception=True)
+        email = serialized.validated_data["email"]
+        password = serialized.validated_data["password"]
 
         authorized_user = authenticate(request, email=email, password=password)
 

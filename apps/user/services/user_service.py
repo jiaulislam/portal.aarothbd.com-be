@@ -22,12 +22,18 @@ class UserService(BaseModelService[UserType]):
             )
         )
 
-    def hash_password(self, password: str) -> str:
-        if bool(password):
+    def hash_password(self, plain_text_password: str) -> str:
+        if bool(plain_text_password):
             raise ValueError("password field cannot be empty!")
-        return make_password(password)
+        return make_password(plain_text_password)
 
     def create(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:
         validated_data["created_by"] = self.core_service.get_user(kwargs.get("request"))
         instance = self.model_class.objects.create(**validated_data)
+        return instance
+
+    def create_customer(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:
+        validated_data["user_type"] = "customer"
+        validated_data["is_active"] = False
+        instance = self.create(validated_data, **kwargs)
         return instance

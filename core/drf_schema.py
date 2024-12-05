@@ -1,3 +1,4 @@
+from drf_spectacular.extensions import OpenApiAuthenticationExtension
 from drf_spectacular.openapi import AutoSchema as SpectacularAutoSchema
 
 
@@ -9,4 +10,16 @@ class AutoSchema(SpectacularAutoSchema):
         """
         operation_id = super().get_operation_id()
         version, _ = self.view.determine_version(self.view.request, **self.view.kwargs)
-        return f'{version}_{operation_id}'
+        return f"{version}_{operation_id}"
+
+
+class SecureCookieAuthenticationExtension(OpenApiAuthenticationExtension):
+    target_class = "core.authentication.SecureCookieAuthentication"
+    name = "SecureCookieAuth"
+
+    def get_security_definition(self, auto_schema):
+        return {
+            "type": "apiKey",
+            "in": "cookie",
+            "name": "access",
+        }

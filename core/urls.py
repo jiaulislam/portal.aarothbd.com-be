@@ -6,7 +6,6 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from rest_framework.settings import api_settings
 
 api_v1 = "api/v1/"
 api_v2 = "api/v2/"
@@ -16,11 +15,11 @@ urlpatterns = [
 ]
 
 v1_routes = [
-    path(api_v1, include(("apps.user.urls.urls_v1", "users"), namespace="users-v1")),
-    path(api_v1, include(("apps.authentication.urls.urls_v1", "auths"), namespace="auth-v1")),
+    path(api_v1, include(("apps.user.urls.urls_v1", "users"), namespace="v1")),
+    path(api_v1, include(("apps.authentication.urls.urls_v1", "auths"), namespace="v1")),
     path(
         f"{api_v1}schema/",
-        SpectacularAPIView.as_view(api_version="v1", renderer_classes=api_settings.DEFAULT_RENDERER_CLASSES),
+        SpectacularAPIView.as_view(api_version="v1"),
         name="schema-v1",
     ),
     path(

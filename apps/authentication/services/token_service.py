@@ -4,6 +4,7 @@ from django.middleware import csrf
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework_simplejwt import tokens
+from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from ..exceptions import TokenServiceFailureException
@@ -71,4 +72,21 @@ class TokenService:
         response.delete_cookie("X-CSRFToken")
         response.delete_cookie("csrftoken")
         del response["X-CSRFToken"]
+        return response
+
+    def get_refresh_token_response(self, user: AbstractBaseUser) -> Response:
+        refresh_token = self.request.COOKIES.get(s.SIMPLE_JWT["AUTH_COOKIE_REFRESH"])
+        if not refresh_token:
+            raise InvalidToken()
+
+        refresh_token = RefreshToken.for_user(user)
+        response = Response()
+        response.set_cookie(
+            key=s.SIMPLE_JWT["AUTH_COOKIE"],
+            value=str(refresh_token.access_token),  # type: ignore
+            expires=s.SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"],
+            secure=s.SIMPLE_JWT["AUTH_COOKIE_SECURE"],
+            httponly=s.SIMPLE_JWT["AUTH_COOKIE_HTTPONLY"],
+            samesite=s.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
+        )
         return response

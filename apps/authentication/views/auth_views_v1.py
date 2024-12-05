@@ -1,17 +1,15 @@
-from django.conf import settings
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import AbstractBaseUser
 from rest_framework import exceptions as e
 from rest_framework import status
 from rest_framework import status as s
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework_simplejwt.views import TokenRefreshView
 
 from apps.user.services import UserService
 
 from ..serializers.auth_serializers_v1 import (
-    CookieTokenRefreshSerializer,
     LoginSerializer,
     RegisterUserSerializer,
 )
@@ -66,20 +64,14 @@ class LogoutAPIView(GenericAPIView):
         return response
 
 
-class CookieTokenRefreshView(TokenRefreshView):
-    serializer_class = CookieTokenRefreshSerializer
-
-    def finalize_response(self, request, response, *args, **kwargs):
-        if response.data.get("refresh"):
-            response.set_cookie(
-                key=settings.SIMPLE_JWT["AUTH_COOKIE_REFRESH"],
-                value=response.data["refresh"],
-                expires=settings.SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"],
-                secure=settings.SIMPLE_JWT["AUTH_COOKIE_SECURE"],
-                httponly=settings.SIMPLE_JWT["AUTH_COOKIE_HTTPONLY"],
-                samesite=settings.SIMPLE_JWT["AUTH_COOKIE_SAMESITE"],
-            )
-            del response.data["refresh"]
+class RefreshTokenAPIView(GenericAPIView):
+    def post(self, request: Request, *args, **kwargs):
+        current_user = request.user
+        if current_user and isinstance(current_user, AbstractBaseUser):
+            token_service = TokenService(request, current_user)
+            response = token_service.get_refresh_token_response(current_user)
+            response.data = {"detail": "token has been refreshed successfully."}
+            response.status_code = status.HTTP_200_OK
 
         response["X-CSRFToken"] = request.COOKIES.get("csrftoken", "")
-        return super().finalize_response(request, response, *args, **kwargs)
+        return response

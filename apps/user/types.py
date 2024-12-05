@@ -3,7 +3,7 @@ from typing import Literal
 
 from django.contrib.auth import get_user_model
 
-from core.types import SerializedValidatedDataType
+from core.types import BaseSerializerValidatedDataType
 
 from .models import User
 
@@ -14,7 +14,7 @@ UserType = User
 UserCategory = Literal["central_admin"] | Literal["customer"] | Literal["wholeseller"]
 
 
-class UserValidatedDataType(SerializedValidatedDataType):
+class UserValidatedDataType(BaseSerializerValidatedDataType):
     email: str
     first_name: str | None
     last_name: str | None

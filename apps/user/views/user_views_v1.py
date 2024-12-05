@@ -7,7 +7,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from ..filters import UserFilterSet
-from ..serializers import (
+from ..serializers.user_serializer_v1 import (
     UserSerializer,
     UserUpdateStatusSerializer,
 )

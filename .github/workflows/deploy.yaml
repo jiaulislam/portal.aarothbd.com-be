@@ -20,4 +20,4 @@ jobs:
       - name: Run Deployment
         run: |
           chmod +x ./scripts/deploy.sh
-          ./scripts/deploy.sh ${{ secrets.FTP_HOST }} ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }} ./ ${{ secrets.FTP_TARGET_DIR }}
+          ./scripts/deploy.sh ${{ vars.FTP_HOST }} ${{ vars.FTP_USERNAME }} ${{ vars.FTP_PASSWORD }} ./ ${{ vars.FTP_TARGET_DIR }}

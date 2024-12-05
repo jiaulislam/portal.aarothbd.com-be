@@ -19,7 +19,7 @@ echo "REMOTE_DIR: $REMOTE_DIR"
 # Use lftp to mirror the local directory to the remote directory, skipping SSL verification
 lftp -d -c "
 set ssl:verify-certificate no;
-open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST;
+open -u $FTP_USERNAME,'$FTP_PASSWORD' $FTP_HOST;
 mirror -R --verbose --only-newer --parallel=10 $LOCAL_DIR $REMOTE_DIR --exclude .venv/ --exclude __pycache__/;
 bye;
 "

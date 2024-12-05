@@ -23,11 +23,11 @@ jobs:
           user: ${{ secrets.SFTP_USER }}
           pass: ${{ secrets.SFTP_PASS }}
           # lftp settings
-          onlyNewer: false
+          onlyNewer: true
           settings: 'sftp:auto-confirm=yes'
           # Mirror command options
           localDir: '.'
-          remoteDir: '/var/www/backend/'
+          remoteDir: ${{ vars.TARGET_DIR }}
           reverse: true
           parallel: 10
           ignoreFile: '.lftp_ignore'

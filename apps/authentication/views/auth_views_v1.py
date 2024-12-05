@@ -1,19 +1,21 @@
 from django.conf import settings
 from django.contrib.auth import authenticate
 from rest_framework import exceptions as e
+from rest_framework import status
 from rest_framework import status as s
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenRefreshView
-from user.services import UserService
+
+from apps.user.services import UserService
 
 from ..serializers.auth_serializers_v1 import (
     CookieTokenRefreshSerializer,
     LoginSerializer,
     RegisterUserSerializer,
 )
-from ..services import generate_user_token, set_auth_cookies, unset_auth_cookies
+from ..services import TokenService
 
 
 class RegisterUserAPIView(GenericAPIView):
@@ -22,11 +24,11 @@ class RegisterUserAPIView(GenericAPIView):
     serializer_class = RegisterUserSerializer
     user_service = UserService()
 
-    def post(self, request: Request, format=None):
+    def post(self, request: Request, *args, **kwargs):
         serialized = RegisterUserSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
-        _password = serialized.validated_data["password"]
-        serialized.validated_data["password"] = self.user_service.hash_password(_password)
+        plain_text_password = serialized.validated_data["password"]
+        serialized.validated_data["password"] = self.user_service.hash_password(plain_text_password)
         _ = self.user_service.create(serialized.validated_data)
         return Response(
             {"detail": "Successfully Registered."},
@@ -39,8 +41,7 @@ class LoginAPIView(GenericAPIView):
     permission_classes = []
     serializer_class = LoginSerializer
 
-    @set_auth_cookies
-    def post(self, request: Request, format=None):
+    def post(self, request: Request, *args, **kwargs) -> Response:
         body = LoginSerializer(data=request.data)
         body.is_valid(raise_exception=True)
         email = body.validated_data["email"]
@@ -50,15 +51,19 @@ class LoginAPIView(GenericAPIView):
 
         if authorized_user is None:
             raise e.AuthenticationFailed("Email or Password is incorrect")
-
-        tokens = generate_user_token(authorized_user)
-        return Response(tokens)
+        token_service = TokenService(request, authorized_user)
+        response = token_service.get_secured_cookie_response()
+        response.data = {"detail": "Logged in Successfully."}
+        response.status_code = status.HTTP_200_OK
+        return response
 
 
 class LogoutAPIView(GenericAPIView):
-    @unset_auth_cookies
-    def post(self, _: Request, *args, **kwargs):
-        return Response({"detail": "Logged out successfully."}, status=s.HTTP_200_OK)
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        response = TokenService.get_removed_cookies_response(request)
+        response.data = {"detail": "Logged out successfully."}
+        response.status_code = status.HTTP_200_OK
+        return response
 
 
 class CookieTokenRefreshView(TokenRefreshView):

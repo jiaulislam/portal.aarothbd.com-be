@@ -3,7 +3,7 @@ from typing import NotRequired, TypedDict
 from core.types.model_type import BaseSerializerValidatedDataType
 
 
-class TokenResponse(TypedDict):
+class TokenResponse(TypedDict, total=False):
     refresh_token: str
     access_token: str
     iat: str

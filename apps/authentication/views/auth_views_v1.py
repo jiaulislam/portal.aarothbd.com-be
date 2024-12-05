@@ -7,6 +7,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from apps.user.services import UserService
+from core.serializers import SuccessResponseSerializer
 
 from ..serializers.auth_serializers_v1 import (
     LoginSerializer,
@@ -57,6 +58,8 @@ class LoginAPIView(GenericAPIView):
 
 
 class LogoutAPIView(GenericAPIView):
+    serializer_class = SuccessResponseSerializer
+
     def post(self, request: Request, *args, **kwargs) -> Response:
         response = TokenService.get_removed_cookies_response(request)
         response.data = {"detail": "Logged out successfully."}
@@ -65,6 +68,8 @@ class LogoutAPIView(GenericAPIView):
 
 
 class RefreshTokenAPIView(GenericAPIView):
+    serializer_class = SuccessResponseSerializer
+
     def post(self, request: Request, *args, **kwargs):
         current_user = request.user
         token_service = TokenService(request, current_user)  # type: ignore

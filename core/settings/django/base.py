@@ -31,11 +31,13 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "django_filters",
     "debug_toolbar",
+    "drf_standardized_errors",
 ]
 
 CUSTOM_APPS = [
-    "apps.user",
     "apps.authentication",
+    "apps.user",
+    "apps.address",
 ]
 
 
@@ -147,12 +149,16 @@ SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = "Lax"
 
 # Django Base CSRF settings
-CSRF_COOKIE_AGE = 31449600  # 1 year approx.
+CSRF_COOKIE_AGE = 86400  # 1 day approx.
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_PATH = "/"
 CSRF_COOKIE_NAME = "csrftoken"
 CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SECURE = True
+
+# DRF UNHANDLED EXCEPTION
+DRF_STANDARDIZED_ERRORS = {"ENABLE_IN_DEBUG_FOR_UNHANDLED_EXCEPTIONS": True}
+DRF_STANDARDIZED_ERRORS = {"EXCEPTION_HANDLER_CLASS": "core.exceptions.handlers.CoreExceptionHandler"}
 
 
 from core.settings.plugins.logging import *  # noqa: E402, F403, I001

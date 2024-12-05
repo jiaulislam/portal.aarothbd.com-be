@@ -1,11 +1,14 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 
 from core.services import BaseModelService
+
+from ..types import UserType, UserValidatedDataType
 
 User = get_user_model()
 
 
-class UserService(BaseModelService[User]):
+class UserService(BaseModelService[UserType]):
     model_class = User  # type: ignore
 
     def all(self, **kwargs):
@@ -18,3 +21,13 @@ class UserService(BaseModelService[User]):
                 "user_permissions",
             )
         )
+
+    def hash_password(self, password: str) -> str:
+        if bool(password):
+            raise ValueError("password field cannot be empty!")
+        return make_password(password)
+
+    def create(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:
+        validated_data["created_by"] = self.core_service.get_user(kwargs.get("request"))
+        instance = self.model_class.objects.create(**validated_data)
+        return instance

@@ -3,6 +3,8 @@ from rest_framework import serializers as s
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 
+from ..types import RegisterUserValidatedDataType
+
 
 class RegisterUserSerializer(s.ModelSerializer):
     first_name = s.CharField(max_length=88, allow_blank=True, default="")
@@ -16,22 +18,14 @@ class RegisterUserSerializer(s.ModelSerializer):
             "password": {"write_only": True},
         }
 
-    def save(self):
-        user = get_user_model()(
-            email=self.validated_data["email"],
-            first_name=self.validated_data.get("first_name"),
-            last_name=self.validated_data.get("last_name"),
-        )
-
-        password = self.validated_data["password"]
-        password2 = self.validated_data["password2"]
+    def validate(self, data: RegisterUserValidatedDataType) -> RegisterUserValidatedDataType:
+        password = data.get("password", "")
+        password2 = data.get("password2", "")
 
         if password != password2:
             raise s.ValidationError({"password": "Passwords do not match!"})
-
-        user.set_password(password)
-        user.save()
-        return user
+        del data["password2"]
+        return data
 
 
 class LoginSerializer(s.Serializer):

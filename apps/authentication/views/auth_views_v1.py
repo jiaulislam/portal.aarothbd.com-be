@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import AbstractBaseUser
 from rest_framework import exceptions as e
 from rest_framework import status
 from rest_framework import status as s
@@ -67,11 +66,10 @@ class LogoutAPIView(GenericAPIView):
 class RefreshTokenAPIView(GenericAPIView):
     def post(self, request: Request, *args, **kwargs):
         current_user = request.user
-        if current_user and isinstance(current_user, AbstractBaseUser):
-            token_service = TokenService(request, current_user)
-            response = token_service.get_refresh_token_response(current_user)
-            response.data = {"detail": "token has been refreshed successfully."}
-            response.status_code = status.HTTP_200_OK
+        token_service = TokenService(request, current_user)  # type: ignore
+        response = token_service.get_refresh_token_response()
+        response.data = {"detail": "token has been refreshed successfully."}
+        response.status_code = status.HTTP_200_OK
 
         response["X-CSRFToken"] = request.COOKIES.get("csrftoken", "")
         return response

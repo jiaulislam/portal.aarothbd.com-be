@@ -74,12 +74,12 @@ class TokenService:
         del response["X-CSRFToken"]
         return response
 
-    def get_refresh_token_response(self, user: AbstractBaseUser) -> Response:
+    def get_refresh_token_response(self) -> Response:
         refresh_token = self.request.COOKIES.get(s.SIMPLE_JWT["AUTH_COOKIE_REFRESH"])
         if not refresh_token:
             raise InvalidToken()
 
-        refresh_token = RefreshToken.for_user(user)
+        refresh_token = RefreshToken.for_user(self.user)
         response = Response()
         response.set_cookie(
             key=s.SIMPLE_JWT["AUTH_COOKIE"],

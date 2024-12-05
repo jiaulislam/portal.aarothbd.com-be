@@ -14,10 +14,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup LFTP
-        run:  sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Run Deployment
-        run: |
-          chmod +x ./scripts/deploy.sh
-          ./scripts/deploy.sh ${{ vars.FTP_HOST }} ${{ vars.FTP_USERNAME }} ${{ vars.FTP_PASSWORD }} ./ ${{ vars.FTP_TARGET_DIR }}
+      - name: Deploy files via SFTP
+        uses: pressidium/lftp-mirror-action@v1
+        with:
+          # SFTP credentials
+          host: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT }}
+          user: ${{ secrets.SFTP_USER }}
+          pass: ${{ secrets.SFTP_PASS }}
+          # lftp settings
+          onlyNewer: true
+          settings: 'sftp:auto-confirm=yes'
+          # Mirror command options
+          localDir: '.'
+          remoteDir: '/var/www/backend'
+          reverse: false
+          ignoreFile: '.lftp_ignore'
+          options: '--verbose'

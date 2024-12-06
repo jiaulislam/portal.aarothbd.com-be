@@ -161,6 +161,12 @@ DRF_STANDARDIZED_ERRORS = {"ENABLE_IN_DEBUG_FOR_UNHANDLED_EXCEPTIONS": True}
 DRF_STANDARDIZED_ERRORS = {"EXCEPTION_HANDLER_CLASS": "core.exceptions.handlers.CoreExceptionHandler"}
 
 
+# SENTRY
+SENTRY_DSN = env("SENTRY_DSN")
+SENTRY_ENV = env("SENTRY_ENV")
+SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
+
+from core.settings.plugins.sentry import *  # noqa: E402, F403, I001
 from core.settings.plugins.logging import *  # noqa: E402, F403, I001
 from core.settings.plugins.cors import *  # noqa: E402, F403, I001
 from core.settings.plugins.drf import *  # noqa: E402, F403, I001

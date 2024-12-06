@@ -21,5 +21,6 @@ class SecureCookieAuthenticationExtension(OpenApiAuthenticationExtension):
         return {
             "type": "apiKey",
             "in": "cookie",
-            "name": "access",
+            "name": "SecureCookieAuthentication",
+            "description": "<h4>Clients will get authenticated automatically by getting cookies value once login.</h4>",
         }

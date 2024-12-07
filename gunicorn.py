@@ -20,6 +20,7 @@ logger_class = "gunicorn.glogging.Logger"
 access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"'
 loglevel = "warning"
 
+raw_env = "DJANGO_SETTINGS_MODULE=core.settings.django.dev"
 
 # Worker & App
 wsgi_app = "core.wsgi:application"

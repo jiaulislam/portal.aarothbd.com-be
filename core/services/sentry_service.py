@@ -11,11 +11,13 @@ __all__ = ["capture_exception_sentry"]
 
 
 def capture_exception_sentry(e, **kwargs: Unpack[SentryKwargsType]):
-    request: Request | None = kwargs.pop("request")
-    if not request:
+    try:
+        request: Request = kwargs.pop("request")
+    except KeyError:
         raise MissingSentryRequestParamException()
     with push_scope() as scope:
-        scope.set_extra("user", model_to_dict(request.user))  # type: ignore
+        user_ctx = model_to_dict(instance=request.user, fields=["id", "email", "user_type"])  # type: ignore
+        scope.set_user(user_ctx)
         for k, v in kwargs.items():
             scope.set_extra(str(k), v)
         capture_exception(e)

@@ -32,3 +32,31 @@ jobs:
           parallel: 10
           ignoreFile: '.lftp_ignore'
           options: '--verbose'
+
+      - name: Django Collect Static & Migrate
+        env:
+          HOST: ${{ secrets.SSH_HOST }}
+          USER: ${{ secrets.SSH_USER }}
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          # Add the SSH key
+          echo "$KEY" > private_key
+          chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST << 'EOF'
+            # Navigate to your project directory
+            cd ${{ vars.TARGET_DIR }}
+
+            # Activate the virtual environment (update the path as needed)
+            source .venv/bin/activate
+
+            # Run Django-specific commands
+            python manage.py collectstatic --noinput
+            python manage.py migrate
+
+            # Optional: Restart services (e.g., Gunicorn)
+            sudo systemctl restart backend.aarothbd.com.service
+
+            # Clean up
+            deactivate
+          EOF
+          rm private_key

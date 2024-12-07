@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 
+from core.exceptions import CustomException
 from core.services import BaseModelService
 
 from ..types import UserType, UserValidatedDataType
@@ -24,7 +25,7 @@ class UserService(BaseModelService[UserType]):
 
     def hash_password(self, plain_text_password: str) -> str:
         if not bool(plain_text_password):
-            raise ValueError("password field cannot be empty!")
+            raise CustomException(detail="password field cannot be empty!")
         return make_password(plain_text_password)
 
     def create(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:

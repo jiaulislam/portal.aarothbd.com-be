@@ -7,8 +7,10 @@ from .base import *
 DEBUG = True
 
 hosts: List[str] = env.tuple("ALLOWED_HOSTS")
+origins: List[str] = env.tuple("CORS_ALLOWED_ORIGINS")
 
 ALLOWED_HOSTS = [host.strip() for host in hosts]
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in origins]
 
 DATABASES = {
     "default": {

@@ -6,6 +6,8 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from core.pagination import ExtendedLimitOffsetPagination
+
 from ..filters import UserFilterSet
 from ..serializers.user_serializer_v1 import (
     UserSerializer,
@@ -20,6 +22,7 @@ User = get_user_model()
 class UserListCreateAPIView(GenericAPIView):
     serializer_class = UserSerializer
     filterset_class = UserFilterSet
+    pagination_class = ExtendedLimitOffsetPagination
 
     user_service = UserService()
 
@@ -28,10 +31,12 @@ class UserListCreateAPIView(GenericAPIView):
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
-    def get(self, _: Request, *args, **kwargs) -> Response:
+    def get(self, request: Request, *args, **kwargs) -> Response:
         queryset = self.get_queryset(**kwargs)
-        serialized = self.serializer_class(queryset, many=True)  # type: ignore
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        paginate = self.pagination_class()  # type: ignore
+        paginated_queryset = paginate.paginate_queryset(queryset, request)
+        serialized = self.serializer_class(paginated_queryset, many=True)  # type: ignore
+        return paginate.get_paginated_response(serialized.data)
 
     def post(self, request: Request, *args, **kwargs) -> Response:
         serialized = self.serializer_class(data=request.data)  # type: ignore

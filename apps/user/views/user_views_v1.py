@@ -50,16 +50,14 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
     serializer_class = UserSerializer
     user_service = UserService()
 
-    def get_queryset(self, id: int) -> UserType | None:
-        return self.user_service.get(
+
+    def get(self, request: Request, id: int, **kwargs) -> Response:
+        queryset = self.user_service.get(
             id=id,
             is_superuser=False,
             select_related=["profile"],
             prefetch_related=["groups", "user_permissions"],
         )
-
-    def get(self, request: Request, id: int, **kwargs) -> Response:
-        queryset = self.get_queryset(id)
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -68,33 +66,28 @@ class UserUpdateStatusAPIView(GenericAPIView):
     user_service = UserService()
     serializer_class = UserUpdateStatusSerializer
 
-    def get_queryset(self, id: int) -> UserType:
-        return self.user_service.get(
+
+    def post(self, request: Request, id: int, **kwargs):
+        serialized = self.serializer_class(data=request.data)  # type: ignore
+        serialized.is_valid(raise_exception=True)
+        instance = self.user_service.get(
             id=id,
             is_superuser=False,
             select_related=["profile"],
             prefetch_related=["groups", "user_permissions"],
         )
-
-    def post(self, request: Request, id: int, **kwargs):
-        serialized = self.serializer_class(data=request.data)  # type: ignore
-        serialized.is_valid(raise_exception=True)
-        instance = self.get_queryset(id)
         self.user_service.update(instance, serialized.data, request=request)
         return Response({"detail": "User Status updated."}, status=status.HTTP_200_OK)
 
 
 class MeRetrieveAPIView(GenericAPIView):
     serializer_class = UserSerializer
-    use_service = UserService()
-
-    def get_queryset(self, current_user_id: int) -> UserType:
-        return self.use_service.get(id=current_user_id)
+    user_service = UserService()
 
     def get(self, request: Request, *args, **kwargs):
         current_user_id: int | None = request.user.id
         if not current_user_id:
             raise AuthenticationFailed()
-        queryset = self.get_queryset(current_user_id)
+        queryset = self.user_service.get(id=current_user_id)
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)

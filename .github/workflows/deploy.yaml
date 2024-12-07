@@ -34,27 +34,16 @@ jobs:
           options: '--verbose'
 
       - name: Django Collect Static & Migrate
-        env:
-          HOST: ${{ secrets.SSH_HOST }}
-          USER: ${{ secrets.SSH_USER }}
-          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          echo "$KEY" > private_key
-          ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST
-            # Navigate to your project directory
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SFTP_PORT }}
+          script: |
             cd ${{ vars.TARGET_DIR }}
-
-            # Activate the virtual environment (update the path as needed)
             source .venv/bin/activate
-
-            # Run Django-specific commands
             python manage.py collectstatic --noinput
             python manage.py migrate
-
-            # Optional: Restart services (e.g., Gunicorn)
             sudo systemctl restart backend.aarothbd.com.service
-
-            # Clean up
             deactivate
-          EOF
-          rm private_key

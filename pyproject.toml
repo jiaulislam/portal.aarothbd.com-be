@@ -1,7 +1,7 @@
 [project]
-name = "portal-aarothbd-com-be"
+name = "backend.aarothbd.com"
 version = "0.1.0"
-description = "Add your description here"
+description = "aarothbd.com backend project"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -21,6 +21,7 @@ dependencies = [
     "drf-standardized-errors>=0.14.1",
     "sentry-sdk>=2.19.0",
     "pillow>=11.0.0",
+    "gunicorn>=23.0.0",
 ]
 
 [tool.uv]

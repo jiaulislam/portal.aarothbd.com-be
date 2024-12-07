@@ -8,7 +8,7 @@ Group=root
 WorkingDirectory=/var/www/backend
 Environment="PATH=/var/www/backend/.venv/bin"
 EnvironmentFile=/var/www/backend/.env
-ExecStart=/var/www/backend/.venv//bin/gunicorn --config /home/plil-dev/pyapi/gunicorn.py
+ExecStart=/var/www/backend/.venv//bin/gunicorn --config /var/www/backend/gunicorn.py
 
 [Install]
 WantedBy=multi-user.target

@@ -27,7 +27,7 @@ class UserService(BaseModelService[UserType]):
 
     def validate_wholeseller_has_company(self, validated_data: UserValidatedDataType) -> bool:
         user_type = validated_data.get("user_type", None)
-        if user_type not in (self.company_required_user_type):
+        if user_type not in self.company_required_user_type:
             return True  # no need this validation for other types of user
         return bool(validated_data.get("company", None))
 

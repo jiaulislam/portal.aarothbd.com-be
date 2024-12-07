@@ -23,7 +23,7 @@ class UserService(BaseModelService[UserType]):
         )
 
     def hash_password(self, plain_text_password: str) -> str:
-        if bool(plain_text_password):
+        if not bool(plain_text_password):
             raise ValueError("password field cannot be empty!")
         return make_password(plain_text_password)
 

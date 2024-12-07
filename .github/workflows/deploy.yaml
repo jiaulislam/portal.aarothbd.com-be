@@ -39,10 +39,8 @@ jobs:
           USER: ${{ secrets.SSH_USER }}
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          # Add the SSH key
           echo "$KEY" > private_key
-          chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i private_key $USER@$HOST
             # Navigate to your project directory
             cd ${{ vars.TARGET_DIR }}
 

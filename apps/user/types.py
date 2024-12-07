@@ -3,6 +3,7 @@ from typing import Literal
 
 from django.contrib.auth import get_user_model
 
+from apps.company.types import CompanyValidatedDataType
 from core.types import BaseSerializerValidatedDataType
 
 from .models import User
@@ -23,3 +24,4 @@ class UserValidatedDataType(BaseSerializerValidatedDataType):
     user_type: UserCategory
     password: str
     last_login: datetime | None
+    company: CompanyValidatedDataType | None

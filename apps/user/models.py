@@ -21,6 +21,13 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_("Date Joined"), default=timezone.now)
     user_type = models.CharField(max_length=55, choices=UserTypeChoices.choices, default=UserTypeChoices.CUSTOMER)
+    company = models.ForeignKey(
+        "company.Company",
+        on_delete=models.PROTECT,
+        related_name="company_users",
+        null=True,
+        blank=True,
+    )
 
     objects = UserManager()
 
@@ -56,7 +63,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 
     @property
     def is_tenant(self) -> bool:
-        return self.user_type == UserTypeChoices.WHOLESELLER.value
+        return self.user_type == UserTypeChoices.WHOLESELLER_ADMIN.value
 
     @property
     def is_customer(self) -> bool:

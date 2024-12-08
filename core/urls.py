@@ -14,6 +14,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 ]
 
+admin.site.site_header = "aarothbd.com"
+admin.site.index_title = "Aaroth BD Administration"
+
 v1_routes = [
     path(api_v1, include("apps.authentication.urls.urls_v1")),
     path(api_v1, include("apps.user.urls.urls_v1")),

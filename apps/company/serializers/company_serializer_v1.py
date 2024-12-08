@@ -6,7 +6,7 @@ from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS, STATUS_SER
 from ..models import Company
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationSerializer
 
-__all__ = ["CompanySerializer"]
+__all__ = ["CompanySerializer", "CompanyUpdateStatusSerializer"]
 
 
 class CompanySerializer(s.ModelSerializer):

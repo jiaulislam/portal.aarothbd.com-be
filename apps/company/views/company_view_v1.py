@@ -36,12 +36,12 @@ class CompanyListCreateAPIView(GenericAPIView):
 
     @transaction.atomic
     def post(self, request: Request, *args, **kwargs) -> Response:
-        company_data = request.data.get("configuration", {})
+        configuration_data = request.data.get("configuration", {})
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.company_service.create(serialized.data, request=request)
-        company_data["company"] = instance.id
-        configuration_serialized = CompanyConfigurationSerializer(data=company_data)
+        configuration_data["company"] = instance.id
+        configuration_serialized = CompanyConfigurationSerializer(data=configuration_data)
         configuration_serialized.is_valid(raise_exception=True)
         self.company_configuration_service.create(configuration_serialized.validated_data, request=request)
         serialized = self.serializer_class(instance=instance)  # type: ignore
@@ -52,17 +52,38 @@ class CompanyRetrieveUpdateAPIView(GenericAPIView):
     serializer_class = CompanySerializer
 
     company_service = CompanyService()
+    company_configuration_service = CompanyConfigurationService()
 
     def get(self, request: Request, id: int, **kwargs) -> Response:
         queryset = self.company_service.get(id=id)
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
-    def post(self, request: Request, id: int, **kwargs):
-        serialized = self.serializer_class(data=request.data)  # type: ignore
-        serialized.is_valid(raise_exception=True)
-        instance = self.company_service.get(id=id)
-        instance = self.company_service.update(instance, serialized.validated_data, request=request)
+    @transaction.atomic
+    def put(self, request: Request, id: int, **kwargs):
+        configuration_data = request.data.get("configuration", {})
+        configuration_serialized = CompanyConfigurationSerializer(data=configuration_data)
+        configuration_serialized.is_valid(raise_exception=True)
+        configuration_id = configuration_serialized.validated_data.pop("id")
+
+        company_serialized = self.serializer_class(data=request.data)  # type: ignore
+        company_serialized.is_valid(raise_exception=True)
+        # get and update configuration
+        configuration_instance = self.company_configuration_service.get(id=configuration_id)
+        _ = self.company_configuration_service.update(
+            configuration_instance,
+            configuration_serialized.validated_data,
+            request=request,
+        )
+
+        # get and update company
+        company_instance = self.company_service.get(id=id)
+        _ = self.company_service.update(
+            company_instance,
+            company_serialized.validated_data,
+            request=request,
+        )
+
         response_data = {"detail": "Company Updated successfully."}
         return Response(response_data, status=status.HTTP_200_OK)
 
@@ -72,9 +93,9 @@ class CompanyUpdateStatusAPIView(GenericAPIView):
 
     company_service = CompanyService()
 
-    def post(self, request: Request, id: int, **kwargs):
+    def patch(self, request: Request, id: int, **kwargs):
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.company_service.get(id=id)
-        self.company_service.update(instance, serialized.data, request=request)
+        self.company_service.update(instance, serialized.validated_data, request=request)
         return Response({"detail": "Company Status updated."}, status=status.HTTP_200_OK)

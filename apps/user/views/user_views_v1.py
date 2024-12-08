@@ -61,13 +61,21 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
+    def put(self, request: Request, id: int, **kwargs) -> Response:
+        serialized = self.serializer_class(data=request.data)
+        serialized.is_valid(raise_exception=True)
+        instance = self.user_service.get(id=id, is_superuser=False)
+        instance = self.user_service.update(instance, serialized.data, request=request)
+        serialized = self.serializer_class(instance=instance)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+
 
 class UserUpdateStatusAPIView(GenericAPIView):
     user_service = UserService()
     serializer_class = UserUpdateStatusSerializer
 
 
-    def post(self, request: Request, id: int, **kwargs):
+    def patch(self, request: Request, id: int, **kwargs):
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.user_service.get(

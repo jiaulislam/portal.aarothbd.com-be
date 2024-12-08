@@ -19,3 +19,4 @@ class CompanyAdmin(BaseAdmin):
     search_fields = ("name", "slug", "tin_number", "bin_number")
     list_filter = ("is_active",)
     inlines = (CompanySettingsInline,)
+    list_per_page = 10

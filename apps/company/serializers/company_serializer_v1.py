@@ -22,6 +22,7 @@ class CompanySerializer(s.ModelSerializer):
     class Meta:
         model = Company
         exclude = COMMON_EXCLUDE_FIELDS
+        read_only_fields = ("slug", "is_active")
 
 
 class CompanyUpdateStatusSerializer(s.ModelSerializer):

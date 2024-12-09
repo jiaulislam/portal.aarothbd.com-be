@@ -4,7 +4,19 @@ from django.forms import ModelForm
 from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
 
+from .constants import UserTypeChoices
 from .models import User, UserProfile
+
+
+class UserTypeListFilter(admin.SimpleListFilter):
+    title = _("User Type")
+    parameter_name = "user_type"
+
+    def lookups(self, request, model_admin):
+        _lookups = [(key, _(value)) for key, value in UserTypeChoices.choices]
+        return _lookups
+    def queryset(self, request, queryset):
+        return queryset.filter(user_type=self.value()) if self.value() else queryset
 
 
 class ProfileInline(admin.StackedInline):
@@ -24,6 +36,7 @@ class UserAdmin(BaseUserAdmin):
         "email",
         "date_joined",
         "user_type",
+        "company",
         "is_admin",
         "is_superuser",
         "is_active",
@@ -32,7 +45,7 @@ class UserAdmin(BaseUserAdmin):
     inlines = [ProfileInline]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "user_type")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "user_type", "company")}),
         (
             _("Permissions"),
             {
@@ -52,12 +65,12 @@ class UserAdmin(BaseUserAdmin):
             "New User",
             {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2"),
+                "fields": ("email", "password1", "password2", "user_type", "company"),
             },
         ),
     )
     ordering = ("date_joined",)
-    list_filter = ("is_admin", "is_superuser")
+    list_filter = ("is_admin", "is_superuser", "company", UserTypeListFilter)
     filter_horizontal = (
         "groups",
         "user_permissions",

@@ -11,10 +11,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            command_name = options.get("command_name", "")
+            command_name = options.pop("command_name", "")
             if bool(command_name):
                 raise ValueError("Empty command not allowed !")
-            management.call_command(command_name)
+            management.call_command(command_name, **options)
         except Exception as exc:
             capture_exception(exc)
         return

@@ -90,8 +90,8 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = "user_user_profile"
-        verbose_name = "user_profile"
-        verbose_name_plural = "user_profiles"
+        verbose_name = "User Profile"
+        verbose_name_plural = "User Profiles"
 
     def __str__(self):
         return "{} - {}".format(str(self.pk), self.user.email)

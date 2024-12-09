@@ -39,6 +39,7 @@ CUSTOM_APPS = [
     "apps.company",
     "apps.user",
     "apps.address",
+    "apps.action",
 ]
 
 

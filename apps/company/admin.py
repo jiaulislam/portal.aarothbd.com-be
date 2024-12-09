@@ -20,3 +20,4 @@ class CompanyAdmin(BaseAdmin):
     list_filter = ("is_active",)
     inlines = (CompanySettingsInline,)
     list_per_page = 10
+    readonly_fields = ("created_at", "updated_at", "created_by", "updated_by")

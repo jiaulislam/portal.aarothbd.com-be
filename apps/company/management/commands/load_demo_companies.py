@@ -5,7 +5,7 @@ from core.services import capture_exception_sentry
 
 
 class Command(BaseCommand):
-    help = "Load test companies"
+    help = "Load Demo Companies"
     max_instance = 500
 
     def add_arguments(self, parser: base.CommandParser):

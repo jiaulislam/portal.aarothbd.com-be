@@ -23,7 +23,7 @@ class CompanyListCreateAPIView(GenericAPIView):
     company_configuration_service = CompanyConfigurationService()
 
     def get_queryset(self, **kwargs) -> QuerySet[Company]:
-        queryset = self.company_service.all(**kwargs)
+        queryset = self.company_service.all(**kwargs).select_related("configuration")
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
@@ -55,7 +55,7 @@ class CompanyRetrieveUpdateAPIView(GenericAPIView):
     company_configuration_service = CompanyConfigurationService()
 
     def get(self, request: Request, id: int, **kwargs) -> Response:
-        queryset = self.company_service.get(id=id)
+        queryset = self.company_service.get(id=id, select_related=["configuration"])
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 

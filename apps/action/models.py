@@ -14,3 +14,6 @@ class Action(BaseModel):
         db_table = 'action_action'
         verbose_name_plural = 'actions'
         verbose_name = 'action'
+
+    def __str__(self) -> str:
+        return self.name if self.name else self.codename

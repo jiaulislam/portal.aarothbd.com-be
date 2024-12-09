@@ -63,6 +63,7 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
     def put(self, request: Request, id: int, **kwargs) -> Response:
         serialized = self.serializer_class(data=request.data)
         serialized.is_valid(raise_exception=True)
+        serialized.validated_data.pop("email", None) # never update user email
         instance = self.user_service.get(id=id, is_superuser=False)
         instance = self.user_service.update(instance, serialized.validated_data, request=request)
         serialized = self.serializer_class(instance=instance)

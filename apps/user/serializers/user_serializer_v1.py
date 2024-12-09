@@ -48,7 +48,7 @@ class UserSerializer(s.ModelSerializer[User]):
             "updated_by",
             "is_superuser",
         ]
-        read_only_fields = ("groups", "user_permissions")
+        read_only_fields = ("groups", "user_permissions", "is_active")
 
 
 class UserUpdateStatusSerializer(s.ModelSerializer):

@@ -55,7 +55,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     company_service = CompanyService()
     company_configuration_service = CompanyConfigurationService()
 
-    def retrieve(self, request: Request,*args, **kwargs) -> Response:
+    def retrieve(self, request: Request, *args, **kwargs) -> Response:
         _company_id = kwargs.get("id")
         queryset = self.company_service.get(id=_company_id, select_related=["configuration"])
         serialized = self.serializer_class(queryset)  # type: ignore

@@ -11,7 +11,7 @@ from .models import Country
 from .serializers import CountrySerializer
 
 
-class CountryListView(ListAPIView):
+class CountryListAPIView(ListAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = CountrySerializer
     filterset_class = CountryFilter

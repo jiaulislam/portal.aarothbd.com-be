@@ -23,6 +23,9 @@ v1_routes = [
     path(api_v1, include("apps.company.urls.urls_v1")),
     path(api_v1, include("apps.action.urls")),
     path(api_v1, include("apps.country.urls")),
+    path(api_v1, include("apps.district.urls")),
+    path(api_v1, include("apps.division.urls")),
+    path(api_v1, include("apps.sub_district.urls")),
     path(
         f"{api_v1}schema/",
         SpectacularAPIView.as_view(api_version="v1"),

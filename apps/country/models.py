@@ -12,12 +12,11 @@ class Country(BaseModel):
     continent_code = models.CharField(verbose_name="Continent Code", max_length=2)
     continent_name = models.CharField(verbose_name="Continent Name", max_length=255, null=True, blank=True)
 
-
     class Meta:
-        db_table = 'country_country'
-        verbose_name = 'Country'
-        verbose_name_plural = 'Countries'
-        ordering = ('name',)
+        db_table = "country_country"
+        verbose_name = "Country"
+        verbose_name_plural = "Countries"
+        ordering = ("name",)
 
     def __str__(self) -> str:
         return self.name

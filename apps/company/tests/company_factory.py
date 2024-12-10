@@ -7,6 +7,7 @@ from apps.company.models import Company
 
 fake = Faker()
 
+
 class CompanyFactory(DjangoModelFactory):
     name = factory.LazyFunction(fake.company)
     bin_number = factory.LazyFunction(fake.bban)

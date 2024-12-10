@@ -50,7 +50,6 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     user_service = UserService()
 
-
     def retrieve(self, request: Request, **kwargs) -> Response:
         _user_id = kwargs.get("id")
         queryset = self.user_service.get(
@@ -66,7 +65,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         _user_id = kwargs.get("id")
         serialized = self.serializer_class(data=request.data)
         serialized.is_valid(raise_exception=True)
-        serialized.validated_data.pop("email", None) # never update user email
+        serialized.validated_data.pop("email", None)  # never update user email
         instance = self.user_service.get(id=id, is_superuser=False)
         instance = self.user_service.update(instance, serialized.validated_data, request=request)
         serialized = self.serializer_class(instance=instance)
@@ -77,7 +76,6 @@ class UserUpdateStatusAPIView(UpdateAPIView):
     http_method_names = ["patch"]
     user_service = UserService()
     serializer_class = UserUpdateStatusSerializer
-
 
     def partial_update(self, request: Request, **kwargs):
         _user_id = kwargs.get("id")

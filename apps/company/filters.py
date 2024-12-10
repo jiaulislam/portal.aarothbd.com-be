@@ -4,7 +4,7 @@ from core.filter import BaseFilter
 
 
 class CompanyFilter(BaseFilter):
-    name = filters.CharFilter(field_name='name', lookup_expr='icontains')
-    slug = filters.CharFilter(field_name='slug', lookup_expr='icontains')
-    bin_number = filters.CharFilter(field_name='bin_number', lookup_expr='icontains')
-    tin_number = filters.CharFilter(field_name='tin_number', lookup_expr='icontains')
+    name = filters.CharFilter(field_name="name", lookup_expr="icontains")
+    slug = filters.CharFilter(field_name="slug", lookup_expr="icontains")
+    bin_number = filters.CharFilter(field_name="bin_number", lookup_expr="icontains")
+    tin_number = filters.CharFilter(field_name="tin_number", lookup_expr="icontains")

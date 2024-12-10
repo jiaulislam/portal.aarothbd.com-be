@@ -41,6 +41,9 @@ CUSTOM_APPS = [
     "apps.address",
     "apps.action",
     "apps.country",
+    "apps.division",
+    "apps.district",
+    "apps.sub_district",
 ]
 
 

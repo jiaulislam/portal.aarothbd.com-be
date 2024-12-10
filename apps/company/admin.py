@@ -13,6 +13,7 @@ class CompanySettingsInline(admin.TabularInline):
     verbose_name_plural = "Company Settings"
     verbose_name = "Company Settings"
 
+
 @admin.register(Company)
 class CompanyAdmin(BaseAdmin):
     list_display = ("name", "slug", "theme_color", "is_active")

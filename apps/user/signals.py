@@ -8,6 +8,7 @@ from .models import UserProfile
 
 _logger = getLogger(__name__)
 
+
 @receiver(post_save, sender=get_user_model())
 def create_user_profile(sender, instance, created: bool, **kwargs):
     if created:

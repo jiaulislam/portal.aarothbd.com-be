@@ -15,6 +15,7 @@ class UserTypeListFilter(admin.SimpleListFilter):
     def lookups(self, request, model_admin):
         _lookups = [(key, _(value)) for key, value in UserTypeChoices.choices]
         return _lookups
+
     def queryset(self, request, queryset):
         return queryset.filter(user_type=self.value()) if self.value() else queryset
 

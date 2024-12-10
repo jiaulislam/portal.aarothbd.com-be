@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, UpdateAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -18,7 +18,7 @@ from ..types import UserType
 User = get_user_model()
 
 
-class UserListCreateAPIView(GenericAPIView):
+class UserListCreateAPIView(ListCreateAPIView):
     serializer_class = UserSerializer
     filterset_class = UserFilterSet
     pagination_class = ExtendedLimitOffsetPagination
@@ -30,14 +30,14 @@ class UserListCreateAPIView(GenericAPIView):
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
-    def get(self, request: Request, *args, **kwargs) -> Response:
+    def list(self, request: Request, *args, **kwargs) -> Response:
         queryset = self.get_queryset(**kwargs)
         paginate = self.pagination_class()  # type: ignore
         paginated_queryset = paginate.paginate_queryset(queryset, request)
         serialized = self.serializer_class(paginated_queryset, many=True)  # type: ignore
         return paginate.get_paginated_response(serialized.data)
 
-    def post(self, request: Request, *args, **kwargs) -> Response:
+    def create(self, request: Request, *args, **kwargs) -> Response:
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.user_service.create(serialized.validated_data, request=request)
@@ -45,12 +45,14 @@ class UserListCreateAPIView(GenericAPIView):
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
-class UserRetrieveUpdateAPIView(GenericAPIView):
+class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+    http_method_names = ["get", "put"]
     serializer_class = UserSerializer
     user_service = UserService()
 
 
-    def get(self, request: Request, id: int, **kwargs) -> Response:
+    def retrieve(self, request: Request, **kwargs) -> Response:
+        _user_id = kwargs.get("id")
         queryset = self.user_service.get(
             id=id,
             is_superuser=False,
@@ -60,7 +62,8 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
-    def put(self, request: Request, id: int, **kwargs) -> Response:
+    def update(self, request: Request, **kwargs) -> Response:
+        _user_id = kwargs.get("id")
         serialized = self.serializer_class(data=request.data)
         serialized.is_valid(raise_exception=True)
         serialized.validated_data.pop("email", None) # never update user email
@@ -70,12 +73,14 @@ class UserRetrieveUpdateAPIView(GenericAPIView):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 
-class UserUpdateStatusAPIView(GenericAPIView):
+class UserUpdateStatusAPIView(UpdateAPIView):
+    http_method_names = ["patch"]
     user_service = UserService()
     serializer_class = UserUpdateStatusSerializer
 
 
-    def patch(self, request: Request, id: int, **kwargs):
+    def partial_update(self, request: Request, **kwargs):
+        _user_id = kwargs.get("id")
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.user_service.get(
@@ -88,11 +93,11 @@ class UserUpdateStatusAPIView(GenericAPIView):
         return Response({"detail": "User Status updated."}, status=status.HTTP_200_OK)
 
 
-class MeRetrieveAPIView(GenericAPIView):
+class MeRetrieveAPIView(RetrieveAPIView):
     serializer_class = UserSerializer
     user_service = UserService()
 
-    def get(self, request: Request, *args, **kwargs):
+    def retrieve(self, request: Request, *args, **kwargs):
         current_user_id: int = request.user.id
         queryset = self.user_service.get(id=current_user_id)
         serialized = self.serializer_class(queryset)  # type: ignore

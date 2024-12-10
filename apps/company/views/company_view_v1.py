@@ -1,7 +1,7 @@
 from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -14,7 +14,7 @@ from ..serializers.company_serializer_v1 import CompanySerializer, CompanyUpdate
 from ..services import CompanyConfigurationService, CompanyService
 
 
-class CompanyListCreateAPIView(GenericAPIView):
+class CompanyListCreateAPIView(ListCreateAPIView):
     serializer_class = CompanySerializer
     filterset_class = CompanyFilter
     pagination_class = ExtendedLimitOffsetPagination
@@ -27,7 +27,7 @@ class CompanyListCreateAPIView(GenericAPIView):
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
-    def get(self, request: Request, *args, **kwargs) -> Response:
+    def list(self, request: Request, *args, **kwargs) -> Response:
         queryset = self.get_queryset(**kwargs)
         paginate = self.pagination_class()  # type: ignore
         paginated_queryset = paginate.paginate_queryset(queryset, request)
@@ -35,7 +35,7 @@ class CompanyListCreateAPIView(GenericAPIView):
         return paginate.get_paginated_response(serialized.data)
 
     @transaction.atomic
-    def post(self, request: Request, *args, **kwargs) -> Response:
+    def create(self, request: Request, *args, **kwargs) -> Response:
         configuration_data = request.data.get("configuration", {})
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
@@ -48,19 +48,22 @@ class CompanyListCreateAPIView(GenericAPIView):
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
-class CompanyRetrieveUpdateAPIView(GenericAPIView):
+class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+    http_method_names = ["get", "put"]
     serializer_class = CompanySerializer
 
     company_service = CompanyService()
     company_configuration_service = CompanyConfigurationService()
 
-    def get(self, request: Request, id: int, **kwargs) -> Response:
-        queryset = self.company_service.get(id=id, select_related=["configuration"])
+    def retrieve(self, request: Request,*args, **kwargs) -> Response:
+        _company_id = kwargs.get("id")
+        queryset = self.company_service.get(id=_company_id, select_related=["configuration"])
         serialized = self.serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     @transaction.atomic
-    def put(self, request: Request, id: int, **kwargs):
+    def update(self, request: Request, *args, **kwargs):
+        _company_id = kwargs.get("id")
         configuration_data = request.data.get("configuration", {})
         configuration_serialized = CompanyConfigurationSerializer(data=configuration_data)
         configuration_serialized.is_valid(raise_exception=True)
@@ -77,7 +80,7 @@ class CompanyRetrieveUpdateAPIView(GenericAPIView):
         )
 
         # get and update company
-        company_instance = self.company_service.get(id=id)
+        company_instance = self.company_service.get(id=_company_id)
         _ = self.company_service.update(
             company_instance,
             company_serialized.validated_data,
@@ -88,14 +91,16 @@ class CompanyRetrieveUpdateAPIView(GenericAPIView):
         return Response(response_data, status=status.HTTP_200_OK)
 
 
-class CompanyUpdateStatusAPIView(GenericAPIView):
+class CompanyUpdateStatusAPIView(UpdateAPIView):
+    http_method_names = ["patch"]
     serializer_class = CompanyUpdateStatusSerializer
 
     company_service = CompanyService()
 
-    def patch(self, request: Request, id: int, **kwargs):
+    def partial_update(self, request: Request, *args, **kwargs):
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
-        instance = self.company_service.get(id=id)
+        _company_id = kwargs.get("id")
+        instance = self.company_service.get(id=_company_id)
         self.company_service.update(instance, serialized.validated_data, request=request)
         return Response({"detail": "Company Status updated."}, status=status.HTTP_200_OK)

@@ -22,7 +22,7 @@ class CountryListView(ListAPIView):
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
-    def get(self, request: Request, *args, **kwargs) -> Response:
+    def list(self, request: Request, *args, **kwargs) -> Response:
         queryset = self.get_queryset()
         page = self.pagination_class()
         paginated_queryset = page.paginate_queryset(queryset, request)

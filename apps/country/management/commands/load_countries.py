@@ -17,11 +17,10 @@ class Command(BaseCommand):
             countries_json_file_path = BASE_DIR / "apps/country/data/countries.json"
             country_instances = []
             with open(countries_json_file_path) as json_file:
-                country_maps = json.load(json_file)
-                country_keys = country_maps.keys()
-                for key in country_keys:
-                    country = country_maps[key]
+                countries = json.load(json_file)
+                for country in countries:
                     instance = Country(
+                        id=country["id"],
                         continent_code=country.get("continent_code"),
                         continent_name=country.get("continent_name"),
                         name=country.get("country_name"),

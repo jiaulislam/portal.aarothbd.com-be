@@ -13,7 +13,7 @@ class Command(BaseCommand):
         try:
             command_name = options.pop("command_name", "")
             if bool(command_name):
-                raise ValueError("Empty command not allowed !")
+                raise ValueError("Empty commands not allowed !")
             management.call_command(command_name, **options)
         except Exception as exc:
             capture_exception(exc)

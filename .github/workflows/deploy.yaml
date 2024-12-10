@@ -25,7 +25,7 @@ jobs:
           # lftp settings
           onlyNewer: true
           settings: 'sftp:auto-confirm=yes'
-          # Mirror command options
+          # Mirror commands options
           localDir: '.'
           remoteDir: ${{ vars.TARGET_DIR }}
           reverse: true

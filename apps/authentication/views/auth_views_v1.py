@@ -55,8 +55,8 @@ class LoginAPIView(GenericAPIView):
                 summary="Login Request Payload",
                 description="Example of a valid request payload for login.",
                 value={
-                    "email": "jibon@superuser.com",
-                    "password": "Admin@123"
+                    "email": "admin@aarothbd.com",
+                    "password": "*****"
                 },
                 response_only=False,
                 request_only=True,

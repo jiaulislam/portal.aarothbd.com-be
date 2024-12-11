@@ -1,9 +1,12 @@
 import sys
 
-from devtools import debug
+from django.contrib.auth import get_user_model
 from django.core import management
 from django.core.management import BaseCommand, base
-from sentry_sdk import capture_exception
+
+from core.settings.django.base import env
+
+User = get_user_model()  # noqa: N806
 
 
 class Command(BaseCommand):
@@ -18,6 +21,10 @@ class Command(BaseCommand):
             sys.stdout.write("Creating superuser with default data started\n")
             self.create_default_superuser()
             sys.stdout.write("Creating superuser with default data finished\n")
+
+            sys.stdout.write("Creating Admin with default data started\n")
+            self.create_default_central_admin_user()
+            sys.stdout.write("Creating Admin with default data finished\n")
 
             sys.stdout.write("Loading Country started\n")
             management.call_command("load_countries")
@@ -40,16 +47,22 @@ class Command(BaseCommand):
                 management.call_command("load_demo_companies")
                 sys.stdout.write("Loading BD Sub-Districts finished\n")
         except Exception as exc:
-            debug(exc)
-            capture_exception(exc)
+            raise Exception(exc)
         return
 
-    def create_default_superuser(self):
-        from django.contrib.auth import get_user_model
+    def create_default_central_admin_user(self):
+        email = env("ADMIN_USER_EMAIL")
+        password = env("ADMIN_USER_PASS")
 
-        User = get_user_model() # noqa: N806
-        email = "superadmin@aarothbd.com"
-        password = "Admin@123"
+        if not User.objects.filter(email=email).exists():
+            User.objects.create_user(email=email, password=password, is_admin=True, user_type="central_admin")
+            sys.stdout.write(f"Admin User created: {email}\n")
+        else:
+            raise Exception(f"User {email} already exists!")
+
+    def create_default_superuser(self):
+        email = env("SUPER_USER_EMAIL")
+        password = env("SUPER_USER_PASS")
 
         if not User.objects.filter(email=email).exists():
             User.objects.create_superuser(email=email, password=password)

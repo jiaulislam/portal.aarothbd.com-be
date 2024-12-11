@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from django.utils import timezone
 from drf_spectacular.utils import OpenApiExample, extend_schema
 from rest_framework import exceptions as e
 from rest_framework import status
@@ -72,6 +73,8 @@ class LoginAPIView(GenericAPIView):
 
         if authorized_user is None:
             raise e.AuthenticationFailed("Email or Password is incorrect")
+        authorized_user.last_login = timezone.now()
+        authorized_user.save()
         token_service = TokenService(request, authorized_user)
         response = token_service.get_secured_cookie_response()
         response.data = {"detail": "Logged in Successfully."}

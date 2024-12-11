@@ -4,6 +4,8 @@ from django.db import models
 
 from core.models.base_model import BaseModel
 
+from .types import AddressType
+
 
 class Address(BaseModel):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
@@ -22,6 +24,7 @@ class Address(BaseModel):
     district = models.ForeignKey("district.District", on_delete=models.PROTECT, related_name="address_districts")
     division = models.ForeignKey("division.Division", on_delete=models.PROTECT, related_name="address_divisions")
     country = models.ForeignKey("country.Country", on_delete=models.PROTECT, related_name="address_countries")
+    address_type = models.CharField(max_length=80, choices=AddressType.choices, default=AddressType.GENERAL)
 
     class Meta:
         db_table = "address_address"

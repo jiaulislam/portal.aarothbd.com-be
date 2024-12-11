@@ -76,17 +76,10 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 class UserProfile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="profile")
     phone = models.CharField(max_length=20, null=True, blank=True)
-    tenant_name = models.CharField(max_length=255, null=True, blank=True)
-    tenant_logo = models.ImageField(upload_to="media/logo/", null=True, blank=True)
     bin_id = models.CharField(max_length=88, null=True, blank=True)
     tin_id = models.CharField(max_length=88, null=True, blank=True)
-    default_address = models.ForeignKey(
-        "address.Address", on_delete=models.SET_NULL, null=True, blank=True, related_name="default_address_users"
-    )
-    contact_address = models.ForeignKey(
-        "address.Address", on_delete=models.SET_NULL, null=True, blank=True, related_name="contact_address_users"
-    )
     emergency_contact_details = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     class Meta:
         db_table = "user_user_profile"

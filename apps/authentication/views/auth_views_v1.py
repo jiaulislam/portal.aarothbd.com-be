@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from drf_spectacular.utils import OpenApiExample, extend_schema
 from rest_framework import exceptions as e
 from rest_framework import status
 from rest_framework import status as s
@@ -7,7 +8,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from apps.user.services import UserService
-from core.serializers import SuccessResponseSerializer
+from core.serializers import FailResponseSerializer, SuccessResponseSerializer
 
 from ..serializers.auth_serializers_v1 import (
     LoginSerializer,
@@ -40,6 +41,27 @@ class LoginAPIView(GenericAPIView):
     permission_classes = []
     serializer_class = LoginSerializer
 
+    @extend_schema(
+        request=LoginSerializer,
+        responses={
+            200: SuccessResponseSerializer,
+            403: FailResponseSerializer,
+            400: FailResponseSerializer,
+        },
+        examples=[
+            OpenApiExample(
+                name="Login Request",
+                summary="Login Request Payload",
+                description="Example of a valid request payload for login.",
+                value={
+                    "email": "jibon@superuser.com",
+                    "password": "Admin@123"
+                },
+                response_only=False,
+                request_only=True,
+            )
+        ]
+    )
     def post(self, request: Request, *args, **kwargs) -> Response:
         serialized = LoginSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)

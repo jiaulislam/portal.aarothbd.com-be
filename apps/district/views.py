@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from core.pagination import ExtendedLimitOffsetPagination
 
 from .filters import DistrictFilter
-from .models import District
 from .serializers import DistrictSerializer
+from .services import DistrictService
 
 
 class DistrictListAPIView(ListAPIView):
@@ -16,9 +16,10 @@ class DistrictListAPIView(ListAPIView):
     serializer_class = DistrictSerializer
     filterset_class = DistrictFilter
     pagination_class = ExtendedLimitOffsetPagination
+    service_class = DistrictService()
 
     def get_queryset(self):
-        queryset = District.objects.all()
+        queryset = self.service_class.all()
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 

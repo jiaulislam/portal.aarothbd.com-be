@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from core.pagination import ExtendedLimitOffsetPagination
 
 from .filters import CountryFilter
-from .models import Country
 from .serializers import CountrySerializer
+from .services import CountryService
 
 
 class CountryListAPIView(ListAPIView):
@@ -17,8 +17,10 @@ class CountryListAPIView(ListAPIView):
     filterset_class = CountryFilter
     pagination_class = ExtendedLimitOffsetPagination
 
+    service_class = CountryService()
+
     def get_queryset(self):
-        queryset = Country.objects.all()
+        queryset = self.service_class.all()
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 

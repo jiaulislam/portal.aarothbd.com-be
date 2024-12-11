@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from core.pagination import ExtendedLimitOffsetPagination
 
 from .filters import DivisionFilter
-from .models import Division
 from .serializers import DivisionSerializer
+from .services import DivisionService
 
 
 class DivisionListAPIView(ListAPIView):
@@ -16,9 +16,10 @@ class DivisionListAPIView(ListAPIView):
     serializer_class = DivisionSerializer
     filterset_class = DivisionFilter
     pagination_class = ExtendedLimitOffsetPagination
+    service_class = DivisionService()
 
     def get_queryset(self):
-        queryset = Division.objects.all()
+        queryset = self.service_class.all()
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 

@@ -8,6 +8,8 @@ from ..serializers.company_configuration_serializer_v1 import CompanyConfigurati
 
 __all__ = ["CompanySerializer", "CompanyUpdateStatusSerializer"]
 
+from apps.address.serializers import AddressSerializer
+
 
 class CompanySerializer(s.ModelSerializer):
     slug = s.SlugField(
@@ -24,6 +26,16 @@ class CompanySerializer(s.ModelSerializer):
         exclude = COMMON_EXCLUDE_FIELDS
         read_only_fields = ("slug", "is_active")
 
+
+class CompanyDetailSerializer(s.ModelSerializer):
+    address = s.SerializerMethodField()
+
+    def get_address(self, obj):
+        return AddressSerializer(instance=obj.addresses.all(), many=True).data
+
+    class Meta:
+        model = Company
+        exclude = COMMON_EXCLUDE_FIELDS
 
 class CompanyUpdateStatusSerializer(s.ModelSerializer):
     class Meta:

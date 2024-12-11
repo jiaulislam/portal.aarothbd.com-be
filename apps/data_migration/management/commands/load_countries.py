@@ -14,7 +14,7 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **options):
         try:
-            countries_json_file_path = BASE_DIR / "apps/country/data/countries.json"
+            countries_json_file_path = BASE_DIR / "apps/data_migration/data/countries.json"
             country_instances = []
             with open(countries_json_file_path) as json_file:
                 countries = json.load(json_file)
@@ -28,6 +28,8 @@ class Command(BaseCommand):
                         country_code=country.get("country_code2"),
                         country_code_alpha3=country.get("country_code3"),
                         country_code_iso3=country.get("iso3"),
+                        created_by_id=country.get("created_by_id"),
+                        updated_by_id=country.get("updated_by_id"),
                     )
                     country_instances.append(instance)
                 countries = Country.objects.bulk_create(country_instances)

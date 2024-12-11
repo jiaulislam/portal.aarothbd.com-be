@@ -58,9 +58,11 @@
   {
     "bn_name": "\u09ae\u09df\u09ae\u09a8\u09b8\u09bf\u0982\u09b9",
     "country_id": 19,
+    "created_by_id": 1,
     "id": "8",
     "lat": "24.747149",
     "long": "90.420273",
-    "name": "Mymensingh"
+    "name": "Mymensingh",
+    "updated_by_id": 1
   }
 ]

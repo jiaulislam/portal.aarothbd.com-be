@@ -14,16 +14,18 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **options):
         try:
-            sub_district_file = BASE_DIR / "apps/sub_district/data/bd_sub_districts.json"
+            sub_district_file = BASE_DIR / "apps/data_migration/data/bd_sub_districts.json"
             sub_district_instances = []
             with open(sub_district_file) as json_file:
                 sub_districts = json.load(json_file)
                 for sub_district in sub_districts:
                     instance = SubDistrict(
-                        id=sub_district["id"],
-                        name=sub_district["name"],
-                        bn_name=sub_district["bn_name"],
-                        district_id=sub_district["district_id"],
+                        id=sub_district.get("id"),
+                        name=sub_district.get("name"),
+                        bn_name=sub_district.get("bn_name"),
+                        district_id=sub_district.get("district_id"),
+                        created_by_id=sub_district.get("created_by_id"),
+                        updated_by_id=sub_district.get("updated_by_id"),
                     )
                     sub_district_instances.append(instance)
                 sub_districts = SubDistrict.objects.bulk_create(sub_district_instances)

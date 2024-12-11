@@ -6,8 +6,10 @@
     "country_code3": "AND",
     "country_name": "Andorra",
     "country_name_full": "Principality of Andorra",
+    "created_by_id": 1,
     "id": 1,
-    "iso3": "020"
+    "iso3": "020",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -16,8 +18,10 @@
     "country_code3": "ARE",
     "country_name": "United Arab Emirates",
     "country_name_full": "United Arab Emirates",
+    "created_by_id": 1,
     "id": 2,
-    "iso3": "784"
+    "iso3": "784",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -26,8 +30,10 @@
     "country_code3": "AFG",
     "country_name": "Afghanistan",
     "country_name_full": "Islamic Republic of Afghanistan",
+    "created_by_id": 1,
     "id": 3,
-    "iso3": "004"
+    "iso3": "004",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -36,8 +42,10 @@
     "country_code3": "ATG",
     "country_name": "Antigua and Barbuda",
     "country_name_full": "Antigua and Barbuda",
+    "created_by_id": 1,
     "id": 4,
-    "iso3": "028"
+    "iso3": "028",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -46,8 +54,10 @@
     "country_code3": "AIA",
     "country_name": "Anguilla",
     "country_name_full": "Anguilla",
+    "created_by_id": 1,
     "id": 5,
-    "iso3": "660"
+    "iso3": "660",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -56,8 +66,10 @@
     "country_code3": "ALB",
     "country_name": "Albania",
     "country_name_full": "Republic of Albania",
+    "created_by_id": 1,
     "id": 6,
-    "iso3": "008"
+    "iso3": "008",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -66,8 +78,10 @@
     "country_code3": "ARM",
     "country_name": "Armenia",
     "country_name_full": "Republic of Armenia",
+    "created_by_id": 1,
     "id": 7,
-    "iso3": "051"
+    "iso3": "051",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -76,8 +90,10 @@
     "country_code3": "AGO",
     "country_name": "Angola",
     "country_name_full": "Republic of Angola",
+    "created_by_id": 1,
     "id": 8,
-    "iso3": "024"
+    "iso3": "024",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AN",
@@ -86,8 +102,10 @@
     "country_code3": "ATA",
     "country_name": "Antarctica",
     "country_name_full": "Antarctica (the territory South of 60 deg S)",
+    "created_by_id": 1,
     "id": 9,
-    "iso3": "010"
+    "iso3": "010",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -96,8 +114,10 @@
     "country_code3": "ARG",
     "country_name": "Argentina",
     "country_name_full": "Argentine Republic",
+    "created_by_id": 1,
     "id": 10,
-    "iso3": "032"
+    "iso3": "032",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -106,8 +126,10 @@
     "country_code3": "ASM",
     "country_name": "American Samoa",
     "country_name_full": "American Samoa",
+    "created_by_id": 1,
     "id": 11,
-    "iso3": "016"
+    "iso3": "016",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -116,8 +138,10 @@
     "country_code3": "AUT",
     "country_name": "Austria",
     "country_name_full": "Republic of Austria",
+    "created_by_id": 1,
     "id": 12,
-    "iso3": "040"
+    "iso3": "040",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -126,8 +150,10 @@
     "country_code3": "AUS",
     "country_name": "Australia",
     "country_name_full": "Commonwealth of Australia",
+    "created_by_id": 1,
     "id": 13,
-    "iso3": "036"
+    "iso3": "036",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -136,8 +162,10 @@
     "country_code3": "ABW",
     "country_name": "Aruba",
     "country_name_full": "Aruba",
+    "created_by_id": 1,
     "id": 14,
-    "iso3": "533"
+    "iso3": "533",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -146,8 +174,10 @@
     "country_code3": "ALA",
     "country_name": "\u00c5land Islands",
     "country_name_full": "\u00c5land Islands",
+    "created_by_id": 1,
     "id": 15,
-    "iso3": "248"
+    "iso3": "248",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -156,8 +186,10 @@
     "country_code3": "AZE",
     "country_name": "Azerbaijan",
     "country_name_full": "Republic of Azerbaijan",
+    "created_by_id": 1,
     "id": 16,
-    "iso3": "031"
+    "iso3": "031",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -166,8 +198,10 @@
     "country_code3": "BIH",
     "country_name": "Bosnia and Herzegovina",
     "country_name_full": "Bosnia and Herzegovina",
+    "created_by_id": 1,
     "id": 17,
-    "iso3": "070"
+    "iso3": "070",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -176,8 +210,10 @@
     "country_code3": "BRB",
     "country_name": "Barbados",
     "country_name_full": "Barbados",
+    "created_by_id": 1,
     "id": 18,
-    "iso3": "052"
+    "iso3": "052",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -186,8 +222,10 @@
     "country_code3": "BGD",
     "country_name": "Bangladesh",
     "country_name_full": "People's Republic of Bangladesh",
+    "created_by_id": 1,
     "id": 19,
-    "iso3": "050"
+    "iso3": "050",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -196,8 +234,10 @@
     "country_code3": "BEL",
     "country_name": "Belgium",
     "country_name_full": "Kingdom of Belgium",
+    "created_by_id": 1,
     "id": 20,
-    "iso3": "056"
+    "iso3": "056",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -206,8 +246,10 @@
     "country_code3": "BFA",
     "country_name": "Burkina Faso",
     "country_name_full": "Burkina Faso",
+    "created_by_id": 1,
     "id": 21,
-    "iso3": "854"
+    "iso3": "854",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -216,8 +258,10 @@
     "country_code3": "BGR",
     "country_name": "Bulgaria",
     "country_name_full": "Republic of Bulgaria",
+    "created_by_id": 1,
     "id": 22,
-    "iso3": "100"
+    "iso3": "100",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -226,8 +270,10 @@
     "country_code3": "BHR",
     "country_name": "Bahrain",
     "country_name_full": "Kingdom of Bahrain",
+    "created_by_id": 1,
     "id": 23,
-    "iso3": "048"
+    "iso3": "048",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -236,8 +282,10 @@
     "country_code3": "BDI",
     "country_name": "Burundi",
     "country_name_full": "Republic of Burundi",
+    "created_by_id": 1,
     "id": 24,
-    "iso3": "108"
+    "iso3": "108",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -246,8 +294,10 @@
     "country_code3": "BEN",
     "country_name": "Benin",
     "country_name_full": "Republic of Benin",
+    "created_by_id": 1,
     "id": 25,
-    "iso3": "204"
+    "iso3": "204",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -256,8 +306,10 @@
     "country_code3": "BLM",
     "country_name": "Saint Barth\u00e9lemy",
     "country_name_full": "Saint Barth\u00e9lemy",
+    "created_by_id": 1,
     "id": 26,
-    "iso3": "652"
+    "iso3": "652",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -266,8 +318,10 @@
     "country_code3": "BMU",
     "country_name": "Bermuda",
     "country_name_full": "Bermuda",
+    "created_by_id": 1,
     "id": 27,
-    "iso3": "060"
+    "iso3": "060",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -276,8 +330,10 @@
     "country_code3": "BRN",
     "country_name": "Brunei Darussalam",
     "country_name_full": "Brunei Darussalam",
+    "created_by_id": 1,
     "id": 28,
-    "iso3": "096"
+    "iso3": "096",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -286,8 +342,10 @@
     "country_code3": "BOL",
     "country_name": "Bolivia",
     "country_name_full": "Plurinational State of Bolivia",
+    "created_by_id": 1,
     "id": 29,
-    "iso3": "068"
+    "iso3": "068",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -296,8 +354,10 @@
     "country_code3": "BES",
     "country_name": "Bonaire, Sint Eustatius and Saba",
     "country_name_full": "Bonaire, Sint Eustatius and Saba",
+    "created_by_id": 1,
     "id": 30,
-    "iso3": "535"
+    "iso3": "535",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -306,8 +366,10 @@
     "country_code3": "BRA",
     "country_name": "Brazil",
     "country_name_full": "Federative Republic of Brazil",
+    "created_by_id": 1,
     "id": 31,
-    "iso3": "076"
+    "iso3": "076",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -316,8 +378,10 @@
     "country_code3": "BHS",
     "country_name": "Bahamas",
     "country_name_full": "Commonwealth of the Bahamas",
+    "created_by_id": 1,
     "id": 32,
-    "iso3": "044"
+    "iso3": "044",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -326,8 +390,10 @@
     "country_code3": "BTN",
     "country_name": "Bhutan",
     "country_name_full": "Kingdom of Bhutan",
+    "created_by_id": 1,
     "id": 33,
-    "iso3": "064"
+    "iso3": "064",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AN",
@@ -336,8 +402,10 @@
     "country_code3": "BVT",
     "country_name": "Bouvet Island (Bouvetoya)",
     "country_name_full": "Bouvet Island (Bouvetoya)",
+    "created_by_id": 1,
     "id": 34,
-    "iso3": "074"
+    "iso3": "074",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -346,8 +414,10 @@
     "country_code3": "BWA",
     "country_name": "Botswana",
     "country_name_full": "Republic of Botswana",
+    "created_by_id": 1,
     "id": 35,
-    "iso3": "072"
+    "iso3": "072",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -356,8 +426,10 @@
     "country_code3": "BLR",
     "country_name": "Belarus",
     "country_name_full": "Republic of Belarus",
+    "created_by_id": 1,
     "id": 36,
-    "iso3": "112"
+    "iso3": "112",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -366,8 +438,10 @@
     "country_code3": "BLZ",
     "country_name": "Belize",
     "country_name_full": "Belize",
+    "created_by_id": 1,
     "id": 37,
-    "iso3": "084"
+    "iso3": "084",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -376,8 +450,10 @@
     "country_code3": "CAN",
     "country_name": "Canada",
     "country_name_full": "Canada",
+    "created_by_id": 1,
     "id": 38,
-    "iso3": "124"
+    "iso3": "124",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -386,8 +462,10 @@
     "country_code3": "CCK",
     "country_name": "Cocos (Keeling) Islands",
     "country_name_full": "Cocos (Keeling) Islands",
+    "created_by_id": 1,
     "id": 39,
-    "iso3": "166"
+    "iso3": "166",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -396,8 +474,10 @@
     "country_code3": "COD",
     "country_name": "Congo",
     "country_name_full": "Democratic Republic of the Congo",
+    "created_by_id": 1,
     "id": 40,
-    "iso3": "180"
+    "iso3": "180",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -406,8 +486,10 @@
     "country_code3": "CAF",
     "country_name": "Central African Republic",
     "country_name_full": "Central African Republic",
+    "created_by_id": 1,
     "id": 41,
-    "iso3": "140"
+    "iso3": "140",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -416,8 +498,10 @@
     "country_code3": "COG",
     "country_name": "Congo",
     "country_name_full": "Republic of the Congo",
+    "created_by_id": 1,
     "id": 42,
-    "iso3": "178"
+    "iso3": "178",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -426,8 +510,10 @@
     "country_code3": "CHE",
     "country_name": "Switzerland",
     "country_name_full": "Swiss Confederation",
+    "created_by_id": 1,
     "id": 43,
-    "iso3": "756"
+    "iso3": "756",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -436,8 +522,10 @@
     "country_code3": "CIV",
     "country_name": "Cote d'Ivoire",
     "country_name_full": "Republic of Cote d'Ivoire",
+    "created_by_id": 1,
     "id": 44,
-    "iso3": "384"
+    "iso3": "384",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -446,8 +534,10 @@
     "country_code3": "COK",
     "country_name": "Cook Islands",
     "country_name_full": "Cook Islands",
+    "created_by_id": 1,
     "id": 45,
-    "iso3": "184"
+    "iso3": "184",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -456,8 +546,10 @@
     "country_code3": "CHL",
     "country_name": "Chile",
     "country_name_full": "Republic of Chile",
+    "created_by_id": 1,
     "id": 46,
-    "iso3": "152"
+    "iso3": "152",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -466,8 +558,10 @@
     "country_code3": "CMR",
     "country_name": "Cameroon",
     "country_name_full": "Republic of Cameroon",
+    "created_by_id": 1,
     "id": 47,
-    "iso3": "120"
+    "iso3": "120",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -476,8 +570,10 @@
     "country_code3": "CHN",
     "country_name": "China",
     "country_name_full": "People's Republic of China",
+    "created_by_id": 1,
     "id": 48,
-    "iso3": "156"
+    "iso3": "156",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -486,8 +582,10 @@
     "country_code3": "COL",
     "country_name": "Colombia",
     "country_name_full": "Republic of Colombia",
+    "created_by_id": 1,
     "id": 49,
-    "iso3": "170"
+    "iso3": "170",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -496,8 +594,10 @@
     "country_code3": "CRI",
     "country_name": "Costa Rica",
     "country_name_full": "Republic of Costa Rica",
+    "created_by_id": 1,
     "id": 50,
-    "iso3": "188"
+    "iso3": "188",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -506,8 +606,10 @@
     "country_code3": "CUB",
     "country_name": "Cuba",
     "country_name_full": "Republic of Cuba",
+    "created_by_id": 1,
     "id": 51,
-    "iso3": "192"
+    "iso3": "192",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -516,8 +618,10 @@
     "country_code3": "CPV",
     "country_name": "Cape Verde",
     "country_name_full": "Republic of Cape Verde",
+    "created_by_id": 1,
     "id": 52,
-    "iso3": "132"
+    "iso3": "132",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -526,8 +630,10 @@
     "country_code3": "CUW",
     "country_name": "Cura\u00e7ao",
     "country_name_full": "Cura\u00e7ao",
+    "created_by_id": 1,
     "id": 53,
-    "iso3": "531"
+    "iso3": "531",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -536,8 +642,10 @@
     "country_code3": "CXR",
     "country_name": "Christmas Island",
     "country_name_full": "Christmas Island",
+    "created_by_id": 1,
     "id": 54,
-    "iso3": "162"
+    "iso3": "162",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -546,8 +654,10 @@
     "country_code3": "CYP",
     "country_name": "Cyprus",
     "country_name_full": "Republic of Cyprus",
+    "created_by_id": 1,
     "id": 55,
-    "iso3": "196"
+    "iso3": "196",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -556,8 +666,10 @@
     "country_code3": "CZE",
     "country_name": "Czech Republic",
     "country_name_full": "Czech Republic",
+    "created_by_id": 1,
     "id": 56,
-    "iso3": "203"
+    "iso3": "203",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -566,8 +678,10 @@
     "country_code3": "DEU",
     "country_name": "Germany",
     "country_name_full": "Federal Republic of Germany",
+    "created_by_id": 1,
     "id": 57,
-    "iso3": "276"
+    "iso3": "276",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -576,8 +690,10 @@
     "country_code3": "DJI",
     "country_name": "Djibouti",
     "country_name_full": "Republic of Djibouti",
+    "created_by_id": 1,
     "id": 58,
-    "iso3": "262"
+    "iso3": "262",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -586,8 +702,10 @@
     "country_code3": "DNK",
     "country_name": "Denmark",
     "country_name_full": "Kingdom of Denmark",
+    "created_by_id": 1,
     "id": 59,
-    "iso3": "208"
+    "iso3": "208",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -596,8 +714,10 @@
     "country_code3": "DMA",
     "country_name": "Dominica",
     "country_name_full": "Commonwealth of Dominica",
+    "created_by_id": 1,
     "id": 60,
-    "iso3": "212"
+    "iso3": "212",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -606,8 +726,10 @@
     "country_code3": "DOM",
     "country_name": "Dominican Republic",
     "country_name_full": "Dominican Republic",
+    "created_by_id": 1,
     "id": 61,
-    "iso3": "214"
+    "iso3": "214",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -616,8 +738,10 @@
     "country_code3": "DZA",
     "country_name": "Algeria",
     "country_name_full": "People's Democratic Republic of Algeria",
+    "created_by_id": 1,
     "id": 62,
-    "iso3": "012"
+    "iso3": "012",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -626,8 +750,10 @@
     "country_code3": "ECU",
     "country_name": "Ecuador",
     "country_name_full": "Republic of Ecuador",
+    "created_by_id": 1,
     "id": 63,
-    "iso3": "218"
+    "iso3": "218",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -636,8 +762,10 @@
     "country_code3": "EST",
     "country_name": "Estonia",
     "country_name_full": "Republic of Estonia",
+    "created_by_id": 1,
     "id": 64,
-    "iso3": "233"
+    "iso3": "233",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -646,8 +774,10 @@
     "country_code3": "EGY",
     "country_name": "Egypt",
     "country_name_full": "Arab Republic of Egypt",
+    "created_by_id": 1,
     "id": 65,
-    "iso3": "818"
+    "iso3": "818",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -656,8 +786,10 @@
     "country_code3": "ESH",
     "country_name": "Western Sahara",
     "country_name_full": "Western Sahara",
+    "created_by_id": 1,
     "id": 66,
-    "iso3": "732"
+    "iso3": "732",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -666,8 +798,10 @@
     "country_code3": "ERI",
     "country_name": "Eritrea",
     "country_name_full": "State of Eritrea",
+    "created_by_id": 1,
     "id": 67,
-    "iso3": "232"
+    "iso3": "232",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -676,8 +810,10 @@
     "country_code3": "ESP",
     "country_name": "Spain",
     "country_name_full": "Kingdom of Spain",
+    "created_by_id": 1,
     "id": 68,
-    "iso3": "724"
+    "iso3": "724",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -686,8 +822,10 @@
     "country_code3": "ETH",
     "country_name": "Ethiopia",
     "country_name_full": "Federal Democratic Republic of Ethiopia",
+    "created_by_id": 1,
     "id": 69,
-    "iso3": "231"
+    "iso3": "231",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -696,8 +834,10 @@
     "country_code3": "FIN",
     "country_name": "Finland",
     "country_name_full": "Republic of Finland",
+    "created_by_id": 1,
     "id": 70,
-    "iso3": "246"
+    "iso3": "246",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -706,8 +846,10 @@
     "country_code3": "FJI",
     "country_name": "Fiji",
     "country_name_full": "Republic of Fiji",
+    "created_by_id": 1,
     "id": 71,
-    "iso3": "242"
+    "iso3": "242",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -716,8 +858,10 @@
     "country_code3": "FLK",
     "country_name": "Falkland Islands (Malvinas)",
     "country_name_full": "Falkland Islands (Malvinas)",
+    "created_by_id": 1,
     "id": 72,
-    "iso3": "238"
+    "iso3": "238",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -726,8 +870,10 @@
     "country_code3": "FSM",
     "country_name": "Micronesia",
     "country_name_full": "Federated States of Micronesia",
+    "created_by_id": 1,
     "id": 73,
-    "iso3": "583"
+    "iso3": "583",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -736,8 +882,10 @@
     "country_code3": "FRO",
     "country_name": "Faroe Islands",
     "country_name_full": "Faroe Islands",
+    "created_by_id": 1,
     "id": 74,
-    "iso3": "234"
+    "iso3": "234",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -746,8 +894,10 @@
     "country_code3": "FRA",
     "country_name": "France",
     "country_name_full": "French Republic",
+    "created_by_id": 1,
     "id": 75,
-    "iso3": "250"
+    "iso3": "250",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -756,8 +906,10 @@
     "country_code3": "GAB",
     "country_name": "Gabon",
     "country_name_full": "Gabonese Republic",
+    "created_by_id": 1,
     "id": 76,
-    "iso3": "266"
+    "iso3": "266",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -766,8 +918,10 @@
     "country_code3": "GBR",
     "country_name": "United Kingdom of Great Britain & Northern Ireland",
     "country_name_full": "United Kingdom of Great Britain & Northern Ireland",
+    "created_by_id": 1,
     "id": 77,
-    "iso3": "826"
+    "iso3": "826",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -776,8 +930,10 @@
     "country_code3": "GRD",
     "country_name": "Grenada",
     "country_name_full": "Grenada",
+    "created_by_id": 1,
     "id": 78,
-    "iso3": "308"
+    "iso3": "308",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -786,8 +942,10 @@
     "country_code3": "GEO",
     "country_name": "Georgia",
     "country_name_full": "Georgia",
+    "created_by_id": 1,
     "id": 79,
-    "iso3": "268"
+    "iso3": "268",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -796,8 +954,10 @@
     "country_code3": "GUF",
     "country_name": "French Guiana",
     "country_name_full": "French Guiana",
+    "created_by_id": 1,
     "id": 80,
-    "iso3": "254"
+    "iso3": "254",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -806,8 +966,10 @@
     "country_code3": "GGY",
     "country_name": "Guernsey",
     "country_name_full": "Bailiwick of Guernsey",
+    "created_by_id": 1,
     "id": 81,
-    "iso3": "831"
+    "iso3": "831",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -816,8 +978,10 @@
     "country_code3": "GHA",
     "country_name": "Ghana",
     "country_name_full": "Republic of Ghana",
+    "created_by_id": 1,
     "id": 82,
-    "iso3": "288"
+    "iso3": "288",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -826,8 +990,10 @@
     "country_code3": "GIB",
     "country_name": "Gibraltar",
     "country_name_full": "Gibraltar",
+    "created_by_id": 1,
     "id": 83,
-    "iso3": "292"
+    "iso3": "292",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -836,8 +1002,10 @@
     "country_code3": "GRL",
     "country_name": "Greenland",
     "country_name_full": "Greenland",
+    "created_by_id": 1,
     "id": 84,
-    "iso3": "304"
+    "iso3": "304",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -846,8 +1014,10 @@
     "country_code3": "GMB",
     "country_name": "Gambia",
     "country_name_full": "Republic of the Gambia",
+    "created_by_id": 1,
     "id": 85,
-    "iso3": "270"
+    "iso3": "270",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -856,8 +1026,10 @@
     "country_code3": "GIN",
     "country_name": "Guinea",
     "country_name_full": "Republic of Guinea",
+    "created_by_id": 1,
     "id": 86,
-    "iso3": "324"
+    "iso3": "324",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -866,8 +1038,10 @@
     "country_code3": "GLP",
     "country_name": "Guadeloupe",
     "country_name_full": "Guadeloupe",
+    "created_by_id": 1,
     "id": 87,
-    "iso3": "312"
+    "iso3": "312",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -876,8 +1050,10 @@
     "country_code3": "GNQ",
     "country_name": "Equatorial Guinea",
     "country_name_full": "Republic of Equatorial Guinea",
+    "created_by_id": 1,
     "id": 88,
-    "iso3": "226"
+    "iso3": "226",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -886,8 +1062,10 @@
     "country_code3": "GRC",
     "country_name": "Greece",
     "country_name_full": "Hellenic Republic Greece",
+    "created_by_id": 1,
     "id": 89,
-    "iso3": "300"
+    "iso3": "300",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AN",
@@ -896,8 +1074,10 @@
     "country_code3": "SGS",
     "country_name": "South Georgia and the South Sandwich Islands",
     "country_name_full": "South Georgia and the South Sandwich Islands",
+    "created_by_id": 1,
     "id": 90,
-    "iso3": "239"
+    "iso3": "239",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -906,8 +1086,10 @@
     "country_code3": "GTM",
     "country_name": "Guatemala",
     "country_name_full": "Republic of Guatemala",
+    "created_by_id": 1,
     "id": 91,
-    "iso3": "320"
+    "iso3": "320",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -916,8 +1098,10 @@
     "country_code3": "GUM",
     "country_name": "Guam",
     "country_name_full": "Guam",
+    "created_by_id": 1,
     "id": 92,
-    "iso3": "316"
+    "iso3": "316",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -926,8 +1110,10 @@
     "country_code3": "GNB",
     "country_name": "Guinea-Bissau",
     "country_name_full": "Republic of Guinea-Bissau",
+    "created_by_id": 1,
     "id": 93,
-    "iso3": "624"
+    "iso3": "624",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -936,8 +1122,10 @@
     "country_code3": "GUY",
     "country_name": "Guyana",
     "country_name_full": "Co-operative Republic of Guyana",
+    "created_by_id": 1,
     "id": 94,
-    "iso3": "328"
+    "iso3": "328",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -946,8 +1134,10 @@
     "country_code3": "HKG",
     "country_name": "Hong Kong",
     "country_name_full": "Hong Kong Special Administrative Region of China",
+    "created_by_id": 1,
     "id": 95,
-    "iso3": "344"
+    "iso3": "344",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AN",
@@ -956,8 +1146,10 @@
     "country_code3": "HMD",
     "country_name": "Heard Island and McDonald Islands",
     "country_name_full": "Heard Island and McDonald Islands",
+    "created_by_id": 1,
     "id": 96,
-    "iso3": "334"
+    "iso3": "334",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -966,8 +1158,10 @@
     "country_code3": "HND",
     "country_name": "Honduras",
     "country_name_full": "Republic of Honduras",
+    "created_by_id": 1,
     "id": 97,
-    "iso3": "340"
+    "iso3": "340",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -976,8 +1170,10 @@
     "country_code3": "HRV",
     "country_name": "Croatia",
     "country_name_full": "Republic of Croatia",
+    "created_by_id": 1,
     "id": 98,
-    "iso3": "191"
+    "iso3": "191",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -986,8 +1182,10 @@
     "country_code3": "HTI",
     "country_name": "Haiti",
     "country_name_full": "Republic of Haiti",
+    "created_by_id": 1,
     "id": 99,
-    "iso3": "332"
+    "iso3": "332",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -996,8 +1194,10 @@
     "country_code3": "HUN",
     "country_name": "Hungary",
     "country_name_full": "Hungary",
+    "created_by_id": 1,
     "id": 100,
-    "iso3": "348"
+    "iso3": "348",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1006,8 +1206,10 @@
     "country_code3": "IDN",
     "country_name": "Indonesia",
     "country_name_full": "Republic of Indonesia",
+    "created_by_id": 1,
     "id": 101,
-    "iso3": "360"
+    "iso3": "360",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1016,8 +1218,10 @@
     "country_code3": "IRL",
     "country_name": "Ireland",
     "country_name_full": "Ireland",
+    "created_by_id": 1,
     "id": 102,
-    "iso3": "372"
+    "iso3": "372",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1026,8 +1230,10 @@
     "country_code3": "ISR",
     "country_name": "Israel",
     "country_name_full": "State of Israel",
+    "created_by_id": 1,
     "id": 103,
-    "iso3": "376"
+    "iso3": "376",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1036,8 +1242,10 @@
     "country_code3": "IMN",
     "country_name": "Isle of Man",
     "country_name_full": "Isle of Man",
+    "created_by_id": 1,
     "id": 104,
-    "iso3": "833"
+    "iso3": "833",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1046,8 +1254,10 @@
     "country_code3": "IND",
     "country_name": "India",
     "country_name_full": "Republic of India",
+    "created_by_id": 1,
     "id": 105,
-    "iso3": "356"
+    "iso3": "356",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1056,8 +1266,10 @@
     "country_code3": "IOT",
     "country_name": "British Indian Ocean Territory (Chagos Archipelago)",
     "country_name_full": "British Indian Ocean Territory (Chagos Archipelago)",
+    "created_by_id": 1,
     "id": 106,
-    "iso3": "086"
+    "iso3": "086",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1066,8 +1278,10 @@
     "country_code3": "IRQ",
     "country_name": "Iraq",
     "country_name_full": "Republic of Iraq",
+    "created_by_id": 1,
     "id": 107,
-    "iso3": "368"
+    "iso3": "368",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1076,8 +1290,10 @@
     "country_code3": "IRN",
     "country_name": "Iran",
     "country_name_full": "Islamic Republic of Iran",
+    "created_by_id": 1,
     "id": 108,
-    "iso3": "364"
+    "iso3": "364",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1086,8 +1302,10 @@
     "country_code3": "ISL",
     "country_name": "Iceland",
     "country_name_full": "Republic of Iceland",
+    "created_by_id": 1,
     "id": 109,
-    "iso3": "352"
+    "iso3": "352",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1096,8 +1314,10 @@
     "country_code3": "ITA",
     "country_name": "Italy",
     "country_name_full": "Italian Republic",
+    "created_by_id": 1,
     "id": 110,
-    "iso3": "380"
+    "iso3": "380",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1106,8 +1326,10 @@
     "country_code3": "JEY",
     "country_name": "Jersey",
     "country_name_full": "Bailiwick of Jersey",
+    "created_by_id": 1,
     "id": 111,
-    "iso3": "832"
+    "iso3": "832",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1116,8 +1338,10 @@
     "country_code3": "JAM",
     "country_name": "Jamaica",
     "country_name_full": "Jamaica",
+    "created_by_id": 1,
     "id": 112,
-    "iso3": "388"
+    "iso3": "388",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1126,8 +1350,10 @@
     "country_code3": "JOR",
     "country_name": "Jordan",
     "country_name_full": "Hashemite Kingdom of Jordan",
+    "created_by_id": 1,
     "id": 113,
-    "iso3": "400"
+    "iso3": "400",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1136,8 +1362,10 @@
     "country_code3": "JPN",
     "country_name": "Japan",
     "country_name_full": "Japan",
+    "created_by_id": 1,
     "id": 114,
-    "iso3": "392"
+    "iso3": "392",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1146,8 +1374,10 @@
     "country_code3": "KEN",
     "country_name": "Kenya",
     "country_name_full": "Republic of Kenya",
+    "created_by_id": 1,
     "id": 115,
-    "iso3": "404"
+    "iso3": "404",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1156,8 +1386,10 @@
     "country_code3": "KGZ",
     "country_name": "Kyrgyz Republic",
     "country_name_full": "Kyrgyz Republic",
+    "created_by_id": 1,
     "id": 116,
-    "iso3": "417"
+    "iso3": "417",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1166,8 +1398,10 @@
     "country_code3": "KHM",
     "country_name": "Cambodia",
     "country_name_full": "Kingdom of Cambodia",
+    "created_by_id": 1,
     "id": 117,
-    "iso3": "116"
+    "iso3": "116",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1176,8 +1410,10 @@
     "country_code3": "KIR",
     "country_name": "Kiribati",
     "country_name_full": "Republic of Kiribati",
+    "created_by_id": 1,
     "id": 118,
-    "iso3": "296"
+    "iso3": "296",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1186,8 +1422,10 @@
     "country_code3": "COM",
     "country_name": "Comoros",
     "country_name_full": "Union of the Comoros",
+    "created_by_id": 1,
     "id": 119,
-    "iso3": "174"
+    "iso3": "174",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1196,8 +1434,10 @@
     "country_code3": "KNA",
     "country_name": "Saint Kitts and Nevis",
     "country_name_full": "Federation of Saint Kitts and Nevis",
+    "created_by_id": 1,
     "id": 120,
-    "iso3": "659"
+    "iso3": "659",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1206,8 +1446,10 @@
     "country_code3": "PRK",
     "country_name": "Korea",
     "country_name_full": "Democratic People's Republic of Korea",
+    "created_by_id": 1,
     "id": 121,
-    "iso3": "408"
+    "iso3": "408",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1216,8 +1458,10 @@
     "country_code3": "KOR",
     "country_name": "Korea",
     "country_name_full": "Republic of Korea",
+    "created_by_id": 1,
     "id": 122,
-    "iso3": "410"
+    "iso3": "410",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1226,8 +1470,10 @@
     "country_code3": "KWT",
     "country_name": "Kuwait",
     "country_name_full": "State of Kuwait",
+    "created_by_id": 1,
     "id": 123,
-    "iso3": "414"
+    "iso3": "414",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1236,8 +1482,10 @@
     "country_code3": "CYM",
     "country_name": "Cayman Islands",
     "country_name_full": "Cayman Islands",
+    "created_by_id": 1,
     "id": 124,
-    "iso3": "136"
+    "iso3": "136",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1246,8 +1494,10 @@
     "country_code3": "KAZ",
     "country_name": "Kazakhstan",
     "country_name_full": "Republic of Kazakhstan",
+    "created_by_id": 1,
     "id": 125,
-    "iso3": "398"
+    "iso3": "398",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1256,8 +1506,10 @@
     "country_code3": "LAO",
     "country_name": "Lao People's Democratic Republic",
     "country_name_full": "Lao People's Democratic Republic",
+    "created_by_id": 1,
     "id": 126,
-    "iso3": "418"
+    "iso3": "418",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1266,8 +1518,10 @@
     "country_code3": "LBN",
     "country_name": "Lebanon",
     "country_name_full": "Lebanese Republic",
+    "created_by_id": 1,
     "id": 127,
-    "iso3": "422"
+    "iso3": "422",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1276,8 +1530,10 @@
     "country_code3": "LCA",
     "country_name": "Saint Lucia",
     "country_name_full": "Saint Lucia",
+    "created_by_id": 1,
     "id": 128,
-    "iso3": "662"
+    "iso3": "662",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1286,8 +1542,10 @@
     "country_code3": "LIE",
     "country_name": "Liechtenstein",
     "country_name_full": "Principality of Liechtenstein",
+    "created_by_id": 1,
     "id": 129,
-    "iso3": "438"
+    "iso3": "438",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1296,8 +1554,10 @@
     "country_code3": "LKA",
     "country_name": "Sri Lanka",
     "country_name_full": "Democratic Socialist Republic of Sri Lanka",
+    "created_by_id": 1,
     "id": 130,
-    "iso3": "144"
+    "iso3": "144",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1306,8 +1566,10 @@
     "country_code3": "LBR",
     "country_name": "Liberia",
     "country_name_full": "Republic of Liberia",
+    "created_by_id": 1,
     "id": 131,
-    "iso3": "430"
+    "iso3": "430",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1316,8 +1578,10 @@
     "country_code3": "LSO",
     "country_name": "Lesotho",
     "country_name_full": "Kingdom of Lesotho",
+    "created_by_id": 1,
     "id": 132,
-    "iso3": "426"
+    "iso3": "426",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1326,8 +1590,10 @@
     "country_code3": "LTU",
     "country_name": "Lithuania",
     "country_name_full": "Republic of Lithuania",
+    "created_by_id": 1,
     "id": 133,
-    "iso3": "440"
+    "iso3": "440",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1336,8 +1602,10 @@
     "country_code3": "LUX",
     "country_name": "Luxembourg",
     "country_name_full": "Grand Duchy of Luxembourg",
+    "created_by_id": 1,
     "id": 134,
-    "iso3": "442"
+    "iso3": "442",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1346,8 +1614,10 @@
     "country_code3": "LVA",
     "country_name": "Latvia",
     "country_name_full": "Republic of Latvia",
+    "created_by_id": 1,
     "id": 135,
-    "iso3": "428"
+    "iso3": "428",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1356,8 +1626,10 @@
     "country_code3": "LBY",
     "country_name": "Libya",
     "country_name_full": "Libya",
+    "created_by_id": 1,
     "id": 136,
-    "iso3": "434"
+    "iso3": "434",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1366,8 +1638,10 @@
     "country_code3": "MAR",
     "country_name": "Morocco",
     "country_name_full": "Kingdom of Morocco",
+    "created_by_id": 1,
     "id": 137,
-    "iso3": "504"
+    "iso3": "504",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1376,8 +1650,10 @@
     "country_code3": "MCO",
     "country_name": "Monaco",
     "country_name_full": "Principality of Monaco",
+    "created_by_id": 1,
     "id": 138,
-    "iso3": "492"
+    "iso3": "492",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1386,8 +1662,10 @@
     "country_code3": "MDA",
     "country_name": "Moldova",
     "country_name_full": "Republic of Moldova",
+    "created_by_id": 1,
     "id": 139,
-    "iso3": "498"
+    "iso3": "498",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1396,8 +1674,10 @@
     "country_code3": "MNE",
     "country_name": "Montenegro",
     "country_name_full": "Montenegro",
+    "created_by_id": 1,
     "id": 140,
-    "iso3": "499"
+    "iso3": "499",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1406,8 +1686,10 @@
     "country_code3": "MAF",
     "country_name": "Saint Martin",
     "country_name_full": "Saint Martin (French part)",
+    "created_by_id": 1,
     "id": 141,
-    "iso3": "663"
+    "iso3": "663",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1416,8 +1698,10 @@
     "country_code3": "MDG",
     "country_name": "Madagascar",
     "country_name_full": "Republic of Madagascar",
+    "created_by_id": 1,
     "id": 142,
-    "iso3": "450"
+    "iso3": "450",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1426,8 +1710,10 @@
     "country_code3": "MHL",
     "country_name": "Marshall Islands",
     "country_name_full": "Republic of the Marshall Islands",
+    "created_by_id": 1,
     "id": 143,
-    "iso3": "584"
+    "iso3": "584",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1436,8 +1722,10 @@
     "country_code3": "MKD",
     "country_name": "Macedonia",
     "country_name_full": "Republic of Macedonia",
+    "created_by_id": 1,
     "id": 144,
-    "iso3": "807"
+    "iso3": "807",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1446,8 +1734,10 @@
     "country_code3": "MLI",
     "country_name": "Mali",
     "country_name_full": "Republic of Mali",
+    "created_by_id": 1,
     "id": 145,
-    "iso3": "466"
+    "iso3": "466",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1456,8 +1746,10 @@
     "country_code3": "MMR",
     "country_name": "Myanmar",
     "country_name_full": "Republic of the Union of Myanmar",
+    "created_by_id": 1,
     "id": 146,
-    "iso3": "104"
+    "iso3": "104",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1466,8 +1758,10 @@
     "country_code3": "MNG",
     "country_name": "Mongolia",
     "country_name_full": "Mongolia",
+    "created_by_id": 1,
     "id": 147,
-    "iso3": "496"
+    "iso3": "496",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1476,8 +1770,10 @@
     "country_code3": "MAC",
     "country_name": "Macao",
     "country_name_full": "Macao Special Administrative Region of China",
+    "created_by_id": 1,
     "id": 148,
-    "iso3": "446"
+    "iso3": "446",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1486,8 +1782,10 @@
     "country_code3": "MNP",
     "country_name": "Northern Mariana Islands",
     "country_name_full": "Commonwealth of the Northern Mariana Islands",
+    "created_by_id": 1,
     "id": 149,
-    "iso3": "580"
+    "iso3": "580",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1496,8 +1794,10 @@
     "country_code3": "MTQ",
     "country_name": "Martinique",
     "country_name_full": "Martinique",
+    "created_by_id": 1,
     "id": 150,
-    "iso3": "474"
+    "iso3": "474",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1506,8 +1806,10 @@
     "country_code3": "MRT",
     "country_name": "Mauritania",
     "country_name_full": "Islamic Republic of Mauritania",
+    "created_by_id": 1,
     "id": 151,
-    "iso3": "478"
+    "iso3": "478",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1516,8 +1818,10 @@
     "country_code3": "MSR",
     "country_name": "Montserrat",
     "country_name_full": "Montserrat",
+    "created_by_id": 1,
     "id": 152,
-    "iso3": "500"
+    "iso3": "500",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1526,8 +1830,10 @@
     "country_code3": "MLT",
     "country_name": "Malta",
     "country_name_full": "Republic of Malta",
+    "created_by_id": 1,
     "id": 153,
-    "iso3": "470"
+    "iso3": "470",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1536,8 +1842,10 @@
     "country_code3": "MUS",
     "country_name": "Mauritius",
     "country_name_full": "Republic of Mauritius",
+    "created_by_id": 1,
     "id": 154,
-    "iso3": "480"
+    "iso3": "480",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1546,8 +1854,10 @@
     "country_code3": "MDV",
     "country_name": "Maldives",
     "country_name_full": "Republic of Maldives",
+    "created_by_id": 1,
     "id": 155,
-    "iso3": "462"
+    "iso3": "462",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1556,8 +1866,10 @@
     "country_code3": "MWI",
     "country_name": "Malawi",
     "country_name_full": "Republic of Malawi",
+    "created_by_id": 1,
     "id": 156,
-    "iso3": "454"
+    "iso3": "454",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1566,8 +1878,10 @@
     "country_code3": "MEX",
     "country_name": "Mexico",
     "country_name_full": "United Mexican States",
+    "created_by_id": 1,
     "id": 157,
-    "iso3": "484"
+    "iso3": "484",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1576,8 +1890,10 @@
     "country_code3": "MYS",
     "country_name": "Malaysia",
     "country_name_full": "Malaysia",
+    "created_by_id": 1,
     "id": 158,
-    "iso3": "458"
+    "iso3": "458",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1586,8 +1902,10 @@
     "country_code3": "MOZ",
     "country_name": "Mozambique",
     "country_name_full": "Republic of Mozambique",
+    "created_by_id": 1,
     "id": 159,
-    "iso3": "508"
+    "iso3": "508",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1596,8 +1914,10 @@
     "country_code3": "NAM",
     "country_name": "Namibia",
     "country_name_full": "Republic of Namibia",
+    "created_by_id": 1,
     "id": 160,
-    "iso3": "516"
+    "iso3": "516",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1606,8 +1926,10 @@
     "country_code3": "NCL",
     "country_name": "New Caledonia",
     "country_name_full": "New Caledonia",
+    "created_by_id": 1,
     "id": 161,
-    "iso3": "540"
+    "iso3": "540",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1616,8 +1938,10 @@
     "country_code3": "NER",
     "country_name": "Niger",
     "country_name_full": "Republic of Niger",
+    "created_by_id": 1,
     "id": 162,
-    "iso3": "562"
+    "iso3": "562",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1626,8 +1950,10 @@
     "country_code3": "NFK",
     "country_name": "Norfolk Island",
     "country_name_full": "Norfolk Island",
+    "created_by_id": 1,
     "id": 163,
-    "iso3": "574"
+    "iso3": "574",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1636,8 +1962,10 @@
     "country_code3": "NGA",
     "country_name": "Nigeria",
     "country_name_full": "Federal Republic of Nigeria",
+    "created_by_id": 1,
     "id": 164,
-    "iso3": "566"
+    "iso3": "566",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1646,8 +1974,10 @@
     "country_code3": "NIC",
     "country_name": "Nicaragua",
     "country_name_full": "Republic of Nicaragua",
+    "created_by_id": 1,
     "id": 165,
-    "iso3": "558"
+    "iso3": "558",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1656,8 +1986,10 @@
     "country_code3": "NLD",
     "country_name": "Netherlands",
     "country_name_full": "Kingdom of the Netherlands",
+    "created_by_id": 1,
     "id": 166,
-    "iso3": "528"
+    "iso3": "528",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1666,8 +1998,10 @@
     "country_code3": "NOR",
     "country_name": "Norway",
     "country_name_full": "Kingdom of Norway",
+    "created_by_id": 1,
     "id": 167,
-    "iso3": "578"
+    "iso3": "578",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1676,8 +2010,10 @@
     "country_code3": "NPL",
     "country_name": "Nepal",
     "country_name_full": "Federal Democratic Republic of Nepal",
+    "created_by_id": 1,
     "id": 168,
-    "iso3": "524"
+    "iso3": "524",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1686,8 +2022,10 @@
     "country_code3": "NRU",
     "country_name": "Nauru",
     "country_name_full": "Republic of Nauru",
+    "created_by_id": 1,
     "id": 169,
-    "iso3": "520"
+    "iso3": "520",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1696,8 +2034,10 @@
     "country_code3": "NIU",
     "country_name": "Niue",
     "country_name_full": "Niue",
+    "created_by_id": 1,
     "id": 170,
-    "iso3": "570"
+    "iso3": "570",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1706,8 +2046,10 @@
     "country_code3": "NZL",
     "country_name": "New Zealand",
     "country_name_full": "New Zealand",
+    "created_by_id": 1,
     "id": 171,
-    "iso3": "554"
+    "iso3": "554",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1716,8 +2058,10 @@
     "country_code3": "OMN",
     "country_name": "Oman",
     "country_name_full": "Sultanate of Oman",
+    "created_by_id": 1,
     "id": 172,
-    "iso3": "512"
+    "iso3": "512",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1726,8 +2070,10 @@
     "country_code3": "PAN",
     "country_name": "Panama",
     "country_name_full": "Republic of Panama",
+    "created_by_id": 1,
     "id": 173,
-    "iso3": "591"
+    "iso3": "591",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -1736,8 +2082,10 @@
     "country_code3": "PER",
     "country_name": "Peru",
     "country_name_full": "Republic of Peru",
+    "created_by_id": 1,
     "id": 174,
-    "iso3": "604"
+    "iso3": "604",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1746,8 +2094,10 @@
     "country_code3": "PYF",
     "country_name": "French Polynesia",
     "country_name_full": "French Polynesia",
+    "created_by_id": 1,
     "id": 175,
-    "iso3": "258"
+    "iso3": "258",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1756,8 +2106,10 @@
     "country_code3": "PNG",
     "country_name": "Papua New Guinea",
     "country_name_full": "Independent State of Papua New Guinea",
+    "created_by_id": 1,
     "id": 176,
-    "iso3": "598"
+    "iso3": "598",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1766,8 +2118,10 @@
     "country_code3": "PHL",
     "country_name": "Philippines",
     "country_name_full": "Republic of the Philippines",
+    "created_by_id": 1,
     "id": 177,
-    "iso3": "608"
+    "iso3": "608",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1776,8 +2130,10 @@
     "country_code3": "PAK",
     "country_name": "Pakistan",
     "country_name_full": "Islamic Republic of Pakistan",
+    "created_by_id": 1,
     "id": 178,
-    "iso3": "586"
+    "iso3": "586",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1786,8 +2142,10 @@
     "country_code3": "POL",
     "country_name": "Poland",
     "country_name_full": "Republic of Poland",
+    "created_by_id": 1,
     "id": 179,
-    "iso3": "616"
+    "iso3": "616",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1796,8 +2154,10 @@
     "country_code3": "SPM",
     "country_name": "Saint Pierre and Miquelon",
     "country_name_full": "Saint Pierre and Miquelon",
+    "created_by_id": 1,
     "id": 180,
-    "iso3": "666"
+    "iso3": "666",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1806,8 +2166,10 @@
     "country_code3": "PCN",
     "country_name": "Pitcairn Islands",
     "country_name_full": "Pitcairn Islands",
+    "created_by_id": 1,
     "id": 181,
-    "iso3": "612"
+    "iso3": "612",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -1816,8 +2178,10 @@
     "country_code3": "PRI",
     "country_name": "Puerto Rico",
     "country_name_full": "Commonwealth of Puerto Rico",
+    "created_by_id": 1,
     "id": 182,
-    "iso3": "630"
+    "iso3": "630",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1826,8 +2190,10 @@
     "country_code3": "PSE",
     "country_name": "Palestinian Territory",
     "country_name_full": "Occupied Palestinian Territory",
+    "created_by_id": 1,
     "id": 183,
-    "iso3": "275"
+    "iso3": "275",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1836,8 +2202,10 @@
     "country_code3": "PRT",
     "country_name": "Portugal",
     "country_name_full": "Portuguese Republic",
+    "created_by_id": 1,
     "id": 184,
-    "iso3": "620"
+    "iso3": "620",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1846,8 +2214,10 @@
     "country_code3": "PLW",
     "country_name": "Palau",
     "country_name_full": "Republic of Palau",
+    "created_by_id": 1,
     "id": 185,
-    "iso3": "585"
+    "iso3": "585",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -1856,8 +2226,10 @@
     "country_code3": "PRY",
     "country_name": "Paraguay",
     "country_name_full": "Republic of Paraguay",
+    "created_by_id": 1,
     "id": 186,
-    "iso3": "600"
+    "iso3": "600",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1866,8 +2238,10 @@
     "country_code3": "QAT",
     "country_name": "Qatar",
     "country_name_full": "State of Qatar",
+    "created_by_id": 1,
     "id": 187,
-    "iso3": "634"
+    "iso3": "634",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1876,8 +2250,10 @@
     "country_code3": "REU",
     "country_name": "R\u00e9union",
     "country_name_full": "R\u00e9union",
+    "created_by_id": 1,
     "id": 188,
-    "iso3": "638"
+    "iso3": "638",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1886,8 +2262,10 @@
     "country_code3": "ROU",
     "country_name": "Romania",
     "country_name_full": "Romania",
+    "created_by_id": 1,
     "id": 189,
-    "iso3": "642"
+    "iso3": "642",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1896,8 +2274,10 @@
     "country_code3": "SRB",
     "country_name": "Serbia",
     "country_name_full": "Republic of Serbia",
+    "created_by_id": 1,
     "id": 190,
-    "iso3": "688"
+    "iso3": "688",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1906,8 +2286,10 @@
     "country_code3": "RUS",
     "country_name": "Russian Federation",
     "country_name_full": "Russian Federation",
+    "created_by_id": 1,
     "id": 191,
-    "iso3": "643"
+    "iso3": "643",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1916,8 +2298,10 @@
     "country_code3": "RWA",
     "country_name": "Rwanda",
     "country_name_full": "Republic of Rwanda",
+    "created_by_id": 1,
     "id": 192,
-    "iso3": "646"
+    "iso3": "646",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1926,8 +2310,10 @@
     "country_code3": "SAU",
     "country_name": "Saudi Arabia",
     "country_name_full": "Kingdom of Saudi Arabia",
+    "created_by_id": 1,
     "id": 193,
-    "iso3": "682"
+    "iso3": "682",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -1936,8 +2322,10 @@
     "country_code3": "SLB",
     "country_name": "Solomon Islands",
     "country_name_full": "Solomon Islands",
+    "created_by_id": 1,
     "id": 194,
-    "iso3": "090"
+    "iso3": "090",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1946,8 +2334,10 @@
     "country_code3": "SYC",
     "country_name": "Seychelles",
     "country_name_full": "Republic of Seychelles",
+    "created_by_id": 1,
     "id": 195,
-    "iso3": "690"
+    "iso3": "690",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1956,8 +2346,10 @@
     "country_code3": "SDN",
     "country_name": "Sudan",
     "country_name_full": "Republic of Sudan",
+    "created_by_id": 1,
     "id": 196,
-    "iso3": "729"
+    "iso3": "729",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1966,8 +2358,10 @@
     "country_code3": "SWE",
     "country_name": "Sweden",
     "country_name_full": "Kingdom of Sweden",
+    "created_by_id": 1,
     "id": 197,
-    "iso3": "752"
+    "iso3": "752",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -1976,8 +2370,10 @@
     "country_code3": "SGP",
     "country_name": "Singapore",
     "country_name_full": "Republic of Singapore",
+    "created_by_id": 1,
     "id": 198,
-    "iso3": "702"
+    "iso3": "702",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -1986,8 +2382,10 @@
     "country_code3": "SHN",
     "country_name": "Saint Helena, Ascension and Tristan da Cunha",
     "country_name_full": "Saint Helena, Ascension and Tristan da Cunha",
+    "created_by_id": 1,
     "id": 199,
-    "iso3": "654"
+    "iso3": "654",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -1996,8 +2394,10 @@
     "country_code3": "SVN",
     "country_name": "Slovenia",
     "country_name_full": "Republic of Slovenia",
+    "created_by_id": 1,
     "id": 200,
-    "iso3": "705"
+    "iso3": "705",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -2006,8 +2406,10 @@
     "country_code3": "SJM",
     "country_name": "Svalbard & Jan Mayen Islands",
     "country_name_full": "Svalbard & Jan Mayen Islands",
+    "created_by_id": 1,
     "id": 201,
-    "iso3": "744"
+    "iso3": "744",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -2016,8 +2418,10 @@
     "country_code3": "SVK",
     "country_name": "Slovakia (Slovak Republic)",
     "country_name_full": "Slovakia (Slovak Republic)",
+    "created_by_id": 1,
     "id": 202,
-    "iso3": "703"
+    "iso3": "703",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2026,8 +2430,10 @@
     "country_code3": "SLE",
     "country_name": "Sierra Leone",
     "country_name_full": "Republic of Sierra Leone",
+    "created_by_id": 1,
     "id": 203,
-    "iso3": "694"
+    "iso3": "694",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -2036,8 +2442,10 @@
     "country_code3": "SMR",
     "country_name": "San Marino",
     "country_name_full": "Republic of San Marino",
+    "created_by_id": 1,
     "id": 204,
-    "iso3": "674"
+    "iso3": "674",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2046,8 +2454,10 @@
     "country_code3": "SEN",
     "country_name": "Senegal",
     "country_name_full": "Republic of Senegal",
+    "created_by_id": 1,
     "id": 205,
-    "iso3": "686"
+    "iso3": "686",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2056,8 +2466,10 @@
     "country_code3": "SOM",
     "country_name": "Somalia",
     "country_name_full": "Somali Republic",
+    "created_by_id": 1,
     "id": 206,
-    "iso3": "706"
+    "iso3": "706",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -2066,8 +2478,10 @@
     "country_code3": "SUR",
     "country_name": "Suriname",
     "country_name_full": "Republic of Suriname",
+    "created_by_id": 1,
     "id": 207,
-    "iso3": "740"
+    "iso3": "740",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2076,8 +2490,10 @@
     "country_code3": "SSD",
     "country_name": "South Sudan",
     "country_name_full": "Republic of South Sudan",
+    "created_by_id": 1,
     "id": 208,
-    "iso3": "728"
+    "iso3": "728",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2086,8 +2502,10 @@
     "country_code3": "STP",
     "country_name": "Sao Tome and Principe",
     "country_name_full": "Democratic Republic of Sao Tome and Principe",
+    "created_by_id": 1,
     "id": 209,
-    "iso3": "678"
+    "iso3": "678",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2096,8 +2514,10 @@
     "country_code3": "SLV",
     "country_name": "El Salvador",
     "country_name_full": "Republic of El Salvador",
+    "created_by_id": 1,
     "id": 210,
-    "iso3": "222"
+    "iso3": "222",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2106,8 +2526,10 @@
     "country_code3": "SXM",
     "country_name": "Sint Maarten (Dutch part)",
     "country_name_full": "Sint Maarten (Dutch part)",
+    "created_by_id": 1,
     "id": 211,
-    "iso3": "534"
+    "iso3": "534",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2116,8 +2538,10 @@
     "country_code3": "SYR",
     "country_name": "Syrian Arab Republic",
     "country_name_full": "Syrian Arab Republic",
+    "created_by_id": 1,
     "id": 212,
-    "iso3": "760"
+    "iso3": "760",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2126,8 +2550,10 @@
     "country_code3": "SWZ",
     "country_name": "Swaziland",
     "country_name_full": "Kingdom of Swaziland",
+    "created_by_id": 1,
     "id": 213,
-    "iso3": "748"
+    "iso3": "748",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2136,8 +2562,10 @@
     "country_code3": "TCA",
     "country_name": "Turks and Caicos Islands",
     "country_name_full": "Turks and Caicos Islands",
+    "created_by_id": 1,
     "id": 214,
-    "iso3": "796"
+    "iso3": "796",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2146,8 +2574,10 @@
     "country_code3": "TCD",
     "country_name": "Chad",
     "country_name_full": "Republic of Chad",
+    "created_by_id": 1,
     "id": 215,
-    "iso3": "148"
+    "iso3": "148",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AN",
@@ -2156,8 +2586,10 @@
     "country_code3": "ATF",
     "country_name": "French Southern Territories",
     "country_name_full": "French Southern Territories",
+    "created_by_id": 1,
     "id": 216,
-    "iso3": "260"
+    "iso3": "260",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2166,8 +2598,10 @@
     "country_code3": "TGO",
     "country_name": "Togo",
     "country_name_full": "Togolese Republic",
+    "created_by_id": 1,
     "id": 217,
-    "iso3": "768"
+    "iso3": "768",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2176,8 +2610,10 @@
     "country_code3": "THA",
     "country_name": "Thailand",
     "country_name_full": "Kingdom of Thailand",
+    "created_by_id": 1,
     "id": 218,
-    "iso3": "764"
+    "iso3": "764",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2186,8 +2622,10 @@
     "country_code3": "TJK",
     "country_name": "Tajikistan",
     "country_name_full": "Republic of Tajikistan",
+    "created_by_id": 1,
     "id": 219,
-    "iso3": "762"
+    "iso3": "762",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2196,8 +2634,10 @@
     "country_code3": "TKL",
     "country_name": "Tokelau",
     "country_name_full": "Tokelau",
+    "created_by_id": 1,
     "id": 220,
-    "iso3": "772"
+    "iso3": "772",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2206,8 +2646,10 @@
     "country_code3": "TLS",
     "country_name": "Timor-Leste",
     "country_name_full": "Democratic Republic of Timor-Leste",
+    "created_by_id": 1,
     "id": 221,
-    "iso3": "626"
+    "iso3": "626",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2216,8 +2658,10 @@
     "country_code3": "TKM",
     "country_name": "Turkmenistan",
     "country_name_full": "Turkmenistan",
+    "created_by_id": 1,
     "id": 222,
-    "iso3": "795"
+    "iso3": "795",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2226,8 +2670,10 @@
     "country_code3": "TUN",
     "country_name": "Tunisia",
     "country_name_full": "Tunisian Republic",
+    "created_by_id": 1,
     "id": 223,
-    "iso3": "788"
+    "iso3": "788",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2236,8 +2682,10 @@
     "country_code3": "TON",
     "country_name": "Tonga",
     "country_name_full": "Kingdom of Tonga",
+    "created_by_id": 1,
     "id": 224,
-    "iso3": "776"
+    "iso3": "776",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2246,8 +2694,10 @@
     "country_code3": "TUR",
     "country_name": "Turkey",
     "country_name_full": "Republic of Turkey",
+    "created_by_id": 1,
     "id": 225,
-    "iso3": "792"
+    "iso3": "792",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2256,8 +2706,10 @@
     "country_code3": "TTO",
     "country_name": "Trinidad and Tobago",
     "country_name_full": "Republic of Trinidad and Tobago",
+    "created_by_id": 1,
     "id": 226,
-    "iso3": "780"
+    "iso3": "780",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2266,8 +2718,10 @@
     "country_code3": "TUV",
     "country_name": "Tuvalu",
     "country_name_full": "Tuvalu",
+    "created_by_id": 1,
     "id": 227,
-    "iso3": "798"
+    "iso3": "798",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2276,8 +2730,10 @@
     "country_code3": "TWN",
     "country_name": "Taiwan",
     "country_name_full": "Taiwan, Province of China",
+    "created_by_id": 1,
     "id": 228,
-    "iso3": "158"
+    "iso3": "158",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2286,8 +2742,10 @@
     "country_code3": "TZA",
     "country_name": "Tanzania",
     "country_name_full": "United Republic of Tanzania",
+    "created_by_id": 1,
     "id": 229,
-    "iso3": "834"
+    "iso3": "834",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -2296,8 +2754,10 @@
     "country_code3": "UKR",
     "country_name": "Ukraine",
     "country_name_full": "Ukraine",
+    "created_by_id": 1,
     "id": 230,
-    "iso3": "804"
+    "iso3": "804",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2306,8 +2766,10 @@
     "country_code3": "UGA",
     "country_name": "Uganda",
     "country_name_full": "Republic of Uganda",
+    "created_by_id": 1,
     "id": 231,
-    "iso3": "800"
+    "iso3": "800",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2316,8 +2778,10 @@
     "country_code3": "UMI",
     "country_name": "United States Minor Outlying Islands",
     "country_name_full": "United States Minor Outlying Islands",
+    "created_by_id": 1,
     "id": 232,
-    "iso3": "581"
+    "iso3": "581",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2326,8 +2790,10 @@
     "country_code3": "USA",
     "country_name": "United States of America",
     "country_name_full": "United States of America",
+    "created_by_id": 1,
     "id": 233,
-    "iso3": "840"
+    "iso3": "840",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -2336,8 +2802,10 @@
     "country_code3": "URY",
     "country_name": "Uruguay",
     "country_name_full": "Eastern Republic of Uruguay",
+    "created_by_id": 1,
     "id": 234,
-    "iso3": "858"
+    "iso3": "858",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2346,8 +2814,10 @@
     "country_code3": "UZB",
     "country_name": "Uzbekistan",
     "country_name_full": "Republic of Uzbekistan",
+    "created_by_id": 1,
     "id": 235,
-    "iso3": "860"
+    "iso3": "860",
+    "updated_by_id": 1
   },
   {
     "continent_code": "EU",
@@ -2356,8 +2826,10 @@
     "country_code3": "VAT",
     "country_name": "Holy See (Vatican City State)",
     "country_name_full": "Holy See (Vatican City State)",
+    "created_by_id": 1,
     "id": 236,
-    "iso3": "336"
+    "iso3": "336",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2366,8 +2838,10 @@
     "country_code3": "VCT",
     "country_name": "Saint Vincent and the Grenadines",
     "country_name_full": "Saint Vincent and the Grenadines",
+    "created_by_id": 1,
     "id": 237,
-    "iso3": "670"
+    "iso3": "670",
+    "updated_by_id": 1
   },
   {
     "continent_code": "SA",
@@ -2376,8 +2850,10 @@
     "country_code3": "VEN",
     "country_name": "Venezuela",
     "country_name_full": "Bolivarian Republic of Venezuela",
+    "created_by_id": 1,
     "id": 238,
-    "iso3": "862"
+    "iso3": "862",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2386,8 +2862,10 @@
     "country_code3": "VGB",
     "country_name": "British Virgin Islands",
     "country_name_full": "British Virgin Islands",
+    "created_by_id": 1,
     "id": 239,
-    "iso3": "092"
+    "iso3": "092",
+    "updated_by_id": 1
   },
   {
     "continent_code": "NA",
@@ -2396,8 +2874,10 @@
     "country_code3": "VIR",
     "country_name": "United States Virgin Islands",
     "country_name_full": "United States Virgin Islands",
+    "created_by_id": 1,
     "id": 240,
-    "iso3": "850"
+    "iso3": "850",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2406,8 +2886,10 @@
     "country_code3": "VNM",
     "country_name": "Vietnam",
     "country_name_full": "Socialist Republic of Vietnam",
+    "created_by_id": 1,
     "id": 241,
-    "iso3": "704"
+    "iso3": "704",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2416,8 +2898,10 @@
     "country_code3": "VUT",
     "country_name": "Vanuatu",
     "country_name_full": "Republic of Vanuatu",
+    "created_by_id": 1,
     "id": 242,
-    "iso3": "548"
+    "iso3": "548",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2426,8 +2910,10 @@
     "country_code3": "WLF",
     "country_name": "Wallis and Futuna",
     "country_name_full": "Wallis and Futuna",
+    "created_by_id": 1,
     "id": 243,
-    "iso3": "876"
+    "iso3": "876",
+    "updated_by_id": 1
   },
   {
     "continent_code": "OC",
@@ -2436,8 +2922,10 @@
     "country_code3": "WSM",
     "country_name": "Samoa",
     "country_name_full": "Independent State of Samoa",
+    "created_by_id": 1,
     "id": 244,
-    "iso3": "882"
+    "iso3": "882",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AS",
@@ -2446,8 +2934,10 @@
     "country_code3": "YEM",
     "country_name": "Yemen",
     "country_name_full": "Yemen",
+    "created_by_id": 1,
     "id": 245,
-    "iso3": "887"
+    "iso3": "887",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2456,8 +2946,10 @@
     "country_code3": "MYT",
     "country_name": "Mayotte",
     "country_name_full": "Mayotte",
+    "created_by_id": 1,
     "id": 246,
-    "iso3": "175"
+    "iso3": "175",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2466,8 +2958,10 @@
     "country_code3": "ZAF",
     "country_name": "South Africa",
     "country_name_full": "Republic of South Africa",
+    "created_by_id": 1,
     "id": 247,
-    "iso3": "710"
+    "iso3": "710",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2476,8 +2970,10 @@
     "country_code3": "ZMB",
     "country_name": "Zambia",
     "country_name_full": "Republic of Zambia",
+    "created_by_id": 1,
     "id": 248,
-    "iso3": "894"
+    "iso3": "894",
+    "updated_by_id": 1
   },
   {
     "continent_code": "AF",
@@ -2486,7 +2982,9 @@
     "country_code3": "ZWE",
     "country_name": "Zimbabwe",
     "country_name_full": "Republic of Zimbabwe",
+    "created_by_id": 1,
     "id": 249,
-    "iso3": "716"
+    "iso3": "716",
+    "updated_by_id": 1
   }
 ]

@@ -14,18 +14,20 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **options):
         try:
-            division_file = BASE_DIR / "apps/division/data/bd_divisions.json"
+            division_file = BASE_DIR / "apps/data_migration/data/bd_divisions.json"
             division_instances = []
             with open(division_file) as json_file:
                 divisions = json.load(json_file)
                 for division in divisions:
                     instance = Division(
-                        id=division["id"],
-                        name=division["name"],
-                        bn_name=division["bn_name"],
-                        lat=division["lat"],
-                        long=division["long"],
-                        country_id=division["country_id"],
+                        id=division.get("id"),
+                        name=division.get("name"),
+                        bn_name=division.get("bn_name"),
+                        lat=division.get("lat"),
+                        long=division.get("long"),
+                        country_id=division.get("country_id"),
+                        created_by_id=division.get("created_by_id"),
+                        updated_by_id=division.get("updated_by_id"),
                     )
                     division_instances.append(instance)
                 divisions = Division.objects.bulk_create(division_instances)

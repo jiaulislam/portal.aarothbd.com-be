@@ -1,0 +1,3954 @@
+[
+  {
+    "bn_name": "\u0986\u09ae\u09a4\u09b2\u09c0",
+    "created_by_id": 1,
+    "district_id": "34",
+    "id": "1",
+    "name": "Amtali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09ae\u09a8\u09be",
+    "created_by_id": 1,
+    "district_id": "34",
+    "id": "2",
+    "name": "Bamna",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09b0\u0997\u09c1\u09a8\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "34",
+    "id": "3",
+    "name": "Barguna Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u09a4\u09be\u0997\u09bf",
+    "created_by_id": 1,
+    "district_id": "34",
+    "id": "4",
+    "name": "Betagi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u09a5\u09b0\u0998\u09be\u099f\u09be",
+    "created_by_id": 1,
+    "district_id": "34",
+    "id": "5",
+    "name": "Patharghata",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09b2\u09a4\u09b2\u09c0",
+    "created_by_id": 1,
+    "district_id": "34",
+    "id": "6",
+    "name": "Taltali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c1\u09b2\u09be\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "7",
+    "name": "Muladi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09ac\u09c1\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "8",
+    "name": "Babuganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u0997\u09be\u0987\u09b2\u099d\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "9",
+    "name": "Agailjhara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09b0\u09bf\u09b6\u09be\u09b2 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "10",
+    "name": "Barisal Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0995\u09c7\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "11",
+    "name": "Bakerganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09a8\u09be\u09dc\u09bf\u09aa\u09be\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "12",
+    "name": "Banaripara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cc\u09b0\u09a8\u09a6\u09c0",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "13",
+    "name": "Gaurnadi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09bf\u099c\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "14",
+    "name": "Hizla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c7\u09b9\u09c7\u09a6\u09bf\u0997\u099e\u09cd\u099c ",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "15",
+    "name": "Mehendiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0993\u09df\u09be\u099c\u09bf\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "35",
+    "id": "16",
+    "name": "Wazirpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09cb\u09b2\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "17",
+    "name": "Bhola Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c1\u09b0\u09b9\u09be\u09a8\u0989\u09a6\u09cd\u09a6\u09bf\u09a8",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "18",
+    "name": "Burhanuddin",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09b0 \u09ab\u09cd\u09af\u09be\u09b6\u09a8",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "19",
+    "name": "Char Fasson",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09cc\u09b2\u09a4\u0996\u09be\u09a8",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "20",
+    "name": "Daulatkhan",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u09b2\u09ae\u09cb\u09b9\u09a8",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "21",
+    "name": "Lalmohan",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a8\u09aa\u09c1\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "22",
+    "name": "Manpura",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u099c\u09c1\u09ae\u09c1\u09a6\u09cd\u09a6\u09bf\u09a8",
+    "created_by_id": 1,
+    "district_id": "36",
+    "id": "23",
+    "name": "Tazumuddin",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099d\u09be\u09b2\u0995\u09be\u09a0\u09bf \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "37",
+    "id": "24",
+    "name": "Jhalokati Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u0981\u09a0\u09be\u09b2\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "37",
+    "id": "25",
+    "name": "Kathalia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u09b2\u099a\u09bf\u09a4\u09bf",
+    "created_by_id": 1,
+    "district_id": "37",
+    "id": "26",
+    "name": "Nalchity",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u099c\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "37",
+    "id": "27",
+    "name": "Rajapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0989\u09ab\u09b2",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "28",
+    "name": "Bauphal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09b6\u09ae\u09bf\u09a8\u09be",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "29",
+    "name": "Dashmina",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09b2\u09be\u099a\u09bf\u09aa\u09be",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "30",
+    "name": "Galachipa",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09be\u09aa\u09be\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "31",
+    "name": "Kalapara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09bf\u09b0\u09cd\u099c\u09be\u0997\u099e\u09cd\u099c ",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "32",
+    "name": "Mirzaganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u099f\u09c1\u09df\u09be\u0996\u09be\u09b2\u09c0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "33",
+    "name": "Patuakhali Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a1\u09c1\u09ae\u0995\u09bf",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "34",
+    "name": "Dumki",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u0999\u09cd\u0997\u09be\u09ac\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "38",
+    "id": "35",
+    "name": "Rangabali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09cd\u09af\u09be\u09a8\u09cd\u09a1\u09be\u09b0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "36",
+    "name": "Bhandaria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u0989\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "37",
+    "name": "Kaukhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a0\u09ac\u09be\u09dc\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "38",
+    "name": "Mathbaria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u099c\u09bf\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "39",
+    "name": "Nazirpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09c7\u09b8\u09be\u09b0\u09be\u09ac\u09be\u09a6",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "40",
+    "name": "Nesarabad",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09bf\u09b0\u09cb\u099c\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "41",
+    "name": "Pirojpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09bf\u09df\u09be\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "39",
+    "id": "42",
+    "name": "Zianagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09a8\u09cd\u09a6\u09b0\u09ac\u09a8 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "43",
+    "name": "Bandarban Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a5\u09be\u09a8\u099a\u09bf",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "44",
+    "name": "Thanchi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u09ae\u09be",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "45",
+    "name": "Lama",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u0987\u0996\u0982\u099b\u09dc\u09bf ",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "46",
+    "name": "Naikhongchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09b2\u09c0 \u0995\u09a6\u09ae",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "47",
+    "name": "Ali kadam",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u0989\u09df\u09be\u0982\u099b\u09dc\u09bf ",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "48",
+    "name": "Rowangchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09c1\u09ae\u09be",
+    "created_by_id": 1,
+    "district_id": "40",
+    "id": "49",
+    "name": "Ruma",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09cd\u09b0\u09be\u09b9\u09cd\u09ae\u09a3\u09ac\u09be\u09dc\u09bf\u09df\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "50",
+    "name": "Brahmanbaria Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09b6\u09c1\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "51",
+    "name": "Ashuganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u09b8\u09bf\u09b0 \u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "52",
+    "name": "Nasirnagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09ac\u09c0\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "53",
+    "name": "Nabinagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09b0\u09be\u0987\u09b2",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "54",
+    "name": "Sarail",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09b9\u09ac\u09be\u099c\u09aa\u09c1\u09b0 \u099f\u09be\u0989\u09a8",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "55",
+    "name": "Shahbazpur Town",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09b8\u09ac\u09be",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "56",
+    "name": "Kasba",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u0996\u09be\u0989\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "57",
+    "name": "Akhaura",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u099e\u09cd\u099b\u09be\u09b0\u09be\u09ae\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "58",
+    "name": "Bancharampur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09bf\u099c\u09df \u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "41",
+    "id": "59",
+    "name": "Bijoynagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09be\u0981\u09a6\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "60",
+    "name": "Chandpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09b0\u09bf\u09a6\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "61",
+    "name": "Faridganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u0987\u09ae\u099a\u09b0",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "62",
+    "name": "Haimchar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u099c\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "63",
+    "name": "Haziganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u099a\u09c1\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "64",
+    "name": "Kachua",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a4\u09b2\u09ac \u0989\u09a4\u09cd\u09a4\u09b0",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "65",
+    "name": "Matlab Uttar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a4\u09b2\u09ac \u09a6\u0995\u09cd\u09b7\u09bf\u09a3",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "66",
+    "name": "Matlab Dakkhin",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09b9\u09b0\u09be\u09b8\u09cd\u09a4\u09bf",
+    "created_by_id": 1,
+    "district_id": "42",
+    "id": "67",
+    "name": "Shahrasti",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09a8\u09cb\u09df\u09be\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "68",
+    "name": "Anwara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09b6\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "69",
+    "name": "Banshkhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09cb\u09df\u09be\u09b2\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "70",
+    "name": "Boalkhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09a8\u09cd\u09a6\u09a8\u09be\u0987\u09b6",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "71",
+    "name": "Chandanaish",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u099f\u09bf\u0995\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "72",
+    "name": "Fatikchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u09a0\u09b9\u09be\u099c\u09be\u09b0\u09c0",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "73",
+    "name": "Hathazari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09cb\u09b9\u09be\u0997\u09be\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "74",
+    "name": "Lohagara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09bf\u09b0\u09b8\u09b0\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "75",
+    "name": "Mirsharai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u099f\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "76",
+    "name": "Patiya",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u0999\u09cd\u0997\u09c1\u09a8\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "77",
+    "name": "Rangunia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u0989\u099c\u09be\u09a8",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "78",
+    "name": "Raozan",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09a8\u09cd\u09a6\u09cd\u09ac\u09c0\u09aa",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "79",
+    "name": "Sandwip",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09a4\u0995\u09be\u09a8\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "80",
+    "name": "Satkania",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c0\u09a4\u09be\u0995\u09c1\u09a3\u09cd\u09a1",
+    "created_by_id": 1,
+    "district_id": "43",
+    "id": "81",
+    "name": "Sitakunda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09dc\u09c1\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "82",
+    "name": "Barura",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09cd\u09b0\u09be\u09b9\u09cd\u09ae\u09a3\u09aa\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "83",
+    "name": "Brahmanpara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c1\u09dc\u09bf\u099a\u0982",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "84",
+    "name": "Burichong",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09be\u09a8\u09cd\u09a6\u09bf\u09a8\u09be",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "85",
+    "name": "Chandina",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09cc\u09a6\u09cd\u09a6\u0997\u09cd\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "86",
+    "name": "Chauddagram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09be\u0989\u09a6\u0995\u09be\u09a8\u09cd\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "87",
+    "name": "Daudkandi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c7\u09ac\u09c0\u09a6\u09cd\u09ac\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "88",
+    "name": "Debidwar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09cb\u09ae\u09a8\u09be",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "89",
+    "name": "Homna",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09ae\u09bf\u09b2\u09cd\u09b2\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "90",
+    "name": "Comilla Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u0995\u09b8\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "91",
+    "name": "Laksam",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a8\u09cb\u09b9\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "92",
+    "name": "Monohorgonj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c7\u0998\u09a8\u09be",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "93",
+    "name": "Meghna",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c1\u09b0\u09be\u09a6\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "94",
+    "name": "Muradnagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u0999\u09cd\u0997\u09be\u09b2\u0995\u09cb\u099f",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "95",
+    "name": "Nangalkot",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09ae\u09bf\u09b2\u09cd\u09b2\u09be \u09b8\u09a6\u09b0 \u09a6\u0995\u09cd\u09b7\u09bf\u09a3",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "96",
+    "name": "Comilla Sadar South",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09bf\u09a4\u09be\u09b8",
+    "created_by_id": 1,
+    "district_id": "44",
+    "id": "97",
+    "name": "Titas",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u0995\u09b0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "98",
+    "name": "Chakaria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u0995\u09cd\u09b8 \u09ac\u09be\u099c\u09be\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "100",
+    "name": "{{198}}''{{199}}",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09a4\u09c1\u09ac\u09a6\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "101",
+    "name": "Kutubdia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09b9\u09c7\u09b6\u0996\u09be\u09b2\u09c0",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "102",
+    "name": "Maheshkhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09ae\u09c1",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "103",
+    "name": "Ramu",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099f\u09c7\u0995\u09a8\u09be\u09ab",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "104",
+    "name": "Teknaf",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0989\u0996\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "105",
+    "name": "Ukhia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09c7\u0995\u09c1\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "106",
+    "name": "Pekua",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c7\u09a8\u09c0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "46",
+    "id": "107",
+    "name": "Feni Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099b\u09be\u0997\u09b2 \u09a8\u09be\u0987\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "46",
+    "id": "108",
+    "name": "Chagalnaiya",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09be\u0997\u09be\u09a8\u09ad\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "46",
+    "id": "109",
+    "name": "Daganbhyan",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09b0\u09b6\u09c1\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "46",
+    "id": "110",
+    "name": "Parshuram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u0997\u09be\u099c\u09bf",
+    "created_by_id": 1,
+    "district_id": "46",
+    "id": "111",
+    "name": "Fhulgazi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09cb\u09a8\u09be\u0997\u09be\u099c\u09bf",
+    "created_by_id": 1,
+    "district_id": "46",
+    "id": "112",
+    "name": "Sonagazi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09bf\u0998\u09bf\u09a8\u09be\u09b2\u09be ",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "113",
+    "name": "Dighinala",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0996\u09be\u0997\u09dc\u09be\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "114",
+    "name": "Khagrachhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u0995\u09cd\u09b7\u09cd\u09ae\u09c0\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "115",
+    "name": "Lakshmichhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09b9\u09b2\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "116",
+    "name": "Mahalchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a8\u09bf\u0995\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "117",
+    "name": "Manikchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u099f\u09bf\u09b0\u09be\u0999\u09cd\u0997\u09be",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "118",
+    "name": "Matiranga",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u09a8\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "119",
+    "name": "Panchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09ae\u0997\u09dc",
+    "created_by_id": 1,
+    "district_id": "47",
+    "id": "120",
+    "name": "Ramgarh",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u0995\u09cd\u09b7\u09cd\u09ae\u09c0\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "48",
+    "id": "121",
+    "name": "Lakshmipur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09df\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "48",
+    "id": "122",
+    "name": "Raipur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09ae\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "48",
+    "id": "123",
+    "name": "Ramganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09ae\u0997\u09a4\u09bf",
+    "created_by_id": 1,
+    "district_id": "48",
+    "id": "124",
+    "name": "Ramgati",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09ae\u09b2 \u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "48",
+    "id": "125",
+    "name": "Komol Nagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09cb\u09df\u09be\u0996\u09be\u09b2\u09c0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "126",
+    "name": "Noakhali Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u0997\u09ae\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "127",
+    "name": "Begumganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09be\u099f\u0996\u09bf\u09b2",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "128",
+    "name": "Chatkhil",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09cb\u09ae\u09cd\u09aa\u09be\u09a8\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "129",
+    "name": "Companyganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09c7\u09a8\u09ac\u09be\u0997",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "130",
+    "name": "Shenbag",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u09a4\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "131",
+    "name": "Hatia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09ac\u09bf\u09b0\u09b9\u09be\u099f ",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "132",
+    "name": "Kobirhat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09cb\u09a8\u09be\u0987\u09ae\u09c1\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "133",
+    "name": "Sonaimuri",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c1\u09ac\u09b0\u09cd\u09a3 \u099a\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "49",
+    "id": "134",
+    "name": "Suborno Char",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u0999\u09cd\u0997\u09be\u09ae\u09be\u099f\u09bf \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "135",
+    "name": "Rangamati Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u09b2\u09be\u0987\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "136",
+    "name": "Belaichhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0998\u09be\u0987\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "137",
+    "name": "Bagaichhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09b0\u0995\u09b2",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "138",
+    "name": "Barkal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09c1\u09b0\u09be\u0987\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "139",
+    "name": "Juraichhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u099c\u09be\u09b8\u09cd\u09a5\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "140",
+    "name": "Rajasthali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09aa\u09cd\u09a4\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "141",
+    "name": "Kaptai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u0999\u09cd\u0997\u09be\u09a1\u09c1",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "142",
+    "name": "Langadu",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u09a8\u09cd\u09a8\u09c7\u09b0\u099a\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "143",
+    "name": "Nannerchar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u0989\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "50",
+    "id": "144",
+    "name": "Kaukhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a7\u09be\u09ae\u09b0\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "1",
+    "id": "145",
+    "name": "Dhamrai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09cb\u09b9\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "1",
+    "id": "146",
+    "name": "Dohar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c7\u09b0\u09be\u09a8\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "1",
+    "id": "147",
+    "name": "Keraniganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09ac\u09be\u09ac\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "1",
+    "id": "148",
+    "name": "Nawabganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09ad\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "1",
+    "id": "149",
+    "name": "Savar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09b0\u09bf\u09a6\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "150",
+    "name": "Faridpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09cb\u09df\u09be\u09b2\u09ae\u09be\u09b0\u09c0",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "151",
+    "name": "Boalmari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09b2\u09ab\u09be\u09a1\u09be\u0999\u09cd\u0997\u09be",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "152",
+    "name": "Alfadanga",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a7\u09c1\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "153",
+    "name": "Madhukhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09be\u0999\u09cd\u0997\u09be",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "154",
+    "name": "Bhanga",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u0997\u09b0\u0995\u09be\u09a8\u09cd\u09a1",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "155",
+    "name": "Nagarkanda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09b0\u09ad\u09a6\u09cd\u09b0\u09be\u09b8\u09a8 ",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "156",
+    "name": "Charbhadrasan",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09a6\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "157",
+    "name": "Sadarpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09b2\u09a5\u09be",
+    "created_by_id": 1,
+    "district_id": "2",
+    "id": "158",
+    "name": "Shaltha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09be\u099c\u09c0\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "3",
+    "id": "159",
+    "name": "Gazipur Sadar-Joydebpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09bf\u09df\u09be\u0995\u09c8\u09b0",
+    "created_by_id": 1,
+    "district_id": "3",
+    "id": "160",
+    "name": "Kaliakior",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09aa\u09be\u09b8\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "3",
+    "id": "161",
+    "name": "Kapasia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09cd\u09b0\u09c0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "3",
+    "id": "162",
+    "name": "Sripur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "3",
+    "id": "163",
+    "name": "Kaliganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099f\u0999\u09cd\u0997\u09bf",
+    "created_by_id": 1,
+    "district_id": "3",
+    "id": "164",
+    "name": "Tongi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09aa\u09be\u09b2\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "4",
+    "id": "165",
+    "name": "Gopalganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b6\u09bf\u09df\u09be\u09a8\u09bf",
+    "created_by_id": 1,
+    "district_id": "4",
+    "id": "166",
+    "name": "Kashiani",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09cb\u099f\u09be\u09b2\u09bf\u09aa\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "4",
+    "id": "167",
+    "name": "Kotalipara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c1\u0995\u09b8\u09c1\u09a6\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "4",
+    "id": "168",
+    "name": "Muksudpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099f\u09c1\u0999\u09cd\u0997\u09bf\u09aa\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "4",
+    "id": "169",
+    "name": "Tungipara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c7\u0993\u09df\u09be\u09a8\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "170",
+    "name": "Dewanganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u0995\u09b8\u09bf\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "171",
+    "name": "Baksiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0987\u09b8\u09b2\u09be\u09ae\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "172",
+    "name": "Islampur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09be\u09ae\u09be\u09b2\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "173",
+    "name": "Jamalpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a6\u09be\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "174",
+    "name": "Madarganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c7\u09b2\u09be\u09a8\u09a6\u09be\u09b9\u09be",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "175",
+    "name": "Melandaha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09b0\u09bf\u09b7\u09be\u09ac\u09be\u09dc\u09bf ",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "176",
+    "name": "Sarishabari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u09b0\u09c1\u09a8\u09cd\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "5",
+    "id": "177",
+    "name": "Narundi Police I.C",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0985\u09b7\u09cd\u099f\u0997\u09cd\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "178",
+    "name": "Astagram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u099c\u09bf\u09a4\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "179",
+    "name": "Bajitpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09c8\u09b0\u09ac",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "180",
+    "name": "Bhairab",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09cb\u09b8\u09c7\u09a8\u09aa\u09c1\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "181",
+    "name": "Hossainpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0987\u099f\u09a8\u09be",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "182",
+    "name": "Itna",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09b0\u09bf\u09ae\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "183",
+    "name": "Karimganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09a4\u09bf\u09df\u09be\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "184",
+    "name": "Katiadi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09bf\u09b6\u09cb\u09b0\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "185",
+    "name": "Kishoreganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09b2\u09bf\u09df\u09be\u09b0\u099a\u09b0",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "186",
+    "name": "Kuliarchar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09bf\u09a0\u09be\u09ae\u09be\u0987\u09a8",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "187",
+    "name": "Mithamain",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09bf\u0995\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "188",
+    "name": "Nikli",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u0995\u09c1\u09a8\u09cd\u09a1\u09be",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "189",
+    "name": "Pakundia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09dc\u09be\u0987\u09b2",
+    "created_by_id": 1,
+    "district_id": "6",
+    "id": "190",
+    "name": "Tarail",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a6\u09be\u09b0\u09c0\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "7",
+    "id": "191",
+    "name": "Madaripur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u0995\u09bf\u09a8\u09bf",
+    "created_by_id": 1,
+    "district_id": "7",
+    "id": "192",
+    "name": "Kalkini",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u099c\u0987\u09b0",
+    "created_by_id": 1,
+    "district_id": "7",
+    "id": "193",
+    "name": "Rajoir",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09bf\u09ac\u099a\u09b0",
+    "created_by_id": 1,
+    "district_id": "7",
+    "id": "194",
+    "name": "Shibchar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a8\u09bf\u0995\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "195",
+    "name": "Manikganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09bf\u0999\u09cd\u0997\u09be\u0987\u09b0",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "196",
+    "name": "Singair",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09bf\u09ac\u09be\u09b2\u09df",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "197",
+    "name": "Shibalaya",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u099f\u09c1\u09b0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "198",
+    "name": "Saturia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09b0\u09bf\u09b0\u09be\u09ae\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "199",
+    "name": "Harirampur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0998\u09bf\u0993\u09b0",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "200",
+    "name": "Ghior",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09cc\u09b2\u09a4\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "8",
+    "id": "201",
+    "name": "Daulatpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09cb\u09b9\u09be\u099c\u0982",
+    "created_by_id": 1,
+    "district_id": "9",
+    "id": "202",
+    "name": "Lohajang",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09cd\u09b0\u09c0\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "9",
+    "id": "203",
+    "name": "Sreenagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c1\u09a8\u09cd\u09b8\u09bf\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "9",
+    "id": "204",
+    "name": "Munshiganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09bf\u09b0\u09be\u099c\u09a6\u09bf\u0996\u09be\u09a8",
+    "created_by_id": 1,
+    "district_id": "9",
+    "id": "205",
+    "name": "Sirajdikhan",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099f\u0999\u09cd\u0997\u09bf\u09ac\u09be\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "9",
+    "id": "206",
+    "name": "Tongibari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u099c\u09be\u09b0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "9",
+    "id": "207",
+    "name": "Gazaria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09be\u09b2\u09c1\u0995\u09be",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "208",
+    "name": "Bhaluka",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09cd\u09b0\u09bf\u09b6\u09be\u09b2",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "209",
+    "name": "Trishal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u09b2\u09c1\u09df\u09be\u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "210",
+    "name": "Haluaghat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c1\u0995\u09cd\u09a4\u09be\u0997\u09be\u099b\u09be",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "211",
+    "name": "Muktagachha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a7\u09ac\u09be\u09b0\u09c1\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "212",
+    "name": "Dhobaura",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u09ac\u09be\u09dc\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "213",
+    "name": "Fulbaria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09ab\u09b0\u0997\u09be\u0981\u0993",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "214",
+    "name": "Gaffargaon",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cc\u09b0\u09bf\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "215",
+    "name": "Gauripur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0988\u09b6\u09cd\u09ac\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "216",
+    "name": "Ishwarganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09df\u09ae\u09a8\u09b8\u09bf\u0982 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "217",
+    "name": "Mymensingh Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09a8\u09cd\u09a6\u09be\u0987\u09b2",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "218",
+    "name": "Nandail",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "10",
+    "id": "219",
+    "name": "Phulpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09dc\u09be\u0987\u09b9\u09be\u099c\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "11",
+    "id": "220",
+    "name": "Araihazar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09cb\u09a8\u09be\u09b0\u0997\u09be\u0981\u0993",
+    "created_by_id": 1,
+    "district_id": "11",
+    "id": "221",
+    "name": "Sonargaon",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09a8\u09cd\u09a6\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "11",
+    "id": "222",
+    "name": "Bandar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u09b0\u09be\u09df\u09be\u09a8\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "11",
+    "id": "223",
+    "name": "Naryanganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09c2\u09aa\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "11",
+    "id": "224",
+    "name": "Rupganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09bf\u09a6\u09cd\u09a7\u09bf\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "11",
+    "id": "225",
+    "name": "Siddirgonj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u09b2\u09be\u09ac\u09cb",
+    "created_by_id": 1,
+    "district_id": "12",
+    "id": "226",
+    "name": "Belabo",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a8\u09cb\u09b9\u09b0\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "12",
+    "id": "227",
+    "name": "Monohardi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09b0\u09b8\u09bf\u0982\u09a6\u09c0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "12",
+    "id": "228",
+    "name": "Narsingdi Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09b2\u09be\u09b6",
+    "created_by_id": 1,
+    "district_id": "12",
+    "id": "229",
+    "name": "Palash",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09df\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "12",
+    "id": "230",
+    "name": "Raipura, Narsingdi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09bf\u09ac\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "12",
+    "id": "231",
+    "name": "Shibpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c7\u09a8\u09cd\u09a6\u09c1\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "232",
+    "name": "Kendua Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u099f\u09aa\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "233",
+    "name": "Atpara Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09b0\u09b9\u09be\u099f\u09cd\u099f\u09be",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "234",
+    "name": "Barhatta Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c1\u09b0\u09cd\u0997\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "235",
+    "name": "Durgapur Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09b2\u09ae\u09be\u0995\u09be\u09a8\u09cd\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "236",
+    "name": "Kalmakanda Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a6\u09a8",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "237",
+    "name": "Madan Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09cb\u09b9\u09a8\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "238",
+    "name": "Mohanganj Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09c7\u09a4\u09cd\u09b0\u0995\u09cb\u09a8\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "239",
+    "name": "Netrakona-S Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09c2\u09b0\u09cd\u09ac\u09a7\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "240",
+    "name": "Purbadhala Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0996\u09be\u09b2\u09bf\u09df\u09be\u099c\u09c1\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "13",
+    "id": "241",
+    "name": "Khaliajuri Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09b2\u09bf\u09df\u09be\u0995\u09be\u09a8\u09cd\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "14",
+    "id": "242",
+    "name": "Baliakandi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09df\u09be\u09b2\u09a8\u09cd\u09a6 \u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "14",
+    "id": "243",
+    "name": "Goalandaghat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u0982\u09b6\u09be",
+    "created_by_id": 1,
+    "district_id": "14",
+    "id": "244",
+    "name": "Pangsha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09c1\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "14",
+    "id": "245",
+    "name": "Kalukhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u099c\u09ac\u09be\u09dc\u09bf \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "14",
+    "id": "246",
+    "name": "Rajbari Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09b0\u09c0\u09df\u09a4\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "15",
+    "id": "247",
+    "name": "Shariatpur Sadar -Palong",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09be\u09ae\u09c1\u09a6\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "15",
+    "id": "248",
+    "name": "Damudya",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09dc\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "15",
+    "id": "249",
+    "name": "Naria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09be\u099c\u09bf\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "15",
+    "id": "250",
+    "name": "Jajira",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09c7\u09a6\u09be\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "15",
+    "id": "251",
+    "name": "Bhedarganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09b8\u09be\u0987\u09b0 \u09b9\u09be\u099f ",
+    "created_by_id": 1,
+    "district_id": "15",
+    "id": "252",
+    "name": "Gosairhat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099d\u09bf\u09a8\u09be\u0987\u0997\u09be\u09a4\u09bf",
+    "created_by_id": 1,
+    "district_id": "16",
+    "id": "253",
+    "name": "Jhenaigati",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u0995\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "16",
+    "id": "254",
+    "name": "Nakla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u09b2\u09bf\u09a4\u09be\u09ac\u09be\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "16",
+    "id": "255",
+    "name": "Nalitabari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09c7\u09b0\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "16",
+    "id": "256",
+    "name": "Sherpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09cd\u09b0\u09c0\u09ac\u09b0\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "16",
+    "id": "257",
+    "name": "Sreebardi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099f\u09be\u0999\u09cd\u0997\u09be\u0987\u09b2 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "258",
+    "name": "Tangail Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u0996\u09bf\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "259",
+    "name": "Sakhipur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09b8\u09be\u0987\u09b2",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "260",
+    "name": "Basail",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a7\u09c1\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "261",
+    "name": "Madhupur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0998\u09be\u099f\u09be\u0987\u09b2",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "262",
+    "name": "Ghatail",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09bf\u09b9\u09be\u09a4\u09bf",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "263",
+    "name": "Kalihati",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u0997\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "264",
+    "name": "Nagarpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09bf\u09b0\u09cd\u099c\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "265",
+    "name": "Mirzapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09aa\u09be\u09b2\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "266",
+    "name": "Gopalpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c7\u09b2\u09a6\u09c1\u09df\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "267",
+    "name": "Delduar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09c1\u09df\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "268",
+    "name": "Bhuapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a7\u09be\u09a8\u09ac\u09be\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "17",
+    "id": "269",
+    "name": "Dhanbari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0997\u09c7\u09b0\u09b9\u09be\u099f \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "270",
+    "name": "Bagerhat Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09bf\u09a4\u09b2\u09ae\u09be\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "271",
+    "name": "Chitalmari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u0995\u09bf\u09b0\u09b9\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "272",
+    "name": "Fakirhat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u099a\u09c1\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "273",
+    "name": "Kachua",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09cb\u09b2\u09cd\u09b2\u09be\u09b9\u09be\u099f ",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "274",
+    "name": "Mollahat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u0982\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "275",
+    "name": "Mongla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09b0\u09c7\u09b2\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "276",
+    "name": "Morrelganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09ae\u09aa\u09be\u09b2",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "277",
+    "name": "Rampal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09cd\u09ae\u09b0\u09a3\u0996\u09cb\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "55",
+    "id": "278",
+    "name": "Sarankhola",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09be\u09ae\u09c1\u09b0\u09b9\u09c1\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "56",
+    "id": "279",
+    "name": "Damurhuda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09c1\u09df\u09be\u09a1\u09be\u0999\u09cd\u0997\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "56",
+    "id": "280",
+    "name": "Chuadanga-S",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09c0\u09ac\u09a8 \u09a8\u0997\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "56",
+    "id": "281",
+    "name": "Jibannagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09b2\u09ae\u09a1\u09be\u0999\u09cd\u0997\u09be",
+    "created_by_id": 1,
+    "district_id": "56",
+    "id": "282",
+    "name": "Alamdanga",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0985\u09ad\u09df\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "283",
+    "name": "Abhaynagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c7\u09b6\u09ac\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "284",
+    "name": "Keshabpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0998\u09c7\u09b0 \u09aa\u09be\u09dc\u09be ",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "285",
+    "name": "Bagherpara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09af\u09b6\u09cb\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "286",
+    "name": "Jessore Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09cc\u0997\u09be\u099b\u09be",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "287",
+    "name": "Chaugachha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a8\u09bf\u09b0\u09be\u09ae\u09aa\u09c1\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "288",
+    "name": "Manirampur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099d\u09bf\u0995\u09b0\u0997\u09be\u099b\u09be",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "289",
+    "name": "Jhikargachha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09b0\u09b6\u09be",
+    "created_by_id": 1,
+    "district_id": "57",
+    "id": "290",
+    "name": "Sharsha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099d\u09bf\u09a8\u09be\u0987\u09a6\u09b9 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "58",
+    "id": "291",
+    "name": "Jhenaidah Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09b9\u09c7\u09b6\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "58",
+    "id": "292",
+    "name": "Maheshpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "58",
+    "id": "293",
+    "name": "Kaliganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09cb\u099f \u099a\u09be\u0981\u09a6\u09aa\u09c1\u09b0 ",
+    "created_by_id": 1,
+    "district_id": "58",
+    "id": "294",
+    "name": "Kotchandpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09c8\u09b2\u0995\u09c1\u09aa\u09be",
+    "created_by_id": 1,
+    "district_id": "58",
+    "id": "295",
+    "name": "Shailkupa",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u09dc\u09bf\u09a8\u09be\u0995\u09c1\u09a8\u09cd\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "58",
+    "id": "296",
+    "name": "Harinakunda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09c7\u09b0\u09cb\u0996\u09be\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "297",
+    "name": "Terokhada",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u099f\u09bf\u09df\u09be\u0998\u09be\u099f\u09be ",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "298",
+    "name": "Batiaghata",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a1\u09be\u0995\u09aa\u09c7",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "299",
+    "name": "Dacope",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a1\u09c1\u09ae\u09c1\u09b0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "300",
+    "name": "Dumuria",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09bf\u0998\u09b2\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "301",
+    "name": "Dighalia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09df\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "302",
+    "name": "Koyra",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u0987\u0995\u0997\u09be\u099b\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "303",
+    "name": "Paikgachha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u09a4\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "304",
+    "name": "Phultala",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09c2\u09aa\u09b8\u09be",
+    "created_by_id": 1,
+    "district_id": "59",
+    "id": "305",
+    "name": "Rupsa",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09b7\u09cd\u099f\u09bf\u09df\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "60",
+    "id": "306",
+    "name": "Kushtia Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09ae\u09be\u09b0\u0996\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "60",
+    "id": "307",
+    "name": "Kumarkhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09cc\u09b2\u09a4\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "60",
+    "id": "308",
+    "name": "Daulatpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09bf\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "60",
+    "id": "309",
+    "name": "Mirpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09c7\u09b0\u09be\u09ae\u09be\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "60",
+    "id": "310",
+    "name": "Bheramara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0996\u09cb\u0995\u09b8\u09be",
+    "created_by_id": 1,
+    "district_id": "60",
+    "id": "311",
+    "name": "Khoksa",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u0997\u09c1\u09b0\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "61",
+    "id": "312",
+    "name": "Magura Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09cb\u09b9\u09be\u09ae\u09cd\u09ae\u09be\u09a6\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "61",
+    "id": "313",
+    "name": "Mohammadpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09b2\u09bf\u0996\u09be",
+    "created_by_id": 1,
+    "district_id": "61",
+    "id": "314",
+    "name": "Shalikha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09cd\u09b0\u09c0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "61",
+    "id": "315",
+    "name": "Sreepur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u0982\u09a8\u09bf",
+    "created_by_id": 1,
+    "district_id": "62",
+    "id": "316",
+    "name": "angni",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c1\u099c\u09bf\u09ac \u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "62",
+    "id": "317",
+    "name": "Mujib Nagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09c7\u09b9\u09c7\u09b0\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "62",
+    "id": "318",
+    "name": "Meherpur-S",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09dc\u09be\u0987\u09b2 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "63",
+    "id": "319",
+    "name": "Narail-S Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09cb\u09b9\u09be\u0997\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "63",
+    "id": "320",
+    "name": "Lohagara Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "63",
+    "id": "321",
+    "name": "Kalia Upazilla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09a4\u0995\u09cd\u09b7\u09c0\u09b0\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "322",
+    "name": "Satkhira Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09b8\u09b8\u09be\u09b6\u09c1\u09a8\u09bf ",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "323",
+    "name": "Assasuni",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c7\u09ad\u09be\u099f\u09be",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "324",
+    "name": "Debhata",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "325",
+    "name": "Tala",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09b2\u09b0\u09cb\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "326",
+    "name": "Kalaroa",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "327",
+    "name": "Kaliganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09cd\u09af\u09be\u09ae\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "64",
+    "id": "328",
+    "name": "Shyamnagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09a6\u09ae\u09a6\u09bf\u0998\u09c0",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "329",
+    "name": "Adamdighi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u0997\u09c1\u09dc\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "330",
+    "name": "Bogra Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09c7\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "331",
+    "name": "Sherpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a7\u09c1\u09a8\u099f",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "332",
+    "name": "Dhunat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c1\u09aa\u099a\u09be\u099a\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "333",
+    "name": "Dhupchanchia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09be\u09ac\u09a4\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "334",
+    "name": "Gabtali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b9\u09be\u09b2\u09c1",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "335",
+    "name": "Kahaloo",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09a8\u09cd\u09a6\u09bf\u0997\u09cd\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "336",
+    "name": "Nandigram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09b9\u099c\u09be\u09b9\u09be\u09a8\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "337",
+    "name": "Sahajanpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09b0\u09bf\u09df\u09be\u0995\u09be\u09a8\u09cd\u09a6\u09bf",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "338",
+    "name": "Sariakandi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09bf\u09ac\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "339",
+    "name": "Shibganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09cb\u09a8\u09be\u09a4\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "18",
+    "id": "340",
+    "name": "Sonatala",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09df\u09aa\u09c1\u09b0\u09b9\u09be\u099f \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "19",
+    "id": "341",
+    "name": "Joypurhat S",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u0995\u09cd\u0995\u09c7\u09b2\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "19",
+    "id": "342",
+    "name": "Akkelpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "19",
+    "id": "343",
+    "name": "Kalai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0996\u09c7\u09a4\u09b2\u09be\u09b2",
+    "created_by_id": 1,
+    "district_id": "19",
+    "id": "344",
+    "name": "Khetlal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u0981\u099a\u09ac\u09bf\u09ac\u09bf",
+    "created_by_id": 1,
+    "district_id": "19",
+    "id": "345",
+    "name": "Panchbibi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u0993\u0997\u09be\u0981 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "346",
+    "name": "Naogaon Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09b9\u09be\u09a6\u09c7\u09ac\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "347",
+    "name": "Mohadevpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a8\u09cd\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "348",
+    "name": "Manda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09bf\u09df\u09be\u09ae\u09a4\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "349",
+    "name": "Niamatpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09a4\u09cd\u09b0\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "350",
+    "name": "Atrai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09a3\u09c0\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "351",
+    "name": "Raninagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09a4\u09cd\u09a8\u09c0\u09a4\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "352",
+    "name": "Patnitala",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a7\u09be\u09ae\u0987\u09b0\u09b9\u09be\u099f ",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "353",
+    "name": "Dhamoirhat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09aa\u09be\u09b9\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "354",
+    "name": "Sapahar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09cb\u09b0\u09b6\u09be",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "355",
+    "name": "Porsha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09a6\u09b2\u0997\u09be\u099b\u09bf",
+    "created_by_id": 1,
+    "district_id": "20",
+    "id": "356",
+    "name": "Badalgachhi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u099f\u09cb\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "21",
+    "id": "357",
+    "name": "Natore Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09dc\u09be\u0987\u0997\u09cd\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "21",
+    "id": "358",
+    "name": "Baraigram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0997\u09be\u09a4\u09bf\u09aa\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "21",
+    "id": "359",
+    "name": "Bagatipara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u09b2\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "21",
+    "id": "360",
+    "name": "Lalpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u099f\u09cb\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "21",
+    "id": "361",
+    "name": "Natore Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09dc\u09be\u0987 \u0997\u09cd\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "21",
+    "id": "362",
+    "name": "Baraigram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09cb\u09b2\u09be\u09b9\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "22",
+    "id": "363",
+    "name": "Bholahat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09ae\u09b8\u09cd\u09a4\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "22",
+    "id": "364",
+    "name": "Gomastapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u099a\u09cb\u09b2",
+    "created_by_id": 1,
+    "district_id": "22",
+    "id": "365",
+    "name": "Nachole",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09ac\u09be\u09ac\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "22",
+    "id": "366",
+    "name": "Nawabganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09bf\u09ac\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "22",
+    "id": "367",
+    "name": "Shibganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u099f\u0998\u09b0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "368",
+    "name": "Atgharia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "369",
+    "name": "Bera",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09be\u0999\u09cd\u0997\u09c1\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "370",
+    "name": "Bhangura",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09be\u099f\u09ae\u09cb\u09b9\u09b0",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "371",
+    "name": "Chatmohar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09b0\u09bf\u09a6\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "372",
+    "name": "Faridpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0988\u09b6\u09cd\u09ac\u09b0\u09a6\u09c0",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "373",
+    "name": "Ishwardi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u09ac\u09a8\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "374",
+    "name": "Pabna Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09a5\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "375",
+    "name": "Santhia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c1\u099c\u09be\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "23",
+    "id": "376",
+    "name": "Sujanagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0998\u09be",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "377",
+    "name": "Bagha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u0997\u09ae\u09be\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "378",
+    "name": "Bagmara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09be\u09b0\u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "379",
+    "name": "Charghat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c1\u09b0\u09cd\u0997\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "380",
+    "name": "Durgapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09a6\u09be\u0997\u09be\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "381",
+    "name": "Godagari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09cb\u09b9\u09a8\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "382",
+    "name": "Mohanpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09ac\u09be",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "383",
+    "name": "Paba",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09c1\u09a0\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "384",
+    "name": "Puthia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09a8\u09cb\u09b0",
+    "created_by_id": 1,
+    "district_id": "24",
+    "id": "385",
+    "name": "Tanore",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09bf\u09b0\u09be\u099c\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "386",
+    "name": "Sirajganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u09b2\u0995\u09c1\u099a\u09bf",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "387",
+    "name": "Belkuchi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09cc\u09b9\u09be\u09b2\u09bf",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "388",
+    "name": "Chauhali",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09ae\u09be\u09b0\u0996\u09be\u09a8\u09cd\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "389",
+    "name": "Kamarkhanda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u099c\u09c0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "390",
+    "name": "Kazipur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09df\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "391",
+    "name": "Raiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09b9\u099c\u09be\u09a6\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "392",
+    "name": "Shahjadpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09b0\u09be\u09b6",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "393",
+    "name": "Tarash",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0989\u09b2\u09cd\u09b2\u09be\u09aa\u09be\u09dc\u09be",
+    "created_by_id": 1,
+    "district_id": "25",
+    "id": "394",
+    "name": "Ullahpara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09bf\u09b0\u09be\u09ae\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "395",
+    "name": "Birampur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c0\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "396",
+    "name": "Birganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09bf\u09dc\u09be\u09b2",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "397",
+    "name": "Biral",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09cb\u099a\u09be\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "398",
+    "name": "Bochaganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09bf\u09b0\u09bf\u09b0\u09ac\u09a8\u09cd\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "399",
+    "name": "Chirirbandar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u09ac\u09be\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "400",
+    "name": "Phulbari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0998\u09cb\u09dc\u09be\u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "401",
+    "name": "Ghoraghat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u0995\u09bf\u09ae\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "402",
+    "name": "Hakimpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b9\u09be\u09b0\u09cb\u09b2",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "403",
+    "name": "Kaharole",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0996\u09be\u09a8\u09b8\u09be\u09ae\u09be",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "404",
+    "name": "Khansama",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09bf\u09a8\u09be\u099c\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "405",
+    "name": "Dinajpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09ac\u09be\u09ac\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "406",
+    "name": "Nawabganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u09b0\u09cd\u09ac\u09a4\u09c0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "26",
+    "id": "407",
+    "name": "Parbatipur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u099b\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "408",
+    "name": "Fulchhari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09be\u0987\u09ac\u09be\u09a8\u09cd\u09a7\u09be \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "409",
+    "name": "Gaibandha sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09ac\u09bf\u09a8\u09cd\u09a6\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "410",
+    "name": "Gobindaganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09b2\u09be\u09b6\u09ac\u09be\u09dc\u09c0",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "411",
+    "name": "Palashbari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u09a6\u09c1\u09b2\u09cd\u09af\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "412",
+    "name": "Sadullapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09be\u0998\u09be\u099f\u09be",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "413",
+    "name": "Saghata",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c1\u09a8\u09cd\u09a6\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "27",
+    "id": "414",
+    "name": "Sundarganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09dc\u09bf\u0997\u09cd\u09b0\u09be\u09ae \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "415",
+    "name": "Kurigram Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09be\u0997\u09c7\u09b6\u09cd\u09ac\u09b0\u09c0",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "416",
+    "name": "Nageshwari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ad\u09c1\u09b0\u09c1\u0999\u09cd\u0997\u09be\u09ae\u09be\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "417",
+    "name": "Bhurungamari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c1\u09b2\u09ac\u09be\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "418",
+    "name": "Phulbari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u099c\u09be\u09b0\u09b9\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "419",
+    "name": "Rajarhat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0989\u09b2\u09bf\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "420",
+    "name": "Ulipur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09bf\u09b2\u09ae\u09be\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "421",
+    "name": "Chilmari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u0989\u09ae\u09be\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "422",
+    "name": "Rowmari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09b0 \u09b0\u09be\u099c\u09bf\u09ac\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "28",
+    "id": "423",
+    "name": "Char Rajibpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u09b2\u09ae\u09a8\u09bf\u09b0\u09b9\u09be\u099f \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "29",
+    "id": "424",
+    "name": "Lalmanirhat Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u09a6\u09bf\u09a4\u09ae\u09be\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "29",
+    "id": "425",
+    "name": "Aditmari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09b2\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "29",
+    "id": "426",
+    "name": "Kaliganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09be\u09a4\u09bf\u09ac\u09be\u09a8\u09cd\u09a7\u09be",
+    "created_by_id": 1,
+    "district_id": "29",
+    "id": "427",
+    "name": "Hatibandha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09be\u099f\u0997\u09cd\u09b0\u09be\u09ae",
+    "created_by_id": 1,
+    "district_id": "29",
+    "id": "428",
+    "name": "Patgram",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09c0\u09b2\u09ab\u09be\u09ae\u09be\u09b0\u09c0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "30",
+    "id": "429",
+    "name": "Nilphamari Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c8\u09df\u09a6\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "30",
+    "id": "430",
+    "name": "Saidpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09b2\u09a2\u09be\u0995\u09be",
+    "created_by_id": 1,
+    "district_id": "30",
+    "id": "431",
+    "name": "Jaldhaka",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09bf\u09b6\u09cb\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "30",
+    "id": "432",
+    "name": "Kishoreganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a1\u09cb\u09ae\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "30",
+    "id": "433",
+    "name": "Domar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a1\u09bf\u09ae\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "30",
+    "id": "434",
+    "name": "Dimla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u099e\u09cd\u099a\u0997\u09dc \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "31",
+    "id": "435",
+    "name": "Panchagarh Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c7\u09ac\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "31",
+    "id": "436",
+    "name": "Debiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09cb\u09a6\u09be",
+    "created_by_id": 1,
+    "district_id": "31",
+    "id": "437",
+    "name": "Boda",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u099f\u09cb\u09df\u09be\u09b0\u09bf",
+    "created_by_id": 1,
+    "district_id": "31",
+    "id": "438",
+    "name": "Atwari",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09c7\u0981\u09a4\u09c1\u09b2\u09bf\u09af\u09bc\u09be",
+    "created_by_id": 1,
+    "district_id": "31",
+    "id": "439",
+    "name": "Tetulia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09a6\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "440",
+    "name": "Badarganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09bf\u09a0\u09be\u09aa\u09c1\u0995\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "441",
+    "name": "Mithapukur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u0999\u09cd\u0997\u09be\u099a\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "442",
+    "name": "Gangachara",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u0989\u09a8\u09bf\u09df\u09be",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "443",
+    "name": "Kaunia",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u0982\u09aa\u09c1\u09b0 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "444",
+    "name": "Rangpur Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09c0\u09b0\u0997\u09be\u099b\u09be",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "445",
+    "name": "Pirgachha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09c0\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "446",
+    "name": "Pirganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09b0\u09be\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "32",
+    "id": "447",
+    "name": "Taraganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a0\u09be\u0995\u09c1\u09b0\u0997\u09be\u0981\u0993 \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "33",
+    "id": "448",
+    "name": "Thakurgaon Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09aa\u09c0\u09b0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "33",
+    "id": "449",
+    "name": "Pirganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09b2\u09bf\u09df\u09be\u09a1\u09be\u0999\u09cd\u0997\u09bf",
+    "created_by_id": 1,
+    "district_id": "33",
+    "id": "450",
+    "name": "Baliadangi",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09b0\u09bf\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "33",
+    "id": "451",
+    "name": "Haripur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u09a3\u09c0\u09b8\u0982\u0995\u0987\u09b2",
+    "created_by_id": 1,
+    "district_id": "33",
+    "id": "452",
+    "name": "Ranisankail",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0986\u099c\u09ae\u09bf\u09b0\u09bf\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "453",
+    "name": "Ajmiriganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09a8\u09bf\u09df\u09be\u099a\u0982",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "454",
+    "name": "Baniachang",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09b9\u09c1\u09ac\u09b2",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "455",
+    "name": "Bahubal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099a\u09c1\u09a8\u09be\u09b0\u09c1\u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "456",
+    "name": "Chunarughat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b9\u09ac\u09bf\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "457",
+    "name": "Habiganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b2\u09be\u0995\u09cd\u09b7\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "458",
+    "name": "Lakhai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09be\u09a7\u09ac\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "459",
+    "name": "Madhabpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09ac\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "460",
+    "name": "Nabiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09df\u09c7\u09b8\u09cd\u09a4\u09be\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "51",
+    "id": "461",
+    "name": "Shaistagonj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09cc\u09b2\u09ad\u09c0\u09ac\u09be\u099c\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "462",
+    "name": "Moulvibazar Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09dc\u09b2\u09c7\u0996\u09be",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "463",
+    "name": "Barlekha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09c1\u09dc\u09bf",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "464",
+    "name": "Juri",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09ae\u09be\u09b2\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "465",
+    "name": "Kamalganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09c1\u09b2\u09be\u0989\u09b0\u09be",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "466",
+    "name": "Kulaura",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b0\u09be\u099c\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "467",
+    "name": "Rajnagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09cd\u09b0\u09c0\u09ae\u0999\u09cd\u0997\u09b2",
+    "created_by_id": 1,
+    "district_id": "52",
+    "id": "468",
+    "name": "Sreemangal",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09bf\u09b8\u09b6\u09ae\u09cd\u09ad\u09be\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "469",
+    "name": "Bishwamvarpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099b\u09be\u09a4\u0995",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "470",
+    "name": "Chhatak",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09c7\u09dc\u09be\u0987",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "471",
+    "name": "Derai",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a7\u09b0\u09ae\u09aa\u09be\u09b6\u09be",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "472",
+    "name": "Dharampasha",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09cb\u09df\u09be\u09b0\u09be\u09ac\u09be\u099c\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "473",
+    "name": "Dowarabazar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u0997\u09a8\u09cd\u09a8\u09be\u09a5\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "474",
+    "name": "Jagannathpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09be\u09ae\u09be\u09b2\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "475",
+    "name": "Jamalganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c1\u09b2\u09cd\u09b2\u09be",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "476",
+    "name": "Sulla",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09c1\u09a8\u09be\u09ae\u0997\u099e\u09cd\u099c \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "477",
+    "name": "Sunamganj Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b6\u09be\u09a8\u09cd\u09a4\u09bf\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "478",
+    "name": "Shanthiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a4\u09be\u09b9\u09bf\u09b0\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "479",
+    "name": "Tahirpur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09b8\u09bf\u09b2\u09c7\u099f \u09b8\u09a6\u09b0",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "480",
+    "name": "Sylhet Sadar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09c7\u09df\u09be\u09a8\u09bf\u09ac\u09be\u099c\u09be\u09b0",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "481",
+    "name": "Beanibazar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09bf\u09b6\u09cd\u09ac\u09a8\u09be\u09a5",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "482",
+    "name": "Bishwanath",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u0995\u09cd\u09b7\u09bf\u09a3 \u09b8\u09c1\u09b0\u09ae\u09be",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "483",
+    "name": "Dakshin Surma",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ac\u09be\u09b2\u09be\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "484",
+    "name": "Balaganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09cb\u09ae\u09cd\u09aa\u09be\u09a8\u09bf\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "485",
+    "name": "Companiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ab\u09c7\u099e\u09cd\u099a\u09c1\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "486",
+    "name": "Fenchuganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09b2\u09be\u09aa\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "487",
+    "name": "Golapganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0997\u09cb\u09df\u09be\u0987\u09a8\u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "488",
+    "name": "Gowainghat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09c8\u09a8\u09cd\u09a4\u09be\u09aa\u09c1\u09b0",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "489",
+    "name": "Jointapur",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0995\u09be\u09a8\u09be\u0987\u0998\u09be\u099f",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "490",
+    "name": "Kanaighat",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u099c\u09be\u0995\u09bf\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "491",
+    "name": "Zakiganj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a8\u09ac\u09c0\u0997\u099e\u09cd\u099c",
+    "created_by_id": 1,
+    "district_id": "54",
+    "id": "492",
+    "name": "Nobigonj",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u0988\u09a6\u0997\u09be\u0981\u0993",
+    "created_by_id": 1,
+    "district_id": "45",
+    "id": "493",
+    "name": "Eidgaon",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09ae\u09a7\u09cd\u09af\u09a8\u0997\u09b0",
+    "created_by_id": 1,
+    "district_id": "53",
+    "id": "494",
+    "name": "Modhyanagar",
+    "updated_by_id": 1
+  },
+  {
+    "bn_name": "\u09a6\u09b6\u09b0",
+    "created_by_id": 1,
+    "district_id": "7",
+    "id": "495",
+    "name": "Dasar",
+    "updated_by_id": 1
+  }
+]

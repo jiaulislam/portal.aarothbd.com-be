@@ -40,6 +40,11 @@ CUSTOM_APPS = [
     "apps.user",
     "apps.address",
     "apps.action",
+    "apps.country",
+    "apps.division",
+    "apps.district",
+    "apps.sub_district",
+    "apps.data_migration",
 ]
 
 

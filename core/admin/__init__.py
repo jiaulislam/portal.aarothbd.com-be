@@ -1,1 +1,1 @@
-from .base_admin import BaseAdmin # noqa
+from .base_admin import BaseAdmin  # noqa

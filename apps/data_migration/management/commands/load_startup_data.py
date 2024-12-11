@@ -43,9 +43,9 @@ class Command(BaseCommand):
             sys.stdout.write("Loading BD Sub-Districts finished\n")
 
             if options.get("test_company"):
-                sys.stdout.write("Loading BD Sub-Districts started\n")
+                sys.stdout.write("Loading Test Companies started\n")
                 management.call_command("load_demo_companies")
-                sys.stdout.write("Loading BD Sub-Districts finished\n")
+                sys.stdout.write("Loading Test Companies finished\n")
         except Exception as exc:
             raise Exception(exc)
         return

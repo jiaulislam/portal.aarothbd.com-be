@@ -24,6 +24,7 @@ class AddressInline(GenericStackedInline):
     ct_fk_field = "object_id"
     exclude = ("created_by", "updated_by")
 
+
 @admin.register(Company)
 class CompanyAdmin(BaseAdmin):
     list_display = ("name", "slug", "theme_color", "is_active")

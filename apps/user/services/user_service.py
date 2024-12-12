@@ -14,17 +14,6 @@ class UserService(BaseModelService[UserType]):
     model_class = User  # type: ignore
     company_required_user_type = [UserTypeChoices.WHOLESELLER_ADMIN]
 
-    def all(self, **kwargs):
-        return (
-            super()
-            .all(**kwargs)
-            .select_related("profile")
-            .prefetch_related(
-                "groups",
-                "user_permissions",
-            )
-        )
-
     def validate_wholeseller_has_company(self, validated_data: UserValidatedDataType) -> bool:
         user_type = validated_data.get("user_type", None)
         if user_type not in self.company_required_user_type:

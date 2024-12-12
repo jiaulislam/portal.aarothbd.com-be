@@ -54,14 +54,11 @@ class LoginAPIView(GenericAPIView):
                 name="Login Request",
                 summary="Login Request Payload",
                 description="Example of a valid request payload for login.",
-                value={
-                    "email": "admin@aarothbd.com",
-                    "password": "*****"
-                },
+                value={"email": "admin@aarothbd.com", "password": "*****"},
                 response_only=False,
                 request_only=True,
             )
-        ]
+        ],
     )
     def post(self, request: Request, *args, **kwargs) -> Response:
         serialized = LoginSerializer(data=request.data)

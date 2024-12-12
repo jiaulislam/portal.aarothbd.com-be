@@ -37,6 +37,7 @@ class CompanyDetailSerializer(s.ModelSerializer):
         model = Company
         exclude = COMMON_EXCLUDE_FIELDS
 
+
 class CompanyUpdateStatusSerializer(s.ModelSerializer):
     class Meta:
         model = Company

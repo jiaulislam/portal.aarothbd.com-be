@@ -11,13 +11,12 @@ class CompanyFilter(BaseFilter):
     tin_number = filters.CharFilter(field_name="tin_number", lookup_expr="icontains")
 
     order_by = OrderingFilter(
-            fields=(
-                ('name', 'name'),
-                ('slug', 'slug'),
-            ),
-
-            field_labels={
-                'name': 'Name',
-                'slug': 'Slug',
-            }
-        )
+        fields=(
+            ("name", "name"),
+            ("slug", "slug"),
+        ),
+        field_labels={
+            "name": "Name",
+            "slug": "Slug",
+        },
+    )

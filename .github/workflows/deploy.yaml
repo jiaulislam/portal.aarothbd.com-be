@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
 
       - name: Deploy files via SFTP
         uses: pressidium/lftp-mirror-action@v1
@@ -43,7 +45,7 @@ jobs:
           script: |
             cd ${{ vars.TARGET_DIR }}
             source .venv/bin/activate
-            uv sync
+            uv sync --no-dev
             python manage.py collectstatic --noinput
             python manage.py migrate
             sudo systemctl restart backend.aarothbd.com.service

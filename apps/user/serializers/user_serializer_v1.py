@@ -12,6 +12,8 @@ __all__ = [
     "UserUpdateStatusSerializer",
 ]
 
+from ...company.serializers.company_serializer_v1 import CompanySerializer
+
 
 class UserProfileSerializer(s.ModelSerializer):
     class Meta:
@@ -25,11 +27,9 @@ class UserSerializer(s.ModelSerializer[User]):
     date_joined = s.DateTimeField(read_only=True)
     is_admin = s.BooleanField(read_only=True)
     last_login = s.DateTimeField(read_only=True)
-    groups = s.PrimaryKeyRelatedField(
-        read_only=True,
-        many=True,
-    )
+
     profile = UserProfileSerializer(read_only=True)
+    company = CompanySerializer(read_only=True)
 
     def _check_password_match(self, password: str, password2: str) -> bool:
         return password == password2
@@ -39,6 +39,15 @@ class UserSerializer(s.ModelSerializer[User]):
             raise ValidationError({"password": "passwords mismatch. Try again !"}, code="client_error")
         return data
 
+    class Meta:
+        model = get_user_model()
+        fields = (
+        "id", "email", "first_name", "last_name", "is_admin", "date_joined", "is_active", "password", "password2",
+        "profile", "company", "last_login")
+        read_only_fields = ("is_active",)
+
+
+class UserDetailSerializer(s.ModelSerializer):
     class Meta:
         model = get_user_model()
         exclude = [

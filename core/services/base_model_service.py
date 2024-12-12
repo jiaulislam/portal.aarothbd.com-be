@@ -35,14 +35,21 @@ class BaseModelService(Generic[_T]):
             queryset = queryset.select_related(*select_related)
         if prefetch_related and type(prefetch_related) is list:
             queryset = queryset.prefetch_related(*prefetch_related)
-        instance = get_object_or_404(model_class, **kwargs)
-        return instance
+        queryset = get_object_or_404(queryset, **kwargs)
+        return queryset
 
     def all(self, **kwargs):
         """get all the model instances by filtering with kwargs argument"""
+        select_related = kwargs.pop("select_related", [])
+        prefetch_related = kwargs.pop("prefetch_related", [])
         model_class = self.get_model_class()
-        instances = model_class.objects.filter(**kwargs)
-        return instances
+        queryset = model_class.objects.all()
+        if select_related and type(select_related) is list:
+            queryset = queryset.select_related(*select_related)
+        if prefetch_related and type(prefetch_related) is list:
+            queryset = queryset.prefetch_related(*prefetch_related)
+        queryset = queryset.filter(**kwargs)
+        return queryset
 
     def get_slug_or_raise_exception(self, field_value: str) -> str:
         """make a slug value and get a slugified value for given field_value"""

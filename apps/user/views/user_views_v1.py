@@ -26,7 +26,7 @@ class UserListCreateAPIView(ListCreateAPIView):
     user_service = UserService()
 
     def get_queryset(self, **kwargs) -> QuerySet[UserType]:
-        queryset = self.user_service.all(is_superuser=False, **kwargs)
+        queryset = self.user_service.all(is_superuser=False, select_related=["profile", "company"])
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
@@ -53,7 +53,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def retrieve(self, request: Request, **kwargs) -> Response:
         _user_id = kwargs.get("id")
         queryset = self.user_service.get(
-            id=id,
+            id=_user_id,
             is_superuser=False,
             select_related=["profile"],
             prefetch_related=["groups", "user_permissions"],
@@ -66,7 +66,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         serialized = self.serializer_class(data=request.data)
         serialized.is_valid(raise_exception=True)
         serialized.validated_data.pop("email", None)  # never update user email
-        instance = self.user_service.get(id=id, is_superuser=False)
+        instance = self.user_service.get(id=_user_id, is_superuser=False)
         instance = self.user_service.update(instance, serialized.validated_data, request=request)
         serialized = self.serializer_class(instance=instance)
         return Response(serialized.data, status=status.HTTP_200_OK)
@@ -82,7 +82,7 @@ class UserUpdateStatusAPIView(UpdateAPIView):
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.user_service.get(
-            id=id,
+            id=_user_id,
             is_superuser=False,
             select_related=["profile"],
             prefetch_related=["groups", "user_permissions"],

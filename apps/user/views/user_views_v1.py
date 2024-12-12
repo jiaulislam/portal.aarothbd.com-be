@@ -6,11 +6,12 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from core.pagination import ExtendedLimitOffsetPagination
+
 from ..filters import UserFilterSet
 from ..serializers.user_serializer_v1 import (
+    UserDetailSerializer,
     UserSerializer,
     UserUpdateStatusSerializer,
-    UserDetailSerializer,
 )
 from ..services.user_service import UserService
 from ..types import UserType

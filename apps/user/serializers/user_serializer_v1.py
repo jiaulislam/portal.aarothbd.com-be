@@ -4,8 +4,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
-from ..models import User, UserProfile
 from ...company.serializers.company_serializer_v1 import CompanySerializer
+from ..models import User, UserProfile
 
 
 class UserProfileSerializer(s.ModelSerializer):

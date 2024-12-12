@@ -1,7 +1,8 @@
+from django_filters import OrderingFilter
+
 from core.filter import BaseFilter
 
 from .models import Division
-from django_filters import OrderingFilter
 
 
 class DivisionFilter(BaseFilter):

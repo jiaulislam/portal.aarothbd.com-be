@@ -58,7 +58,7 @@ extend-select = [
     "N", # pep8-naming
     "T20", # flake8-print
 ]
-fixable = ["E501"]
+fixable = ["ALL"]
 
 
 ignore = [

@@ -3,14 +3,15 @@ from rest_framework import serializers
 
 
 class ResponseErrorType(TextChoices):
-    CLIENT_ERROR = 'client_error'
-    SERVER_ERROR = 'server_error'
+    CLIENT_ERROR = "client_error"
+    SERVER_ERROR = "server_error"
 
 
 class ErrorBody(serializers.Serializer):
-    code = serializers.CharField(help_text='Error code')
-    detail = serializers.CharField(help_text='Error detail or message')
-    attr = serializers.CharField(help_text='Error attribute field name')
+    code = serializers.CharField(help_text="Error code")
+    detail = serializers.CharField(help_text="Error detail or message")
+    attr = serializers.CharField(help_text="Error attribute field name")
+
 
 class BaseSerializer(serializers.Serializer):
     detail = serializers.CharField()

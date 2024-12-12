@@ -6,11 +6,11 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from core.pagination import ExtendedLimitOffsetPagination
-
 from ..filters import UserFilterSet
 from ..serializers.user_serializer_v1 import (
     UserSerializer,
     UserUpdateStatusSerializer,
+    UserDetailSerializer,
 )
 from ..services.user_service import UserService
 from ..types import UserType
@@ -48,6 +48,7 @@ class UserListCreateAPIView(ListCreateAPIView):
 class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     serializer_class = UserSerializer
+    detail_serializer_class = UserDetailSerializer
     user_service = UserService()
 
     def retrieve(self, request: Request, **kwargs) -> Response:
@@ -58,7 +59,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             select_related=["profile"],
             prefetch_related=["groups", "user_permissions"],
         )
-        serialized = self.serializer_class(queryset)  # type: ignore
+        serialized = self.detail_serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def update(self, request: Request, **kwargs) -> Response:
@@ -92,7 +93,7 @@ class UserUpdateStatusAPIView(UpdateAPIView):
 
 
 class MeRetrieveAPIView(RetrieveAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserDetailSerializer
     user_service = UserService()
 
     def retrieve(self, request: Request, *args, **kwargs):

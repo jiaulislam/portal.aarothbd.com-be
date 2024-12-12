@@ -5,13 +5,6 @@ from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
 from ..models import User, UserProfile
-
-__all__ = [
-    "UserProfileSerializer",
-    "UserSerializer",
-    "UserUpdateStatusSerializer",
-]
-
 from ...company.serializers.company_serializer_v1 import CompanySerializer
 
 
@@ -35,12 +28,8 @@ class UserSerializer(s.ModelSerializer[User]):
         return password == password2
 
     def validate(self, data: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
-        if not self._check_password_match(
-            data.get("password", ""), data.get("password2", "")
-        ):
-            raise ValidationError(
-                {"password": "passwords mismatch. Try again !"}, code="client_error"
-            )
+        if not self._check_password_match(data.get("password", ""), data.get("password2", "")):
+            raise ValidationError({"password": "passwords mismatch. Try again !"}, code="client_error")
         return data
 
     class Meta:
@@ -66,6 +55,7 @@ class UserDetailSerializer(s.ModelSerializer):
     class Meta:
         model = get_user_model()
         exclude = [
+            "password",
             "created_at",
             "updated_at",
             "created_by",
@@ -84,7 +74,5 @@ class UserUpdateStatusSerializer(s.ModelSerializer):
         try:
             _ = data["is_active"]
         except KeyError as _:
-            raise ValidationError(
-                {"is_active": "'is_active' field is required !"}, code="client_error"
-            )
+            raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
         return data

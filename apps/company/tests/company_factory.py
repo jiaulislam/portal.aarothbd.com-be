@@ -12,6 +12,7 @@ User = get_user_model()
 
 root_user = User.objects.get(pk=1)
 
+
 class CompanyFactory(DjangoModelFactory):
     name = factory.LazyFunction(fake.company)
     bin_number = factory.LazyFunction(fake.bban)

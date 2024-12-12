@@ -5,20 +5,19 @@ from core.filter import BaseFilter
 
 User = get_user_model()
 
-class UserFilterSet(BaseFilter):
 
+class UserFilterSet(BaseFilter):
     order_by = OrderingFilter(
         fields=(
-            ('first_name', 'first_name'),
-            ('last_name', 'last_name'),
-            ('company__name', 'company'),
+            ("first_name", "first_name"),
+            ("last_name", "last_name"),
+            ("company__name", "company"),
         ),
-
         field_labels={
             "first_name": "First Name",
             "last_name": "Last Name",
             "company__name": "Company",
-        }
+        },
     )
 
     class Meta:

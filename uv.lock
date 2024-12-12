@@ -103,7 +103,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "black" },
+    { name = "black", specifier = ">=24.10.0" },
     { name = "devtools", specifier = ">=0.12.2" },
     { name = "django-debug-toolbar", specifier = ">=4.4.6" },
     { name = "django-stubs", specifier = ">=5.1.1" },

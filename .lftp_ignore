@@ -1,8 +1,11 @@
-.venv
-__pycache__
-.git
-.github
-.vscode
-.idea
-.zed
-.env
+# Directories to exclude
+.git/
+.github/
+.venv/
+.vscode/
+.zed/
+.idea/
+
+# Files to exclude
+.gitignore
+README.md

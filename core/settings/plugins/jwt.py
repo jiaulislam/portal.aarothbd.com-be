@@ -35,11 +35,11 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
     # Custom Settings for JWT Authentication
-    "AUTH_COOKIE": "access",
-    "AUTH_COOKIE_REFRESH": "refresh",
+    "AUTH_COOKIE": "accessToken",
+    "AUTH_COOKIE_REFRESH": "refreshToken",
     "AUTH_COOKIE_DOMAIN": None,
     "AUTH_COOKIE_SECURE": True,
     "AUTH_COOKIE_HTTPONLY": True,
     "AUTH_COOKIE_PATH": "/",
-    "AUTH_COOKIE_SAMESITE": "Lax",
+    "AUTH_COOKIE_SAMESITE": "None",
 }

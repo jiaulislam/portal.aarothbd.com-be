@@ -35,15 +35,30 @@ class UserSerializer(s.ModelSerializer[User]):
         return password == password2
 
     def validate(self, data: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
-        if not self._check_password_match(data.get("password", ""), data.get("password2", "")):
-            raise ValidationError({"password": "passwords mismatch. Try again !"}, code="client_error")
+        if not self._check_password_match(
+            data.get("password", ""), data.get("password2", "")
+        ):
+            raise ValidationError(
+                {"password": "passwords mismatch. Try again !"}, code="client_error"
+            )
         return data
 
     class Meta:
         model = get_user_model()
-        fields = (
-            "id", "email", "first_name", "last_name", "is_admin", "date_joined", "is_active", "password", "password2",
-            "profile", "company", "last_login",)
+        fields = [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "is_admin",
+            "date_joined",
+            "is_active",
+            "password",
+            "password2",
+            "profile",
+            "company",
+            "last_login",
+        ]
         read_only_fields = ("is_active",)
 
 
@@ -69,5 +84,7 @@ class UserUpdateStatusSerializer(s.ModelSerializer):
         try:
             _ = data["is_active"]
         except KeyError as _:
-            raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
+            raise ValidationError(
+                {"is_active": "'is_active' field is required !"}, code="client_error"
+            )
         return data

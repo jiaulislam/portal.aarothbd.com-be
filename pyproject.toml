@@ -27,6 +27,7 @@ dependencies = [
 
 [tool.uv]
 dev-dependencies = [
+    "black>=24.10.0",
     "devtools>=0.12.2",
     "django-debug-toolbar>=4.4.6",
     "django-stubs>=5.1.1",
@@ -57,9 +58,10 @@ extend-select = [
     "N", # pep8-naming
     "T20", # flake8-print
 ]
+fixable = ["E501"]
+
 
 ignore = [
-    "E741", # ambiguous variable name (preference)
     "B008", # do not perform function calls in argument defaults
     "B904", # ignore from clause in exception
 ]

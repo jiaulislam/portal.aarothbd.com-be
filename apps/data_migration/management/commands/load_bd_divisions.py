@@ -26,8 +26,8 @@ class Command(BaseCommand):
                         lat=division.get("lat"),
                         long=division.get("long"),
                         country_id=division.get("country_id"),
-                        created_by_id=division.get("created_by_id"),
-                        updated_by_id=division.get("updated_by_id"),
+                        created_by_id=division.get("created_by_id", 1),
+                        updated_by_id=division.get("updated_by_id", 1),
                     )
                     division_instances.append(instance)
                 divisions = Division.objects.bulk_create(division_instances)

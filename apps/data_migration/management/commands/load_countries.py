@@ -28,8 +28,8 @@ class Command(BaseCommand):
                         country_code=country.get("country_code2"),
                         country_code_alpha3=country.get("country_code3"),
                         country_code_iso3=country.get("iso3"),
-                        created_by_id=country.get("created_by_id"),
-                        updated_by_id=country.get("updated_by_id"),
+                        created_by_id=country.get("created_by_id", 1),
+                        updated_by_id=country.get("updated_by_id", 1),
                     )
                     country_instances.append(instance)
                 countries = Country.objects.bulk_create(country_instances)

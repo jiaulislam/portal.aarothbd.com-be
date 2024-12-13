@@ -4,11 +4,11 @@ from rest_framework.exceptions import ValidationError
 from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
 
 from ..models import Company
-from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationSerializer
+from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 
 __all__ = ["CompanySerializer", "CompanyUpdateStatusSerializer"]
 
-from apps.address.serializers import AddressSerializer
+from apps.address.serializers import AddressCreateSerializer, AddressSerializer
 
 
 class CompanySerializer(s.ModelSerializer):
@@ -19,12 +19,22 @@ class CompanySerializer(s.ModelSerializer):
         trim_whitespace=True,
         max_length=255,
     )
-    configuration = CompanyConfigurationSerializer(read_only=True)
+    configuration = CompanyConfigurationCreateSerializer(read_only=True)
 
     class Meta:
         model = Company
         exclude = COMMON_EXCLUDE_FIELDS
         read_only_fields = ("slug", "is_active")
+
+
+class CompanyCreateSerializer(s.ModelSerializer):
+    configuration = CompanyConfigurationCreateSerializer(write_only=True)
+    addresses = AddressCreateSerializer(many=True, write_only=True)
+
+    class Meta:
+        model = Company
+        exclude = COMMON_EXCLUDE_FIELDS
+        read_only_fields = ("id", "slug", "is_active")
 
 
 class CompanyDetailSerializer(s.ModelSerializer):

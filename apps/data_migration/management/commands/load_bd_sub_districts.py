@@ -24,8 +24,8 @@ class Command(BaseCommand):
                         name=sub_district.get("name"),
                         bn_name=sub_district.get("bn_name"),
                         district_id=sub_district.get("district_id"),
-                        created_by_id=sub_district.get("created_by_id"),
-                        updated_by_id=sub_district.get("updated_by_id"),
+                        created_by_id=sub_district.get("created_by_id", 1),
+                        updated_by_id=sub_district.get("updated_by_id", 1),
                     )
                     sub_district_instances.append(instance)
                 sub_districts = SubDistrict.objects.bulk_create(sub_district_instances)

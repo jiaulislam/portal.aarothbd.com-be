@@ -26,8 +26,8 @@ class Command(BaseCommand):
                         lat=district.get("lat"),
                         long=district.get("long"),
                         division_id=district.get("division_id"),
-                        created_by_id=district.get("created_by_id"),
-                        updated_by_id=district.get("updated_by_id"),
+                        created_by_id=district.get("created_by_id", 1),
+                        updated_by_id=district.get("updated_by_id", 1),
                     )
                     district_instances.append(instance)
                 districts = District.objects.bulk_create(district_instances)

@@ -5,21 +5,27 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, Up
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from apps.address.services import AddressService
 from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import CompanyFilter
 from ..models import Company
-from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationSerializer
-from ..serializers.company_serializer_v1 import CompanySerializer, CompanyUpdateStatusSerializer
+from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
+from ..serializers.company_serializer_v1 import (
+    CompanyCreateSerializer,
+    CompanySerializer,
+    CompanyUpdateStatusSerializer,
+)
 from ..services import CompanyConfigurationService, CompanyService
 
 
 class CompanyListCreateAPIView(ListCreateAPIView):
-    serializer_class = CompanySerializer
+    serializer_class = CompanyCreateSerializer
     filterset_class = CompanyFilter
     pagination_class = ExtendedLimitOffsetPagination
 
     company_service = CompanyService()
+    address_service = AddressService()
     company_configuration_service = CompanyConfigurationService()
 
     def get_queryset(self, **kwargs) -> QuerySet[Company]:
@@ -36,15 +42,19 @@ class CompanyListCreateAPIView(ListCreateAPIView):
 
     @transaction.atomic
     def create(self, request: Request, *args, **kwargs) -> Response:
-        configuration_data = request.data.get("configuration", {})
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
-        instance = self.company_service.create(serialized.data, request=request)
-        configuration_data["company"] = instance.id
-        configuration_serialized = CompanyConfigurationSerializer(data=configuration_data)
-        configuration_serialized.is_valid(raise_exception=True)
-        self.company_configuration_service.create(configuration_serialized.validated_data, request=request)
-        serialized = self.serializer_class(instance=instance)  # type: ignore
+        company_instance = self.company_service.create(serialized.data, request=request)
+
+        # create company configuration
+        configuration_data = serialized.validated_data.get("configuration", {})
+        configuration_data["company"] = company_instance
+        self.company_configuration_service.create(configuration_data, request=request)
+
+        # create addresses
+        address_data = serialized.validated_data.get("addresses", [])
+        self.address_service.create_company_addresses(address_data, company_instance, request=request)
+        serialized = self.serializer_class(instance=company_instance)  # type: ignore
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
@@ -65,7 +75,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def update(self, request: Request, *args, **kwargs):
         _company_id = kwargs.get("id")
         configuration_data = request.data.get("configuration", {})
-        configuration_serialized = CompanyConfigurationSerializer(data=configuration_data)
+        configuration_serialized = CompanyConfigurationCreateSerializer(data=configuration_data)
         configuration_serialized.is_valid(raise_exception=True)
         configuration_id = configuration_serialized.validated_data.pop("id")
 

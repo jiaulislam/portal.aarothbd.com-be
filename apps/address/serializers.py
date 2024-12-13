@@ -9,3 +9,9 @@ class AddressSerializer(s.ModelSerializer):
     class Meta:
         model = Address
         exclude = COMMON_EXCLUDE_FIELDS
+
+
+class AddressCreateSerializer(s.ModelSerializer):
+    class Meta:
+        model = Address
+        exclude = ("object_id", "content_type", "created_at", "updated_at", "created_by", "updated_by", "is_active")

@@ -20,8 +20,7 @@ class CompanyAddressCreateAPIView(CreateAPIView):
         company = self.company_service.get(id=company_id)
         serialized = self.serializer_class(data=request.data)
         serialized.is_valid(raise_exception=True)
-        instance = self.address_service.create_company_addresses([serialized.validated_data], company, request=request)[
-            0
-        ]
+        instance = self.address_service.create_address(serialized.validated_data, company, request=request)
+        instance.save()
         serialized = self.serializer_class(instance=instance)
         return Response(serialized.data, status=status.HTTP_201_CREATED)

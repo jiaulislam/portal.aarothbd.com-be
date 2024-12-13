@@ -10,7 +10,6 @@ from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import CompanyFilter
 from ..models import Company
-from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 from ..serializers.company_serializer_v1 import (
     CompanyCreateSerializer,
     CompanyDetailSerializer,
@@ -75,20 +74,8 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
     @transaction.atomic
     def update(self, request: Request, *args, **kwargs):
-        configuration_data = request.data.get("configuration", {})
-        configuration_serialized = CompanyConfigurationCreateSerializer(data=configuration_data)
-        configuration_serialized.is_valid(raise_exception=True)
-        configuration_id = configuration_serialized.validated_data.pop("id")
-
         company_serialized = self.serializer_class(data=request.data)  # type: ignore
         company_serialized.is_valid(raise_exception=True)
-        # get and update configuration
-        configuration_instance = self.company_configuration_service.get(id=configuration_id)
-        _ = self.company_configuration_service.update(
-            configuration_instance,
-            configuration_serialized.validated_data,
-            request=request,
-        )
 
         # get and update company
         company_instance = self.company_service.get(**kwargs)
@@ -97,6 +84,8 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             company_serialized.validated_data,
             request=request,
         )
+
+        # TODO: How to handle the configuration update. With another view or this view ?
 
         response_data = {"detail": "Company Updated successfully."}
         return Response(response_data, status=status.HTTP_200_OK)

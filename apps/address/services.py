@@ -24,3 +24,9 @@ class AddressService(BaseModelService):
             validated_data = self.prepare_data(company_data, *args, **kwargs)
             addresses.append(Address(content_type=content_type, object_id=company.id, **validated_data))
         return Address.objects.bulk_create(addresses)
+
+    def update_status(self, instance: Address, status: bool, *args, **kwargs):
+        instance.is_active = status
+        instance.updated_by = self.core_service.get_user(kwargs['request'])
+        instance.save()
+        return instance

@@ -13,6 +13,7 @@ from ..models import Company
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 from ..serializers.company_serializer_v1 import (
     CompanyCreateSerializer,
+    CompanyDetailSerializer,
     CompanySerializer,
     CompanyUpdateStatusSerializer,
 )
@@ -61,6 +62,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
 class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     serializer_class = CompanySerializer
+    detail_serializer_class = CompanyDetailSerializer
 
     company_service = CompanyService()
     company_configuration_service = CompanyConfigurationService()
@@ -68,7 +70,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
         _company_id = kwargs.get("id")
         queryset = self.company_service.get(id=_company_id, select_related=["configuration"])
-        serialized = self.serializer_class(queryset)  # type: ignore
+        serialized = self.detail_serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     @transaction.atomic
@@ -110,7 +112,6 @@ class CompanyUpdateStatusAPIView(UpdateAPIView):
     def partial_update(self, request: Request, *args, **kwargs):
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
-        _company_id = kwargs.get("id")
-        instance = self.company_service.get(id=_company_id)
+        instance = self.company_service.get(**kwargs)
         self.company_service.update(instance, serialized.validated_data, request=request)
         return Response({"detail": "Company Status updated."}, status=status.HTTP_200_OK)

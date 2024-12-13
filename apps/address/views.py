@@ -7,14 +7,13 @@ from .services import AddressService
 
 
 class AddressRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
-    http_method_names = ['get', 'put', 'delete']
+    http_method_names = ["get", "put", "delete"]
     serializer_class = AddressSerializer
-    lookup_field = 'id'
+    lookup_field = "id"
     service_class = AddressService()
 
     def get_queryset(self):
         return self.service_class.all()
-
 
     def update(self, request, *args, **kwargs):
         instance = self.service_class.get(**kwargs)

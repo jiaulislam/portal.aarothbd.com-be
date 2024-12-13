@@ -75,7 +75,6 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
     @transaction.atomic
     def update(self, request: Request, *args, **kwargs):
-        _company_id = kwargs.get("id")
         configuration_data = request.data.get("configuration", {})
         configuration_serialized = CompanyConfigurationCreateSerializer(data=configuration_data)
         configuration_serialized.is_valid(raise_exception=True)
@@ -92,7 +91,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         )
 
         # get and update company
-        company_instance = self.company_service.get(id=_company_id)
+        company_instance = self.company_service.get(**kwargs)
         _ = self.company_service.update(
             company_instance,
             company_serialized.validated_data,

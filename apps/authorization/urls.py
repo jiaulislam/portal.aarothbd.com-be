@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views.content_type_views import ContentTypeListAPIView, ContentTypePermissionListAPIView
+from .views.group_views import GroupListCreateAPIView
 from .views.permission_views import PermissionListAPIView
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
         name="content-types-list",
     ),
     path(r"auth/permissions/", PermissionListAPIView.as_view(), name="permissions-list"),
+    path(r"auth/user-roles/", GroupListCreateAPIView.as_view(), name="role-create-view"),
 ]

@@ -7,7 +7,7 @@ class District(BaseModel):
     name = models.CharField(max_length=100)
     bn_name = models.CharField(max_length=255)
     lat = models.CharField(max_length=20, null=True, blank=True)
-    long = models.FloatField(max_length=20, null=True, blank=True)
+    long = models.CharField(max_length=20, null=True, blank=True)
     division = models.ForeignKey("division.Division", on_delete=models.PROTECT)
 
     class Meta:

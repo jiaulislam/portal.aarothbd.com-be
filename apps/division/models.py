@@ -7,8 +7,7 @@ class Division(BaseModel):
     name = models.CharField(max_length=100)
     bn_name = models.CharField(max_length=255)
     lat = models.CharField(max_length=20, null=True, blank=True)
-    long = models.FloatField(max_length=20, null=True, blank=True)
-
+    long = models.CharField(max_length=20, null=True, blank=True)
     country = models.ForeignKey("country.Country", on_delete=models.PROTECT, related_name="country_divisions")
 
     class Meta:

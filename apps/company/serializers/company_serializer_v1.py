@@ -1,14 +1,11 @@
 from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
+from apps.address.serializers import AddressCreateSerializer, AddressSerializer
 from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
 
 from ..models import Company
-from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationSerializer
-
-__all__ = ["CompanySerializer", "CompanyUpdateStatusSerializer"]
-
-from apps.address.serializers import AddressSerializer
+from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 
 
 class CompanySerializer(s.ModelSerializer):
@@ -19,7 +16,7 @@ class CompanySerializer(s.ModelSerializer):
         trim_whitespace=True,
         max_length=255,
     )
-    configuration = CompanyConfigurationSerializer(read_only=True)
+    configuration = CompanyConfigurationCreateSerializer(read_only=True)
 
     class Meta:
         model = Company
@@ -27,11 +24,21 @@ class CompanySerializer(s.ModelSerializer):
         read_only_fields = ("slug", "is_active")
 
 
+class CompanyCreateSerializer(s.ModelSerializer):
+    configuration = CompanyConfigurationCreateSerializer(write_only=True)
+    addresses = AddressCreateSerializer(many=True, write_only=True)
+
+    class Meta:
+        model = Company
+        exclude = COMMON_EXCLUDE_FIELDS
+        read_only_fields = ("id", "slug", "is_active")
+
+
 class CompanyDetailSerializer(s.ModelSerializer):
     address = s.SerializerMethodField()
 
     def get_address(self, obj):
-        return AddressSerializer(instance=obj.addresses.all(), many=True).data
+        return AddressSerializer(instance=obj.addresses.filter(is_active=True), many=True).data
 
     class Meta:
         model = Company

@@ -14,7 +14,7 @@ class Company(BaseModel):
     tin_number = models.CharField(max_length=255, null=True, blank=True)
     theme_color = models.CharField(max_length=255, default="221.2 83.2% 53.3%")
     company_logo = models.ImageField(upload_to="media/company/logos", null=True, blank=True)
-    company_favico = models.ImageField(upload_to="media/company/favicos", null=True, blank=True)
+    company_favicon = models.ImageField(upload_to="media/company/favicon", null=True, blank=True)
     addresses = GenericRelation(Address, related_query_name="company_addresses")
 
     notes = models.TextField(null=True, blank=True)

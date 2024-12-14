@@ -7,7 +7,7 @@ from ..services import CompanyConfigurationService, CompanyService
 
 
 class CompanyConfigurationUpdateAPIView(UpdateAPIView):
-    http_method_names = ['put']
+    http_method_names = ["put"]
     serializer_class = CompanyConfigurationCreateSerializer
     configuration_service = CompanyConfigurationService()
     company_service = CompanyService()

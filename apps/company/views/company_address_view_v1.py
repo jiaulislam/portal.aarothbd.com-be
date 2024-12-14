@@ -17,7 +17,7 @@ class CompanyAddressListCreateAPIView(ListCreateAPIView):
         return self.address_service.all()
 
     def list(self, request, *args, **kwargs):
-        company_id = kwargs.get('company_id')
+        company_id = kwargs.get("company_id")
         company = self.company_service.get(id=company_id)
         addresses = company.addresses.all()
         serialized = self.serializer_class(addresses, many=True)

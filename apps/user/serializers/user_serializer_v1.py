@@ -47,6 +47,7 @@ class UserSerializer(s.ModelSerializer[User]):
             "profile",
             "company",
             "last_login",
+            "groups",
         ]
         read_only_fields = ("is_active",)
 

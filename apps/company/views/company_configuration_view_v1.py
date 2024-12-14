@@ -15,7 +15,7 @@ class CompanyConfigurationUpdateAPIView(UpdateAPIView):
     def get_queryset(self):
         return self.configuration_service.all()
 
-    def create(self, request, *args, **kwargs):
+    def update(self, request, *args, **kwargs):
         company_id = kwargs.get("company_id")
         company = self.company_service.get(id=company_id)
         serialized = self.serializer_class(data=request.data)

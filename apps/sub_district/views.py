@@ -12,14 +12,14 @@ from .serializers import SubDistrictSerializer
 
 
 class SubDistrictListAPIView(ListAPIView):
+    queryset = SubDistrict.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = SubDistrictSerializer
     filterset_class = SubDistrictFilter
     pagination_class = ExtendedLimitOffsetPagination
 
     def get_queryset(self):
-        queryset = SubDistrict.objects.all()
-        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        filterset = self.filterset_class(self.request.GET, queryset=self.queryset)
         return filterset.qs
 
     def list(self, request: Request, *args, **kwargs) -> Response:

@@ -36,6 +36,7 @@ THIRD_PARTY_APPS = [
 
 CUSTOM_APPS = [
     "apps.authentication",
+    "apps.authorization",
     "apps.company",
     "apps.user",
     "apps.address",

@@ -4,6 +4,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, get_object_or_
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from ..constants import ExcludePermissionModelsList
 from ..serializers.content_type_serializer import ContentTypeSerializer
 from ..serializers.permission_serializers import PermissionSerializer
 
@@ -12,6 +13,12 @@ class ContentTypeListAPIView(ListAPIView):
     queryset = ContentType.objects.all()
     serializer_class = ContentTypeSerializer
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        queryset = ContentType.objects.prefetch_related("permission_set")
+        excluded_models_list = list(ExcludePermissionModelsList)
+        queryset = queryset.exclude(model__in=excluded_models_list)
+        return queryset
 
 
 class ContentTypePermissionListAPIView(RetrieveAPIView):

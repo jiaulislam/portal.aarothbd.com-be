@@ -46,6 +46,8 @@ CUSTOM_APPS = [
     "apps.district",
     "apps.sub_district",
     "apps.data_migration",
+    "apps.product",
+    "apps.uom",
 ]
 
 

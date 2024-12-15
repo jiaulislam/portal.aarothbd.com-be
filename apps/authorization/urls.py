@@ -12,5 +12,5 @@ urlpatterns = [
         name="content-types-list",
     ),
     path(r"auth/permissions/", PermissionListAPIView.as_view(), name="permissions-list"),
-    path(r"auth/user-roles/", GroupListCreateAPIView.as_view(), name="role-create-view"),
+    path(r"auth/groups/", GroupListCreateAPIView.as_view(), name="group-create-view"),
 ]

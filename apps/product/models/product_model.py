@@ -6,14 +6,24 @@ from core.models import BaseModel
 class Product(BaseModel):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    sku_code = models.CharField(max_length=255, null=True, blank=True)
-    uom = models.ForeignKey("uom.UoM", on_delete=models.PROTECT, related_name="uom_products")
+    sku_code = models.CharField(verbose_name="SKU", max_length=255, null=True, blank=True)
+    uom = models.ForeignKey("uom.UoM", on_delete=models.PROTECT, related_name="uom_products", verbose_name="UOM")
+    purchase_uom = models.ForeignKey(
+        "uom.UoM",
+        on_delete=models.PROTECT,
+        related_name="uom_purchase_products",
+        verbose_name="Purchase UOM",
+        null=True,
+        blank=True,
+    )
     category = models.ForeignKey("product.ProductCategory", on_delete=models.PROTECT, related_name="category_products")
     has_detail = models.BooleanField(default=False)
     brand = models.ForeignKey(
         "product.ProductBrand", on_delete=models.PROTECT, related_name="product_product_brands", null=True, blank=True
     )
-    origin = models.ForeignKey("country.Country", on_delete=models.PROTECT, related_name="country_products")
+    origin = models.ForeignKey(
+        "country.Country", on_delete=models.PROTECT, related_name="country_products", null=True, blank=True
+    )
 
     attributes = models.JSONField(null=True, blank=True, help_text="Any other attributes")
     html = models.TextField(null=True, blank=True, help_text="HTML")

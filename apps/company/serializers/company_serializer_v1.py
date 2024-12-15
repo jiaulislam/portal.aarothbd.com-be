@@ -2,6 +2,8 @@ from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
 from apps.address.serializers import AddressCreateSerializer, AddressSerializer
+from apps.product.models.product_model import Product
+from apps.product.serializers.product_serializer import ProductSerializer
 from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
 
 from ..models import Company
@@ -27,6 +29,16 @@ class CompanySerializer(s.ModelSerializer):
 class CompanyCreateSerializer(s.ModelSerializer):
     configuration = CompanyConfigurationCreateSerializer(write_only=True)
     addresses = AddressCreateSerializer(many=True, write_only=True)
+    allowed_products = s.PrimaryKeyRelatedField(queryset=Product.objects.all(), many=True)
+
+    class Meta:
+        model = Company
+        exclude = COMMON_EXCLUDE_FIELDS
+        read_only_fields = ("id", "slug", "is_active")
+
+
+class CompanyUpdateSerializer(s.ModelSerializer):
+    allowed_products = s.PrimaryKeyRelatedField(queryset=Product.objects.all(), many=True)
 
     class Meta:
         model = Company
@@ -36,6 +48,10 @@ class CompanyCreateSerializer(s.ModelSerializer):
 
 class CompanyDetailSerializer(s.ModelSerializer):
     address = s.SerializerMethodField()
+    allowed_products = s.SerializerMethodField()
+
+    def get_allowed_products(self, obj: Company):
+        return ProductSerializer(obj.allowed_products.all(), many=True).data
 
     def get_address(self, obj):
         return AddressSerializer(instance=obj.addresses.filter(is_active=True), many=True).data

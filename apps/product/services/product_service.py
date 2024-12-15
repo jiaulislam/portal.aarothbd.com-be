@@ -5,5 +5,5 @@ from ..models.product_model import Product
 __all__ = ["ProductService"]
 
 
-class ProductService(BaseModelService):
+class ProductService(BaseModelService[Product]):
     model_class = Product

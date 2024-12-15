@@ -21,10 +21,11 @@ class ProductListCreateAPIView(ListCreateAPIView):
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
-        brand: MutableMapping[str, Any] = serialized.validated_data.pop("brand", {})
 
+        brand: MutableMapping[str, Any] = serialized.validated_data.pop("brand", {})
         if brand:
-            _ = self.brand_service.get_or_create(brand, request=request)
+            _brand, _ = self.brand_service.get_or_create(brand, request=request)
+            serialized.validated_data["brand"] = _brand
 
         instance = self.product_service.create(serialized.validated_data, request=request)
         serialized = self.serializer_class(instance=instance)  # type: ignore

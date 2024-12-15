@@ -6,7 +6,7 @@ from ..types import CompanyValidatedDataType
 __all__ = ["CompanyService"]
 
 
-class CompanyService(BaseModelService):
+class CompanyService(BaseModelService[Company]):
     model_class = Company
 
     def prepare_data(self, validated_data: CompanyValidatedDataType, *args, **kwargs):

@@ -1,4 +1,4 @@
-port=8000  # default django run port
+port=8080  # default django run port
 
 clean: clean-pyc clean-build clean-test ## remove all build, test, coverage and Python artifacts
 

@@ -17,10 +17,10 @@ class AddressRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
 
     def update(self, request, *args, **kwargs):
         instance = self.service_class.get(**kwargs)
-        serialized = self.serializer_class(data=request.data)
+        serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.service_class.update(instance, serialized.validated_data, request=request)
-        return Response(self.serializer_class(instance).data, status=status.HTTP_200_OK)
+        return Response(self.serializer_class(instance).data, status=status.HTTP_200_OK)  # type: ignore
 
     def destroy(self, request, *args, **kwargs):
         instance = self.service_class.get(**kwargs)

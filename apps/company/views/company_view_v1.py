@@ -6,6 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from apps.address.services import AddressService
+from apps.product.services import ProductService
 from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import CompanyFilter
@@ -13,7 +14,7 @@ from ..models import Company
 from ..serializers.company_serializer_v1 import (
     CompanyCreateSerializer,
     CompanyDetailSerializer,
-    CompanySerializer,
+    CompanyUpdateSerializer,
     CompanyUpdateStatusSerializer,
 )
 from ..services import CompanyConfigurationService, CompanyService
@@ -27,6 +28,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
     company_service = CompanyService()
     address_service = AddressService()
     company_configuration_service = CompanyConfigurationService()
+    product_service = ProductService()
 
     def get_queryset(self, **kwargs) -> QuerySet[Company]:
         queryset = self.company_service.all(**kwargs).select_related("configuration")
@@ -44,6 +46,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
     def create(self, request: Request, *args, **kwargs) -> Response:
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
+        allowed_products = serialized.validated_data.pop("allowed_products", [])
         company_instance = self.company_service.create(serialized.data, request=request)
 
         # create company configuration
@@ -55,12 +58,16 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         address_data = serialized.validated_data.get("addresses", [])
         self.address_service.create_company_addresses(address_data, company_instance, request=request)
         serialized = self.serializer_class(instance=company_instance)  # type: ignore
+
+        # assign products
+        if allowed_products:
+            company_instance.allowed_products.add(allowed_products)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
 class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
-    serializer_class = CompanySerializer
+    serializer_class = CompanyUpdateSerializer
     detail_serializer_class = CompanyDetailSerializer
 
     company_service = CompanyService()
@@ -76,7 +83,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def update(self, request: Request, *args, **kwargs):
         company_serialized = self.serializer_class(data=request.data)  # type: ignore
         company_serialized.is_valid(raise_exception=True)
-
+        allowed_products = company_serialized.validated_data.pop("allowed_products", [])
         # get and update company
         company_instance = self.company_service.get(**kwargs)
         _ = self.company_service.update(
@@ -85,7 +92,12 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             request=request,
         )
 
-        # TODO: How to handle the configuration update. With another view or this view ?
+        # update products
+        if allowed_products:
+            old_products = company_instance.allowed_products
+            for product in allowed_products:
+                if not old_products.filter(id=product.id).exists():
+                    company_instance.allowed_products.add(product)
 
         response_data = {"detail": "Company Updated successfully."}
         return Response(response_data, status=status.HTTP_200_OK)

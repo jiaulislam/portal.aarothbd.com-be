@@ -22,6 +22,8 @@ class Product(BaseModel):
     default_image_2 = models.ImageField(null=True, blank=True, upload_to="products/")
     default_image_3 = models.ImageField(null=True, blank=True, upload_to="products/")
 
+    companies = models.ManyToManyField("company.Company", related_name="allowed_products", blank=True)
+
     def __str__(self) -> str:
         return self.name
 

@@ -10,7 +10,9 @@ class Product(BaseModel):
     uom = models.ForeignKey("uom.UoM", on_delete=models.PROTECT, related_name="uom_products")
     category = models.ForeignKey("product.ProductCategory", on_delete=models.PROTECT, related_name="category_products")
     has_detail = models.BooleanField(default=False)
-    brand = models.ForeignKey("product.ProductBrand", on_delete=models.PROTECT, related_name="product_product_brands")
+    brand = models.ForeignKey(
+        "product.ProductBrand", on_delete=models.PROTECT, related_name="product_product_brands", null=True, blank=True
+    )
     origin = models.ForeignKey("country.Country", on_delete=models.PROTECT, related_name="country_products")
 
     attributes = models.JSONField(null=True, blank=True, help_text="Any other attributes")
@@ -30,7 +32,7 @@ class Product(BaseModel):
 
 
 class ProductDetail(BaseModel):
-    product = models.ForeignKey("product.Product", on_delete=models.PROTECT)
+    product = models.ForeignKey("product.Product", on_delete=models.PROTECT, related_name="details")
     size_name = models.CharField(max_length=100)
     size_description = models.TextField(null=True, blank=True)
     attributes = models.JSONField(null=True, blank=True, help_text="Any other attributes")

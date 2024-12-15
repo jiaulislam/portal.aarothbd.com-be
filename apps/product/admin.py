@@ -3,15 +3,16 @@ from django.contrib import admin
 from core.admin import BaseAdmin
 from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
 
-from .models.product import Product, ProductDetail
-from .models.product_brand import ProductBrand
-from .models.product_category import ProductCategory
+from .models.product_brand_model import ProductBrand
+from .models.product_category_model import ProductCategory
+from .models.product_model import Product, ProductDetail
 
 
 class ProductDetailInline(admin.TabularInline):
     model = ProductDetail
     extra = 0
     exclude = COMMON_EXCLUDE_FIELDS
+
 
 @admin.register(ProductBrand)
 class ProductBrandAdmin(BaseAdmin):
@@ -31,5 +32,5 @@ class ProductCategoryAdmin(BaseAdmin):
 class ProductAdmin(BaseAdmin):
     list_display = ("name", "sku_code", "uom", "category", "has_detail")
     list_filter = ("is_active", "uom", "uom__category__name")
-    search_fields = ("name", )
+    search_fields = ("name",)
     inlines = (ProductDetailInline,)

@@ -5,8 +5,9 @@ from core.models import BaseModel
 
 class Product(BaseModel):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(verbose_name="Slug", max_length=255, unique=True)
     description = models.TextField(null=True, blank=True)
-    sku_code = models.CharField(verbose_name="SKU", max_length=255, null=True, blank=True)
+    sku_code = models.CharField(verbose_name="SKU", max_length=255, null=True, blank=True, unique=True)
     uom = models.ForeignKey("uom.UoM", on_delete=models.PROTECT, related_name="uom_products", verbose_name="UOM")
     purchase_uom = models.ForeignKey(
         "uom.UoM",
@@ -39,6 +40,9 @@ class Product(BaseModel):
         db_table = "product_product"
         verbose_name = "Product"
         verbose_name_plural = "Products"
+        indexes = [
+            models.Index(fields=["slug"], name="product_slug_idx"),
+        ]
 
 
 class ProductDetail(BaseModel):

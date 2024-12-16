@@ -19,6 +19,8 @@ class ProductBrandAdmin(BaseAdmin):
     list_display = ("name", "origin", "is_active")
     list_filter = ("is_active",)
     search_fields = ("name",)
+    list_editable = ("is_active",)
+    list_per_page = 25
 
 
 @admin.register(ProductCategory)
@@ -26,12 +28,18 @@ class ProductCategoryAdmin(BaseAdmin):
     list_display = ("name", "parent", "is_active")
     list_filter = ("name", "parent__name", "is_active")
     search_fields = ("name",)
+    list_editable = ("is_active",)
+    list_per_page = 25
 
 
 @admin.register(Product)
 class ProductAdmin(BaseAdmin):
-    list_display = ("name", "sku_code", "uom", "category", "has_detail")
-    list_filter = ("is_active", "uom", "uom__category__name")
-    search_fields = ("name",)
+    list_display = ("name", "slug", "sku_code", "uom", "category", "has_detail", "is_active")
+    list_filter = ("is_active", "has_detail", "uom", "category")
+    search_fields = (
+        "name",
+        "sku_code",
+    )
     inlines = (ProductDetailInline,)
     list_per_page = 25
+    list_editable = ("is_active",)

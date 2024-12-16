@@ -2,6 +2,7 @@ from random import choice
 
 import factory
 import factory.fuzzy
+from django.utils.text import slugify
 from factory.django import DjangoModelFactory
 
 from apps.country.models import Country
@@ -134,15 +135,19 @@ class ProductBrandFactory(DjangoModelFactory):
 
 
 class ProductFactory(DjangoModelFactory):
-    name = factory.Sequence(lambda n: "Product %04d" % (int(n) + 1))
+    name = factory.Sequence(lambda n: "Product %05d" % (int(n) + 1))
     description = factory.Faker("sentence")
-    sku_code = factory.Faker("bothify", text="SKU-####")
+    sku_code = factory.Sequence(lambda n: f"SKU-{n:06d}")
     uom = factory.LazyFunction(lambda: choice(UoM.objects.all()))
     category = factory.LazyFunction(lambda: choice(ProductCategory.objects.filter(parent__isnull=False)))
     has_detail = factory.LazyFunction(lambda: choice((True, False)))
     brand = factory.LazyFunction(lambda: choice(ProductBrand.objects.all()))
     origin = factory.LazyFunction(lambda: choice(Country.objects.all()))
     html = factory.Faker("paragraph")
+
+    @factory.lazy_attribute
+    def slug(self) -> str:
+        return slugify(self.name)  # type: ignore
 
     class Meta:
         model = Product

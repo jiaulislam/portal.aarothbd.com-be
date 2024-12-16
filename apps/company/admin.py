@@ -34,3 +34,4 @@ class CompanyAdmin(BaseAdmin):
     list_per_page = 10
     readonly_fields = ("created_at", "updated_at", "created_by", "updated_by")
     filter_horizontal = ("allowed_products",)
+    list_editable = ("is_active",)

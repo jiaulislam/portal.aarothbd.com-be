@@ -13,7 +13,7 @@ from core.services import capture_exception_sentry
 
 class Command(BaseCommand):
     help = "Load Demo Products"
-    max_instance = 8000
+    max_instance = 10000
 
     def handle(self, *args, **options):
         try:

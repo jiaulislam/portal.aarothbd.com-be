@@ -21,11 +21,11 @@ class Company(BaseModel):
     company_logo = models.ImageField(upload_to="media/company/logos", null=True, blank=True)
     company_favicon = models.ImageField(upload_to="media/company/favicon", null=True, blank=True)
     addresses = GenericRelation(Address, related_query_name="company_addresses")
+    allowed_products = models.ManyToManyField("product.Product", related_name="companies", blank=True)
 
     notes = models.TextField(null=True, blank=True)
 
     configuration: Type["CompanyConfiguration"]
-    allowed_products = models.ManyToManyField("product.Product", related_name="companies")
 
     class Meta:
         db_table = "company_company"

@@ -9,7 +9,7 @@ from .models import Address
 from .types import AddressValidatedDataType
 
 
-class AddressService(BaseModelService):
+class AddressService(BaseModelService[Address]):
     model_class = Address
 
     def prepare_data(self, validated_data: AddressValidatedDataType, *args, **kwargs):

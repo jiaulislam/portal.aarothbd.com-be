@@ -3,7 +3,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
 from .filters import ActionFilter
-from .serializers import ActionSerializer
+from .serializers import ActionExecuteSerializer, ActionSerializer
 from .services import ActionService
 
 
@@ -18,6 +18,17 @@ class ActionListAPIView(GenericAPIView):
         return filtered_queryset.qs
 
     def get(self, request, *args, **kwargs):
-        instances = self.get_queryset(**kwargs)
-        serialized = self.serializer_class(instance=instances, many=True)
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        data = self.action_service.get_actions_data()
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class ActionExecuteAPIView(GenericAPIView):
+    serializer_class = ActionExecuteSerializer
+    action_service = ActionService()
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)  # type: ignore
+        serializer.is_valid(raise_exception=True)
+        action = serializer.validated_data.get("action_name")
+        self.action_service.call_action(action)
+        return Response({"detail": "action executed successfully !"}, status=status.HTTP_202_ACCEPTED)

@@ -34,3 +34,4 @@ class ProductAdmin(BaseAdmin):
     list_filter = ("is_active", "uom", "uom__category__name")
     search_fields = ("name",)
     inlines = (ProductDetailInline,)
+    list_per_page = 25

@@ -1,4 +1,3 @@
-import string
 from random import choice
 
 import factory
@@ -128,28 +127,20 @@ class ProductCategoryFactory(DjangoModelFactory):
 
 
 class ProductBrandFactory(DjangoModelFactory):
-    name = (
-        factory.fuzzy.FuzzyText(
-            chars=string.ascii_letters,
-            prefix="B-",
-            length=12,
-        )
-        .fuzz()
-        .title()
-    )
+    name = factory.Faker("company")
 
     class Meta:
         model = ProductBrand
 
 
 class ProductFactory(DjangoModelFactory):
-    name = factory.Sequence(lambda n: "Product %08d" % n)
+    name = factory.Sequence(lambda n: "Product %04d" % (int(n) + 1))
     description = factory.Faker("sentence")
     sku_code = factory.Faker("bothify", text="SKU-####")
     uom = factory.LazyFunction(lambda: choice(UoM.objects.all()))
     category = factory.LazyFunction(lambda: choice(ProductCategory.objects.filter(parent__isnull=False)))
     has_detail = factory.LazyFunction(lambda: choice((True, False)))
-    brand = factory.LazyFunction(lambda: choice([ProductBrandFactory(), None]))
+    brand = factory.LazyFunction(lambda: choice(ProductBrand.objects.all()))
     origin = factory.LazyFunction(lambda: choice(Country.objects.all()))
     html = factory.Faker("paragraph")
 

@@ -2,6 +2,7 @@ from django.core.management import BaseCommand
 
 from apps.product.tests.factories import (
     PARENT_CATEGORIS,
+    ProductBrandFactory,
     ProductCategory,
     ProductCategoryFactory,
     ProductDetailFactory,
@@ -24,6 +25,9 @@ class Command(BaseCommand):
 
             # create sub categories
             _ = ProductCategoryFactory.create_batch(size=30)
+
+            # create brands
+            _ = ProductBrandFactory.create_batch(size=100)
 
             # create products
             products = ProductFactory.create_batch(self.max_instance)

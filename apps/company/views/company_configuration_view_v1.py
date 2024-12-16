@@ -18,8 +18,8 @@ class CompanyConfigurationUpdateAPIView(UpdateAPIView):
     def update(self, request, *args, **kwargs):
         company_id = kwargs.get("company_id")
         company = self.company_service.get(id=company_id)
-        serialized = self.serializer_class(data=request.data)
+        serialized = CompanyConfigurationCreateSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
         instance = self.configuration_service.update(company.configuration, serialized.validated_data, request=request)
-        serialized = self.serializer_class(instance=instance)
+        serialized = CompanyConfigurationCreateSerializer(instance=instance)
         return Response(serialized.data, status=status.HTTP_201_CREATED)

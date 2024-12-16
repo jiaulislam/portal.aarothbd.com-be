@@ -1,3 +1,4 @@
+from django.contrib.admin.options import get_content_type_for_model
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
@@ -20,15 +21,21 @@ class CompanyAddressListCreateAPIView(ListCreateAPIView):
         company_id = kwargs.get("company_id")
         company = self.company_service.get(id=company_id)
         addresses = company.addresses.all()
-        serialized = self.serializer_class(addresses, many=True)
+        serialized = self.serializer_class(addresses, many=True)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         company_id = kwargs.get("company_id")
         company = self.company_service.get(id=company_id)
-        serialized = self.serializer_class(data=request.data)
+        serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
-        instance = self.address_service.create_address(serialized.validated_data, company, request=request)
+        content_type = get_content_type_for_model(company)
+        instance = self.address_service.create_address(
+            serialized.validated_data,
+            content_type=content_type,
+            object_id=company.id,  # type: ignore
+            request=request,
+        )
         instance.save()
-        serialized = self.serializer_class(instance=instance)
+        serialized = self.serializer_class(instance=instance)  # type: ignore
         return Response(serialized.data, status=status.HTTP_201_CREATED)

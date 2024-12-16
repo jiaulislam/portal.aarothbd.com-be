@@ -28,7 +28,7 @@ class CompanyFactory(DjangoModelFactory):
 
     @factory.lazy_attribute
     def slug(self):
-        return slugify(self.name)
+        return slugify(self.name)  # type: ignore
 
     class Meta:
         model = Company

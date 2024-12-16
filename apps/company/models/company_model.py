@@ -1,14 +1,8 @@
-from typing import TYPE_CHECKING
-
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from apps.address.models import Address
 from core.models import BaseModel
-
-if TYPE_CHECKING:
-    from django.db.models.manager import ManyToManyRelatedManager
-
 
 __all__ = ["Company"]
 
@@ -25,7 +19,7 @@ class Company(BaseModel):
 
     notes = models.TextField(null=True, blank=True)
 
-    allowed_products: "ManyToManyRelatedManager"
+    allowed_products = models.ManyToManyField("product.Product", related_name="companies")
 
     class Meta:
         db_table = "company_company"

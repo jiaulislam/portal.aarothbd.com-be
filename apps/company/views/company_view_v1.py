@@ -61,7 +61,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
 
         # assign products
         if allowed_products:
-            company_instance.allowed_products.add(allowed_products)
+            company_instance.allowed_products.set(allowed_products)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
@@ -94,10 +94,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
         # update products
         if allowed_products:
-            old_products = company_instance.allowed_products
-            for product in allowed_products:
-                if not old_products.filter(id=product.id).exists():
-                    company_instance.allowed_products.add(product)
+            company_instance.allowed_products.set(allowed_products)
 
         response_data = {"detail": "Company Updated successfully."}
         return Response(response_data, status=status.HTTP_200_OK)

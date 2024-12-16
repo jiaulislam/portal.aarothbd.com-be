@@ -7,5 +7,5 @@ class UomCategoryService(BaseModelService):
     model_class = UoMCategory
 
 
-class UomService(BaseModelService):
+class UomService(BaseModelService[UoM]):
     model_class = UoM

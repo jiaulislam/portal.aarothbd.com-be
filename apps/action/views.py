@@ -11,8 +11,6 @@ class ActionListAPIView(GenericAPIView):
     serializer_class = ActionSerializer
     filterset_class = ActionFilter
     action_service = ActionService()
-    authentication_classes = []
-    permission_classes = []
 
     def get_queryset(self, **kwargs):
         queryset = self.action_service.all(**kwargs)

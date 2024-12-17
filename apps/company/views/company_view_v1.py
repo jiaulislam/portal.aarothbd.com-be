@@ -2,6 +2,7 @@ from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -24,6 +25,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
     serializer_class = CompanyCreateSerializer
     filterset_class = CompanyFilter
     pagination_class = ExtendedLimitOffsetPagination
+    permission_classes = [DjangoModelPermissions]
 
     company_service = CompanyService()
     address_service = AddressService()
@@ -69,6 +71,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     serializer_class = CompanyUpdateSerializer
     detail_serializer_class = CompanyDetailSerializer
+    permission_classes = [DjangoModelPermissions]
 
     company_service = CompanyService()
     company_configuration_service = CompanyConfigurationService()
@@ -103,6 +106,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 class CompanyUpdateStatusAPIView(UpdateAPIView):
     http_method_names = ["patch"]
     serializer_class = CompanyUpdateStatusSerializer
+    permission_classes = [DjangoModelPermissions]
 
     company_service = CompanyService()
 

@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.generics import UpdateAPIView
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
@@ -9,6 +10,7 @@ from ..services import CompanyConfigurationService, CompanyService
 class CompanyConfigurationUpdateAPIView(UpdateAPIView):
     http_method_names = ["put"]
     serializer_class = CompanyConfigurationCreateSerializer
+    permission_classes = [DjangoModelPermissions]
     configuration_service = CompanyConfigurationService()
     company_service = CompanyService()
 

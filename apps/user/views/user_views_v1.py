@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, UpdateAPIView
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.request import Request
 from rest_framework.response import Response
 
@@ -24,6 +25,7 @@ class UserListCreateAPIView(ListCreateAPIView):
     serializer_class = UserSerializer
     filterset_class = UserFilterSet
     pagination_class = ExtendedLimitOffsetPagination
+    permission_classes = [DjangoModelPermissions]
 
     user_service = UserService()
 
@@ -51,6 +53,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     serializer_class = UserSerializer
     detail_serializer_class = UserDetailSerializer
+    permission_classes = [DjangoModelPermissions]
     user_service = UserService()
 
     def retrieve(self, request: Request, **kwargs) -> Response:
@@ -77,6 +80,7 @@ class UserUpdateStatusAPIView(UpdateAPIView):
     http_method_names = ["patch"]
     user_service = UserService()
     serializer_class = UserUpdateStatusSerializer
+    permission_classes = [DjangoModelPermissions]
 
     def partial_update(self, request: Request, **kwargs):
         _user_id = kwargs.get("id")

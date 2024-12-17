@@ -1,6 +1,7 @@
 from django.contrib.admin.options import get_content_type_for_model
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 
 from apps.address.serializers import AddressSerializer
@@ -11,6 +12,7 @@ from ..services import CompanyService
 
 class CompanyAddressListCreateAPIView(ListCreateAPIView):
     serializer_class = AddressSerializer
+    permission_classes = [DjangoModelPermissions]
     address_service = AddressService()
     company_service = CompanyService()
 

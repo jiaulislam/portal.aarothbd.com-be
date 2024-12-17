@@ -2,6 +2,8 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
+from core.permissions import IsSuperAdmin
+
 from .filters import ActionFilter
 from .serializers import ActionExecuteSerializer, ActionSerializer
 from .services import ActionService
@@ -10,6 +12,7 @@ from .services import ActionService
 class ActionListAPIView(GenericAPIView):
     serializer_class = ActionSerializer
     filterset_class = ActionFilter
+    permission_classes = [IsSuperAdmin]
     action_service = ActionService()
 
     def get_queryset(self, **kwargs):
@@ -24,6 +27,7 @@ class ActionListAPIView(GenericAPIView):
 
 class ActionExecuteAPIView(GenericAPIView):
     serializer_class = ActionExecuteSerializer
+    permission_classes = [IsSuperAdmin]
     action_service = ActionService()
 
     def post(self, request, *args, **kwargs):

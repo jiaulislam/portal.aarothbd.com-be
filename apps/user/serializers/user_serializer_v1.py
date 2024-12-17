@@ -52,7 +52,17 @@ class UserSerializer(s.ModelSerializer[User]):
         read_only_fields = ("is_active",)
 
 
+class UserUpdateSerializer(s.ModelSerializer[User]):
+    profile = UserProfileSerializer(write_only=True)
+
+    class Meta:
+        model = get_user_model()
+        fields = ["first_name", "last_name", "profile"]
+
+
 class UserDetailSerializer(s.ModelSerializer):
+    profile = UserProfileSerializer(read_only=True)
+
     class Meta:
         model = get_user_model()
         exclude = [

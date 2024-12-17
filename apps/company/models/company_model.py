@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Type
+from typing import TYPE_CHECKING
 
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
@@ -25,7 +25,7 @@ class Company(BaseModel):
 
     notes = models.TextField(null=True, blank=True)
 
-    configuration: Type["CompanyConfiguration"]
+    configuration: "CompanyConfiguration"
 
     class Meta:
         db_table = "company_company"

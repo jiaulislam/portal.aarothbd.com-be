@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Literal
+from typing import Any, Literal, MutableMapping
 
 from django.contrib.auth import get_user_model
 
@@ -15,7 +15,13 @@ UserType = User
 UserCategory = Literal["central_admin"] | Literal["customer"] | Literal["wholeseller"]
 
 
-class UserValidatedDataType(BaseSerializerValidatedDataType):
+class ProfileValidatedDataType(BaseSerializerValidatedDataType):
+    bin: str
+    tin: str
+    phone: str
+
+
+class UserValidatedDataType(BaseSerializerValidatedDataType, total=False):
     email: str
     first_name: str | None
     last_name: str | None
@@ -25,3 +31,4 @@ class UserValidatedDataType(BaseSerializerValidatedDataType):
     password: str
     last_login: datetime | None
     company: CompanyValidatedDataType | None
+    profile: MutableMapping[str, Any]

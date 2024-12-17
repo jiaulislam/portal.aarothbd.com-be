@@ -10,9 +10,10 @@ from .core_service import CoreService
 
 
 class BaseModelService(Generic[_T]):
-    model_class: Type[_T] = None  # type: ignore
+    model_class: Type[_T]
 
     def __init__(self) -> None:
+        assert self.model_class is not None, "model_class must need to be set"
         self.core_service = CoreService()
 
     def prepare_data(self, validated_data: BaseSerializerValidatedDataType, *args, **kwargs):

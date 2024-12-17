@@ -34,6 +34,8 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["password"]
 
+    profile: "UserProfile"
+
     class Meta:
         db_table = "user_user"
         verbose_name = "user"

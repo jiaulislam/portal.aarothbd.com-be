@@ -5,5 +5,5 @@ from ..models import CompanyConfiguration
 __all__ = ["CompanyConfigurationService"]
 
 
-class CompanyConfigurationService(BaseModelService):
+class CompanyConfigurationService(BaseModelService[CompanyConfiguration]):
     model_class = CompanyConfiguration

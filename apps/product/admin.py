@@ -1,4 +1,5 @@
 from django.contrib import admin
+from unfold.admin import TabularInline
 
 from core.admin import BaseAdmin
 from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
@@ -8,7 +9,7 @@ from .models.product_category_model import ProductCategory
 from .models.product_model import Product, ProductDetail
 
 
-class ProductDetailInline(admin.TabularInline):
+class ProductDetailInline(TabularInline):
     model = ProductDetail
     extra = 0
     exclude = COMMON_EXCLUDE_FIELDS

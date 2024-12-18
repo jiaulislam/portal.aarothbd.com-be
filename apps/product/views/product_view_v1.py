@@ -53,7 +53,7 @@ class ProductListCreateAPIView(ListCreateAPIView):
 
 class ProductRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["put", "get"]
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     product_service = ProductService()
     brand_service = ProductBrandService()
     lookup_field = "slug"

@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers as s
 
 from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
@@ -13,6 +14,7 @@ class ProductCategorySerializer(s.ModelSerializer):
     )  # type: ignore
     sub_categories = s.SerializerMethodField()
 
+    @extend_schema_field(s.ListField(child=s.DictField()))
     def get_sub_categories(self, object: ProductCategory):
         childs = object.child_product_categories.select_related("parent").all()
         return self.__class__(instance=childs, many=True).data

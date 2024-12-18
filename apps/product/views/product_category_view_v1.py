@@ -61,7 +61,7 @@ class ProductCategoryUpdateStatusAPIView(UpdateAPIView):
     category_service = ProductCategoryService()
 
     def get_queryset(self) -> QuerySet["ProductCategory"]:
-        return self.category_service.get_parent_categories()
+        return self.category_service.all()
 
     def partial_update(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         serializer = ProductCategoryUpdateStatusSerializer(data=request.data)

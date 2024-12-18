@@ -10,6 +10,8 @@ class ProductCategory(BaseModel):
     )
     category_image = models.ImageField(upload_to="product_category", null=True, blank=True)
 
+    child_product_categories: models.QuerySet["ProductCategory"]
+
     class Meta:
         db_table = "product_product_category"
         verbose_name = "Product Category"

@@ -9,10 +9,6 @@ from ..views.product_category_view_v1 import (
 from ..views.product_view_v1 import ProductListCreateAPIView, ProductRetrieveUpdateAPIView, ProductUpdateStatusAPIView
 
 urlpatterns = [
-    path(r"products/", ProductListCreateAPIView.as_view(), name="product-list-create"),
-    path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
-    path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
-    path(r"products/brands/", ProductBrandListCreateAPIView.as_view(), name="product-brands-list-create"),
     path(r"products/categories/", ProductCategoryListCreateAPIView.as_view(), name="product-category-list-create"),
     path(
         r"products/categories/<int:id>/",
@@ -24,4 +20,8 @@ urlpatterns = [
         ProductCategoryUpdateStatusAPIView.as_view(),
         name="product-category-udpate-status",
     ),
+    path(r"products/", ProductListCreateAPIView.as_view(), name="product-list-create"),
+    path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
+    path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
+    path(r"products/brands/", ProductBrandListCreateAPIView.as_view(), name="product-brands-list-create"),
 ]

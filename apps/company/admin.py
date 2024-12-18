@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericStackedInline
+from unfold.contrib.inlines.admin import NonrelatedTabularInline
 
 from apps.address.models import Address
 from core.admin import BaseAdmin
@@ -16,7 +17,7 @@ class CompanySettingsInline(admin.TabularInline):
     verbose_name = "Company Settings"
 
 
-class AddressInline(GenericStackedInline):
+class AddressInline(GenericStackedInline, NonrelatedTabularInline):
     extra = 0
     model = Address
     fk_name = "addresses"

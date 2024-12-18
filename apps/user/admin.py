@@ -1,5 +1,7 @@
 from django.contrib import admin
+from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import Group
 from django.forms import ModelForm
 from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
@@ -7,6 +9,13 @@ from unfold.admin import ModelAdmin, StackedInline
 
 from .constants import UserTypeChoices
 from .models import User, UserProfile
+
+admin.site.unregister(Group)
+
+
+@admin.register(Group)
+class GroupAdmin(BaseGroupAdmin, ModelAdmin):
+    pass
 
 
 class UserTypeListFilter(admin.SimpleListFilter):

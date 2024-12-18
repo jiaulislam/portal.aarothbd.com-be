@@ -32,6 +32,7 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "debug_toolbar",
     "drf_standardized_errors",
+    "auditlog",
 ]
 
 CUSTOM_APPS = [
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "core.middlewares.AuditlogMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -183,4 +185,5 @@ from core.settings.plugins.logging import *  # noqa: E402, F403, I001
 from core.settings.plugins.cors import *  # noqa: E402, F403, I001
 from core.settings.plugins.drf import *  # noqa: E402, F403, I001
 from core.settings.plugins.jwt import *  # noqa: E402, F403, I001
+from core.settings.plugins.auditlog import *  # noqa: E402, F403, I001
 from core.settings.plugins.drf_spectacular import *  # noqa: E402, F403, I001

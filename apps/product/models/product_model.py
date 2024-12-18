@@ -28,6 +28,7 @@ class Product(BaseModel):
 
     attributes = models.JSONField(null=True, blank=True, help_text="Any other attributes")
     html = models.TextField(null=True, blank=True, help_text="HTML")
+    details: models.QuerySet["ProductDetail"]
 
     default_image_1 = models.ImageField(null=True, blank=True, upload_to="products/")
     default_image_2 = models.ImageField(null=True, blank=True, upload_to="products/")

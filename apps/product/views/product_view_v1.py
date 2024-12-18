@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Type
+from typing import TYPE_CHECKING, Any, MutableMapping, Type
 
 from django.db import transaction
 from django.db.models.query import QuerySet
@@ -14,7 +14,7 @@ from core.pagination import ExtendedLimitOffsetPagination
 from ..filters import ProductFilter
 from ..serializers.product_serializer import (
     ProductCreateSerializer,
-    ProductSerializer,
+    ProductExtendedSerializer,
     ProductUpdateSerializer,
     ProductUpdateStatusSerializer,
 )
@@ -28,7 +28,7 @@ class ProductListCreateAPIView(ListCreateAPIView):
     serializer_class = ProductCreateSerializer
     permission_classes = [IsAuthenticated]
     product_service = ProductService()
-    # brand_service = ProductBrandService()
+    brand_service = ProductBrandService()
     pagination_class = ExtendedLimitOffsetPagination
     filterset_class = ProductFilter
 
@@ -37,18 +37,23 @@ class ProductListCreateAPIView(ListCreateAPIView):
 
     @transaction.atomic
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serialized = self.serializer_class(data=request.data)  # type: ignore
-        serialized.is_valid(raise_exception=True)
+        serializer = self.serializer_class(data=request.data)  # type: ignore
+        serializer.is_valid(raise_exception=True)
 
-        # brand: MutableMapping[str, Any] = serialized.validated_data.pop("brand", {})
-        # if brand:
-        #     _brand, _ = self.brand_service.get_or_create(brand, request=request)
-        #     serialized.validated_data["brand"] = _brand
+        brand: MutableMapping[str, Any] = serializer.validated_data.pop("brand", {})
+        details = serializer.validated_data.pop("details", [])
+        # handle brand
+        _brand, _ = self.brand_service.get_or_create(brand, request=request)
+        serializer.validated_data["brand"] = _brand
 
-        instance = self.product_service.create(serialized.validated_data, request=request)
-        serialized = self.serializer_class(instance=instance)  # type: ignore
+        instance = self.product_service.create(serializer.validated_data, request=request)
 
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        # handle detail
+        self.product_service.update_product_details(instance, details, request=request)
+
+        serializer = self.serializer_class(instance=instance)  # type: ignore
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProductRetrieveUpdateAPIView(RetrieveUpdateAPIView):
@@ -64,14 +69,25 @@ class ProductRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def get_serializer_class(self) -> Type[ModelSerializer["Product"]]:
         if self.request.method == "PUT":
             return ProductUpdateSerializer
-        return ProductSerializer
+        return ProductExtendedSerializer
 
+    @transaction.atomic
     def update(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         serializer = ProductUpdateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        brand: MutableMapping[str, Any] = serializer.validated_data.pop("brand", {})
+        details = serializer.validated_data.pop("details", [])
+        # handle brand
+        _brand, _ = self.brand_service.get_or_create(brand, request=request)
+        serializer.validated_data["brand"] = _brand
+
         instance = self.product_service.get(**kwargs)
         instance = self.product_service.update(instance, serializer.validated_data, request=request)
-        serializer = ProductSerializer(instance)
+
+        # handle detail
+        self.product_service.update_product_details(instance, details, request=request)
+
+        serializer = ProductExtendedSerializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

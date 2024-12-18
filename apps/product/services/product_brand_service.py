@@ -11,9 +11,12 @@ class ProductBrandService(BaseModelService[ProductBrand]):
     model_class = ProductBrand
 
     def get_or_create(self, brand: MutableMapping[str, Any], **kwargs):
+        created = False
         user = self.core_service.get_user(kwargs.get("request"))
-        instance, created = self.model_class.objects.get_or_create(defaults={"name": brand.get("name")})
-        if created:
+        instance = self.model_class.objects.filter(name=brand.get("name")).first()
+        if not instance:
+            instance = self.model_class.objects.create(**brand)
             instance.created_by = user  # type: ignore
+            created = True
             instance.save()
         return instance, created

@@ -9,10 +9,19 @@ from ..serializers.product_brand_serializer import ProductBrandSerializer
 class ProductDetailSerializer(s.ModelSerializer):
     class Meta:
         model = ProductDetail
-        exclude = COMMON_EXCLUDE_FIELDS + ("product",)
+        exclude = COMMON_EXCLUDE_FIELDS + ("product", "id")
 
 
 class ProductSerializer(s.ModelSerializer):
+    details = ProductDetailSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Product
+        exclude = COMMON_EXCLUDE_FIELDS
+
+
+class ProductExtendedSerializer(s.ModelSerializer):
+    brand = ProductBrandSerializer(read_only=True)
     details = ProductDetailSerializer(read_only=True, many=True)
 
     class Meta:
@@ -36,6 +45,7 @@ class ProductUpdateSerializer(s.ModelSerializer):
     class Meta:
         model = Product
         exclude = COMMON_EXCLUDE_FIELDS
+        read_only_fields = ("slug", "id", "sku_code")
 
 
 class ProductUpdateStatusSerializer(s.ModelSerializer):

@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.forms import ModelForm
 from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
+from unfold.admin import ModelAdmin, StackedInline
 
 from .constants import UserTypeChoices
 from .models import User, UserProfile
@@ -20,7 +21,7 @@ class UserTypeListFilter(admin.SimpleListFilter):
         return queryset.filter(user_type=self.value()) if self.value() else queryset
 
 
-class ProfileInline(admin.StackedInline):
+class ProfileInline(StackedInline):
     model = UserProfile
     can_delete = False
     show_change_link = True
@@ -32,7 +33,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 @admin.register(User)
-class UserAdmin(BaseUserAdmin):
+class UserAdmin(BaseUserAdmin, ModelAdmin):
     list_display = (
         "email",
         "date_joined",
@@ -82,4 +83,4 @@ class UserAdmin(BaseUserAdmin):
             obj.updated_by = request.user  # type: ignore
         else:
             obj.created_by = request.user  # type: ignore
-        return super().save_model(request, obj, form, change)
+        return super().save_model(request, obj, form, change)  # type: ignore

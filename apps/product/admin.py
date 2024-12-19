@@ -13,6 +13,13 @@ class ProductDetailInline(TabularInline, InlineHelperAdmin):
     model = ProductDetail
     extra = 0
     exclude = AUDIT_COLUMNS
+    max_num = 1
+    show_change_link = True
+
+
+@admin.register(ProductDetail)
+class ProductDetailAdmin(BaseAdmin):
+    pass
 
 
 @admin.register(ProductBrand)

@@ -28,7 +28,6 @@ class ProductBrandAdmin(BaseAdmin):
     list_filter = ("is_active",)
     search_fields = ("name",)
     list_editable = ("is_active",)
-    list_per_page = 25
     readonly_fields = AUDIT_COLUMNS
 
 
@@ -38,7 +37,6 @@ class ProductCategoryAdmin(BaseAdmin):
     list_filter = ("name", "parent__name", "is_active")
     search_fields = ("name",)
     list_editable = ("is_active",)
-    list_per_page = 25
     readonly_fields = AUDIT_COLUMNS
 
 
@@ -51,6 +49,5 @@ class ProductAdmin(BaseAdmin):
         "sku_code",
     )
     inlines = (ProductDetailInline,)
-    list_per_page = 25
     list_editable = ("is_active",)
     readonly_fields = AUDIT_COLUMNS

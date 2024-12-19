@@ -90,6 +90,7 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
         "user_permissions",
     )
     readonly_fields = AUDIT_COLUMNS
+    list_per_page = 10
 
     def save_model(self, request: HttpRequest, obj: User, form: ModelForm, change: bool) -> None:
         if change:

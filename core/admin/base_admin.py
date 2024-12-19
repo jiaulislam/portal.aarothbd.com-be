@@ -20,6 +20,7 @@ class InlineHelperAdmin(InlineModelAdmin):
 
 
 class BaseAdmin(ModelAdmin):
+    list_per_page = 10
     formfield_overrides = {
         models.TextField: {
             "widget": WysiwygWidget,

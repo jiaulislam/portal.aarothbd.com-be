@@ -53,4 +53,4 @@ class ProductDetail(BaseModel):
     attributes = models.JSONField(blank=True, help_text="Any other attributes", default=dict)
 
     def __str__(self) -> str:
-        return self.size_name
+        return f"{self.product.name} - Size({self.size_name})"

@@ -33,7 +33,6 @@ class CompanyAdmin(BaseAdmin):
     search_fields = ("name", "slug", "tin_number", "bin_number")
     list_filter = ("is_active",)
     inlines = (CompanySettingsInline, AddressInline)
-    list_per_page = 10
     readonly_fields = AUDIT_COLUMNS
     filter_horizontal = ("allowed_products",)
     list_editable = ("is_active",)

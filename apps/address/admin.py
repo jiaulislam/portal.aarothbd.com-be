@@ -17,5 +17,4 @@ class AddressAdmin(BaseAdmin):
         "country",
         "is_active",
     )
-    list_per_page = 25
     readonly_fields = AUDIT_COLUMNS

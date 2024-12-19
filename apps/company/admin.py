@@ -3,27 +3,28 @@ from django.contrib.contenttypes.admin import GenericStackedInline
 from unfold.contrib.inlines.admin import NonrelatedTabularInline
 
 from apps.address.models import Address
-from core.admin import BaseAdmin
+from core.admin import BaseAdmin, InlineHelperAdmin
+from core.constants import AUDIT_COLUMNS
 
 from .models import Company, CompanyConfiguration
 
 
-class CompanySettingsInline(admin.TabularInline):
+class CompanySettingsInline(admin.TabularInline, InlineHelperAdmin):
     model = CompanyConfiguration
-    exclude = ("created_by", "updated_by")
+    exclude = AUDIT_COLUMNS
     can_delete = False
     show_change_link = True
     verbose_name_plural = "Company Settings"
     verbose_name = "Company Settings"
 
 
-class AddressInline(GenericStackedInline, NonrelatedTabularInline):
+class AddressInline(GenericStackedInline, NonrelatedTabularInline, InlineHelperAdmin):
     extra = 0
     model = Address
     fk_name = "addresses"
     ct_field = "content_type"
     ct_fk_field = "object_id"
-    exclude = ("created_by", "updated_by")
+    exclude = AUDIT_COLUMNS
 
 
 @admin.register(Company)
@@ -33,6 +34,6 @@ class CompanyAdmin(BaseAdmin):
     list_filter = ("is_active",)
     inlines = (CompanySettingsInline, AddressInline)
     list_per_page = 10
-    readonly_fields = ("created_at", "updated_at", "created_by", "updated_by")
+    readonly_fields = AUDIT_COLUMNS
     filter_horizontal = ("allowed_products",)
     list_editable = ("is_active",)

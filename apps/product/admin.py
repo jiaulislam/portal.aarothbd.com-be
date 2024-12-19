@@ -1,18 +1,18 @@
 from django.contrib import admin
 from unfold.admin import TabularInline
 
-from core.admin import BaseAdmin
-from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
+from core.admin import BaseAdmin, InlineHelperAdmin
+from core.constants import AUDIT_COLUMNS
 
 from .models.product_brand_model import ProductBrand
 from .models.product_category_model import ProductCategory
 from .models.product_model import Product, ProductDetail
 
 
-class ProductDetailInline(TabularInline):
+class ProductDetailInline(TabularInline, InlineHelperAdmin):
     model = ProductDetail
     extra = 0
-    exclude = COMMON_EXCLUDE_FIELDS
+    exclude = AUDIT_COLUMNS
 
 
 @admin.register(ProductBrand)
@@ -22,6 +22,7 @@ class ProductBrandAdmin(BaseAdmin):
     search_fields = ("name",)
     list_editable = ("is_active",)
     list_per_page = 25
+    readonly_fields = AUDIT_COLUMNS
 
 
 @admin.register(ProductCategory)
@@ -31,6 +32,7 @@ class ProductCategoryAdmin(BaseAdmin):
     search_fields = ("name",)
     list_editable = ("is_active",)
     list_per_page = 25
+    readonly_fields = AUDIT_COLUMNS
 
 
 @admin.register(Product)
@@ -44,3 +46,4 @@ class ProductAdmin(BaseAdmin):
     inlines = (ProductDetailInline,)
     list_per_page = 25
     list_editable = ("is_active",)
+    readonly_fields = AUDIT_COLUMNS

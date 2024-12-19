@@ -26,7 +26,7 @@ class Product(BaseModel):
         "country.Country", on_delete=models.PROTECT, related_name="country_products", null=True, blank=True
     )
 
-    attributes = models.JSONField(null=True, blank=True, help_text="Any other attributes")
+    attributes = models.JSONField(blank=True, help_text="Any other attributes", default=dict)
     html = models.TextField(null=True, blank=True, help_text="HTML")
     details: models.QuerySet["ProductDetail"]
 
@@ -50,7 +50,7 @@ class ProductDetail(BaseModel):
     product = models.ForeignKey("product.Product", on_delete=models.PROTECT, related_name="details")
     size_name = models.CharField(max_length=100)
     size_description = models.TextField(null=True, blank=True)
-    attributes = models.JSONField(null=True, blank=True, help_text="Any other attributes")
+    attributes = models.JSONField(blank=True, help_text="Any other attributes", default=dict)
 
     def __str__(self) -> str:
         return self.size_name

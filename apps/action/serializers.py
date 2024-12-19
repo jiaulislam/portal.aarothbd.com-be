@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
+from core.constants import COMMON_EXCLUDE_FIELDS
 
 from .models import Action
 

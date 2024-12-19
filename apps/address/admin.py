@@ -2,6 +2,7 @@
 from django.contrib import admin
 
 from core.admin import BaseAdmin
+from core.constants import AUDIT_COLUMNS
 
 from .models import Address
 
@@ -17,3 +18,4 @@ class AddressAdmin(BaseAdmin):
         "is_active",
     )
     list_per_page = 25
+    readonly_fields = AUDIT_COLUMNS

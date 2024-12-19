@@ -1,7 +1,7 @@
 from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers as s
 
-from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
+from core.constants import AUDIT_COLUMNS
 
 from ..models.product_category_model import ProductCategory
 
@@ -21,7 +21,7 @@ class ProductCategorySerializer(s.ModelSerializer):
 
     class Meta:
         model = ProductCategory
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS
         read_only_fields = ["is_active", "id"]
 
 

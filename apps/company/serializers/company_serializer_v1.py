@@ -4,7 +4,7 @@ from rest_framework.exceptions import ValidationError
 from apps.address.serializers import AddressCreateSerializer, AddressSerializer
 from apps.product.models.product_model import Product
 from apps.product.serializers.product_serializer import ProductSerializer
-from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
+from core.constants import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
 
 from ..models import Company
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer

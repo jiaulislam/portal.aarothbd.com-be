@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from core.admin import BaseAdmin
+from core.constants import AUDIT_COLUMNS
 
 from .models import District
 
@@ -11,3 +12,4 @@ class DistrictAdmin(BaseAdmin):
     list_filter = ("is_active", "division__name")
     search_fields = ("name", "bn_name")
     list_per_page = 25
+    readonly_fields = AUDIT_COLUMNS

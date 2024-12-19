@@ -1,6 +1,6 @@
 from rest_framework import serializers as s
 
-from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
+from core.constants import AUDIT_COLUMNS
 
 from .models import UoM, UoMCategory
 
@@ -8,10 +8,10 @@ from .models import UoM, UoMCategory
 class UoMCategorySerializer(s.ModelSerializer):
     class Meta:
         model = UoMCategory
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS
 
 
 class UoMSerializer(s.ModelSerializer):
     class Meta:
         model = UoM
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS

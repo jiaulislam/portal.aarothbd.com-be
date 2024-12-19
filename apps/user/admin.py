@@ -7,6 +7,9 @@ from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin, StackedInline
 
+from core.admin import InlineHelperAdmin
+from core.constants import AUDIT_COLUMNS
+
 from .constants import UserTypeChoices
 from .models import User, UserProfile
 
@@ -30,14 +33,14 @@ class UserTypeListFilter(admin.SimpleListFilter):
         return queryset.filter(user_type=self.value()) if self.value() else queryset
 
 
-class ProfileInline(StackedInline):
+class ProfileInline(StackedInline, InlineHelperAdmin):
     model = UserProfile
     can_delete = False
     show_change_link = True
 
 
 @admin.register(UserProfile)
-class ProfileAdmin(admin.ModelAdmin):
+class ProfileAdmin(ModelAdmin):
     list_display = ["user", "phone"]
 
 
@@ -86,6 +89,7 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
         "groups",
         "user_permissions",
     )
+    readonly_fields = AUDIT_COLUMNS
 
     def save_model(self, request: HttpRequest, obj: User, form: ModelForm, change: bool) -> None:
         if change:

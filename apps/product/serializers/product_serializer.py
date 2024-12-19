@@ -1,6 +1,6 @@
 from rest_framework import serializers as s
 
-from core.constants.serializer_constant import COMMON_EXCLUDE_FIELDS
+from core.constants import AUDIT_COLUMNS
 
 from ..models.product_model import Product, ProductDetail
 from ..serializers.product_brand_serializer import ProductBrandSerializer
@@ -9,7 +9,7 @@ from ..serializers.product_brand_serializer import ProductBrandSerializer
 class ProductDetailSerializer(s.ModelSerializer):
     class Meta:
         model = ProductDetail
-        exclude = COMMON_EXCLUDE_FIELDS + ("product", "id")
+        exclude = AUDIT_COLUMNS + ("product", "id")
 
 
 class ProductSerializer(s.ModelSerializer):
@@ -17,7 +17,7 @@ class ProductSerializer(s.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS
 
 
 class ProductExtendedSerializer(s.ModelSerializer):
@@ -26,7 +26,7 @@ class ProductExtendedSerializer(s.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS
 
 
 class ProductCreateSerializer(s.ModelSerializer):
@@ -35,7 +35,7 @@ class ProductCreateSerializer(s.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS
 
 
 class ProductUpdateSerializer(s.ModelSerializer):
@@ -44,7 +44,7 @@ class ProductUpdateSerializer(s.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = COMMON_EXCLUDE_FIELDS
+        exclude = AUDIT_COLUMNS
         read_only_fields = ("slug", "id", "sku_code")
 
 

@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
@@ -19,6 +21,9 @@ from ..serializers.company_serializer_v1 import (
     CompanyUpdateStatusSerializer,
 )
 from ..services import CompanyConfigurationService, CompanyService
+
+if TYPE_CHECKING:
+    from apps.company.models import Company
 
 
 class CompanyListCreateAPIView(ListCreateAPIView):
@@ -109,6 +114,9 @@ class CompanyUpdateStatusAPIView(UpdateAPIView):
     permission_classes = [DjangoModelPermissions]
 
     company_service = CompanyService()
+
+    def get_queryset(self) -> QuerySet["Company"]:
+        return self.company_service.all()
 
     def partial_update(self, request: Request, *args, **kwargs):
         serialized = self.serializer_class(data=request.data)  # type: ignore

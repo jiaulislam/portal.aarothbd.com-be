@@ -81,6 +81,9 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     company_service = CompanyService()
     company_configuration_service = CompanyConfigurationService()
 
+    def get_queryset(self) -> QuerySet["Company"]:
+        return self.company_service.all().select_related("configuration")
+
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
         _company_id = kwargs.get("id")
         queryset = self.company_service.get(id=_company_id, select_related=["configuration"])

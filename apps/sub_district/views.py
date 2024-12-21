@@ -1,4 +1,3 @@
-from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
@@ -27,4 +26,4 @@ class SubDistrictListAPIView(ListAPIView):
         page = self.pagination_class()
         paginated_queryset = page.paginate_queryset(queryset, request)
         serialized = self.serializer_class(instance=paginated_queryset, many=True)
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        return page.get_paginated_response(serialized.data)

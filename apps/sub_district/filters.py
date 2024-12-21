@@ -8,7 +8,7 @@ from .models import SubDistrict
 class SubDistrictFilter(BaseFilter):
     order_by = OrderingFilter(
         fields=(("name", "name"),),
-        field_kwargs={
+        field_labels={
             "name": "Name",
         },
     )

@@ -29,7 +29,7 @@ class AddressService(BaseModelService[Address]):
         addresses = []
         content_type = get_content_type_for_model(company)
         for company_data in validated_data_list:
-            object_id = company_data.get("id", None)
+            object_id = company.id  # type: ignore
             address = self.create_address(company_data, content_type=content_type, object_id=object_id, **kwargs)
             addresses.append(address)
         return Address.objects.bulk_create(addresses)

@@ -1,4 +1,4 @@
-from django_filters import OrderingFilter
+from django_filters import OrderingFilter, filters
 
 from core.filter import BaseFilter
 
@@ -6,6 +6,8 @@ from .models import SubDistrict
 
 
 class SubDistrictFilter(BaseFilter):
+    name = filters.CharFilter(field_name="name", lookup_expr="icontains")
+
     order_by = OrderingFilter(
         fields=(("name", "name"),),
         field_labels={

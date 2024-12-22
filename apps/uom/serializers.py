@@ -12,6 +12,14 @@ class UoMCategorySerializer(s.ModelSerializer):
 
 
 class UoMSerializer(s.ModelSerializer):
+    category = UoMCategorySerializer(read_only=True)
+
+    class Meta:
+        model = UoM
+        exclude = AUDIT_COLUMNS
+
+
+class UoMCreateSerializer(s.ModelSerializer):
     class Meta:
         model = UoM
         exclude = AUDIT_COLUMNS

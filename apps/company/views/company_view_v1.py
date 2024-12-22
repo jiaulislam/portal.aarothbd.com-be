@@ -66,9 +66,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         self.address_service.create_company_addresses(address_data, company_instance, request=request)
         serialized = self.serializer_class(instance=company_instance)  # type: ignore
 
-        # assign products
-        if allowed_products:
-            company_instance.allowed_products.set(allowed_products)
+        company_instance.allowed_products.set(allowed_products)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
@@ -103,9 +101,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             request=request,
         )
 
-        # update products
-        if allowed_products:
-            company_instance.allowed_products.set(allowed_products)
+        company_instance.allowed_products.set(allowed_products)
 
         response_data = {"detail": "Company Updated successfully."}
         return Response(response_data, status=status.HTTP_200_OK)

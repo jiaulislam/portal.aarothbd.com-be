@@ -6,6 +6,7 @@ from rest_framework.generics import ListCreateAPIView
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 
+from core.pagination import ExtendedLimitOffsetPagination
 from core.request import Request
 
 from ..serializers.product_brand_serializer import ProductBrandSerializer
@@ -19,6 +20,7 @@ class ProductBrandListCreateAPIView(ListCreateAPIView):
     serializer_class = ProductBrandSerializer
     permission_classes = [DjangoModelPermissions]
     brand_service = ProductBrandService()
+    pagination_class = ExtendedLimitOffsetPagination
 
     def get_queryset(self) -> QuerySet["ProductBrand"]:
         return self.brand_service.all()

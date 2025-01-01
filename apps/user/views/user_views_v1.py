@@ -44,7 +44,9 @@ class UserListCreateAPIView(ListCreateAPIView):
     def create(self, request: Request, *args, **kwargs) -> Response:
         serialized = UserSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
+        groups = serialized.validated_data.pop("groups", [])
         instance = self.user_service.create(serialized.validated_data, request=request)
+        instance.groups.set(groups)
         serialized = UserSerializer(instance=instance)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
@@ -70,8 +72,10 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def update(self, request: Request, **kwargs) -> Response:
         serialized = UserUpdateSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
+        groups = serialized.validated_data.pop("groups", [])
         instance = self.user_service.get(**kwargs, is_superuser=False)
         instance = self.user_service.update(instance, serialized.validated_data, request=request)
+        instance.groups.set(groups)
         serialized = UserSerializer(instance=instance)
         return Response(serialized.data, status=status.HTTP_200_OK)
 

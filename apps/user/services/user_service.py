@@ -50,6 +50,7 @@ class UserService(BaseModelService[UserType]):
         user.profile.save()
 
     def update(self, instance: UserType, validated_data: UserValidatedDataType, **kwargs) -> UserType:
-        profile_data = validated_data.pop("profile")
-        self.update_user_profile(instance, profile_data)
+        profile_data = validated_data.pop("profile", {})
+        if profile_data:
+            self.update_user_profile(instance, profile_data)
         return super().update(instance, validated_data, **kwargs)

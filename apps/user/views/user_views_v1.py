@@ -96,8 +96,6 @@ class UserUpdateStatusAPIView(UpdateAPIView):
         instance = self.user_service.get(
             id=_user_id,
             is_superuser=False,
-            select_related=["profile"],
-            prefetch_related=["groups", "user_permissions"],
         )
         self.user_service.update(instance, serialized.validated_data, request=request)
         return Response({"detail": "User Status updated."}, status=status.HTTP_200_OK)

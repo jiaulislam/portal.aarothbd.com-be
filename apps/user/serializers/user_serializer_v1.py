@@ -22,7 +22,6 @@ class UserSerializer(s.ModelSerializer[User]):
     last_login = s.DateTimeField(read_only=True)
 
     profile = UserProfileSerializer(read_only=True)
-    company = CompanySerializer(read_only=True)
 
     def _check_password_match(self, password: str, password2: str) -> bool:
         return password == password2
@@ -31,6 +30,11 @@ class UserSerializer(s.ModelSerializer[User]):
         if not self._check_password_match(data.get("password", ""), data.get("password2", "")):
             raise ValidationError({"password": "passwords mismatch. Try again !"}, code="client_error")
         return data
+
+    def to_representation(self, instance: User) -> dict[str, Any]:
+        response = super().to_representation(instance)
+        response["company"] = CompanySerializer(instance=instance.company).data
+        return response
 
     class Meta:
         model = get_user_model()

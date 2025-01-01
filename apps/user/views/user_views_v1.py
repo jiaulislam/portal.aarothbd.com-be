@@ -86,6 +86,9 @@ class UserUpdateStatusAPIView(UpdateAPIView):
     serializer_class = UserUpdateStatusSerializer
     permission_classes = [DjangoModelPermissions]
 
+    def get_queryset(self) -> QuerySet["UserType"]:
+        return self.user_service.all(is_superadmin=False)
+
     def partial_update(self, request: Request, **kwargs):
         _user_id = kwargs.get("id")
         serialized = UserUpdateStatusSerializer(data=request.data)

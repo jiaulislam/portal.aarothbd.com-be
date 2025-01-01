@@ -87,7 +87,7 @@ class UserUpdateStatusAPIView(UpdateAPIView):
     permission_classes = [DjangoModelPermissions]
 
     def get_queryset(self) -> QuerySet["UserType"]:
-        return self.user_service.all(is_superadmin=False)
+        return self.user_service.all()
 
     def partial_update(self, request: Request, **kwargs):
         _user_id = kwargs.get("id")

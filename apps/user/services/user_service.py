@@ -30,6 +30,9 @@ class UserService(BaseModelService[UserType]):
     def create(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:
         if not self.validate_wholeseller_has_company(validated_data):
             raise CustomException(detail=f"Company required for user type {validated_data.get("user_type")}!")
+
+        password2 = validated_data.pop("password2", "")
+        validated_data["password"] = self.hash_password(password2)
         validated_data["created_by"] = self.core_service.get_user(kwargs.get("request"))
         instance = self.model_class.objects.create(**validated_data)
         return instance

@@ -29,6 +29,7 @@ class UserValidatedDataType(BaseSerializerValidatedDataType, total=False):
     date_joined: datetime | None
     user_type: UserCategory
     password: str
+    password2: str
     last_login: datetime | None
     company: CompanyValidatedDataType | None
     profile: MutableMapping[str, Any]

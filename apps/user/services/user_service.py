@@ -32,9 +32,11 @@ class UserService(BaseModelService[UserType]):
             raise CustomException(detail=f"Company required for user type {validated_data.get("user_type")}!")
 
         password2 = validated_data.pop("password2", "")
+        profile = validated_data.pop("profile", {})
         validated_data["password"] = self.hash_password(password2)
         validated_data["created_by"] = self.core_service.get_user(kwargs.get("request"))
         instance = self.model_class.objects.create(**validated_data)
+        self.update_user_profile(instance, profile)
         return instance
 
     def create_customer(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:

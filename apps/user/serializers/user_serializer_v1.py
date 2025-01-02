@@ -52,6 +52,7 @@ class UserSerializer(s.ModelSerializer[User]):
             "company",
             "last_login",
             "groups",
+            "user_type",
         ]
         read_only_fields = ("is_active",)
 
@@ -61,7 +62,14 @@ class UserUpdateSerializer(s.ModelSerializer[User]):
 
     class Meta:
         model = get_user_model()
-        fields = ["first_name", "last_name", "profile"]
+        fields = [
+            "first_name",
+            "last_name",
+            "profile",
+            "groups",
+            "company",
+            "user_type",
+        ]
 
 
 class UserDetailSerializer(s.ModelSerializer):

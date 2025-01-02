@@ -58,6 +58,9 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     permission_classes = [DjangoModelPermissions]
     user_service = UserService()
 
+    def get_queryset(self) -> QuerySet["UserType"]:
+        return self.user_service.all()
+
     def retrieve(self, request: Request, **kwargs) -> Response:
         _user_id = kwargs.get("id")
         queryset = self.user_service.get(
@@ -104,6 +107,9 @@ class UserUpdateStatusAPIView(UpdateAPIView):
 class MeRetrieveAPIView(RetrieveAPIView):
     serializer_class = UserDetailSerializer
     user_service = UserService()
+
+    def get_queryset(self) -> QuerySet["UserType"]:
+        return self.user_service.all()
 
     def retrieve(self, request: Request, *args, **kwargs):
         current_user_id: int = request.user.id  # type: ignore

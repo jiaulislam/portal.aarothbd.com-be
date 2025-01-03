@@ -185,6 +185,7 @@ SENTRY_ENV = env("SENTRY_ENV")
 SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
 
 from core.settings.plugins.sentry import *  # noqa: E402, F403, I001
+from core.settings.plugins.unfold import *  # noqa: E402, F403, I001
 from core.settings.plugins.logging import *  # noqa: E402, F403, I001
 from core.settings.plugins.cors import *  # noqa: E402, F403, I001
 from core.settings.plugins.drf import *  # noqa: E402, F403, I001

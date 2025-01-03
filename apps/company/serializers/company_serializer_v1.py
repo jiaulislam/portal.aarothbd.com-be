@@ -46,13 +46,13 @@ class CompanyUpdateSerializer(s.ModelSerializer):
 
 
 class CompanyDetailSerializer(s.ModelSerializer):
-    address = s.SerializerMethodField()
+    addresses = s.SerializerMethodField()
     allowed_products = s.SerializerMethodField()
 
     def get_allowed_products(self, obj: Company):
         return ProductSerializer(obj.allowed_products.all(), many=True).data
 
-    def get_address(self, obj):
+    def get_addresses(self, obj):
         return AddressSerializer(instance=obj.addresses.filter(is_active=True), many=True).data
 
     class Meta:

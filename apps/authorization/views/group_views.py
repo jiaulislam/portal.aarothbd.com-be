@@ -16,3 +16,4 @@ class GroupRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = "id"

@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views.content_type_views import ContentTypeListAPIView, ContentTypePermissionListAPIView
-from .views.group_views import GroupListCreateAPIView
+from .views.group_views import GroupListCreateAPIView, GroupRetrieveUpdateAPIView
 from .views.permission_views import PermissionListAPIView
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     ),
     path(r"auth/permissions/", PermissionListAPIView.as_view(), name="permissions-list"),
     path(r"auth/groups/", GroupListCreateAPIView.as_view(), name="group-create-view"),
+    path(r"auth/groups/<int:id>/", GroupRetrieveUpdateAPIView.as_view(), name="group-retrieve-update-view"),
 ]

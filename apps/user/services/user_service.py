@@ -2,6 +2,8 @@ from typing import Any, MutableMapping
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import Permission
+from django.forms import model_to_dict
 
 from core.exceptions import CustomException
 from core.services import BaseModelService
@@ -56,3 +58,20 @@ class UserService(BaseModelService[UserType]):
         if profile_data:
             self.update_user_profile(instance, profile_data)
         return super().update(instance, validated_data, **kwargs)
+
+    def get_users_permissions_groups(self, user):
+        permission_id_list = []
+        group_list = []
+        if hasattr(user, "groups"):
+            for group in user.groups.all():
+                permission_id_list += group.permissions.values_list("id", flat=True)
+                group_list.append(model_to_dict(group, fields="id, name"))
+
+        permissions = Permission.objects.filter(id__in=set(permission_id_list))
+        permissions = permissions.values("id", "name", "content_type_id", "codename") if permissions else []
+
+        user = model_to_dict(user, exclude="groups, password, user_permissions")
+        user["groups"] = group_list
+        user["permissions"] = permissions
+
+        return user

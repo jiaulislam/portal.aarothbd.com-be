@@ -114,5 +114,5 @@ class MeRetrieveAPIView(RetrieveAPIView):
     def retrieve(self, request: Request, *args, **kwargs):
         current_user_id: int = request.user.id  # type: ignore
         queryset = self.user_service.get(id=current_user_id)
-        serialized = UserDetailSerializer(queryset)
-        return Response(serialized.data, status=status.HTTP_200_OK)
+        user = self.user_service.get_users_permissions_groups(queryset)
+        return Response(user, status=status.HTTP_200_OK)

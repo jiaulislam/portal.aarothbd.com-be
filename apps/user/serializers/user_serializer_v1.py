@@ -4,7 +4,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
-from ...company.serializers.company_serializer_v1 import CompanySerializer
+from apps.company.serializers.company_serializer_v1 import CompanySerializer
+
 from ..models import User, UserProfile
 
 
@@ -85,7 +86,7 @@ class UserDetailSerializer(s.ModelSerializer):
             "updated_by",
             "is_superuser",
         ]
-        read_only_fields = ("groups", "user_permissions", "is_active")
+        read_only_fields = ("groups", "is_active")
 
 
 class UserUpdateStatusSerializer(s.ModelSerializer):

@@ -37,6 +37,7 @@ class ProductCreateSerializer(s.ModelSerializer):
 
     def to_representation(self, instance: "Product") -> dict[str, Any]:
         response = super().to_representation(instance)
+        response["uom"] = instance.uom.name
         response["category"] = instance.category.name
         response["brand"] = instance.brand.name if instance.brand else None
         response["origin"] = instance.origin.name if instance.origin else None

@@ -33,7 +33,7 @@ class ProductListCreateAPIView(ListCreateAPIView):
     filterset_class = ProductFilter
 
     def get_queryset(self) -> QuerySet["Product"]:
-        return self.product_service.all(select_related=["brand", "category", "origin"])
+        return self.product_service.all(select_related=["brand", "category", "origin", "uom"])
 
     @transaction.atomic
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:

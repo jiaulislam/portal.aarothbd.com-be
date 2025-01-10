@@ -1,3 +1,5 @@
+from typing import Any
+
 from rest_framework import serializers as s
 
 from core.constants import AUDIT_COLUMNS
@@ -32,6 +34,13 @@ class ProductExtendedSerializer(s.ModelSerializer):
 class ProductCreateSerializer(s.ModelSerializer):
     details = ProductDetailSerializer(write_only=True, many=True)
     brand = ProductBrandSerializer(write_only=True)
+
+    def to_representation(self, instance: "Product") -> dict[str, Any]:
+        response = super().to_representation(instance)
+        response["category"] = instance.category.name
+        response["brand"] = instance.brand.name if instance.brand else None
+        response["origin"] = instance.origin.name if instance.origin else None
+        return response
 
     class Meta:
         model = Product

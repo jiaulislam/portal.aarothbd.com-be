@@ -11,14 +11,16 @@ class ProductService(BaseModelService[Product]):
     model_class = Product
     detail_model_class = ProductDetail
 
-    def update_product_details(self, product: Product, validated_data_list: List[MutableMapping[str, Any]], **kwargs):
+    def create_product_details(self, product: Product, validated_data_list: List[MutableMapping[str, Any]], **kwargs):
         user = self.core_service.get_user(kwargs.get("request"))
-        instance = product.details.first()
-        if instance:
-            for validated_data in validated_data_list:
-                for key, value in validated_data.items():
-                    setattr(instance, key, value)
-                instance.updated_by = user  # type: ignore
-                instance.save()
-        else:
-            self.detail_model_class.objects.create(product=product)
+        details_list = []
+        for validated_data in validated_data_list:
+            validated_data["created_by"] = user
+            validated_data["updated_by"] = user
+            validated_data["product"] = product
+            details_list.append(ProductDetail(**validated_data))
+        self.detail_model_class.objects.bulk_create(details_list)
+
+    def update_product_details(self, product: Product, validated_data_list: List[MutableMapping[str, Any]], **kwargs):
+        product.details.delete()
+        self.create_product_details(product, validated_data_list, request=kwargs.get("request"))

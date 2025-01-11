@@ -49,7 +49,7 @@ class ProductListCreateAPIView(ListCreateAPIView):
         instance = self.product_service.create(serializer.validated_data, request=request)
 
         # handle detail
-        self.product_service.update_product_details(instance, details, request=request)
+        self.product_service.create_product_details(instance, details, request=request)
 
         serializer = self.serializer_class(instance=instance)  # type: ignore
 

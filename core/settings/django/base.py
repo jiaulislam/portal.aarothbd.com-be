@@ -53,6 +53,7 @@ CUSTOM_APPS = [
     "apps.data_migration",
     "apps.product",
     "apps.uom",
+    "apps.sale_order",
 ]
 
 

@@ -41,6 +41,7 @@ class ProductCategoryRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = ProductCategorySerializer
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     category_service = ProductCategoryService()
+    lookup_field = "id"
 
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.get_parent_categories()
@@ -59,6 +60,7 @@ class ProductCategoryUpdateStatusAPIView(UpdateAPIView):
     serializer_class = ProductCategorySerializer
     permission_classes = [DjangoModelPermissions]
     category_service = ProductCategoryService()
+    lookup_field = "id"
 
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.all()

@@ -1,23 +1,25 @@
+from datetime import datetime
 from typing import TYPE_CHECKING
 
 from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
-from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 
 from core.pagination import ExtendedLimitOffsetPagination
 from core.request import Request
 
+from ..constants import SaleOrderPrefixChoices
 from ..filters import PaikarSaleOrderFilter
 from ..serializers.sale_order_serializer import (
     PaikarSaleOrderBaseModelSerializer,
     PaikarSaleOrderCreateSerializer,
+    PaikarSaleOrderDetailSerializer,
     PaikarSaleOrderUpdateSerializer,
 )
-from ..services.paikar_sale_order_service import PaikarSaleOrderLineService, PaikarSaleOrderService
+from ..services import PaikarSaleOrderLineService, PaikarSaleOrderService, SaleOrderNumberService
 
 if TYPE_CHECKING:
     from apps.sale_order.models import PaikarSaleOrder
@@ -26,8 +28,9 @@ if TYPE_CHECKING:
 class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
     filterset_class = PaikarSaleOrderFilter
     pagination_class = ExtendedLimitOffsetPagination
-    permission_classes = [DjangoModelPermissions]
+    # permission_classes = [DjangoModelPermissions]
 
+    sale_order_number_service = SaleOrderNumberService()
     sale_order_service = PaikarSaleOrderService()
     sale_order_line_service = PaikarSaleOrderLineService()
 
@@ -36,7 +39,7 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
             return PaikarSaleOrderCreateSerializer
         return PaikarSaleOrderBaseModelSerializer
 
-    def get_queryset(self) -> QuerySet[PaikarSaleOrder]:
+    def get_queryset(self) -> QuerySet["PaikarSaleOrder"]:
         queryset = self.sale_order_service.all()
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
@@ -51,10 +54,19 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
     @transaction.atomic
     def create(self, request: Request, *args, **kwargs) -> Response:
         serialized = self.get_serializer_class()(data=request.data)
-        orderlines = request.data.pop("orderlines", [])
-
         serialized.is_valid(raise_exception=True)
-        sale_order_instance = self.sale_order_service.create(serialized.data, request=request)
+
+        orderlines = serialized.validated_data.pop("orderlines", [])
+
+        _today = datetime.now().date()
+        sale_order_number = self.sale_order_number_service.get_sale_order_sequence(
+            SaleOrderPrefixChoices.PAIKAR,
+            _today,
+        )
+        serialized.validated_data["order_number"] = sale_order_number.get_order_number()
+        serialized.validated_data["order_date"] = _today
+
+        sale_order_instance = self.sale_order_service.create(serialized.validated_data, request=request)
 
         # handle orderlines
         self.sale_order_line_service.create_orderlines(orderlines, sale_order_instance, request=request)
@@ -64,9 +76,9 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
 
 
 class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
-    http_method_names = ["GET", "PUT"]
+    http_method_names = ["get", "put"]
     lookup_field = "id"
-    permission_classes = [DjangoModelPermissions]
+    # permission_classes = [DjangoModelPermissions]
 
     sale_order_service = PaikarSaleOrderService()
     sale_order_line_service = PaikarSaleOrderLineService()
@@ -74,14 +86,14 @@ class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def get_serializer_class(self) -> type[BaseSerializer[PaikarSaleOrderBaseModelSerializer]]:
         if self.request.method == "PUT":
             return PaikarSaleOrderUpdateSerializer
-        return PaikarSaleOrderBaseModelSerializer
+        return PaikarSaleOrderDetailSerializer
 
-    def get_queryset(self) -> QuerySet[PaikarSaleOrder]:
+    def get_queryset(self) -> QuerySet["PaikarSaleOrder"]:
         return self.sale_order_service.all()
 
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
         instance = self.get_object()
-        serialized = PaikarSaleOrderBaseModelSerializer(instance=instance)
+        serialized = self.get_serializer_class()(instance=instance)
         return Response(serialized.data)
 
     @transaction.atomic
@@ -89,12 +101,12 @@ class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         instance = self.get_object()
         serialized = self.get_serializer_class()(instance, data=request.data)
         serialized.is_valid(raise_exception=True)
-        orderlines = request.data.pop("orderlines", [])
+        orderlines = serialized.validated_data.pop("orderlines", [])
 
-        sale_order_instance = self.sale_order_service.update(instance, serialized.data, request=request)
+        sale_order_instance = self.sale_order_service.update(instance, serialized.validated_data, request=request)
 
         # handle orderlines
-        self.sale_order_line_service.create_orderlines(orderlines, sale_order_instance, request=request)
+        self.sale_order_line_service.update_orderlines(orderlines, sale_order_instance, request=request)
 
-        serialized = PaikarSaleOrderBaseModelSerializer(instance=sale_order_instance)
+        serialized = self.get_serializer_class()(instance=sale_order_instance)
         return Response(serialized.data)

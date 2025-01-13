@@ -1,4 +1,4 @@
-from typing import Generic, Type
+from typing import Any, Generic, MutableMapping, Type
 
 from django.utils.text import slugify
 from rest_framework.generics import get_object_or_404
@@ -16,7 +16,7 @@ class BaseModelService(Generic[_T]):
         assert self.model_class is not None, "model_class must need to be set"
         self.core_service = CoreService()
 
-    def prepare_data(self, validated_data: BaseSerializerValidatedDataType, *args, **kwargs):
+    def prepare_data(self, validated_data: BaseSerializerValidatedDataType | MutableMapping[str, Any], *args, **kwargs):
         """prepares the validated data as per model requirements"""
         return validated_data
 
@@ -61,7 +61,7 @@ class BaseModelService(Generic[_T]):
             raise SlugAlreadyExistException()
         return slug
 
-    def create(self, validated_data: BaseSerializerValidatedDataType, **kwargs) -> _T:
+    def create(self, validated_data: BaseSerializerValidatedDataType | MutableMapping[str, Any], **kwargs) -> _T:
         """create an model instance with the given validated data"""
         # TODO: the user tagging can be handled by decorator pattern.
         validated_data = self.prepare_data(validated_data)

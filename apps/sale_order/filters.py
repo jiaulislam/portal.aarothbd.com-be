@@ -7,4 +7,4 @@ from .models import PaikarSaleOrder
 class PaikarSaleOrderFilter(BaseFilter):
     class Meta:
         model = PaikarSaleOrder
-        exclude = AUDIT_COLUMNS
+        exclude = AUDIT_COLUMNS + ("validity_dates",)

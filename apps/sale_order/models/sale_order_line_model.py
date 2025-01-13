@@ -5,7 +5,11 @@ from core.models import BaseModel
 
 
 class PaikarSaleOrderLine(BaseModel):
-    paikar_sale_order = models.ForeignKey("sale_order.PaikarSaleOrder", on_delete=models.CASCADE)
+    paikar_sale_order = models.ForeignKey(
+        "sale_order.PaikarSaleOrder",
+        on_delete=models.CASCADE,
+        related_name="orderlines",
+    )
     uom = models.ForeignKey("uom.UoM", on_delete=models.PROTECT)
     quantity_slab = IntegerRangeField()
 

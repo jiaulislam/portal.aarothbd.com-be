@@ -44,12 +44,19 @@ class ProductCategoryRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     lookup_field = "id"
 
     def get_queryset(self) -> QuerySet["ProductCategory"]:
-        return self.category_service.get_parent_categories()
+        return self.category_service.all()
+
+    def retrieve(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        id = kwargs.get("id")
+        instance = self.category_service.find_by_id_or_parent_id(id)
+        serializer = ProductCategorySerializer(instance=instance)
+        return Response(serializer.data)
 
     def update(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         serializer = ProductCategorySerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        instance = self.category_service.get(**kwargs)
+        id = kwargs.get("id")
+        instance = self.category_service.find_by_id_or_parent_id(id)
         instance = self.category_service.update(instance, serializer.validated_data, request=request)
         serializer = ProductCategorySerializer(instance=instance)
         return Response(serializer.data, status=status.HTTP_200_OK)

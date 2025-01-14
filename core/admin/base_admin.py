@@ -5,6 +5,7 @@ from django.http import HttpRequest
 from unfold.admin import ModelAdmin
 from unfold.contrib.forms.widgets import WysiwygWidget
 
+from ..constants import AUDIT_COLUMNS
 from ..models import BaseModel
 
 __all__ = ["BaseAdmin", "InlineHelperAdmin"]
@@ -26,6 +27,8 @@ class BaseAdmin(ModelAdmin):
             "widget": WysiwygWidget,
         }
     }
+
+    readonly_fields = AUDIT_COLUMNS
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)

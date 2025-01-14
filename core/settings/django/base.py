@@ -54,6 +54,7 @@ CUSTOM_APPS = [
     "apps.product",
     "apps.uom",
     "apps.sale_order",
+    "apps.menu",
 ]
 
 

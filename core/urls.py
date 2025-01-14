@@ -21,6 +21,7 @@ v1_routes = [
     path(api_v1, include("apps.authentication.urls.urls_v1")),
     path(api_v1, include("apps.authorization.urls")),
     path(api_v1, include("apps.user.urls.urls_v1")),
+    path(api_v1, include("apps.menu.urls")),
     path(api_v1, include("apps.company.urls.urls_v1")),
     path(api_v1, include("apps.action.urls")),
     path(api_v1, include("apps.country.urls")),

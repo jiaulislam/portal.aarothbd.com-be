@@ -11,6 +11,6 @@ class NavMenuService(BaseModelService):
         groups = user.groups.all()
         root_menus = set()
         for group in groups:
-            root_menus = root_menus.union(group.nav_menus.all())
+            root_menus = root_menus.union(group.nav_menus.filter(parent_menu__isnull=True))
 
         return root_menus

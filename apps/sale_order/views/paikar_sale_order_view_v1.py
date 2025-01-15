@@ -5,6 +5,7 @@ from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 
@@ -28,7 +29,7 @@ if TYPE_CHECKING:
 class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
     filterset_class = PaikarSaleOrderFilter
     pagination_class = ExtendedLimitOffsetPagination
-    # permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     sale_order_number_service = SaleOrderNumberService()
     sale_order_service = PaikarSaleOrderService()
@@ -78,7 +79,7 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
 class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     lookup_field = "id"
-    # permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
 
     sale_order_service = PaikarSaleOrderService()
     sale_order_line_service = PaikarSaleOrderLineService()

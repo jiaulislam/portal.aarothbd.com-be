@@ -1,4 +1,5 @@
 from drf_spectacular.utils import extend_schema_field
+from psycopg.types.range import Range
 from rest_framework import serializers as s
 
 from apps.user.serializers.user_serializer_v1 import UserSerializer
@@ -35,8 +36,9 @@ class DateRangeField(s.ListField):
         return data
 
     def to_representation(self, value):
-        _range = [value.lower, value.upper]
-        return [self.child.to_representation(item) if item is not None else None for item in _range]
+        if isinstance(value, Range):
+            value = [value.lower, value.upper]
+        return [self.child.to_representation(item) if item is not None else None for item in value]
 
 
 class PaikarSaleOrderBaseModelSerializer(s.ModelSerializer):

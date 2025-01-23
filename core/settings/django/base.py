@@ -13,6 +13,8 @@ SECRET_KEY = env(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
+SITE_ID = 1
+
 # Application definition
 
 INTERNAL_APPS = [
@@ -37,6 +39,10 @@ THIRD_PARTY_APPS = [
     "debug_toolbar",
     "drf_standardized_errors",
     "auditlog",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 
 CUSTOM_APPS = [
@@ -69,6 +75,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "core.middlewares.AuditlogMiddleware",
 ]
@@ -154,6 +161,31 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "user.User"
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        "APP": {
+            "client_id": '532240625105-irfutbnv4th1i07mq0ub1kfm5872seaj.apps.googleusercontent.com',
+            "secret": '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',
+            "key": ''
+        },
+        "EMAIL_AUTHENTICATION": True,
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+    }
+}
 
 # creating app log directory
 LOG_DIR = BASE_DIR / "logs"
@@ -186,11 +218,8 @@ SENTRY_DSN = env("SENTRY_DSN")
 SENTRY_ENV = env("SENTRY_ENV")
 SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
 
-from core.settings.plugins.sentry import *  # noqa: E402, F403, I001
-from core.settings.plugins.unfold import *  # noqa: E402, F403, I001
-from core.settings.plugins.logging import *  # noqa: E402, F403, I001
-from core.settings.plugins.cors import *  # noqa: E402, F403, I001
-from core.settings.plugins.drf import *  # noqa: E402, F403, I001
-from core.settings.plugins.jwt import *  # noqa: E402, F403, I001
-from core.settings.plugins.auditlog import *  # noqa: E402, F403, I001
-from core.settings.plugins.drf_spectacular import *  # noqa: E402, F403, I001
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"

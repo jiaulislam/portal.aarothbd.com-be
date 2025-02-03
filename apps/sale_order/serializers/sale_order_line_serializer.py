@@ -36,6 +36,7 @@ class PositiveIntegerRangeField(s.ListField):
         _range = [value.lower, value.upper]
         return [self.child.to_representation(item) if item is not None else None for item in _range]
 
+
 class SaleOrderLineSerializer(s.ModelSerializer):
     paikar_sale_order = s.ReadOnlyField(source="paikar_sale_order.id")
     is_active = s.CharField(read_only=True)

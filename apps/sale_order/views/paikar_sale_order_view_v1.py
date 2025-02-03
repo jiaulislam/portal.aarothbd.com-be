@@ -130,6 +130,6 @@ class PaikarSaleOrderApprovalAPIView(RetrieveUpdateAPIView):
         serializer = self.get_serializer_class()(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.get_object()
-        instance = self.sale_order_service.approve_sale_order(instance, serializer.validated_data,request=request)
+        instance = self.sale_order_service.approve_sale_order(instance, serializer.validated_data, request=request)
         serialized = self.get_serializer_class()(instance=instance)
         return Response(serialized.data, status=status.HTTP_200_OK)

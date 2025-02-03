@@ -6,6 +6,7 @@ from ..views.product_category_view_v1 import (
     ProductCategoryRetrieveUpdateAPIView,
     ProductCategoryUpdateStatusAPIView,
 )
+from ..views.product_ecomm_view_v1 import EcomProductListAPIView
 from ..views.product_view_v1 import ProductListCreateAPIView, ProductRetrieveUpdateAPIView, ProductUpdateStatusAPIView
 
 urlpatterns = [
@@ -24,4 +25,5 @@ urlpatterns = [
     path(r"products/", ProductListCreateAPIView.as_view(), name="product-list-create"),
     path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
     path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
+    path(r"ecom/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-create"),
 ]

@@ -7,12 +7,15 @@ from ..views.paikar_sale_order_view_v1 import (
 )
 
 urlpatterns = [
-    path("paikar/sale-orders/<int:id>/", PaikarSaleOrderRetrieveUpdateAPIView.as_view(),
-         name="paikar-sale-order-retrieve-update"),
+    path(
+        "paikar/sale-orders/<int:id>/",
+        PaikarSaleOrderRetrieveUpdateAPIView.as_view(),
+        name="paikar-sale-order-retrieve-update",
+    ),
     path("paikar/sale-orders/", PaikarSaleOrderListCreateAPIView.as_view(), name="paikar-sale-order-list-create"),
     path(
         "paikar/sale-orders/<int:id>/approve/",
         PaikarSaleOrderApprovalAPIView.as_view(),
-        name="paikar-sale-order-approve"
+        name="paikar-sale-order-approve",
     ),
 ]

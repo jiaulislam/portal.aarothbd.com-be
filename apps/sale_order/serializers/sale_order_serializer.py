@@ -2,7 +2,6 @@ from drf_spectacular.utils import extend_schema_field
 from psycopg.types.range import Range
 from rest_framework import serializers as s
 
-from apps.user.serializers.user_serializer_v1 import UserSerializer
 from core.constants.common import AUDIT_COLUMNS
 
 from ..models import PaikarSaleOrder
@@ -57,6 +56,7 @@ class PaikarSaleOrderDetailSerializer(s.ModelSerializer):
         model = PaikarSaleOrder
         exclude = AUDIT_COLUMNS
 
+
 class PaikarSaleOrderCreateSerializer(s.ModelSerializer):
     order_number = s.CharField(read_only=True)
     order_date = s.DateField(read_only=True)
@@ -67,7 +67,12 @@ class PaikarSaleOrderCreateSerializer(s.ModelSerializer):
     validity_dates = DateRangeField()
 
     orderlines = SaleOrderLineSerializer(many=True, write_only=True)
-    approved_by = UserSerializer(read_only=True)
+
+    def get_approved_by(self, obj):
+        from apps.user.serializers.user_serializer_v1 import UserSerializer
+
+        approved_by = UserSerializer(obj.approved_by)
+        return approved_by.data
 
     class Meta:
         model = PaikarSaleOrder
@@ -83,7 +88,6 @@ class PaikarSaleOrderUpdateSerializer(s.ModelSerializer):
 
 
 class PaikarSaleOrderApprovalSerializer(s.ModelSerializer):
-
     class Meta:
         model = PaikarSaleOrder
         fields = ("status", "remarks", "id")

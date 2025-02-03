@@ -6,6 +6,12 @@ from ..models import PaikarSaleOrder, PaikarSaleOrderLine
 class PaikarSaleOrderService(BaseModelService[PaikarSaleOrder]):
     model_class = PaikarSaleOrder
 
+    def approve_sale_order(self, sale_order_instance, validated_data, **kwargs):
+        current_user = self.core_service.get_user(kwargs.get("request"))
+        validated_data["approved_by"] = current_user
+        instance = self.update(sale_order_instance, validated_data, **kwargs)
+        return instance
+
 
 class PaikarSaleOrderLineService(BaseModelService[PaikarSaleOrderLine]):
     model_class = PaikarSaleOrderLine

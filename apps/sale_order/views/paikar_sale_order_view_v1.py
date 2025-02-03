@@ -15,6 +15,7 @@ from core.request import Request
 from ..constants import SaleOrderPrefixChoices
 from ..filters import PaikarSaleOrderFilter
 from ..serializers.sale_order_serializer import (
+    PaikarSaleOrderApprovalSerializer,
     PaikarSaleOrderBaseModelSerializer,
     PaikarSaleOrderCreateSerializer,
     PaikarSaleOrderDetailSerializer,
@@ -111,3 +112,24 @@ class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
         serialized = self.get_serializer_class()(instance=sale_order_instance)
         return Response(serialized.data)
+
+
+class PaikarSaleOrderApprovalAPIView(RetrieveUpdateAPIView):
+    http_method_names = ["patch"]
+    lookup_field = "id"
+    permission_classes = [DjangoModelPermissions]
+    serializer_class = PaikarSaleOrderApprovalSerializer
+
+    sale_order_service = PaikarSaleOrderService()
+    sale_order_line_service = PaikarSaleOrderLineService()
+
+    def get_queryset(self):
+        return self.sale_order_service.all()
+
+    def partial_update(self, request: Request, *args, **kwargs) -> Response:
+        serializer = self.get_serializer_class()(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = self.get_object()
+        instance = self.sale_order_service.approve_sale_order(instance, serializer.validated_data,request=request)
+        serialized = self.get_serializer_class()(instance=instance)
+        return Response(serialized.data, status=status.HTTP_200_OK)

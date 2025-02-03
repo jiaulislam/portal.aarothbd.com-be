@@ -80,3 +80,10 @@ class PaikarSaleOrderUpdateSerializer(s.ModelSerializer):
     class Meta:
         model = PaikarSaleOrder
         exclude = AUDIT_COLUMNS
+
+
+class PaikarSaleOrderApprovalSerializer(s.ModelSerializer):
+
+    class Meta:
+        model = PaikarSaleOrder
+        fields = ("status", "remarks", "id")

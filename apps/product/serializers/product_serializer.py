@@ -84,9 +84,7 @@ class ProductEcomSerializer(s.ModelSerializer):
             PaikarSaleOrderDetailSerializer,
         )
 
-        return get_related_serializer_data(
-            PaikarSaleOrderDetailSerializer, obj, "paikar_sale_order_product", many=True
-        )
+        return get_related_serializer_data(PaikarSaleOrderDetailSerializer, obj, "paikar_sale_order_product", many=True)
 
     def get_uom(self, obj):
         from apps.uom.serializers import UoMSerializer

@@ -1,6 +1,8 @@
+from datetime import date
 from typing import Any, List, MutableMapping
 
-from django.db.models import Exists, OuterRef, Prefetch
+from django.db.models import Exists, F, Prefetch
+from django.db.models.functions import Upper
 
 from core.services import BaseModelService
 
@@ -31,8 +33,16 @@ class ProductService(BaseModelService[Product]):
         from apps.sale_order.constants import SaleOrderStatusChoices
         from apps.sale_order.models import PaikarSaleOrder
 
+        today = date.today()
         # ✅ Subquery: Checks if an approved sale order exists for the product
-        approved_orders = PaikarSaleOrder.objects.filter(product=OuterRef("pk"), status=SaleOrderStatusChoices.APPROVED)
+        # TODO: as per @hridoy he wants to have the validity date as configuration options
+        # so to do this we need to introduce a configuration model for the central admin.
+        # then it should be controlled from there. Then the query need to do refactor.
+        approved_orders = (
+            PaikarSaleOrder.objects.annotate(upper_bound=Upper(F("validity_dates")))
+            .exclude(validity_dates__upper_inf=True)
+            .filter(status=SaleOrderStatusChoices.APPROVED, upper_bound__gte=today)
+        )
 
         # ✅ Separate queryset for prefetching (without OuterRef) as we cannot use it inside subquery
         approved_orders_prefetch = PaikarSaleOrder.objects.filter(status=SaleOrderStatusChoices.APPROVED)

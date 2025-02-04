@@ -30,6 +30,7 @@ class PaikarSaleOrder(BaseModel):
     has_vat = models.BooleanField(default=False)
     vat_ratio = models.FloatField(default=0.0, help_text="VAT ratio in percentage if has VAT")
 
+    approved_on = models.DateTimeField(auto_now_add=True)
     approved_by = models.ForeignKey(
         "user.User",
         on_delete=models.PROTECT,

@@ -2,6 +2,8 @@ from django.db import models
 
 from core.models import BaseModel
 
+__all__ = ["Product", "ProductDetail"]
+
 
 class Product(BaseModel):
     name = models.CharField(max_length=255)

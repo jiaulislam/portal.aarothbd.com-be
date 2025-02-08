@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Any, List, MutableMapping
 
-from django.db.models import Exists, F, Prefetch
+from django.db.models import F
 from django.db.models.functions import Upper
 
 from core.services import BaseModelService
@@ -43,17 +43,4 @@ class ProductService(BaseModelService[Product]):
             .exclude(validity_dates__upper_inf=True)
             .filter(status=SaleOrderStatusChoices.APPROVED, upper_bound__gte=today)
         )
-
-        # ✅ Separate queryset for prefetching (without OuterRef) as we cannot use it inside subquery
-        approved_orders_prefetch = PaikarSaleOrder.objects.filter(status=SaleOrderStatusChoices.APPROVED)
-
-        queryset = self.model_class.objects.filter(
-            Exists(approved_orders),
-        ).prefetch_related(
-            Prefetch(
-                "paikar_sale_orders",
-                queryset=approved_orders_prefetch,
-                to_attr="paikar_sale_order_product",
-            )
-        )
-        return queryset
+        return approved_orders

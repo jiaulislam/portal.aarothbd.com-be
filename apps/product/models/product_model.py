@@ -1,6 +1,11 @@
+from typing import TYPE_CHECKING
+
 from django.db import models
 
 from core.models import BaseModel
+
+if TYPE_CHECKING:
+    from apps.sale_order.models import PaikarSaleOrder
 
 __all__ = ["Product", "ProductDetail"]
 
@@ -35,6 +40,8 @@ class Product(BaseModel):
     default_image_1 = models.ImageField(null=True, blank=True, upload_to="products/")
     default_image_2 = models.ImageField(null=True, blank=True, upload_to="products/")
     default_image_3 = models.ImageField(null=True, blank=True, upload_to="products/")
+
+    paikar_sale_orders: models.QuerySet["PaikarSaleOrder"]
 
     def __str__(self) -> str:
         return self.name

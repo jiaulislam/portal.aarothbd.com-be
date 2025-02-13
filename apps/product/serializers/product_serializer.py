@@ -8,6 +8,7 @@ from core.constants import AUDIT_COLUMNS
 
 from ..models.product_model import Product, ProductDetail
 from .product_brand_serializer import ProductBrandSerializer
+from .product_category_serializer import ProductCategorySerializer
 
 
 def get_related_serializer_data(serializer_class, obj, key, many=False):
@@ -30,9 +31,80 @@ class ProductSerializer(s.ModelSerializer):
         exclude = AUDIT_COLUMNS
 
 
+class ProductNestedSerializer(s.ModelSerializer):
+    category = s.SerializerMethodField()
+    uom = s.SerializerMethodField()
+    brand = s.SerializerMethodField()
+    origin = s.SerializerMethodField()
+    details = ProductDetailSerializer(read_only=True, many=True)
+
+    def get_category(self, obj: Product):
+        data = ProductCategorySerializer(instance=obj.category).data
+        return data
+
+    def get_uom(self, obj: Product):
+        from apps.uom.serializers import UoMSerializer
+
+        data = UoMSerializer(instance=obj.uom).data
+        return data
+
+    def get_brand(self, obj: Product):
+        data = ProductBrandSerializer(instance=obj.brand).data
+        return data
+
+    def get_origin(self, obj: Product):
+        from apps.country.serializers import CountrySerializer
+
+        data = CountrySerializer(instance=obj.origin).data
+        return data
+
+    class Meta:
+        model = Product
+        fields = (
+            "name",
+            "slug",
+            "description",
+            "sku_code",
+            "has_detail",
+            "details",
+            "attributes",
+            "html",
+            "uom",
+            "category",
+            "brand",
+            "origin",
+        )
+
+
 class ProductExtendedSerializer(s.ModelSerializer):
     brand = ProductBrandSerializer(read_only=True)
     details = ProductDetailSerializer(read_only=True, many=True)
+    sale_orders = s.SerializerMethodField()
+    uom = s.SerializerMethodField()
+    category = s.SerializerMethodField()
+    origin = s.SerializerMethodField()
+
+    def get_sale_orders(self, obj: Product):
+        from apps.sale_order.serializers import PaikarSaleOrderDetailSerializer
+
+        data = PaikarSaleOrderDetailSerializer(instance=obj.paikar_sale_orders, many=True).data
+        return data
+
+    def get_uom(self, obj: Product):
+        from apps.uom.serializers import UoMSerializer
+
+        data = UoMSerializer(instance=obj.uom).data
+        return data
+
+    def get_category(self, obj: Product):
+        data = ProductCategorySerializer(instance=obj.category).data
+        return data
+
+    def get_origin(self, obj: Product):
+        from apps.country.serializers import CountrySerializer
+
+        data = CountrySerializer(instance=obj.origin).data
+        return data
 
     class Meta:
         model = Product
@@ -73,11 +145,10 @@ class ProductUpdateStatusSerializer(s.ModelSerializer):
 
 
 class ProductEcomSerializer(s.ModelSerializer):
-    product = ProductSerializer(read_only=True)
+    product = ProductNestedSerializer(read_only=True)
     company = s.SerializerMethodField()
     validity_dates = DateRangeField()
     orderlines = s.SerializerMethodField()
-
 
     def get_orderlines(self, obj):
         from apps.sale_order.serializers import SaleOrderLineSerializer
@@ -91,4 +162,12 @@ class ProductEcomSerializer(s.ModelSerializer):
 
     class Meta:
         model = PaikarSaleOrder
-        exclude = AUDIT_COLUMNS
+        fields = (
+            "product",
+            "company",
+            "product_grade",
+            "has_vat",
+            "vat_ratio",
+            "orderlines",
+            "validity_dates",
+        )

@@ -6,10 +6,11 @@ from ..views.product_category_view_v1 import (
     ProductCategoryRetrieveUpdateAPIView,
     ProductCategoryUpdateStatusAPIView,
 )
-from ..views.product_ecomm_view_v1 import EcomProductListAPIView
+from ..views.product_ecomm_view_v1 import EcomProductDetailAPIView, EcomProductListAPIView
 from ..views.product_view_v1 import ProductListCreateAPIView, ProductRetrieveUpdateAPIView, ProductUpdateStatusAPIView
 
 urlpatterns = [
+    # portal urls
     path(r"products/categories/", ProductCategoryListCreateAPIView.as_view(), name="product-category-list-create"),
     path(
         r"products/categories/<int:id>/",
@@ -25,5 +26,7 @@ urlpatterns = [
     path(r"products/", ProductListCreateAPIView.as_view(), name="product-list-create"),
     path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
     path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
-    path(r"ecom/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-create"),
+    # e-commerce urls
+    path(r"ecom/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-view"),
+    path(r"ecom/products/<str:slug>/", EcomProductDetailAPIView.as_view(), name="ecom-product-detail-view"),
 ]

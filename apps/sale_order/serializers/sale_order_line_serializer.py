@@ -41,6 +41,13 @@ class SaleOrderLineSerializer(s.ModelSerializer):
     paikar_sale_order = s.ReadOnlyField(source="paikar_sale_order.id")
     is_active = s.CharField(read_only=True)
     quantity_slab = PositiveIntegerRangeField()
+    uom = s.SerializerMethodField()
+
+    def get_uom(self, obj: PaikarSaleOrderLine):
+        from apps.uom.serializers import UoMSerializer
+
+        data = UoMSerializer(instance=obj.uom).data
+        return data
 
     class Meta:
         model = PaikarSaleOrderLine

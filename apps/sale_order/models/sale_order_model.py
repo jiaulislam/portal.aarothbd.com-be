@@ -23,7 +23,6 @@ class PaikarSaleOrder(BaseModel):
         on_delete=models.PROTECT,
         related_name="paikar_sale_orders",
     )
-    company_name = models.CharField(max_length=255)
 
     validity_dates = DateRangeField(null=True, blank=True)
 
@@ -52,3 +51,5 @@ class PaikarSaleOrder(BaseModel):
 
     class Meta:
         db_table = "sale_order_paikar_sale_order"
+        verbose_name = "Paikar Sale Order"
+        verbose_name_plural = "Paikar Sale Orders"

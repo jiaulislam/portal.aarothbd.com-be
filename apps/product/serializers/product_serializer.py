@@ -4,17 +4,12 @@ from rest_framework import serializers as s
 
 from apps.sale_order.models import PaikarSaleOrder
 from apps.sale_order.serializers.sale_order_serializer import DateRangeField
+from core import utils
 from core.constants import AUDIT_COLUMNS
 
 from ..models.product_model import Product, ProductDetail
 from .product_brand_serializer import ProductBrandSerializer
 from .product_category_serializer import ProductCategorySerializer
-
-
-def get_related_serializer_data(serializer_class, obj, key, many=False):
-    object_key = getattr(obj, key)
-    serializer = serializer_class(object_key, many=many)
-    return serializer.data
 
 
 class ProductDetailSerializer(s.ModelSerializer):
@@ -45,17 +40,17 @@ class ProductNestedSerializer(s.ModelSerializer):
     def get_uom(self, obj: Product):
         from apps.uom.serializers import UoMSerializer
 
-        data = UoMSerializer(instance=obj.uom).data
+        data = utils.get_serialized_data(UoMSerializer, obj, "uom")
         return data
 
     def get_brand(self, obj: Product):
-        data = ProductBrandSerializer(instance=obj.brand).data
+        data = utils.get_serialized_data(ProductBrandSerializer, obj, "brand")
         return data
 
     def get_origin(self, obj: Product):
         from apps.country.serializers import CountrySerializer
 
-        data = CountrySerializer(instance=obj.origin).data
+        data = utils.get_serialized_data(CountrySerializer, obj, "origin")
         return data
 
     class Meta:
@@ -87,23 +82,23 @@ class ProductExtendedSerializer(s.ModelSerializer):
     def get_sale_orders(self, obj: Product):
         from apps.sale_order.serializers import PaikarSaleOrderDetailSerializer
 
-        data = PaikarSaleOrderDetailSerializer(instance=obj.paikar_sale_orders, many=True).data
+        data = utils.get_serialized_data(PaikarSaleOrderDetailSerializer, obj, "paikar_sale_orders", many=True)
         return data
 
     def get_uom(self, obj: Product):
         from apps.uom.serializers import UoMSerializer
 
-        data = UoMSerializer(instance=obj.uom).data
+        data = utils.get_serialized_data(UoMSerializer, obj, "uom")
         return data
 
     def get_category(self, obj: Product):
-        data = ProductCategorySerializer(instance=obj.category).data
+        data = utils.get_serialized_data(ProductCategorySerializer, obj, "category")
         return data
 
     def get_origin(self, obj: Product):
         from apps.country.serializers import CountrySerializer
 
-        data = CountrySerializer(instance=obj.origin).data
+        data = utils.get_serialized_data(CountrySerializer, obj, "origin")
         return data
 
     class Meta:
@@ -153,12 +148,12 @@ class ProductEcomSerializer(s.ModelSerializer):
     def get_orderlines(self, obj):
         from apps.sale_order.serializers import SaleOrderLineSerializer
 
-        return get_related_serializer_data(SaleOrderLineSerializer, obj, "orderlines", many=True)
+        return utils.get_serialized_data(SaleOrderLineSerializer, obj, "orderlines", many=True)
 
     def get_company(self, obj):
         from apps.company.serializers.company_serializer_v1 import CompanySerializer
 
-        return get_related_serializer_data(CompanySerializer, obj, "company")
+        return utils.get_serialized_data(CompanySerializer, obj, "company")
 
     class Meta:
         model = PaikarSaleOrder

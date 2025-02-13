@@ -4,12 +4,13 @@ from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
-from rest_framework.permissions import DjangoModelPermissions
+from rest_framework.permissions import SAFE_METHODS, AllowAny, DjangoModelPermissions, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
 from apps.address.services import AddressService
 from apps.product.services import ProductService
+from core.authentication import SecureCookieAuthentication
 from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import CompanyFilter
@@ -30,12 +31,18 @@ class CompanyListCreateAPIView(ListCreateAPIView):
     serializer_class = CompanyCreateSerializer
     filterset_class = CompanyFilter
     pagination_class = ExtendedLimitOffsetPagination
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions, IsAuthenticated]
+    authentication_classes = [SecureCookieAuthentication]
 
     company_service = CompanyService()
     address_service = AddressService()
     company_configuration_service = CompanyConfigurationService()
     product_service = ProductService()
+
+    def get_permissions(self):
+        if self.request.method in SAFE_METHODS:
+            return [AllowAny()]  # Public access for GET, HEAD, OPTIONS
+        return [permission() for permission in self.permission_classes]
 
     def get_queryset(self, **kwargs) -> QuerySet[Company]:
         queryset = self.company_service.all(**kwargs).select_related("configuration")

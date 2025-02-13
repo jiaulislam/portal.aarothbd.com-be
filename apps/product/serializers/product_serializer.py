@@ -4,17 +4,12 @@ from rest_framework import serializers as s
 
 from apps.sale_order.models import PaikarSaleOrder
 from apps.sale_order.serializers.sale_order_serializer import DateRangeField
+from core import utils
 from core.constants import AUDIT_COLUMNS
 
 from ..models.product_model import Product, ProductDetail
 from .product_brand_serializer import ProductBrandSerializer
 from .product_category_serializer import ProductCategorySerializer
-
-
-def get_related_serializer_data(serializer_class, obj, key, many=False):
-    object_key = getattr(obj, key)
-    serializer = serializer_class(object_key, many=many)
-    return serializer.data
 
 
 class ProductDetailSerializer(s.ModelSerializer):
@@ -153,12 +148,12 @@ class ProductEcomSerializer(s.ModelSerializer):
     def get_orderlines(self, obj):
         from apps.sale_order.serializers import SaleOrderLineSerializer
 
-        return get_related_serializer_data(SaleOrderLineSerializer, obj, "orderlines", many=True)
+        return utils.get_serialized_data(SaleOrderLineSerializer, obj, "orderlines", many=True)
 
     def get_company(self, obj):
         from apps.company.serializers.company_serializer_v1 import CompanySerializer
 
-        return get_related_serializer_data(CompanySerializer, obj, "company")
+        return utils.get_serialized_data(CompanySerializer, obj, "company")
 
     class Meta:
         model = PaikarSaleOrder

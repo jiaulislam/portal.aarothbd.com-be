@@ -1,4 +1,5 @@
 from drf_spectacular.utils import extend_schema_field
+from psycopg.types.range import Range
 from rest_framework import serializers as s
 
 from core.constants.common import AUDIT_COLUMNS
@@ -32,7 +33,7 @@ class PositiveIntegerRangeField(s.ListField):
             raise s.ValidationError("The lower bound must be less than or equal to the upper bound.")
         return data
 
-    def to_representation(self, value):
+    def to_representation(self, value: Range):
         _range = [value.lower, value.upper]
         return [self.child.to_representation(item) if item is not None else None for item in _range]
 

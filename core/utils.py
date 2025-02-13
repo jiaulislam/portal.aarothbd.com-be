@@ -1,19 +1,18 @@
-from typing import Type
+from typing import Any, Dict, Type
 
 from django.db.models import Model
 from rest_framework.serializers import BaseSerializer
 
 T = Type[BaseSerializer]
-K = Type[Model]
 
 
-def get_serialized_data(serializer_class: T, instance: K, key: str, many: bool = False):
+def get_serialized_data(serializer_class: T, instance: Model, key: str, many: bool = False) -> Dict[str, Any]:
     """
     Retrieves serialized data for a related object using the specified serializer class.
 
     Args:
-        serializer_class (Type): The serializer class to use for serialization.
-        instance (Any): The object containing the related data.
+        serializer_class (Type[BaseSerializer]): The serializer class to use for serialization.
+        instance (Model): The object containing the related data.
         key (str): The attribute name on `instance` that holds the related data.
         many (bool, optional): Whether the related data is a collection (defaults to False).
 

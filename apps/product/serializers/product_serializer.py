@@ -40,17 +40,17 @@ class ProductNestedSerializer(s.ModelSerializer):
     def get_uom(self, obj: Product):
         from apps.uom.serializers import UoMSerializer
 
-        data = UoMSerializer(instance=obj.uom).data
+        data = utils.get_serialized_data(UoMSerializer, obj, "uom")
         return data
 
     def get_brand(self, obj: Product):
-        data = ProductBrandSerializer(instance=obj.brand).data
+        data = utils.get_serialized_data(ProductBrandSerializer, obj, "brand")
         return data
 
     def get_origin(self, obj: Product):
         from apps.country.serializers import CountrySerializer
 
-        data = CountrySerializer(instance=obj.origin).data
+        data = utils.get_serialized_data(CountrySerializer, obj, "origin")
         return data
 
     class Meta:
@@ -82,23 +82,23 @@ class ProductExtendedSerializer(s.ModelSerializer):
     def get_sale_orders(self, obj: Product):
         from apps.sale_order.serializers import PaikarSaleOrderDetailSerializer
 
-        data = PaikarSaleOrderDetailSerializer(instance=obj.paikar_sale_orders, many=True).data
+        data = utils.get_serialized_data(PaikarSaleOrderDetailSerializer, obj, "paikar_sale_orders", many=True)
         return data
 
     def get_uom(self, obj: Product):
         from apps.uom.serializers import UoMSerializer
 
-        data = UoMSerializer(instance=obj.uom).data
+        data = utils.get_serialized_data(UoMSerializer, obj, "uom")
         return data
 
     def get_category(self, obj: Product):
-        data = ProductCategorySerializer(instance=obj.category).data
+        data = utils.get_serialized_data(ProductCategorySerializer, obj, "category")
         return data
 
     def get_origin(self, obj: Product):
         from apps.country.serializers import CountrySerializer
 
-        data = CountrySerializer(instance=obj.origin).data
+        data = utils.get_serialized_data(CountrySerializer, obj, "origin")
         return data
 
     class Meta:

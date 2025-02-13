@@ -26,5 +26,6 @@ class EcomProductDetailAPIView(RetrieveAPIView):
     lookup_field = "slug"
 
     def get_queryset(self) -> QuerySet:
+        # ! FIXME: potential threat of data leaks as there are chances to return the product without any sale order or approval.  # noqa: E501
         queryset = self.product_service.all()
         return queryset

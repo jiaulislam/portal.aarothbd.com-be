@@ -52,3 +52,5 @@ class PaikarSaleOrder(BaseModel):
 
     class Meta:
         db_table = "sale_order_paikar_sale_order"
+        verbose_name = "Paikar Sale Order"
+        verbose_name_plural = "Paikar Sale Orders"

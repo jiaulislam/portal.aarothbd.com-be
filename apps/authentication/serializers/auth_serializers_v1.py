@@ -24,7 +24,6 @@ class RegisterUserSerializer(s.ModelSerializer):
 
         if password != password2:
             raise s.ValidationError({"password": "Passwords do not match!"})
-        del data["password2"]
         return data
 
 

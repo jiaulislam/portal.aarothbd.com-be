@@ -40,7 +40,7 @@ def generate_slug(sender, instance: Blog, **kwargs):
         instance.slug = slugify(instance.title)
         counter = 1
         original_slug = instance.slug
-        while Blog.objects.filter(slug=instance.slug).exclude(instance).exists():
+        while Blog.objects.filter(slug=instance.slug).exists():
             instance.slug = f"{original_slug}-{counter}"
             counter += 1
 

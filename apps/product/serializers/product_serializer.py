@@ -2,10 +2,14 @@ from typing import Any
 
 from rest_framework import serializers as s
 
+from apps.sale_order.models import PaikarSaleOrder
+from apps.sale_order.serializers.sale_order_serializer import DateRangeField
+from core import utils
 from core.constants import AUDIT_COLUMNS
 
 from ..models.product_model import Product, ProductDetail
-from ..serializers.product_brand_serializer import ProductBrandSerializer
+from .product_brand_serializer import ProductBrandSerializer
+from .product_category_serializer import ProductCategorySerializer
 
 
 class ProductDetailSerializer(s.ModelSerializer):
@@ -22,9 +26,80 @@ class ProductSerializer(s.ModelSerializer):
         exclude = AUDIT_COLUMNS
 
 
+class ProductNestedSerializer(s.ModelSerializer):
+    category = s.SerializerMethodField()
+    uom = s.SerializerMethodField()
+    brand = s.SerializerMethodField()
+    origin = s.SerializerMethodField()
+    details = ProductDetailSerializer(read_only=True, many=True)
+
+    def get_category(self, obj: Product):
+        data = ProductCategorySerializer(instance=obj.category).data
+        return data
+
+    def get_uom(self, obj: Product):
+        from apps.uom.serializers import UoMSerializer
+
+        data = utils.get_serialized_data(UoMSerializer, obj, "uom")
+        return data
+
+    def get_brand(self, obj: Product):
+        data = utils.get_serialized_data(ProductBrandSerializer, obj, "brand")
+        return data
+
+    def get_origin(self, obj: Product):
+        from apps.country.serializers import CountrySerializer
+
+        data = utils.get_serialized_data(CountrySerializer, obj, "origin")
+        return data
+
+    class Meta:
+        model = Product
+        fields = (
+            "name",
+            "slug",
+            "description",
+            "sku_code",
+            "has_detail",
+            "details",
+            "attributes",
+            "html",
+            "uom",
+            "category",
+            "brand",
+            "origin",
+        )
+
+
 class ProductExtendedSerializer(s.ModelSerializer):
     brand = ProductBrandSerializer(read_only=True)
     details = ProductDetailSerializer(read_only=True, many=True)
+    sale_orders = s.SerializerMethodField()
+    uom = s.SerializerMethodField()
+    category = s.SerializerMethodField()
+    origin = s.SerializerMethodField()
+
+    def get_sale_orders(self, obj: Product):
+        from apps.sale_order.serializers import PaikarSaleOrderDetailSerializer
+
+        data = utils.get_serialized_data(PaikarSaleOrderDetailSerializer, obj, "paikar_sale_orders", many=True)
+        return data
+
+    def get_uom(self, obj: Product):
+        from apps.uom.serializers import UoMSerializer
+
+        data = utils.get_serialized_data(UoMSerializer, obj, "uom")
+        return data
+
+    def get_category(self, obj: Product):
+        data = utils.get_serialized_data(ProductCategorySerializer, obj, "category")
+        return data
+
+    def get_origin(self, obj: Product):
+        from apps.country.serializers import CountrySerializer
+
+        data = utils.get_serialized_data(CountrySerializer, obj, "origin")
+        return data
 
     class Meta:
         model = Product
@@ -62,3 +137,32 @@ class ProductUpdateStatusSerializer(s.ModelSerializer):
     class Meta:
         model = Product
         fields = ("is_active", "id")
+
+
+class ProductEcomSerializer(s.ModelSerializer):
+    product = ProductNestedSerializer(read_only=True)
+    company = s.SerializerMethodField()
+    validity_dates = DateRangeField()
+    orderlines = s.SerializerMethodField()
+
+    def get_orderlines(self, obj):
+        from apps.sale_order.serializers import SaleOrderLineSerializer
+
+        return utils.get_serialized_data(SaleOrderLineSerializer, obj, "orderlines", many=True)
+
+    def get_company(self, obj):
+        from apps.company.serializers.company_serializer_v1 import CompanySerializer
+
+        return utils.get_serialized_data(CompanySerializer, obj, "company")
+
+    class Meta:
+        model = PaikarSaleOrder
+        fields = (
+            "product",
+            "company",
+            "product_grade",
+            "has_vat",
+            "vat_ratio",
+            "orderlines",
+            "validity_dates",
+        )

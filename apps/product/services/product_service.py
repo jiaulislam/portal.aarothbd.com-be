@@ -1,4 +1,8 @@
+from datetime import date
 from typing import Any, List, MutableMapping
+
+from django.db.models import F
+from django.db.models.functions import Upper
 
 from core.services import BaseModelService
 
@@ -24,3 +28,19 @@ class ProductService(BaseModelService[Product]):
     def update_product_details(self, product: Product, validated_data_list: List[MutableMapping[str, Any]], **kwargs):
         product.details.delete()
         self.create_product_details(product, validated_data_list, request=kwargs.get("request"))
+
+    def get_ecom_queryset(self):
+        from apps.sale_order.constants import SaleOrderStatusChoices
+        from apps.sale_order.models import PaikarSaleOrder
+
+        today = date.today()
+        # ✅ Subquery: Checks if an approved sale order exists for the product
+        # TODO: as per @hridoy he wants to have the validity date as configuration options
+        # so to do this we need to introduce a configuration model for the central admin.
+        # then it should be controlled from there. Then the query need to do refactor.
+        approved_orders = (
+            PaikarSaleOrder.objects.annotate(upper_bound=Upper(F("validity_dates")))
+            .exclude(validity_dates__upper_inf=True)
+            .filter(status=SaleOrderStatusChoices.APPROVED, upper_bound__gte=today)
+        )
+        return approved_orders

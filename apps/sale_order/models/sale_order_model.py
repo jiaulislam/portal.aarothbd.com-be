@@ -23,13 +23,13 @@ class PaikarSaleOrder(BaseModel):
         on_delete=models.PROTECT,
         related_name="paikar_sale_orders",
     )
-    company_name = models.CharField(max_length=255)
 
     validity_dates = DateRangeField(null=True, blank=True)
 
     has_vat = models.BooleanField(default=False)
     vat_ratio = models.FloatField(default=0.0, help_text="VAT ratio in percentage if has VAT")
 
+    approved_on = models.DateTimeField(auto_now_add=True)
     approved_by = models.ForeignKey(
         "user.User",
         on_delete=models.PROTECT,
@@ -51,3 +51,5 @@ class PaikarSaleOrder(BaseModel):
 
     class Meta:
         db_table = "sale_order_paikar_sale_order"
+        verbose_name = "Paikar Sale Order"
+        verbose_name_plural = "Paikar Sale Orders"

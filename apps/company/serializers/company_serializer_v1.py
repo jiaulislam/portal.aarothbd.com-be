@@ -9,6 +9,8 @@ from core.constants import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
 from ..models import Company
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 
+__all__ = ["CompanySerializer", "CompanyDetailSerializer"]
+
 
 class CompanySerializer(s.ModelSerializer):
     slug = s.SlugField(

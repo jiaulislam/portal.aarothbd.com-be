@@ -4,7 +4,7 @@ from django.db import transaction
 from django.db.models.query import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
-from rest_framework.permissions import DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 
 class ProductListCreateAPIView(ListCreateAPIView):
     serializer_class = ProductCreateSerializer
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [DjangoModelPermissions]
     product_service = ProductService()
     brand_service = ProductBrandService()
     pagination_class = ExtendedLimitOffsetPagination
@@ -58,7 +58,7 @@ class ProductListCreateAPIView(ListCreateAPIView):
 
 class ProductRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["put", "get"]
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [DjangoModelPermissions]
     product_service = ProductService()
     brand_service = ProductBrandService()
     lookup_field = "slug"

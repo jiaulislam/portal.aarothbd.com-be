@@ -10,9 +10,7 @@ class NavMenu(BaseModel):
     icon = models.TextField(max_length=255, null=True, blank=True)
     path = models.CharField(max_length=255, null=True, blank=True)
     groups = models.ManyToManyField(Group, related_name="nav_menus", blank=True)
-    parent_menu = models.ForeignKey(
-        "self", on_delete=models.CASCADE, null=True, blank=True, related_name="child_menus"
-    )
+    parent_menu = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="child_menus")
     order = models.IntegerField(default=1)
 
     child_menus: models.QuerySet["NavMenu"]

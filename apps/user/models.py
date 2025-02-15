@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from core.models import BaseModel
 
-from .constants import UserTypeChoices
+from .constants import AuthProviderChoices, UserTypeChoices
 from .manager import UserManager
 
 
@@ -27,6 +27,11 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
         related_name="company_users",
         null=True,
         blank=True,
+    )
+    auth_provider = models.CharField(
+        max_length=120,
+        choices=AuthProviderChoices.choices,
+        default=AuthProviderChoices.EMAIL,
     )
 
     objects = UserManager()

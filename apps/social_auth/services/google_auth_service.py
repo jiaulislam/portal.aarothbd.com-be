@@ -1,6 +1,10 @@
+from typing import Any, Dict
+
+from django.conf import settings
 from google.auth.exceptions import GoogleAuthError
 from google.auth.transport import requests
 from google.oauth2 import id_token
+from rest_framework.exceptions import AuthenticationFailed
 
 from apps.user.constants import AuthProviderChoices
 from core.exceptions.common import CustomException
@@ -27,5 +31,7 @@ class GoogleAuthProviderService(BaseSocialAuthProviderService):
         except (ValueError, GoogleAuthError) as exc:
             raise CustomException(detail=str(exc), code="client_error")
 
-    def validate_user_data(self, user_data):
+    def validate_user_data(self, user_data: Dict[str, Any]):
+        if user_data["aud"] != settings.GOOGLE_CLIENT_ID:
+            raise AuthenticationFailed()
         return True

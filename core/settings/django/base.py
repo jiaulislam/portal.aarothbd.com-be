@@ -13,8 +13,6 @@ SECRET_KEY = env(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-SITE_ID = 1
-
 # Application definition
 
 INTERNAL_APPS = [
@@ -58,6 +56,7 @@ CUSTOM_APPS = [
     "apps.sale_order",
     "apps.menu",
     "apps.blog",
+    "apps.social_auth",
 ]
 
 
@@ -191,10 +190,10 @@ SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
 
 
 from core.settings.plugins.sentry import *  # noqa: E402, F403, I001
-from core.settings.plugins.unfold import *  # noqa: E402, F403, I001	ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-from core.settings.plugins.logging import *  # noqa: E402, F403, I001	ACCOUNT_EMAIL_REQUIRED = True
-from core.settings.plugins.cors import *  # noqa: E402, F403, I001	ACCOUNT_USERNAME_REQUIRED = False
-from core.settings.plugins.drf import *  # noqa: E402, F403, I001	ACCOUNT_AUTHENTICATION_METHOD = "email"
+from core.settings.plugins.unfold import *  # noqa: E402, F403, I001
+from core.settings.plugins.logging import *  # noqa: E402, F403, I001
+from core.settings.plugins.cors import *  # noqa: E402, F403, I001
+from core.settings.plugins.drf import *  # noqa: E402, F403, I001
 from core.settings.plugins.jwt import *  # noqa: E402, F403, I001
 from core.settings.plugins.auditlog import *  # noqa: E402, F403, I001
 from core.settings.plugins.drf_spectacular import *  # noqa: E402, F403, I001

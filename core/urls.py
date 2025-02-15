@@ -33,7 +33,6 @@ v1_routes = [
     path(api_v1, include("apps.product.urls.product_urls_v1")),
     path(api_v1, include("apps.sale_order.urls.urls_v1")),
     path(api_v1, include("apps.blog.urls")),
-    path(api_v1, include("allauth.urls")),
     path(
         f"{api_v1}schema/",
         SpectacularAPIView.as_view(api_version="v1"),

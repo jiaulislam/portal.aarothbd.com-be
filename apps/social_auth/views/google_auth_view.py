@@ -22,7 +22,7 @@ class GoogleSignInAuthAPIView(GenericAPIView):
     def post(self, request: Request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)  # type: ignore
         serializer.is_valid(raise_exception=True)
-        user_data = self.google_auth_service.validate_token(serializer.validated_data.get("auth_token"))
+        user_data = self.google_auth_service.validate_token(serializer.validated_data.get("id_token"))
         if not self.google_auth_service.validate_user_data(user_data):
             exc = CustomException(detail="Unable to validate the user data.")
             exc.status_code = status.HTTP_400_BAD_REQUEST

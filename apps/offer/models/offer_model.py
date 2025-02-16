@@ -12,7 +12,7 @@ __all__ = ["Offer"]
 
 class Offer(BaseModel):
     name = models.CharField(max_length=255)
-    slug = models.CharField(max_length=255, null=True, blank=True)
+    slug = models.CharField(max_length=255, null=True, blank=True, unique=True)
     company = models.ForeignKey("company.Company", on_delete=models.DO_NOTHING, related_name="offers")
     product = models.ForeignKey("product.Product", on_delete=models.DO_NOTHING, related_name="offers")
     start_at = models.DateTimeField()

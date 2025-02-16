@@ -1,4 +1,6 @@
-from typing import Any, MutableMapping
+import secrets
+import string
+from typing import Any, MutableMapping, Tuple
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
@@ -75,3 +77,37 @@ class UserService(BaseModelService[UserType]):
         user["permissions"] = permissions
 
         return user
+
+    @staticmethod
+    def generate_random_password(length=10):
+        """Generate a secure random password using the secrets module."""
+        if length < 8:
+            raise ValueError("Password length should be at least 8 characters for security.")
+
+        # Ensure at least one uppercase letter and one digit
+        uppercase = secrets.choice(string.ascii_uppercase)
+        digit = secrets.choice(string.digits)
+
+        # Fill the rest with a mix of letters, digits, and punctuation
+        all_chars = string.ascii_letters + string.digits + string.punctuation
+        remaining_chars = "".join(secrets.choice(all_chars) for _ in range(length - 2))
+
+        # Shuffle to avoid predictable patterns
+        password = list(uppercase + digit + remaining_chars)
+        secrets.SystemRandom().shuffle(password)
+
+        return "".join(password)
+
+    def get_or_create_social_auth_user(
+        self, validated_data: UserValidatedDataType, *args, **kwargs
+    ) -> Tuple[UserType, bool]:
+        user = self.model_class.objects.filter(
+            email=validated_data.get("email"),
+        ).first()
+        if user:
+            return user, False
+        validated_data["user_type"] = "customer"
+        validated_data["password2"] = self.generate_random_password()
+        validated_data["is_active"] = True  # as user is already coming from social email. already email validated
+        instance = self.create(validated_data, **kwargs)
+        return instance, True

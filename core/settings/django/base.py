@@ -57,6 +57,7 @@ CUSTOM_APPS = [
     "apps.menu",
     "apps.blog",
     "apps.offer",
+    "apps.social_auth",
 ]
 
 
@@ -187,6 +188,9 @@ DRF_STANDARDIZED_ERRORS = {
 SENTRY_DSN = env("SENTRY_DSN")
 SENTRY_ENV = env("SENTRY_ENV")
 SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
+
+# GOOGLE OAUTH2
+GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default=None)  # type: ignore
 
 from core.settings.plugins.sentry import *  # noqa: E402, F403, I001
 from core.settings.plugins.unfold import *  # noqa: E402, F403, I001

@@ -35,6 +35,7 @@ class BlogListSerializer(s.ModelSerializer):
     class Meta:
         model = Blog
         fields = (
+            "id",
             "slug",
             "title",
             "header",
@@ -68,6 +69,7 @@ class BlogDetailSerializer(s.ModelSerializer):
     class Meta:
         model = Blog
         fields = (
+            "id",
             "slug",
             "title",
             "header",

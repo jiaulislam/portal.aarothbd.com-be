@@ -23,7 +23,7 @@ class GoogleAuthProviderService(BaseSocialAuthProviderService):
     def validate_token(self, auth_token: str):
         """validate the given oauth2 token from the oauth2 provider"""
         try:
-            user_info = id_token.verify_oauth2_token(auth_token, requests.Request())
+            user_info = id_token.verify_oauth2_token(auth_token, requests.Request(), settings.GOOGLE_CLIENT_ID)
             if self.provider not in user_info["iss"]:
                 raise ValueError("Invalid provider while validating Google Provider.")
 

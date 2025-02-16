@@ -4,4 +4,4 @@ __all__ = ["GoogleAuthLoginSerializer"]
 
 
 class GoogleAuthLoginSerializer(s.Serializer):
-    auth_code = s.CharField()
+    id_token = s.CharField()

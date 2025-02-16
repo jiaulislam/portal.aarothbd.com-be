@@ -35,6 +35,7 @@ class BlogListSerializer(s.ModelSerializer):
     class Meta:
         model = Blog
         fields = (
+            "id",
             "slug",
             "title",
             "header",

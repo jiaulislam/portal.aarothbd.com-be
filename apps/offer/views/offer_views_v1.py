@@ -67,6 +67,7 @@ class OfferUpdateStatusAPIView(UpdateAPIView):
 class OfferAgreementAPIView(UpdateAPIView):
     http_method_names = ["patch"]
     offer_service = OfferService()
+    permission_classes = [DjangoModelPermissions]
     serializer_class = OfferAgreementUpdateSerializer
     lookup_field = "slug"
 

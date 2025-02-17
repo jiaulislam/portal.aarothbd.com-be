@@ -8,8 +8,9 @@ from ..models import Offer
 __all__ = [
     "OfferListSerializer",
     "OfferCreateUpdateSerializer",
-    "OfferDetailSerializer",
+    "OfferRetrieveSerializer",
     "OfferUpdateStatusSerializer",
+    "OfferAgreementUpdateSerializer",
 ]
 
 
@@ -44,7 +45,7 @@ class OfferListSerializer(s.ModelSerializer):
         ]
 
 
-class OfferDetailSerializer(s.ModelSerializer):
+class OfferRetrieveSerializer(s.ModelSerializer):
     company = s.SerializerMethodField()
     product = s.SerializerMethodField()
 
@@ -93,3 +94,9 @@ class OfferUpdateStatusSerializer(s.ModelSerializer):
     class Meta:
         model = Offer
         fields = ["is_active", "id"]
+
+
+class OfferAgreementUpdateSerializer(s.ModelSerializer):
+    class Meta:
+        model = Offer
+        fields = ["company_agreed", "agreed_by", "agreed_at"]

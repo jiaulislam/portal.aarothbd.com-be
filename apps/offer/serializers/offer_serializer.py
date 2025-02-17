@@ -42,6 +42,10 @@ class OfferListSerializer(s.ModelSerializer):
             "end_at",
             "price",
             "offer_price",
+            "is_active",
+            "company_agreed",
+            "agreed_by",
+            "agreed_at",
         ]
 
 

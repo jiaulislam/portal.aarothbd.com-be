@@ -1,6 +1,9 @@
 from django.contrib.postgres.fields import DateRangeField
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.text import slugify
 
 from core.models import BaseModel
 
@@ -46,6 +49,8 @@ class PaikarSaleOrder(BaseModel):
 
     remarks = models.CharField(max_length=255, null=True, blank=True)
 
+    ecomm_identifier = models.CharField(null=True, blank=True, max_length=255, unique=True)
+
     def __str__(self):
         return self.order_number
 
@@ -53,3 +58,14 @@ class PaikarSaleOrder(BaseModel):
         db_table = "sale_order_paikar_sale_order"
         verbose_name = "Paikar Sale Order"
         verbose_name_plural = "Paikar Sale Orders"
+
+
+@receiver(pre_save, sender=PaikarSaleOrder)
+def generate_slug(sender, instance: PaikarSaleOrder, **kwargs):
+    if not instance.ecomm_identifier:
+        instance.ecomm_identifier = f"{instance.product.slug}-{slugify(instance.pk)}"
+        counter = 1
+        original_slug = instance.ecomm_identifier
+        while PaikarSaleOrder.objects.filter(ecomm_identifier=instance.ecomm_identifier).exists():
+            instance.ecomm_identifier = f"{original_slug}-{counter}"
+            counter += 1

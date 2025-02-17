@@ -31,7 +31,9 @@ urlpatterns = [
     path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
     path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
     # e-commerce urls
-    path(r"ecom/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-view"),
-    path(r"ecom/products/<str:slug>/", EcomProductDetailAPIView.as_view(), name="ecom-product-detail-view"),
-    path(r"ecom/products/store/<str:slug>/", EcomCompanyProductListAPIView.as_view(), name="ecom-product-store-view"),
+    path(r"ecomm/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-view"),
+    path(
+        r"ecomm/products/<str:ecomm_identifier>/", EcomProductDetailAPIView.as_view(), name="ecom-product-detail-view"
+    ),
+    path(r"ecomm/products/store/<str:slug>/", EcomCompanyProductListAPIView.as_view(), name="ecom-product-store-view"),
 ]

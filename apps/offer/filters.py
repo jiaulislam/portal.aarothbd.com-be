@@ -16,4 +16,5 @@ class OfferFilter(BaseFilter):
             "slug",
             "company",
             "is_active",
+            "company_agreed",
         )

@@ -5,6 +5,8 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, Up
 from rest_framework.permissions import DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
 from rest_framework.serializers import BaseSerializer
 
+from core.pagination import ExtendedLimitOffsetPagination
+
 if TYPE_CHECKING:
     from apps.offer.models import Offer
 
@@ -24,6 +26,7 @@ class OfferListCreateAPIView(ListCreateAPIView):
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     offer_service = OfferService()
     filterset_class = OfferFilter
+    pagination_class = ExtendedLimitOffsetPagination
 
     def get_serializer_class(self) -> type[BaseSerializer]:
         if self.request.method == "GET":

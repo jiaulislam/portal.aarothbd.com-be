@@ -3,6 +3,8 @@ from typing import TYPE_CHECKING
 from django.db.models.query import QuerySet
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
 from rest_framework.permissions import DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
+from rest_framework.request import Request
+from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 
 from core.pagination import ExtendedLimitOffsetPagination
@@ -70,3 +72,9 @@ class OfferAgreementAPIView(UpdateAPIView):
 
     def get_queryset(self) -> QuerySet["Offer"]:
         return self.offer_service.all(is_active=True, company_agreed=False)
+
+    def partial_update(self, request: Request) -> Response:
+        instance = self.get_object()
+        self.offer_service.accept_offer_agreement(instance, request=request)
+        response_data = {"detail": "accepted the offer"}
+        return Response(response_data)

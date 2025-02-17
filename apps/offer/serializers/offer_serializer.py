@@ -97,6 +97,10 @@ class OfferUpdateStatusSerializer(s.ModelSerializer):
 
 
 class OfferAgreementUpdateSerializer(s.ModelSerializer):
+    company_agreed = s.BooleanField(required=False)
+    agreed_by = s.IntegerField(required=False)
+    agreed_at = s.DateTimeField(required=False)
+
     class Meta:
         model = Offer
         fields = ["company_agreed", "agreed_by", "agreed_at"]

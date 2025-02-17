@@ -1,5 +1,8 @@
 from rest_framework import serializers as s
 
+from core.constants.common import AUDIT_COLUMNS
+from core.utils import get_serialized_data
+
 from ..models import Offer
 
 __all__ = [
@@ -11,21 +14,77 @@ __all__ = [
 
 
 class OfferListSerializer(s.ModelSerializer):
+    company = s.SerializerMethodField()
+    product = s.SerializerMethodField()
+
+    def get_company(self, obj: Offer):
+        from apps.company.serializers import CompanySerializer
+
+        data = get_serialized_data(CompanySerializer, obj, "company")
+        return data
+
+    def get_product(self, obj: Offer):
+        from apps.product.serializers.product_serializer import ProductDetailSerializer
+
+        data = get_serialized_data(ProductDetailSerializer, obj, "product")
+        return data
+
     class Meta:
         model = Offer
-        fields = "__all__"
+        fields = [
+            "id",
+            "name",
+            "slug",
+            "company",
+            "product",
+            "start_at",
+            "end_at",
+            "price",
+            "offer_price",
+        ]
 
 
 class OfferDetailSerializer(s.ModelSerializer):
+    company = s.SerializerMethodField()
+    product = s.SerializerMethodField()
+
+    def get_company(self, obj: Offer):
+        from apps.company.serializers import CompanySerializer
+
+        data = get_serialized_data(CompanySerializer, obj, "company")
+        return data
+
+    def get_product(self, obj: Offer):
+        from apps.product.serializers.product_serializer import ProductDetailSerializer
+
+        data = get_serialized_data(ProductDetailSerializer, obj, "product")
+        return data
+
     class Meta:
         model = Offer
-        fields = "__all__"
+        exclude = AUDIT_COLUMNS
 
 
 class OfferCreateUpdateSerializer(s.ModelSerializer):
+    id = s.ReadOnlyField()
+
     class Meta:
         model = Offer
-        fields = "__all__"
+        fields = [
+            "id",
+            "name",
+            "slug",
+            "company",
+            "product",
+            "start_at",
+            "end_at",
+            "discount_mode",
+            "discount_amount",
+            "min_qty",
+            "max_qty",
+            "price",
+            "offer_price",
+        ]
 
 
 class OfferUpdateStatusSerializer(s.ModelSerializer):

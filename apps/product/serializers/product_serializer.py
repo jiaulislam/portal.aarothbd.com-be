@@ -165,4 +165,5 @@ class ProductEcomSerializer(s.ModelSerializer):
             "vat_ratio",
             "orderlines",
             "validity_dates",
+            "ecomm_identifier",
         )

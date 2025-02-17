@@ -8,11 +8,11 @@ from rest_framework.response import Response
 
 from core.pagination import ExtendedLimitOffsetPagination
 
-from ..serializers.product_serializer import ProductEcomSerializer, ProductExtendedSerializer, ProductNestedSerializer
+from ..serializers.product_serializer import ProductEcomSerializer, ProductNestedSerializer
 from ..services import ProductService
 
 if TYPE_CHECKING:
-    from apps.company.models import Company
+    from apps.product.models.product_model import Product
 
 
 class EcomProductListAPIView(ListAPIView):
@@ -27,14 +27,13 @@ class EcomProductListAPIView(ListAPIView):
 
 
 class EcomProductDetailAPIView(RetrieveAPIView):
-    serializer_class = ProductExtendedSerializer
+    serializer_class = ProductEcomSerializer
     permission_classes = [AllowAny]
     product_service = ProductService()
-    lookup_field = "slug"
+    lookup_field = "ecomm_identifier"
 
-    def get_queryset(self) -> QuerySet:
-        # ! FIXME: potential threat of data leaks as there are chances to return the product without any sale order or approval.  # noqa: E501
-        queryset = self.product_service.all()
+    def get_queryset(self):
+        queryset = self.product_service.get_ecom_queryset()
         return queryset
 
 
@@ -47,7 +46,7 @@ class EcomCompanyProductListAPIView(ListAPIView):
     product_service = ProductService()
     pagination_class = ExtendedLimitOffsetPagination
 
-    def get_queryset(self, company_slug: str) -> QuerySet["Company"]:
+    def get_queryset(self, company_slug: str) -> QuerySet["Product"]:
         from apps.company.services import CompanyService
 
         company_service = CompanyService()

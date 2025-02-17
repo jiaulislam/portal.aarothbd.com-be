@@ -28,6 +28,10 @@ class Offer(BaseModel):
     price = models.FloatField(default=0)
     offer_price = models.FloatField(default=0)  # auto calculated pre-save
 
+    company_agreed = models.BooleanField(default=False)
+    agreed_by = models.ForeignKey("user.User", on_delete=models.DO_NOTHING, related_name="offers")
+    agreed_at = models.DateTimeField(null=True, blank=True)
+
     def __str__(self):
         return self.name
 

@@ -9,7 +9,9 @@ if TYPE_CHECKING:
     from apps.offer.models import Offer
 
 
+from ..filters import OfferFilter
 from ..serializers import (
+    OfferAgreementUpdateSerializer,
     OfferCreateUpdateSerializer,
     OfferListSerializer,
     OfferRetrieveSerializer,
@@ -21,6 +23,7 @@ from ..services import OfferService
 class OfferListCreateAPIView(ListCreateAPIView):
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     offer_service = OfferService()
+    filterset_class = OfferFilter
 
     def get_serializer_class(self) -> type[BaseSerializer]:
         if self.request.method == "GET":
@@ -28,7 +31,9 @@ class OfferListCreateAPIView(ListCreateAPIView):
         return OfferCreateUpdateSerializer
 
     def get_queryset(self) -> QuerySet["Offer"]:
-        return self.offer_service.all()
+        queryset = self.offer_service.all()
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return filterset.qs
 
 
 class OfferRetrieveUpdateAPIView(RetrieveUpdateAPIView):
@@ -52,3 +57,13 @@ class OfferUpdateStatusAPIView(UpdateAPIView):
     offer_service = OfferService()
     lookup_field = "slug"
     serializer_class = OfferUpdateStatusSerializer
+
+
+class OfferAgreementAPIView(UpdateAPIView):
+    http_method_names = ["patch"]
+    offer_service = OfferService()
+    serializer_class = OfferAgreementUpdateSerializer
+    lookup_field = "slug"
+
+    def get_queryset(self) -> QuerySet["Offer"]:
+        return self.offer_service.all(is_active=True, company_agreed=False)

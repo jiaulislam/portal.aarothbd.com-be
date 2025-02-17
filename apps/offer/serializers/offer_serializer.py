@@ -10,6 +10,7 @@ __all__ = [
     "OfferCreateUpdateSerializer",
     "OfferRetrieveSerializer",
     "OfferUpdateStatusSerializer",
+    "OfferAgreementUpdateSerializer",
 ]
 
 
@@ -93,3 +94,9 @@ class OfferUpdateStatusSerializer(s.ModelSerializer):
     class Meta:
         model = Offer
         fields = ["is_active", "id"]
+
+
+class OfferAgreementUpdateSerializer(s.ModelSerializer):
+    class Meta:
+        model = Offer
+        fields = ["company_agreed", "agreed_by", "agreed_at"]

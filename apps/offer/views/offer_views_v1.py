@@ -11,8 +11,8 @@ if TYPE_CHECKING:
 
 from ..serializers import (
     OfferCreateUpdateSerializer,
-    OfferDetailSerializer,
     OfferListSerializer,
+    OfferRetrieveSerializer,
     OfferUpdateStatusSerializer,
 )
 from ..services import OfferService
@@ -39,7 +39,7 @@ class OfferRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
     def get_serializer_class(self) -> type[BaseSerializer]:
         if self.request.method == "GET":
-            return OfferDetailSerializer
+            return OfferRetrieveSerializer
         return OfferCreateUpdateSerializer
 
     def get_queryset(self) -> QuerySet["Offer"]:

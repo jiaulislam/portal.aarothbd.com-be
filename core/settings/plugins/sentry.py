@@ -10,4 +10,6 @@ sentry_sdk.init(
     integrations=[
         DjangoIntegration(),
     ],
+    send_default_pii=True,
+    traces_sample_rate=1.0,
 )

@@ -43,6 +43,3 @@ uv sync
 ```bash
 uv run python manage.py runserver
 ```
-
-
-![Aarothbd.com](/images/banner.png)

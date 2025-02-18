@@ -89,6 +89,9 @@ class OfferCreateUpdateSerializer(s.ModelSerializer):
             "max_qty",
             "price",
             "offer_price",
+            "comission_mode",
+            "comission_amount",
+            "uom",
         ]
 
 

@@ -23,8 +23,11 @@ class Offer(BaseModel):
         help_text="decide how the amount should deduct",
     )
     discount_amount = models.PositiveIntegerField(default=0)
+    commission_mode = models.CharField(max_length=255, choices=DiscountPriceMode.choices, null=True, blank=True)
+    comission_amount = models.IntegerField(default=0)
     min_qty = models.IntegerField(default=0)
     max_qty = models.IntegerField(default=0)
+    uom = models.ForeignKey("uom.UoM", on_delete=models.DO_NOTHING, related_name="offers", null=True, blank=True)
     price = models.FloatField(default=0)
     offer_price = models.FloatField(default=0)  # auto calculated pre-save
 

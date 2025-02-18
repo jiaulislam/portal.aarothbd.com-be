@@ -23,7 +23,7 @@ class Offer(BaseModel):
         help_text="decide how the amount should deduct",
     )
     discount_amount = models.PositiveIntegerField(default=0)
-    commission_mode = models.CharField(max_length=255, choices=DiscountPriceMode.choices, null=True, blank=True)
+    comission_mode = models.CharField(max_length=255, choices=DiscountPriceMode.choices, null=True, blank=True)
     comission_amount = models.IntegerField(default=0)
     min_qty = models.IntegerField(default=0)
     max_qty = models.IntegerField(default=0)

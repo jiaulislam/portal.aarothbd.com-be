@@ -60,7 +60,6 @@ class OfferUpdateStatusAPIView(UpdateAPIView):
     http_method_names = ["patch"]
     permission_classes = [DjangoModelPermissions]
     offer_service = OfferService()
-    lookup_field = "slug"
     serializer_class = OfferUpdateStatusSerializer
 
 

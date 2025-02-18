@@ -61,6 +61,10 @@ class OfferUpdateStatusAPIView(UpdateAPIView):
     permission_classes = [DjangoModelPermissions]
     offer_service = OfferService()
     serializer_class = OfferUpdateStatusSerializer
+    lookup_field = "id"
+
+    def get_queryset(self) -> QuerySet:
+        return self.offer_service.all(is_active=True)
 
 
 class OfferAgreementAPIView(UpdateAPIView):

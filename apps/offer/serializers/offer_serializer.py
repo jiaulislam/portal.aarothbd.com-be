@@ -60,9 +60,9 @@ class OfferRetrieveSerializer(s.ModelSerializer):
         return data
 
     def get_product(self, obj: Offer):
-        from apps.product.serializers.product_serializer import ProductDetailSerializer
+        from apps.product.serializers.product_serializer import ProductExtendedSerializer
 
-        data = get_serialized_data(ProductDetailSerializer, obj, "product")
+        data = get_serialized_data(ProductExtendedSerializer, obj, "product")
         return data
 
     class Meta:

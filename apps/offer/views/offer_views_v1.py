@@ -77,7 +77,7 @@ class OfferAgreementAPIView(UpdateAPIView):
     def get_queryset(self) -> QuerySet["Offer"]:
         return self.offer_service.all(is_active=True, company_agreed=False)
 
-    def partial_update(self, request: Request) -> Response:
+    def partial_update(self, request: Request, *args, **kwargs) -> Response:
         instance = self.get_object()
         self.offer_service.accept_offer_agreement(instance, request=request)
         response_data = {"detail": "accepted the offer"}

@@ -22,4 +22,5 @@ class OfferService(BaseModelService[Offer]):
         instance.company_agreed = True
         instance.agreed_by = request.user if request else None
         instance.agreed_at = timezone.now()
+        instance.save()
         return instance

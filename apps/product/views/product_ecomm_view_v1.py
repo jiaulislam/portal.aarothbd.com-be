@@ -40,6 +40,24 @@ class EcomProductDetailAPIView(RetrieveAPIView):
         return queryset
 
 
+class EcomCompanyProductDetailAPIView(RetrieveAPIView):
+    serializer_class = ProductEcomSerializer
+    permission_classes = [AllowAny]
+    product_service = ProductService()
+
+    def get_queryset(self, company_slug: str, product_slug: str) -> "Product":
+        from apps.company.services import CompanyService
+
+        company_service = CompanyService()
+        instance = company_service.get(slug=company_slug)
+        return instance.allowed_products.get(slug=product_slug)
+
+    def retrieve(self, request: Request, company_slug: str, product_slug: str, *args, **kwargs) -> Response:
+        instance = self.get_queryset(company_slug=company_slug, product_slug=product_slug)
+        serializer = ProductNestedSerializer(instance)
+        return Response(serializer.data)
+
+
 class EcomCompanyProductListAPIView(ListAPIView):
     http_method_names = ["get"]
     lookup_field = "slug"

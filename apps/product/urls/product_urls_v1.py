@@ -38,7 +38,7 @@ urlpatterns = [
     ),
     path(r"ecomm/products/store/<str:slug>/", EcomCompanyProductListAPIView.as_view(), name="ecom-product-store-view"),
     path(
-        r"ecomm/company/<str:company_slug>/products/<str:product_slug>/",
+        r"ecomm/companies/<str:company_slug>/products/<str:product_slug>/",
         EcomCompanyProductDetailAPIView.as_view(),
         name="ecom-company-product-detail-view",
     ),

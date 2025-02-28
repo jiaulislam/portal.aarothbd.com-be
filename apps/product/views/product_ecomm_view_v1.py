@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 from core.pagination import ExtendedLimitOffsetPagination
 
+from ..filters import ECommProductFilter
 from ..serializers.product_serializer import ProductEcomSerializer, ProductNestedSerializer
 from ..services import ProductService
 
@@ -20,10 +21,12 @@ class EcomProductListAPIView(ListAPIView):
     permission_classes = [AllowAny]
     product_service = ProductService()
     pagination_class = ExtendedLimitOffsetPagination
+    filterset_class = ECommProductFilter
 
     def get_queryset(self):
         queryset = self.product_service.get_ecom_queryset()
-        return queryset
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return filterset.qs.distinct()
 
 
 class EcomProductDetailAPIView(RetrieveAPIView):

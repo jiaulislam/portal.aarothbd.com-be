@@ -30,3 +30,10 @@ class ProductCategoryFilter(BaseFilter):
     class Meta:
         model = ProductCategory
         exclude = COMMON_EXCLUDE_FIELDS + ("category_image",)
+
+
+class ECommProductFilter(BaseFilter):
+    category = filters.NumberFilter(field_name="product__category_id", lookup_expr="exact")
+    brand = filters.NumberFilter(field_name="product__brand_id", lookup_expr="exact")
+    rate_min = filters.NumberFilter(field_name="orderlines__rate", lookup_expr="gte")
+    rate_max = filters.NumberFilter(field_name="orderlines__rate", lookup_expr="lte")

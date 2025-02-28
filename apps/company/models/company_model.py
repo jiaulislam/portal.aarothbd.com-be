@@ -9,7 +9,16 @@ from core.models import BaseModel
 if TYPE_CHECKING:
     from .company_configuration_model import CompanyConfiguration
 
-__all__ = ["Company"]
+__all__ = ["Company", "CompanyCategory"]
+
+
+class CompanyCategory(BaseModel):
+    name = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        db_table = "company_company_category"
+        verbose_name = "Company Category"
+        verbose_name_plural = "Company Categories"
 
 
 class Company(BaseModel):
@@ -21,6 +30,8 @@ class Company(BaseModel):
     company_logo = models.ImageField(upload_to="media/company/logos", null=True, blank=True)
     company_favicon = models.ImageField(upload_to="media/company/favicon", null=True, blank=True)
     addresses = GenericRelation(Address, related_query_name="company_addresses")
+    rating = models.IntegerField(default=0)
+    category = models.ForeignKey(CompanyCategory, on_delete=models.SET_NULL, null=True, blank=True)
     allowed_products = models.ManyToManyField("product.Product", related_name="companies", blank=True)
 
     notes = models.TextField(null=True, blank=True)

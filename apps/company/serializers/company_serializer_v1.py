@@ -5,11 +5,12 @@ from apps.address.serializers import AddressCreateSerializer, AddressSerializer
 from apps.product.models.product_model import Product
 from apps.product.serializers.product_serializer import ProductSerializer
 from core.constants import COMMON_EXCLUDE_FIELDS, STATUS_SERIALIZER_FIELDS
+from core.constants.common import AUDIT_COLUMNS
 
-from ..models import Company
+from ..models import Company, CompanyCategory
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 
-__all__ = ["CompanySerializer", "CompanyDetailSerializer"]
+__all__ = ["CompanySerializer", "CompanyDetailSerializer", "CompanyCategorySerializer", "CompanyListSerializer"]
 
 
 class CompanySerializer(s.ModelSerializer):
@@ -73,3 +74,17 @@ class CompanyUpdateStatusSerializer(s.ModelSerializer):
         except KeyError as _:
             raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
         return data
+
+
+class CompanyCategorySerializer(s.ModelSerializer):
+    class Meta:
+        model = CompanyCategory
+        exclude = AUDIT_COLUMNS
+
+
+class CompanyListSerializer(s.ModelSerializer):
+    category = CompanyCategorySerializer(read_only=True)
+
+    class Meta:
+        model = Company
+        exclude = AUDIT_COLUMNS

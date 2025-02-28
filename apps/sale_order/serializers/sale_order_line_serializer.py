@@ -6,6 +6,11 @@ from core.constants.common import AUDIT_COLUMNS
 
 from ..models import PaikarSaleOrderLine
 
+__all__ = [
+    "SaleOrderLineSerializer",
+    "SaleOrderLineCreateSerializer",
+]
+
 
 @extend_schema_field(
     {
@@ -49,6 +54,16 @@ class SaleOrderLineSerializer(s.ModelSerializer):
 
         data = UoMSerializer(instance=obj.uom).data
         return data
+
+    class Meta:
+        model = PaikarSaleOrderLine
+        exclude = AUDIT_COLUMNS
+
+
+class SaleOrderLineCreateSerializer(s.ModelSerializer):
+    paikar_sale_order = s.ReadOnlyField(source="paikar_sale_order.id")
+    is_active = s.CharField(read_only=True)
+    quantity_slab = PositiveIntegerRangeField()
 
     class Meta:
         model = PaikarSaleOrderLine

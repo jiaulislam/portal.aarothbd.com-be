@@ -5,7 +5,15 @@ from rest_framework import serializers as s
 from core.constants.common import AUDIT_COLUMNS
 
 from ..models import PaikarSaleOrder
-from .sale_order_line_serializer import SaleOrderLineSerializer
+from .sale_order_line_serializer import SaleOrderLineCreateSerializer, SaleOrderLineSerializer
+
+__all__ = [
+    "PaikarSaleOrderBaseModelSerializer",
+    "PaikarSaleOrderDetailSerializer",
+    "PaikarSaleOrderCreateSerializer",
+    "PaikarSaleOrderUpdateSerializer",
+    "PaikarSaleOrderApprovalSerializer",
+]
 
 
 @extend_schema_field(
@@ -66,7 +74,7 @@ class PaikarSaleOrderCreateSerializer(s.ModelSerializer):
 
     validity_dates = DateRangeField()
 
-    orderlines = SaleOrderLineSerializer(many=True, write_only=True)
+    orderlines = SaleOrderLineCreateSerializer(many=True, write_only=True)
 
     def get_approved_by(self, obj):
         from apps.user.serializers.user_serializer_v1 import UserSerializer
@@ -80,7 +88,7 @@ class PaikarSaleOrderCreateSerializer(s.ModelSerializer):
 
 
 class PaikarSaleOrderUpdateSerializer(s.ModelSerializer):
-    orderlines = SaleOrderLineSerializer(many=True, write_only=True)
+    orderlines = SaleOrderLineCreateSerializer(many=True, write_only=True)
 
     class Meta:
         model = PaikarSaleOrder

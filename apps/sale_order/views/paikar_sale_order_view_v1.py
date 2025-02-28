@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
-from rest_framework.serializers import BaseSerializer
+from rest_framework.serializers import ModelSerializer
 
 from core.pagination import ExtendedLimitOffsetPagination
 from core.request import Request
@@ -36,7 +36,7 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
     sale_order_service = PaikarSaleOrderService()
     sale_order_line_service = PaikarSaleOrderLineService()
 
-    def get_serializer_class(self) -> type[BaseSerializer[PaikarSaleOrderBaseModelSerializer]]:
+    def get_serializer_class(self) -> type[ModelSerializer]:
         if self.request.method == "POST":
             return PaikarSaleOrderCreateSerializer
         return PaikarSaleOrderBaseModelSerializer
@@ -85,7 +85,7 @@ class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     sale_order_service = PaikarSaleOrderService()
     sale_order_line_service = PaikarSaleOrderLineService()
 
-    def get_serializer_class(self) -> type[BaseSerializer[PaikarSaleOrderBaseModelSerializer]]:
+    def get_serializer_class(self) -> type[ModelSerializer]:
         if self.request.method == "PUT":
             return PaikarSaleOrderUpdateSerializer
         return PaikarSaleOrderDetailSerializer
@@ -109,8 +109,8 @@ class PaikarSaleOrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
         # handle orderlines
         self.sale_order_line_service.update_orderlines(orderlines, sale_order_instance, request=request)
-
-        serialized = self.get_serializer_class()(instance=sale_order_instance)
+        serializer_class = self.get_serializer_class()
+        serialized = serializer_class(instance=sale_order_instance)
         return Response(serialized.data)
 
 

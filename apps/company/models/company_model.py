@@ -7,6 +7,8 @@ from apps.address.models import Address
 from core.models import BaseModel
 
 if TYPE_CHECKING:
+    from apps.sale_order.models import PaikarSaleOrder
+
     from .company_configuration_model import CompanyConfiguration
 
 __all__ = ["Company", "CompanyCategory"]
@@ -37,6 +39,7 @@ class Company(BaseModel):
     notes = models.TextField(null=True, blank=True)
 
     configuration: "CompanyConfiguration"
+    paikar_sale_orders: models.QuerySet["PaikarSaleOrder"]
 
     class Meta:
         db_table = "company_company"

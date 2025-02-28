@@ -7,6 +7,7 @@ from ..views.product_category_view_v1 import (
     ProductCategoryUpdateStatusAPIView,
 )
 from ..views.product_ecomm_view_v1 import (
+    EcomCompanyProductDetailAPIView,
     EcomCompanyProductListAPIView,
     EcomProductDetailAPIView,
     EcomProductListAPIView,
@@ -36,4 +37,9 @@ urlpatterns = [
         r"ecomm/products/<str:ecomm_identifier>/", EcomProductDetailAPIView.as_view(), name="ecom-product-detail-view"
     ),
     path(r"ecomm/products/store/<str:slug>/", EcomCompanyProductListAPIView.as_view(), name="ecom-product-store-view"),
+    path(
+        r"ecomm/companies/<str:company_slug>/products/<str:product_slug>/",
+        EcomCompanyProductDetailAPIView.as_view(),
+        name="ecom-company-product-detail-view",
+    ),
 ]

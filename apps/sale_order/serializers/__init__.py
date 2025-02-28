@@ -1,2 +1,2 @@
-from .sale_order_line_serializer import SaleOrderLineSerializer # noqa
-from .sale_order_serializer import PaikarSaleOrderBaseModelSerializer, PaikarSaleOrderDetailSerializer # noqa
+from .sale_order_line_serializer import *  # noqa
+from .sale_order_serializer import *  # noqa

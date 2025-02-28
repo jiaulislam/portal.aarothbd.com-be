@@ -8,6 +8,7 @@ from rest_framework.response import Response
 
 from core.pagination import ExtendedLimitOffsetPagination
 
+from ..filters import ECommProductFilter
 from ..serializers.product_serializer import ProductEcomSerializer, ProductNestedSerializer
 from ..services import ProductService
 
@@ -20,10 +21,12 @@ class EcomProductListAPIView(ListAPIView):
     permission_classes = [AllowAny]
     product_service = ProductService()
     pagination_class = ExtendedLimitOffsetPagination
+    filterset_class = ECommProductFilter
 
     def get_queryset(self):
         queryset = self.product_service.get_ecom_queryset()
-        return queryset
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return filterset.qs.distinct()
 
 
 class EcomProductDetailAPIView(RetrieveAPIView):
@@ -35,6 +38,24 @@ class EcomProductDetailAPIView(RetrieveAPIView):
     def get_queryset(self):
         queryset = self.product_service.get_ecom_queryset()
         return queryset
+
+
+class EcomCompanyProductDetailAPIView(RetrieveAPIView):
+    serializer_class = ProductEcomSerializer
+    permission_classes = [AllowAny]
+    product_service = ProductService()
+
+    def get_queryset(self, company_slug: str, product_slug: str) -> "Product":
+        from apps.company.services import CompanyService
+
+        company_service = CompanyService()
+        instance = company_service.get(slug=company_slug)
+        return instance.allowed_products.get(slug=product_slug)
+
+    def retrieve(self, request: Request, company_slug: str, product_slug: str, *args, **kwargs) -> Response:
+        instance = self.get_queryset(company_slug=company_slug, product_slug=product_slug)
+        serializer = ProductNestedSerializer(instance)
+        return Response(serializer.data)
 
 
 class EcomCompanyProductListAPIView(ListAPIView):

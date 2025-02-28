@@ -7,6 +7,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, Up
 from rest_framework.permissions import SAFE_METHODS, AllowAny, DjangoModelPermissions, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.serializers import ModelSerializer
 
 from apps.address.services import AddressService
 from apps.product.services import ProductService
@@ -18,6 +19,7 @@ from ..models import Company
 from ..serializers.company_serializer_v1 import (
     CompanyCreateSerializer,
     CompanyDetailSerializer,
+    CompanyListSerializer,
     CompanyUpdateSerializer,
     CompanyUpdateStatusSerializer,
 )
@@ -44,6 +46,11 @@ class CompanyListCreateAPIView(ListCreateAPIView):
             return [AllowAny()]  # Public access for GET, HEAD, OPTIONS
         return [permission() for permission in self.permission_classes]
 
+    def get_serializer_class(self) -> type[ModelSerializer[Company]]:
+        if self.request.method == "POST":
+            return CompanyCreateSerializer
+        return CompanyListSerializer
+
     def get_queryset(self, **kwargs) -> QuerySet[Company]:
         queryset = self.company_service.all(**kwargs).select_related("configuration")
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
@@ -53,12 +60,12 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         queryset = self.get_queryset(**kwargs)
         paginate = self.pagination_class()  # type: ignore
         paginated_queryset = paginate.paginate_queryset(queryset, request)
-        serialized = self.serializer_class(paginated_queryset, many=True)  # type: ignore
+        serialized = self.get_serializer_class()(paginated_queryset, many=True)
         return paginate.get_paginated_response(serialized.data)
 
     @transaction.atomic
     def create(self, request: Request, *args, **kwargs) -> Response:
-        serialized = self.serializer_class(data=request.data)  # type: ignore
+        serialized = self.get_serializer_class()(data=request.data)
         serialized.is_valid(raise_exception=True)
         allowed_products = serialized.validated_data.pop("allowed_products", [])
         company_instance = self.company_service.create(serialized.data, request=request)
@@ -79,8 +86,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
 
 class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
-    serializer_class = CompanyUpdateSerializer
-    detail_serializer_class = CompanyDetailSerializer
+    serializer_class = CompanyDetailSerializer
     permission_classes = [DjangoModelPermissions]
 
     company_service = CompanyService()
@@ -89,15 +95,20 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def get_queryset(self) -> QuerySet["Company"]:
         return self.company_service.all().select_related("configuration")
 
+    def get_serializer_class(self) -> type[ModelSerializer[Company]]:
+        if self.request.method == "POST":
+            return CompanyUpdateSerializer
+        return CompanyDetailSerializer
+
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
         _company_id = kwargs.get("id")
         queryset = self.company_service.get(id=_company_id, select_related=["configuration"])
-        serialized = self.detail_serializer_class(queryset)  # type: ignore
+        serialized = self.get_serializer_class()(instance=queryset)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     @transaction.atomic
     def update(self, request: Request, *args, **kwargs):
-        company_serialized = self.serializer_class(data=request.data)  # type: ignore
+        company_serialized = self.get_serializer_class()(data=request.data)
         company_serialized.is_valid(raise_exception=True)
         allowed_products = company_serialized.validated_data.pop("allowed_products", [])
         # get and update company

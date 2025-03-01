@@ -1,12 +1,18 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 
 from ..views.company_address_view_v1 import CompanyAddressListCreateAPIView
 from ..views.company_configuration_view_v1 import CompanyConfigurationUpdateAPIView
 from ..views.company_view_v1 import (
+    CompanyCategoryViewSet,
     CompanyListCreateAPIView,
     CompanyRetrieveUpdateAPIView,
     CompanyUpdateStatusAPIView,
 )
+
+router = DefaultRouter()
+
+router.register(r"company-categories", CompanyCategoryViewSet, basename="company-categories")
 
 urlpatterns = [
     path(r"companies/", CompanyListCreateAPIView.as_view(), name="companies-list-create"),
@@ -27,3 +33,5 @@ urlpatterns = [
         name="company-configuration-update",
     ),
 ]
+
+urlpatterns = router.urls

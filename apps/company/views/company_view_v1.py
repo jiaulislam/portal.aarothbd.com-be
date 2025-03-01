@@ -4,10 +4,17 @@ from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
-from rest_framework.permissions import SAFE_METHODS, AllowAny, DjangoModelPermissions, IsAuthenticated
+from rest_framework.permissions import (
+    SAFE_METHODS,
+    AllowAny,
+    DjangoModelPermissions,
+    DjangoModelPermissionsOrAnonReadOnly,
+    IsAuthenticated,
+)
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
+from rest_framework.viewsets import ModelViewSet
 
 from apps.address.services import AddressService
 from apps.product.services import ProductService
@@ -15,8 +22,9 @@ from core.authentication import SecureCookieAuthentication
 from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import CompanyFilter
-from ..models import Company
+from ..models import Company, CompanyCategory
 from ..serializers.company_serializer_v1 import (
+    CompanyCategorySerializer,
     CompanyCreateSerializer,
     CompanyDetailSerializer,
     CompanyListSerializer,
@@ -141,3 +149,13 @@ class CompanyUpdateStatusAPIView(UpdateAPIView):
         instance = self.company_service.get(**kwargs)
         self.company_service.update(instance, serialized.validated_data, request=request)
         return Response({"detail": "Company Status updated."}, status=status.HTTP_200_OK)
+
+
+class CompanyCategoryViewSet(ModelViewSet):
+    serializer_class = CompanyCategorySerializer
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    pagination_class = ExtendedLimitOffsetPagination
+
+    def get_queryset(self):
+        queryset = CompanyCategory.objects.all()
+        return queryset

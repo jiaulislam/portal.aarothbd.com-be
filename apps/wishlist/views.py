@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from user.models import User
 
 
-class WishlistItemListAddAPIView(ListCreateAPIView):
+class WishlistItemListCreateAPIView(ListCreateAPIView):
     serializer_class = WishlistItemAddRemoveSerializer
     permission_classes = [IsAuthenticated]
 

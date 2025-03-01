@@ -4,7 +4,7 @@ from rest_framework import serializers as s
 
 from core.constants.common import AUDIT_COLUMNS
 
-from ..models import PaikarSaleOrder
+from ..models import PaikarSaleOrder, Review
 from .sale_order_line_serializer import SaleOrderLineCreateSerializer, SaleOrderLineSerializer
 
 __all__ = [
@@ -13,6 +13,8 @@ __all__ = [
     "PaikarSaleOrderCreateSerializer",
     "PaikarSaleOrderUpdateSerializer",
     "PaikarSaleOrderApprovalSerializer",
+    "ReviewSerializer",
+    "SaleOrderReviewSerializer",
 ]
 
 
@@ -99,3 +101,18 @@ class PaikarSaleOrderApprovalSerializer(s.ModelSerializer):
     class Meta:
         model = PaikarSaleOrder
         fields = ("status", "remarks", "id")
+
+
+class ReviewSerializer(s.ModelSerializer):
+    class Meta:
+        model = Review
+        exclude = AUDIT_COLUMNS
+
+
+class SaleOrderReviewSerializer(s.Serializer):
+    reviewer_name = s.CharField()
+    reviewer_email = s.EmailField(allow_null=True)
+    reviewer_phone = s.CharField(allow_null=True)
+    rating = s.IntegerField(min_value=1, max_value=5)
+    reviewer_comment = s.CharField(allow_null=True)
+    created_at = s.DateTimeField()

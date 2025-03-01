@@ -144,6 +144,7 @@ class ProductEcomSerializer(s.ModelSerializer):
     company = s.SerializerMethodField()
     validity_dates = DateRangeField()
     orderlines = s.SerializerMethodField()
+    reviews = s.SerializerMethodField()
 
     def get_orderlines(self, obj):
         from apps.sale_order.serializers import SaleOrderLineSerializer
@@ -154,6 +155,23 @@ class ProductEcomSerializer(s.ModelSerializer):
         from apps.company.serializers.company_serializer_v1 import CompanySerializer
 
         return utils.get_serialized_data(CompanySerializer, obj, "company")
+
+    def get_reviews(self, obj: PaikarSaleOrder):
+        # FIXME: fix this clutter later
+        from apps.sale_order.models import Review
+        from apps.sale_order.serializers import SaleOrderReviewSerializer
+
+        queryset = (
+            Review.objects.filter(
+                sale_order__product=obj.product,
+                sale_order__company=obj.company,
+                is_active=True,
+            )
+            .all()
+            .order_by("-id")
+        )
+        serializer = SaleOrderReviewSerializer(queryset, many=True)
+        return serializer.data
 
     class Meta:
         model = PaikarSaleOrder
@@ -166,4 +184,5 @@ class ProductEcomSerializer(s.ModelSerializer):
             "orderlines",
             "validity_dates",
             "ecomm_identifier",
+            "reviews",
         )

@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Any, List, MutableMapping
+from typing import TYPE_CHECKING, Any, List, MutableMapping
 
 from django.db.models import F
 from django.db.models.functions import Upper
@@ -7,6 +7,9 @@ from django.db.models.functions import Upper
 from core.services import BaseModelService
 
 from ..models.product_model import Product, ProductDetail
+
+if TYPE_CHECKING:
+    from apps.company.models import Company
 
 __all__ = ["ProductService"]
 
@@ -44,3 +47,23 @@ class ProductService(BaseModelService[Product]):
             .filter(status=SaleOrderStatusChoices.APPROVED, upper_bound__gte=today)
         )
         return approved_orders
+
+    def get_company_product_sale_orders(self, company: "Company"):
+        from apps.sale_order.constants import SaleOrderStatusChoices
+        from apps.sale_order.models import PaikarSaleOrder
+
+        today = date.today()
+        allowed_products = company.allowed_products.values_list("id", flat=True)
+
+        sale_orders = (
+            PaikarSaleOrder.objects.annotate(upper_bound=Upper(F("validity_dates")))  # Extract upper bound
+            .exclude(validity_dates__upper_inf=True)  # Exclude infinite upper bound
+            .filter(
+                product__in=allowed_products,
+                company=company,
+                status=SaleOrderStatusChoices.APPROVED,  # Ensure order is approved
+                upper_bound__gte=today,  # Check if upper bound is >= today
+            )
+        )
+
+        return sale_orders

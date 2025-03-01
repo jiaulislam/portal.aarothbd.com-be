@@ -1,5 +1,6 @@
 from django.urls import path
 
+from ..views import ReviewCreateAPIView
 from ..views.paikar_sale_order_view_v1 import (
     PaikarSaleOrderApprovalAPIView,
     PaikarSaleOrderListCreateAPIView,
@@ -17,5 +18,10 @@ urlpatterns = [
         "paikar/sale-orders/<int:id>/approve/",
         PaikarSaleOrderApprovalAPIView.as_view(),
         name="paikar-sale-order-approve",
+    ),
+    path(
+        r"products/reviews/",
+        ReviewCreateAPIView.as_view(),
+        name="product-reviews-create-view",
     ),
 ]

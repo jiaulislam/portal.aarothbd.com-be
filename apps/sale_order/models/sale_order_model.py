@@ -69,3 +69,17 @@ def generate_slug(sender, instance: PaikarSaleOrder, **kwargs):
         while PaikarSaleOrder.objects.filter(ecomm_identifier=instance.ecomm_identifier).exists():
             instance.ecomm_identifier = f"{original_slug}-{counter}"
             counter += 1
+
+
+class Review(BaseModel):
+    sale_order = models.ForeignKey(PaikarSaleOrder, on_delete=models.CASCADE, related_name="reviews")
+    reviewer_name = models.CharField(max_length=255)
+    reviewer_email = models.EmailField(null=True, blank=True)
+    reviewer_phone = models.CharField(max_length=50, null=True, blank=True)
+    reviewer_comment = models.TextField(null=True, blank=True)
+    rating = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "sale_order_review"
+        verbose_name = "Sale Order Review"
+        verbose_name_plural = "Reviews"

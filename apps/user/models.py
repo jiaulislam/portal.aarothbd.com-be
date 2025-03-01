@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
@@ -8,6 +10,9 @@ from core.models import BaseModel
 
 from .constants import AuthProviderChoices, UserTypeChoices
 from .manager import UserManager
+
+if TYPE_CHECKING:
+    from wishlist.models import Wishlist
 
 
 class User(AbstractBaseUser, BaseModel, PermissionsMixin):
@@ -40,6 +45,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
     REQUIRED_FIELDS = ["password"]
 
     profile: "UserProfile"
+    wishlist: "Wishlist"
 
     class Meta:
         db_table = "user_user"

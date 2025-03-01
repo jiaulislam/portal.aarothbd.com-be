@@ -58,6 +58,7 @@ CUSTOM_APPS = [
     "apps.blog",
     "apps.offer",
     "apps.social_auth",
+    "apps.wishlist",
 ]
 
 

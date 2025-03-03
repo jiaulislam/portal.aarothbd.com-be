@@ -59,6 +59,7 @@ CUSTOM_APPS = [
     "apps.offer",
     "apps.social_auth",
     "apps.wishlist",
+    "apps.customer_order",
 ]
 
 

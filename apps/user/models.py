@@ -72,7 +72,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 
     @property
     def is_central_admin(self) -> bool:
-        return self.user_type == UserTypeChoices.CENTRAL_ADMIN.value
+        return self.user_type == UserTypeChoices.CENTRAL_ADMIN.value or self.is_superuser
 
     @property
     def is_tenant(self) -> bool:

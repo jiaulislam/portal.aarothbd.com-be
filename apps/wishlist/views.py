@@ -19,6 +19,12 @@ class WishlistItemListCreateAPIView(ListCreateAPIView):
     serializer_class = WishlistItemAddRemoveSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        current_user: "User" = self.request.user  # type: ignore
+        if current_user.is_central_admin:
+            return Wishlist.objects.all()
+        return Wishlist.objects.filter(user=current_user)
+
     def list(self, request: Request, *args, **kwargs):
         current_user: "User" = request.user  # type: ignore
         wishlist, _ = Wishlist.objects.get_or_create(user=current_user)
@@ -43,6 +49,12 @@ class WishlistItemListCreateAPIView(ListCreateAPIView):
 class WishlistItemRemoveAPIView(CreateAPIView):
     serializer_class = WishlistItemAddRemoveSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        current_user: "User" = self.request.user  # type: ignore
+        if current_user.is_central_admin:
+            return Wishlist.objects.all()
+        return Wishlist.objects.filter(user=current_user)
 
     def create(self, request: Request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)  # type: ignore

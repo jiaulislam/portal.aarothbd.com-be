@@ -11,9 +11,13 @@ class OrderLine(BaseModel):
         on_delete=models.CASCADE,
         related_name="order_lines",
     )
-    sale_order = models.ForeignKey("sale_order.PaikarSaleOrder", on_delete=models.PROTECT)
-    sale_order_line = models.ForeignKey("sale_order.PaikarSaleOrderLine", on_delete=models.PROTECT)
+    sale_order = models.ForeignKey("sale_order.PaikarSaleOrder", on_delete=models.PROTECT, null=True, blank=True)
+    sale_order_line = models.ForeignKey(
+        "sale_order.PaikarSaleOrderLine", on_delete=models.PROTECT, null=True, blank=True
+    )
+    offer_sale_order = models.ForeignKey("offer.Offer", on_delete=models.PROTECT, null=True, blank=True)
     quantity = models.IntegerField(default=0)
+    discount_amount = models.FloatField(default=0)
     sub_total = models.FloatField(default=0)
 
     class Meta:

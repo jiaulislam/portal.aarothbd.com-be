@@ -24,6 +24,11 @@ class Cupon(BaseModel):
         self.cupon_code = self.cupon_code.upper()
         super().save(*args, **kwargs)
 
+    def get_discount_amount(self, total_amount: float) -> float:
+        if self.discount_mode == DiscountPriceMode.FIXED:
+            return self.discount_amount
+        return (self.discount_amount / 100) * total_amount
+
     class Meta:
         db_table = "offer_cupon"
         verbose_name = "Cupon"

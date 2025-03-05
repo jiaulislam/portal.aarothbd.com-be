@@ -12,3 +12,9 @@ class OrderStatusChoice(TextChoices):
 class PaymodeChoice(TextChoices):
     CASH_ON_DELIVERY = "CASH_ON_DELIVERY", "Cash on Delivery"
     ONLINE_PAYMENT = "ONLINE_PAYMENT", "Online Payment"
+
+
+class PaymentStatusChoice(TextChoices):
+    PAID = "paid", "Paid"
+    UNPAID = "unpaid", "Unpaid"
+    PARTIAL = "partial", "Partial"

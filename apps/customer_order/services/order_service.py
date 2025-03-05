@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from apps.offer.models import Cupon
 
 
-__all__ = ["OrderService"]
+__all__ = ["OrderService", "OrderPaymentService"]
 
 
 class OrderService(BaseModelService[Order]):
@@ -100,10 +100,13 @@ class OrderService(BaseModelService[Order]):
 
     def update_order_status(self, order: Order, status: OrderStatusChoice, **kwargs) -> Order:
         order.order_status = status
+        user = self.core_service.get_user(request=kwargs.get("request"))
         if status == OrderStatusChoice.SHIPPED:
-            order.shipped_date = kwargs.get("shipped_date", date.today())
+            order.shipped_date = kwargs.get("date") or date.today()
         if status == OrderStatusChoice.DELIVERED:
-            order.delivered_date = kwargs.get("delivered_date", date.today())
+            order.delivered_date = kwargs.get("date") or date.today()
+        if user:
+            order.updated_by = user  # type: ignore
         order.save()
         return order
 

@@ -45,6 +45,8 @@ class Order(BaseModel):
     paid_amount = models.FloatField(default=0)
     due_amount = models.FloatField(default=0)
 
+    payments: models.QuerySet["OrderPayment"]
+
     class Meta:
         db_table = "customer_order_order"
         verbose_name = "Order"

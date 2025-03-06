@@ -106,7 +106,7 @@ class OrderPaymentListAPIView(ListAPIView):
     pagination_class = ExtendedLimitOffsetPagination
 
     def get_queryset(self):
-        return self.payment_service.all().order_by("-created_at")
+        return self.payment_service.all(select_related=["order"]).order_by("-created_at")
 
 
 class OrderPaymentListCreateAPIView(ListCreateAPIView):
@@ -116,7 +116,7 @@ class OrderPaymentListCreateAPIView(ListCreateAPIView):
     order_service = OrderService()
 
     def get_queryset(self):
-        return self.payment_service.all().order_by("-created_at")
+        return self.payment_service.all(select_related=["order"]).order_by("-created_at")
 
     def list(self, request: Request, order_id: int, *args, **kwargs):
         order = get_object_or_404(Order, id=order_id)

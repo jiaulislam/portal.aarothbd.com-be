@@ -14,6 +14,7 @@ __all__ = [
     "OrderPaymentListSerializer",
     "OrderPaymentCreateUpdateSerializer",
     "OrderUpdateStatusSerializer",
+    "OrderPaymentReversalSerializer",
 ]
 
 
@@ -67,4 +68,21 @@ class OrderPaymentListSerializer(s.ModelSerializer):
 class OrderPaymentCreateUpdateSerializer(s.ModelSerializer):
     class Meta:
         model = OrderPayment
-        exclude = AUDIT_COLUMNS + ("order",)
+        exclude = AUDIT_COLUMNS + (
+            "order",
+            "is_reversed",
+            "reversed_date",
+            "reversed_notes",
+            "reversed_by",
+        )
+
+
+class OrderPaymentReversalSerializer(s.ModelSerializer):
+    class Meta:
+        model = OrderPayment
+        fields = (
+            "id",
+            "is_reversed",
+            "reversed_date",
+            "reversed_notes",
+        )

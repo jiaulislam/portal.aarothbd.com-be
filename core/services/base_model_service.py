@@ -73,7 +73,9 @@ class BaseModelService(Generic[_T]):
         instance = model_class.objects.create(**validated_data)
         return instance
 
-    def update(self, instance: _T, validated_data: BaseSerializerValidatedDataType, **kwargs) -> _T:
+    def update(
+        self, instance: _T, validated_data: BaseSerializerValidatedDataType | MutableMapping[str, Any], **kwargs
+    ) -> _T:
         """update an instance model with the given validated data"""
         request = kwargs.get("request")
         user = self.core_service.get_user(request)

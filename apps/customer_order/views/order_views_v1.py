@@ -12,19 +12,20 @@ from rest_framework.serializers import BaseSerializer
 from core.pagination import ExtendedLimitOffsetPagination
 from core.request import Request
 
+from ..models import Order
 from ..serializers import (
     OrderBaseModelSerializer,
     OrderCreateUpdateSerializer,
     OrderListSerializer,
     OrderPaymentCreateUpdateSerializer,
     OrderPaymentListSerializer,
+    OrderPaymentReversalSerializer,
     OrderRetrieveSerializer,
     OrderUpdateStatusSerializer,
 )
 from ..services import OrderLineService, OrderPaymentService, OrderService
 
 if TYPE_CHECKING:
-    from apps.customer_order.models import Order
     from apps.user.models import User
 
 
@@ -133,3 +134,41 @@ class OrderPaymentListCreateAPIView(ListCreateAPIView):
         self.order_service.update_order_amounts(order, serializer.validated_data, request=request)
         response = {"detail": "Payment created successfully"}
         return Response(response, status=status.HTTP_201_CREATED)
+
+
+class OrderPaymentUpdateAPIView(UpdateAPIView):
+    http_method_names = ["put"]
+    serializer_class = OrderPaymentCreateUpdateSerializer
+    permission_classes = [DjangoModelPermissions]
+    payment_service = OrderPaymentService()
+    order_service = OrderService()
+
+    def get_queryset(self):
+        return self.payment_service.all()
+
+    def update(self, request: Request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = self.get_object()
+        self.payment_service.update(instance, serializer.validated_data, request=request)
+        response = {"detail": "Payment reversed successfully"}
+        return Response(response, status=status.HTTP_200_OK)
+
+
+class OrderPaymentReversalAPIView(UpdateAPIView):
+    http_method_names = ["patch"]
+    serializer_class = OrderPaymentReversalSerializer
+    permission_classes = [DjangoModelPermissions]
+    payment_service = OrderPaymentService()
+    order_service = OrderService()
+
+    def get_queryset(self):
+        return self.payment_service.all(is_reversed=False)
+
+    def update(self, request: Request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = self.get_object()
+        self.payment_service.reverse_payment(instance, serializer.validated_data, request=request)
+        response = {"detail": "Payment reversed successfully"}
+        return Response(response, status=status.HTTP_200_OK)

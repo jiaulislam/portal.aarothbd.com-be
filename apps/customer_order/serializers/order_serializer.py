@@ -51,11 +51,13 @@ class OrderRetrieveSerializer(OrderBaseModelSerializer):
 
 
 class OrderPaymentListSerializer(s.ModelSerializer):
+    order_number = s.CharField(source="order.order_number")
+
     class Meta:
         model = OrderPayment
         fields = (
             "id",
-            "order__order_number",
+            "order_number",
             "paymode",
             "payment_date",
             "amount",

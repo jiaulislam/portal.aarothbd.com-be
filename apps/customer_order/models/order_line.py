@@ -24,3 +24,6 @@ class OrderLine(BaseModel):
         db_table = "customer_order_order_line"
         verbose_name = "Order Line"
         verbose_name_plural = "Order Lines"
+
+    def __str__(self) -> str:
+        return self.order.order_number

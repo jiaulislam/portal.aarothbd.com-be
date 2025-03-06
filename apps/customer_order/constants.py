@@ -14,6 +14,16 @@ class PaymodeChoice(TextChoices):
     ONLINE_PAYMENT = "ONLINE_PAYMENT", "Online Payment"
 
 
+class PaymentMethodChoice(TextChoices):
+    CASH = "CASH", "Cash"
+    CARD = "CARD", "Card"
+    MFS = "MFS", "MFS"
+    BANK = "BANK", "Bank Draft"
+    RTGS = "RTGS", "RTGS"
+    CHEQUE = "CHEQUE", "Cheque"
+    BEFTN = "BEFTN", "BEFTN"
+
+
 class PaymentStatusChoice(TextChoices):
     PAID = "paid", "Paid"
     UNPAID = "unpaid", "Unpaid"

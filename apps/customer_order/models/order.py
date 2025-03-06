@@ -1,16 +1,17 @@
+from datetime import date
+
 from django.db import models
-from django.utils import timezone
 
 from core.models import BaseModel
 
-from ..constants import OrderStatusChoice, PaymentStatusChoice, PaymodeChoice
+from ..constants import OrderStatusChoice, PaymentMethodChoice, PaymentStatusChoice, PaymodeChoice
 
 __all__ = ["Order", "OrderPayment"]
 
 
 class Order(BaseModel):
     order_number = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    order_date = models.DateField(default=timezone.now)
+    order_date = models.DateField(default=date.today)
 
     shipping_method = models.CharField(max_length=255)
 
@@ -52,15 +53,29 @@ class Order(BaseModel):
         verbose_name = "Order"
         verbose_name_plural = "Orders"
 
+    def __str__(self) -> str:
+        return self.order_number
+
 
 class OrderPayment(BaseModel):
     order = models.ForeignKey("customer_order.Order", on_delete=models.CASCADE, related_name="payments")
-    paymode = models.CharField(max_length=255, choices=PaymodeChoice.choices, default=PaymodeChoice.CASH_ON_DELIVERY)
-    payment_date = models.DateField(default=timezone.now)
+    paymode = models.CharField(
+        max_length=255,
+        choices=PaymentMethodChoice.choices,
+        default=PaymentMethodChoice.CASH,
+    )
+    payment_date = models.DateField(default=date.today)
     amount = models.FloatField()
     notes = models.TextField(null=True, blank=True)
+    is_reversed = models.BooleanField(default=False)
+    reversed_date = models.DateField(null=True, blank=True)
+    reversed_notes = models.TextField(null=True, blank=True)
+    reversed_by = models.ForeignKey("user.User", on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
         db_table = "customer_order_order_payment"
         verbose_name = "Order Payment"
         verbose_name_plural = "Order Payments"
+
+    def __str__(self):
+        return f"{self.order.order_number} - {self.amount}"

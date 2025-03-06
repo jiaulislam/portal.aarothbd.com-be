@@ -33,7 +33,7 @@ class OrderService(BaseModelService[Order]):
         validated_data["order_number"] = sale_order_number_service.get_sale_order_sequence(
             SaleOrderPrefixChoices.CUSTOMER,
             _today,
-        )
+        ).get_order_number()
         return validated_data
 
     def create_order(self, data: Dict[str, Any], **kwargs) -> Order:
@@ -124,3 +124,9 @@ class OrderPaymentService(BaseModelService[OrderPayment]):
         validated_data = self.prepare_data(data)
         validated_data["order"] = order
         return self.create(validated_data, request=request)
+
+    def reverse_payment(self, instance: OrderPayment, validated_data: Dict[str, Any], **kwargs):
+        request = kwargs.get("request")
+        user = self.core_service.get_user(request=request)
+        instance = self.update(instance, {**validated_data, "reversed_by": user}, request=request)
+        return instance

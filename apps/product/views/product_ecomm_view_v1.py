@@ -1,5 +1,3 @@
-from typing import TYPE_CHECKING
-
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
@@ -10,9 +8,6 @@ from core.pagination import ExtendedLimitOffsetPagination
 from ..filters import ECommProductFilter
 from ..serializers.product_serializer import ProductEcomSerializer, ProductNestedSerializer
 from ..services import ProductService
-
-if TYPE_CHECKING:
-    pass
 
 
 class EcomProductListAPIView(ListAPIView):

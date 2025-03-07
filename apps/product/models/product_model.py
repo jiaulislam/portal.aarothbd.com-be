@@ -5,6 +5,7 @@ from django.db import models
 from core.models import BaseModel
 
 if TYPE_CHECKING:
+    from apps.product.models import ProductImage
     from apps.sale_order.models import PaikarSaleOrder
 
 __all__ = ["Product", "ProductDetail"]
@@ -38,6 +39,7 @@ class Product(BaseModel):
     details: models.QuerySet["ProductDetail"]
 
     paikar_sale_orders: models.QuerySet["PaikarSaleOrder"]
+    images: models.QuerySet["ProductImage"]
 
     def __str__(self) -> str:
         return self.name

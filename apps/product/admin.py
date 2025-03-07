@@ -4,6 +4,7 @@ from unfold.admin import TabularInline
 from core.admin import BaseAdmin, InlineHelperAdmin
 from core.constants import AUDIT_COLUMNS
 
+from .models import ProductImage
 from .models.product_brand_model import ProductBrand
 from .models.product_category_model import ProductCategory
 from .models.product_model import Product, ProductDetail
@@ -14,6 +15,13 @@ class ProductDetailInline(TabularInline, InlineHelperAdmin):
     extra = 0
     exclude = AUDIT_COLUMNS
     max_num = 1
+    show_change_link = True
+
+
+class ProductImageInline(TabularInline, InlineHelperAdmin):
+    model = ProductImage
+    extra = 0
+    exclude = AUDIT_COLUMNS
     show_change_link = True
 
 
@@ -48,6 +56,6 @@ class ProductAdmin(BaseAdmin):
         "name",
         "sku_code",
     )
-    inlines = (ProductDetailInline,)
+    inlines = (ProductDetailInline, ProductImageInline)
     list_editable = ("is_active",)
     readonly_fields = AUDIT_COLUMNS

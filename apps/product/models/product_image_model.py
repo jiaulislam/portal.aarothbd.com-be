@@ -11,6 +11,7 @@ class ProductImage(BaseModel):
         on_delete=models.CASCADE,
         related_name="images",
         null=True,
+        blank=True,
     )  # if there is sale_order then it must be company specific image
     image = models.ImageField(upload_to=upload_product_image)
     is_default = models.BooleanField(default=False)

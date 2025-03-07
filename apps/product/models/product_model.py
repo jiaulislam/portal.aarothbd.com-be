@@ -37,10 +37,6 @@ class Product(BaseModel):
     html = models.TextField(null=True, blank=True, help_text="HTML")
     details: models.QuerySet["ProductDetail"]
 
-    default_image_1 = models.ImageField(null=True, blank=True, upload_to="products/")
-    default_image_2 = models.ImageField(null=True, blank=True, upload_to="products/")
-    default_image_3 = models.ImageField(null=True, blank=True, upload_to="products/")
-
     paikar_sale_orders: models.QuerySet["PaikarSaleOrder"]
 
     def __str__(self) -> str:

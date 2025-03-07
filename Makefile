@@ -49,6 +49,7 @@ run-celery: # run the celery worker
 	uv run celery -A core worker -l info
 
 lint: # lint the codes
+	uv run ruff format .
 	uv run ruff check --fix .
 	uv run pre-commit run --all-files -c .pre-commit-config.yaml
 

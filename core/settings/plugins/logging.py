@@ -14,7 +14,7 @@ LOGGING = {
     },
     "formatters": {
         "main_formatter": {
-            "format": "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s " "(%(filename)s:%(lineno)d)",
+            "format": "[%(asctime)s] [%(levelname)s] [%(name)s] %(message)s (%(filename)s:%(lineno)d)",
             "datefmt": "%Y-%m-%d %H:%M:%S",
         },
     },

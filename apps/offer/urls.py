@@ -1,5 +1,6 @@
 from django.urls import path
 
+from .views.cupon_view_v1 import CuponValidateAPIView
 from .views.offer_views_v1 import (
     OfferAgreementAPIView,
     OfferListCreateAPIView,
@@ -12,4 +13,5 @@ urlpatterns = [
     path(r"offers/<str:slug>/", OfferRetrieveUpdateAPIView.as_view(), name="offer-retrieve-update-view"),
     path(r"offers/<str:id>/update-status/", OfferUpdateStatusAPIView.as_view(), name="offer-update-status-view"),
     path(r"offers/<str:slug>/update-agreement/", OfferAgreementAPIView.as_view(), name="offer-update-agreement-view"),
+    path(r"cupons/<str:cupon_code>/validate/", CuponValidateAPIView.as_view(), name="cupon-validate-view"),
 ]

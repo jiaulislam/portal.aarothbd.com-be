@@ -87,3 +87,7 @@ known-third-party = [
     "sentry-sdk",
     "drf-standardized-errors",
 ]
+
+
+[tool.pyright]
+reportIncompatibleVariableOverride = false

@@ -68,12 +68,12 @@ class CompanyUpdateStatusSerializer(s.ModelSerializer):
         model = Company
         fields = STATUS_SERIALIZER_FIELDS
 
-    def validate(self, data):
+    def validate(self, attrs):
         try:
-            _ = data["is_active"]
-        except KeyError as _:
+            _ = attrs["is_active"]
+        except KeyError:
             raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
-        return data
+        return attrs
 
 
 class CompanyCategorySerializer(s.ModelSerializer):

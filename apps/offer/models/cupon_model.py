@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from core.models import BaseModel
 
@@ -15,6 +16,7 @@ class Cupon(BaseModel):
         help_text="decide how the amount should deduct",
     )
     discount_amount = models.PositiveIntegerField(default=0)
+    valid_till = models.DateField(help_text="till when the cupon is valid")
 
     def __str__(self):
         return self.cupon_code
@@ -28,6 +30,9 @@ class Cupon(BaseModel):
         if self.discount_mode == DiscountPriceMode.FIXED:
             return self.discount_amount
         return (self.discount_amount / 100) * total_amount
+
+    def is_valid(self) -> bool:
+        return self.valid_till > timezone.now().date()
 
     class Meta:
         db_table = "offer_cupon"

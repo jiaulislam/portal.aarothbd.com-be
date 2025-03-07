@@ -1,5 +1,3 @@
-from typing import TYPE_CHECKING
-
 from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
@@ -32,9 +30,6 @@ from ..serializers.company_serializer_v1 import (
     CompanyUpdateStatusSerializer,
 )
 from ..services import CompanyConfigurationService, CompanyService
-
-if TYPE_CHECKING:
-    from apps.company.models import Company
 
 
 class CompanyListCreateAPIView(ListCreateAPIView):

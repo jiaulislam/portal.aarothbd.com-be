@@ -44,6 +44,11 @@ class ProductService(BaseModelService[Product]):
         approved_orders = (
             PaikarSaleOrder.objects.annotate(upper_bound=Upper(F("validity_dates")))
             .exclude(validity_dates__upper_inf=True)
+            .select_related(
+                "product",
+                "company",
+            )
+            .prefetch_related("product__images")
             .filter(status=SaleOrderStatusChoices.APPROVED, upper_bound__gte=today)
         )
         return approved_orders
@@ -58,6 +63,11 @@ class ProductService(BaseModelService[Product]):
         sale_orders = (
             PaikarSaleOrder.objects.annotate(upper_bound=Upper(F("validity_dates")))  # Extract upper bound
             .exclude(validity_dates__upper_inf=True)  # Exclude infinite upper bound
+            .select_related(
+                "product",
+                "company",
+            )
+            .prefetch_related("product__images")
             .filter(
                 product__in=allowed_products,
                 company=company,

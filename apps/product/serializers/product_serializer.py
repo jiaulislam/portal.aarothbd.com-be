@@ -10,6 +10,7 @@ from core.constants import AUDIT_COLUMNS
 from ..models.product_model import Product, ProductDetail
 from .product_brand_serializer import ProductBrandSerializer
 from .product_category_serializer import ProductCategorySerializer
+from .product_image_serializer import ProductImageSerializer
 
 
 class ProductDetailSerializer(s.ModelSerializer):
@@ -32,6 +33,7 @@ class ProductNestedSerializer(s.ModelSerializer):
     brand = s.SerializerMethodField()
     origin = s.SerializerMethodField()
     details = ProductDetailSerializer(read_only=True, many=True)
+    images = s.SerializerMethodField()
 
     def get_category(self, obj: Product):
         data = ProductCategorySerializer(instance=obj.category).data
@@ -53,6 +55,10 @@ class ProductNestedSerializer(s.ModelSerializer):
         data = utils.get_serialized_data(CountrySerializer, obj, "origin")
         return data
 
+    def get_images(self, obj: Product):
+        queryset = obj.images.filter(is_default=True, sale_order__isnull=True)
+        return ProductImageSerializer(queryset, many=True).data
+
     class Meta:
         model = Product
         fields = (
@@ -68,6 +74,7 @@ class ProductNestedSerializer(s.ModelSerializer):
             "category",
             "brand",
             "origin",
+            "images",
         )
 
 
@@ -145,6 +152,7 @@ class ProductEcomSerializer(s.ModelSerializer):
     validity_dates = DateRangeField()
     orderlines = s.SerializerMethodField()
     reviews = s.SerializerMethodField()
+    images = s.SerializerMethodField()
 
     def get_orderlines(self, obj):
         from apps.sale_order.serializers import SaleOrderLineSerializer
@@ -173,6 +181,13 @@ class ProductEcomSerializer(s.ModelSerializer):
         serializer = SaleOrderReviewSerializer(queryset, many=True)
         return serializer.data
 
+    def get_images(self, obj: PaikarSaleOrder):
+        from apps.product.serializers import ProductImageSerializer
+
+        queryset = obj.product.images.filter(sale_order=obj, product=obj.product)
+        serializer = ProductImageSerializer(queryset, many=True)
+        return serializer.data
+
     class Meta:
         model = PaikarSaleOrder
         fields = (
@@ -185,4 +200,5 @@ class ProductEcomSerializer(s.ModelSerializer):
             "validity_dates",
             "ecomm_identifier",
             "reviews",
+            "images",
         )

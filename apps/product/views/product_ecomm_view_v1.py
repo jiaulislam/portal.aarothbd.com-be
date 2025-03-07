@@ -12,7 +12,7 @@ from ..serializers.product_serializer import ProductEcomSerializer, ProductNeste
 from ..services import ProductService
 
 if TYPE_CHECKING:
-    from apps.product.models.product_model import Product
+    pass
 
 
 class EcomProductListAPIView(ListAPIView):
@@ -44,15 +44,17 @@ class EcomCompanyProductDetailAPIView(RetrieveAPIView):
     permission_classes = [AllowAny]
     product_service = ProductService()
 
-    def get_queryset(self, company_slug: str, product_slug: str) -> "Product":
+    def get_queryset(self):
         from apps.company.services import CompanyService
 
+        company_slug = self.kwargs.get("company_slug")
+        product_slug = self.kwargs.get("product_slug")
         company_service = CompanyService()
         instance = company_service.get(slug=company_slug)
         return instance.allowed_products.get(slug=product_slug)
 
-    def retrieve(self, request: Request, company_slug: str, product_slug: str, *args, **kwargs) -> Response:
-        instance = self.get_queryset(company_slug=company_slug, product_slug=product_slug)
+    def retrieve(self, request: Request, *args, **kwargs) -> Response:
+        instance = self.get_queryset()
         serializer = ProductNestedSerializer(instance)
         return Response(serializer.data)
 
@@ -67,17 +69,18 @@ class EcomCompanyProductListAPIView(ListAPIView):
     pagination_class = ExtendedLimitOffsetPagination
     filterset_class = ECommProductFilter
 
-    def get_queryset(self, company_slug: str):
+    def get_queryset(self):
         from apps.company.services import CompanyService
 
         company_service = CompanyService()
+        company_slug = self.kwargs.get("slug")
         company = company_service.get(slug=company_slug)
         queryset = self.product_service.get_company_product_sale_orders(company)
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs.distinct()
 
-    def list(self, request: Request, slug: str, *args, **kwargs) -> Response:
-        queryset = self.get_queryset(company_slug=slug)
+    def list(self, request: Request, *args, **kwargs) -> Response:
+        queryset = self.get_queryset()
         page = self.pagination_class()  # type: ignore
         paginate_queryset = page.paginate_queryset(queryset, request)
         serializer = self.get_serializer(paginate_queryset, many=True)

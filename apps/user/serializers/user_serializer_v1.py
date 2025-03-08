@@ -27,10 +27,10 @@ class UserSerializer(s.ModelSerializer[User]):
     def _check_password_match(self, password: str, password2: str) -> bool:
         return password == password2
 
-    def validate(self, data: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
-        if not self._check_password_match(data.get("password", ""), data.get("password2", "")):
+    def validate(self, attrs: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
+        if not self._check_password_match(attrs.get("password", ""), attrs.get("password2", "")):
             raise ValidationError({"password": "passwords mismatch. Try again !"}, code="client_error")
-        return data
+        return attrs
 
     def to_representation(self, instance: User) -> dict[str, Any]:
         response = super().to_representation(instance)
@@ -94,9 +94,20 @@ class UserUpdateStatusSerializer(s.ModelSerializer):
         model = get_user_model()
         fields = ("id", "is_active")
 
-    def validate(self, data):
+    def validate(self, attrs):
         try:
-            _ = data["is_active"]
+            _ = attrs["is_active"]
         except KeyError as _:
             raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
-        return data
+        return attrs
+
+
+class UserChangePasswordSerializer(s.Serializer):
+    old_password = s.CharField(required=True)
+    new_password = s.CharField(required=True)
+    new_password2 = s.CharField(required=True)
+
+    def validate(self, attrs: Any) -> Any:
+        if attrs["new_password"] != attrs["new_password2"]:
+            raise ValidationError({"new_password": "passwords mismatch. Try again !"}, code="client_error")
+        return attrs

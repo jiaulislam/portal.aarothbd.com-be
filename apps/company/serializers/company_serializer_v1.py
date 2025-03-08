@@ -10,7 +10,13 @@ from core.constants.common import AUDIT_COLUMNS
 from ..models import Company, CompanyCategory
 from ..serializers.company_configuration_serializer_v1 import CompanyConfigurationCreateSerializer
 
-__all__ = ["CompanySerializer", "CompanyDetailSerializer", "CompanyCategorySerializer", "CompanyListSerializer"]
+__all__ = [
+    "CompanySerializer",
+    "CompanyDetailSerializer",
+    "CompanyCategorySerializer",
+    "CompanyListSerializer",
+    "CompanyImageUploadSerializer",
+]
 
 
 class CompanySerializer(s.ModelSerializer):
@@ -88,3 +94,9 @@ class CompanyListSerializer(s.ModelSerializer):
     class Meta:
         model = Company
         exclude = AUDIT_COLUMNS
+
+
+class CompanyImageUploadSerializer(s.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ("company_logo", "company_banner")

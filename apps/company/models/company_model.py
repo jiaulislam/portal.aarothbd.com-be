@@ -5,6 +5,7 @@ from django.db import models
 
 from apps.address.models import Address
 from core.models import BaseModel
+from core.storage_config import upload_company_image
 
 if TYPE_CHECKING:
     from apps.sale_order.models import PaikarSaleOrder
@@ -29,8 +30,9 @@ class Company(BaseModel):
     bin_number = models.CharField(max_length=255, null=True, blank=True)
     tin_number = models.CharField(max_length=255, null=True, blank=True)
     theme_color = models.CharField(max_length=255, null=True, blank=True)
-    company_logo = models.ImageField(upload_to="media/company/logos", null=True, blank=True)
-    company_favicon = models.ImageField(upload_to="media/company/favicon", null=True, blank=True)
+    company_logo = models.ImageField(upload_to=upload_company_image, null=True, blank=True)
+    company_banner = models.ImageField(upload_to=upload_company_image, null=True, blank=True)
+    company_description = models.TextField(null=True, blank=True)
     addresses = GenericRelation(Address, related_query_name="company_addresses")
     rating = models.IntegerField(default=0)
     category = models.ForeignKey(CompanyCategory, on_delete=models.SET_NULL, null=True, blank=True)

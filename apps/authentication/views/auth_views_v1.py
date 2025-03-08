@@ -2,7 +2,6 @@ from datetime import timedelta
 
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
-from django.urls import reverse
 from django.utils import timezone
 from drf_spectacular.utils import OpenApiExample, extend_schema
 from rest_framework import exceptions as e
@@ -121,7 +120,7 @@ class ResetPasswordAPIView(GenericAPIView):
         user = self.user_service.get(email=email, auth_provider=AuthProviderChoices.EMAIL)
         token = RefreshToken.for_user(user).access_token
         token.set_exp(lifetime=timedelta(minutes=10))
-        reset_url = request.build_absolute_uri(reverse("password_reset_confirm", kwargs={"token": str(token)}))
+        reset_url = f"{request.scheme}://{request.get_host()}/reset-password?token={token}"
         send_mail(
             "Password Reset Request",
             f"Click the link to reset your password: {reset_url}",

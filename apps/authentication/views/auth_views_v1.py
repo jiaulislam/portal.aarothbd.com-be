@@ -2,7 +2,7 @@ from datetime import timedelta
 
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
-from django.urls import reverse
+from django.template.loader import render_to_string
 from django.utils import timezone
 from drf_spectacular.utils import OpenApiExample, extend_schema
 from rest_framework import exceptions as e
@@ -119,18 +119,23 @@ class ResetPasswordAPIView(GenericAPIView):
         serialized.is_valid(raise_exception=True)
         email = serialized.validated_data["email"]
         user = self.user_service.get(email=email, auth_provider=AuthProviderChoices.EMAIL)
+        token = RefreshToken.for_user(user).access_token
+        token.set_exp(lifetime=timedelta(minutes=10))
+        reset_url = f"{request.scheme}://{request.get_host()}/reset-password?token={token}"
+        context = {
+            "reset_url": reset_url,
+            "user": user,
+        }
+        email_html_message = render_to_string("reset-password-email.html", context)
 
-        if user:
-            token = RefreshToken.for_user(user).access_token
-            token.set_exp(lifetime=timedelta(minutes=10))
-            reset_url = request.build_absolute_uri(reverse("password_reset_confirm", kwargs={"token": str(token)}))
-            send_mail(
-                "Password Reset Request",
-                f"Click the link to reset your password: {reset_url}",
-                "no-reply@aarothbd.com",
-                [email],
-                fail_silently=False,
-            )
+        send_mail(
+            "Password Reset Request",
+            email_html_message,
+            "no-reply@aarothbd.com",
+            [email],
+            fail_silently=False,
+            html_message=email_html_message,
+        )
         return Response(
             {"detail": "Password reset link has been sent to your email."},
             status=s.HTTP_200_OK,

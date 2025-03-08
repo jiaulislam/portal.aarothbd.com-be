@@ -47,11 +47,29 @@ class CompanyListCreateAPIView(ListCreateAPIView):
     product_service = ProductService()
 
     def get_permissions(self):
+        """
+        Determine the permissions required for the current request.
+
+        Returns:
+            list: A list of permission instances. If the request method is one of the
+                  SAFE_METHODS (GET, HEAD, OPTIONS), it returns a list with AllowAny()
+                  indicating public access. Otherwise, it returns a list of instances
+                  of the permissions specified in `self.permission_classes`.
+        """
         if self.request.method in SAFE_METHODS:
             return [AllowAny()]  # Public access for GET, HEAD, OPTIONS
         return [permission() for permission in self.permission_classes]
 
     def get_serializer_class(self) -> type[ModelSerializer[Company]]:
+        """
+        Returns the appropriate serializer class based on the HTTP request method.
+
+        If the request method is "POST", it returns the CompanyCreateSerializer class.
+        Otherwise, it returns the CompanyListSerializer class.
+
+        Returns:
+            type[ModelSerializer[Company]]: The serializer class to be used for the request.
+        """
         if self.request.method == "POST":
             return CompanyCreateSerializer
         return CompanyListSerializer
@@ -62,6 +80,17 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         return filterset.qs
 
     def list(self, request: Request, *args, **kwargs) -> Response:
+        """
+        List the queryset with pagination.
+
+        Args:
+            request (Request): The HTTP request object.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            Response: The paginated response containing serialized data.
+        """
         queryset = self.get_queryset(**kwargs)
         paginate = self.pagination_class()  # type: ignore
         paginated_queryset = paginate.paginate_queryset(queryset, request)
@@ -70,6 +99,19 @@ class CompanyListCreateAPIView(ListCreateAPIView):
 
     @transaction.atomic
     def create(self, request: Request, *args, **kwargs) -> Response:
+        """
+        Creates a new company instance along with its configuration and addresses.
+
+        Args:
+            request (Request): The request object containing the data for creating the company.
+
+        Returns:
+            Response: A response object containing the serialized data of the created company instance and a status code
+            of 201 (Created).
+
+        Raises:
+            ValidationError: If the provided data is not valid.
+        """
         serialized = self.get_serializer_class()(data=request.data)
         serialized.is_valid(raise_exception=True)
         allowed_products = serialized.validated_data.pop("allowed_products", [])
@@ -106,6 +148,17 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         return CompanyDetailSerializer
 
     def retrieve(self, request: Request, *args, **kwargs) -> Response:
+        """
+        Retrieve a company instance by its ID.
+
+        Args:
+            request (Request): The HTTP request object.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments, including the company ID.
+
+        Returns:
+            Response: A Response object containing the serialized company data and an HTTP 200 status code.
+        """
         _company_id = kwargs.get("id")
         queryset = self.company_service.get(id=_company_id, select_related=["configuration"])
         serialized = self.get_serializer_class()(instance=queryset)
@@ -113,6 +166,20 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
     @transaction.atomic
     def update(self, request: Request, *args, **kwargs):
+        """
+        Updates the company instance with the provided data.
+
+        Args:
+            request (Request): The request object containing the data to update the company.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            Response: A response object with a success message and HTTP status 200.
+
+        Raises:
+            ValidationError: If the provided data is not valid.
+        """
         company_serialized = self.get_serializer_class()(data=request.data)
         company_serialized.is_valid(raise_exception=True)
         allowed_products = company_serialized.validated_data.pop("allowed_products", [])
@@ -141,6 +208,20 @@ class CompanyUpdateStatusAPIView(UpdateAPIView):
         return self.company_service.all()
 
     def partial_update(self, request: Request, *args, **kwargs):
+        """
+        Partially updates a company instance with the provided data.
+
+        Args:
+            request (Request): The request object containing the data for the update.
+            *args: Additional positional arguments.
+            **kwargs: Additional keyword arguments, typically containing the lookup fields for the company instance.
+
+        Returns:
+            Response: A response object with a success message and HTTP status 200.
+
+        Raises:
+            ValidationError: If the provided data is not valid.
+        """
         serialized = self.serializer_class(data=request.data)  # type: ignore
         serialized.is_valid(raise_exception=True)
         instance = self.company_service.get(**kwargs)

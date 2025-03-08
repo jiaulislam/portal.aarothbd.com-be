@@ -2,14 +2,16 @@ from django.contrib.auth import get_user_model
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, UpdateAPIView
-from rest_framework.permissions import DjangoModelPermissions
+from rest_framework.permissions import DjangoModelPermissions, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import UserFilterSet
 from ..serializers.user_serializer_v1 import (
+    UserChangePasswordSerializer,
     UserDetailSerializer,
     UserSerializer,
     UserUpdateSerializer,
@@ -66,8 +68,6 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         queryset = self.user_service.get(
             id=_user_id,
             is_superuser=False,
-            select_related=["profile"],
-            prefetch_related=["groups", "user_permissions"],
         )
         serialized = self.detail_serializer_class(queryset)  # type: ignore
         return Response(serialized.data, status=status.HTTP_200_OK)
@@ -116,3 +116,21 @@ class MeRetrieveAPIView(RetrieveAPIView):
         queryset = self.user_service.get(id=current_user_id)
         user = self.user_service.get_users_permissions_groups(queryset)
         return Response(user, status=status.HTTP_200_OK)
+
+
+class UserChangePasswordAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserChangePasswordSerializer
+    user_service = UserService()
+
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        user: "UserType" = request.user  # type: ignore
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        if not user.check_password(serializer.validated_data["old_password"]):
+            return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+
+        self.user_service.change_password(user, serializer.validated_data["new_password"])
+        # TODO: send email
+        return Response({"detail": "Password changed successfully."}, status=status.HTTP_200_OK)

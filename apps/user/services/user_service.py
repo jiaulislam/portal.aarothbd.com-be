@@ -11,7 +11,7 @@ from core.exceptions import CustomException
 from core.services import BaseModelService
 
 from ..constants import UserTypeChoices
-from ..types import UserType, UserValidatedDataType
+from ..types import UserType
 
 User = get_user_model()
 
@@ -20,7 +20,7 @@ class UserService(BaseModelService[UserType]):
     model_class = User  # type: ignore
     company_required_user_type = [UserTypeChoices.WHOLESELLER_ADMIN]
 
-    def validate_wholeseller_has_company(self, validated_data: UserValidatedDataType) -> bool:
+    def validate_wholeseller_has_company(self, validated_data: MutableMapping[str, Any]) -> bool:
         user_type = validated_data.get("user_type", None)
         if user_type not in self.company_required_user_type:
             return True  # no need this validation for other types of user
@@ -31,7 +31,7 @@ class UserService(BaseModelService[UserType]):
             raise CustomException(detail="password field cannot be empty!")
         return make_password(plain_text_password)
 
-    def create(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:
+    def create(self, validated_data: MutableMapping[str, Any], **kwargs) -> UserType:
         if not self.validate_wholeseller_has_company(validated_data):
             raise CustomException(detail=f"Company required for user type {validated_data.get('user_type')}!")
 
@@ -43,7 +43,7 @@ class UserService(BaseModelService[UserType]):
         self.update_user_profile(instance, profile)
         return instance
 
-    def create_customer(self, validated_data: UserValidatedDataType, **kwargs) -> UserType:
+    def create_customer(self, validated_data: MutableMapping[str, Any], **kwargs) -> UserType:
         validated_data["user_type"] = "customer"
         validated_data["is_active"] = False
         instance = self.create(validated_data, **kwargs)
@@ -55,7 +55,7 @@ class UserService(BaseModelService[UserType]):
             setattr(profile, attr, value)
         user.profile.save()
 
-    def update(self, instance: UserType, validated_data: UserValidatedDataType, **kwargs) -> UserType:
+    def update(self, instance: UserType, validated_data: MutableMapping[str, Any], **kwargs) -> UserType:
         profile_data = validated_data.pop("profile", {})
         if profile_data:
             self.update_user_profile(instance, profile_data)
@@ -99,7 +99,7 @@ class UserService(BaseModelService[UserType]):
         return "".join(password)
 
     def get_or_create_social_auth_user(
-        self, validated_data: UserValidatedDataType, *args, **kwargs
+        self, validated_data: MutableMapping[str, Any], *args, **kwargs
     ) -> Tuple[UserType, bool]:
         user = self.model_class.objects.filter(
             email=validated_data.get("email"),
@@ -111,3 +111,8 @@ class UserService(BaseModelService[UserType]):
         validated_data["is_active"] = True  # as user is already coming from social email. already email validated
         instance = self.create(validated_data, **kwargs)
         return instance, True
+
+    def change_password(self, user: UserType, password: str) -> UserType:
+        user.set_password(password)
+        user.save()
+        return user

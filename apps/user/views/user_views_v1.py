@@ -56,30 +56,34 @@ class UserListCreateAPIView(ListCreateAPIView):
 class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     serializer_class = UserSerializer
-    detail_serializer_class = UserDetailSerializer
-    permission_classes = [DjangoModelPermissions]
+    permission_classes = [IsAuthenticated]
     user_service = UserService()
+    lookup_field = "id"
 
     def get_queryset(self) -> QuerySet["UserType"]:
-        return self.user_service.all()
+        user: "UserType" = self.request.user  # type: ignore
+        if user.is_central_admin:
+            return self.user_service.all()
+        return self.user_service.all(id=user.pk)
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return UserDetailSerializer
+        return UserSerializer
 
     def retrieve(self, request: Request, **kwargs) -> Response:
-        _user_id = kwargs.get("id")
-        queryset = self.user_service.get(
-            id=_user_id,
-            is_superuser=False,
-        )
-        serialized = self.detail_serializer_class(queryset)  # type: ignore
+        instance = self.get_object()
+        serialized = self.get_serializer(instance)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def update(self, request: Request, **kwargs) -> Response:
         serialized = UserUpdateSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
         groups = serialized.validated_data.pop("groups", [])
-        instance = self.user_service.get(**kwargs, is_superuser=False)
+        instance = self.get_object()
         instance = self.user_service.update(instance, serialized.validated_data, request=request)
         instance.groups.set(groups)
-        serialized = UserSerializer(instance=instance)
+        serialized = self.get_serializer(instance=instance)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 
@@ -109,7 +113,10 @@ class MeRetrieveAPIView(RetrieveAPIView):
     user_service = UserService()
 
     def get_queryset(self) -> QuerySet["UserType"]:
-        return self.user_service.all()
+        user: "UserType" = self.request.user  # type: ignore
+        if user.is_central_admin:
+            return self.user_service.all()
+        return self.user_service.all(id=user.pk)
 
     def retrieve(self, request: Request, *args, **kwargs):
         current_user_id: int = request.user.id  # type: ignore

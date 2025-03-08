@@ -18,13 +18,13 @@ class RegisterUserSerializer(s.ModelSerializer):
             "password": {"write_only": True},
         }
 
-    def validate(self, data: RegisterUserValidatedDataType) -> RegisterUserValidatedDataType:
-        password = data.get("password", "")
-        password2 = data.get("password2", "")
+    def validate(self, attrs: RegisterUserValidatedDataType) -> RegisterUserValidatedDataType:
+        password = attrs.get("password", "")
+        password2 = attrs.get("password2", "")
 
         if password != password2:
             raise s.ValidationError({"password": "Passwords do not match!"})
-        return data
+        return attrs
 
 
 class LoginSerializer(s.Serializer):
@@ -41,3 +41,7 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
             return super().validate(attrs)
         else:
             raise InvalidToken("No valid token found in cookie 'refresh'")
+
+
+class ResetPasswordSerializer(s.Serializer):
+    email = s.EmailField()

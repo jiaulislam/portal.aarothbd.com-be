@@ -1,4 +1,8 @@
+from datetime import timedelta
+
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
+from django.urls import reverse
 from django.utils import timezone
 from drf_spectacular.utils import OpenApiExample, extend_schema
 from rest_framework import exceptions as e
@@ -7,13 +11,16 @@ from rest_framework import status as s
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 
+from apps.user.constants import AuthProviderChoices
 from apps.user.services import UserService
 from core.serializers import FailResponseSerializer, SuccessResponseSerializer
 
 from ..serializers.auth_serializers_v1 import (
     LoginSerializer,
     RegisterUserSerializer,
+    ResetPasswordSerializer,
 )
 from ..services import TokenService
 
@@ -99,3 +106,32 @@ class RefreshTokenAPIView(GenericAPIView):
 
         response["X-CSRFToken"] = request.COOKIES.get("csrftoken", "")
         return response
+
+
+class ResetPasswordAPIView(GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = ResetPasswordSerializer
+    user_service = UserService()
+
+    def post(self, request: Request, *args, **kwargs):
+        serialized = ResetPasswordSerializer(data=request.data)
+        serialized.is_valid(raise_exception=True)
+        email = serialized.validated_data["email"]
+        user = self.user_service.get(email=email, auth_provider=AuthProviderChoices.EMAIL)
+
+        if user:
+            token = RefreshToken.for_user(user).access_token
+            token.set_exp(lifetime=timedelta(minutes=10))
+            reset_url = request.build_absolute_uri(reverse("password_reset_confirm", kwargs={"token": str(token)}))
+            send_mail(
+                "Password Reset Request",
+                f"Click the link to reset your password: {reset_url}",
+                "no-reply@aarothbd.com",
+                [email],
+                fail_silently=False,
+            )
+        return Response(
+            {"detail": "Password reset link has been sent to your email."},
+            status=s.HTTP_200_OK,
+        )

@@ -2,6 +2,7 @@ from django.db import transaction
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.permissions import (
     SAFE_METHODS,
     AllowAny,
@@ -25,6 +26,7 @@ from ..serializers.company_serializer_v1 import (
     CompanyCategorySerializer,
     CompanyCreateSerializer,
     CompanyDetailSerializer,
+    CompanyImageUploadSerializer,
     CompanyListSerializer,
     CompanyUpdateSerializer,
     CompanyUpdateStatusSerializer,
@@ -154,3 +156,15 @@ class CompanyCategoryViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = CompanyCategory.objects.all()
         return queryset
+
+
+class CompanyImageUploadAPIView(UpdateAPIView):
+    http_method_names = ["patch"]
+    serializer_class = CompanyImageUploadSerializer
+    permission_classes = [DjangoModelPermissions]
+    parser_classes = [MultiPartParser, FormParser]
+
+    company_service = CompanyService()
+
+    def get_queryset(self) -> QuerySet["Company"]:
+        return self.company_service.all()

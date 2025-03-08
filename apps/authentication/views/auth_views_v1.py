@@ -119,18 +119,16 @@ class ResetPasswordAPIView(GenericAPIView):
         serialized.is_valid(raise_exception=True)
         email = serialized.validated_data["email"]
         user = self.user_service.get(email=email, auth_provider=AuthProviderChoices.EMAIL)
-
-        if user:
-            token = RefreshToken.for_user(user).access_token
-            token.set_exp(lifetime=timedelta(minutes=10))
-            reset_url = request.build_absolute_uri(reverse("password_reset_confirm", kwargs={"token": str(token)}))
-            send_mail(
-                "Password Reset Request",
-                f"Click the link to reset your password: {reset_url}",
-                "no-reply@aarothbd.com",
-                [email],
-                fail_silently=False,
-            )
+        token = RefreshToken.for_user(user).access_token
+        token.set_exp(lifetime=timedelta(minutes=10))
+        reset_url = request.build_absolute_uri(reverse("password_reset_confirm", kwargs={"token": str(token)}))
+        send_mail(
+            "Password Reset Request",
+            f"Click the link to reset your password: {reset_url}",
+            "no-reply@aarothbd.com",
+            [email],
+            fail_silently=False,
+        )
         return Response(
             {"detail": "Password reset link has been sent to your email."},
             status=s.HTTP_200_OK,

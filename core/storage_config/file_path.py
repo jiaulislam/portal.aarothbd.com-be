@@ -22,6 +22,6 @@ def upload_product_image(instance: "ProductImage", file_name: str):
     storage_path = "product-images"
 
     if instance.sale_order:
-        storage_path = f"{storage_path}/{instance.sale_order.company.name}"
+        storage_path = f"{storage_path}/{instance.sale_order.company.slug}"
 
     return get_upload_file_path(file_name, storage_path)

@@ -55,7 +55,7 @@ class UserListCreateAPIView(ListCreateAPIView):
 
 class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
-    serializer_class = UserSerializer
+    serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticated]
     user_service = UserService()
     lookup_field = "id"
@@ -69,7 +69,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def get_serializer_class(self):
         if self.request.method == "GET":
             return UserDetailSerializer
-        return UserSerializer
+        return UserUpdateSerializer
 
     def retrieve(self, request: Request, **kwargs) -> Response:
         instance = self.get_object()

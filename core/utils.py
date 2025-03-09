@@ -1,6 +1,9 @@
 from typing import Any, Dict, Type
 
+import jwt
+from django.conf import settings
 from django.db.models import Model
+from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
 from rest_framework.serializers import BaseSerializer
 
 T = Type[BaseSerializer]
@@ -28,3 +31,26 @@ def get_serialized_data(serializer_class: T, instance: Model, key: str, many: bo
     object_key = getattr(instance, key)
     serializer = serializer_class(object_key, many=many)
     return serializer.data
+
+
+def decode_jwt_token(token: str) -> dict:
+    """
+    Decode a JWT token.
+
+    Args:
+        token (str): The JWT token to decode.
+
+    Returns:
+        dict: The decoded payload.
+
+    Raises:
+        ExpiredSignatureError: If the token has expired.
+        InvalidTokenError: If the token is invalid.
+    """
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+        return payload
+    except ExpiredSignatureError:
+        raise InvalidTokenError("Token has expired")
+    except InvalidTokenError:
+        raise InvalidTokenError("Invalid token")

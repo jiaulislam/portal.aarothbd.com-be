@@ -59,7 +59,18 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
     inlines = [ProfileInline]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "user_type", "company")}),
+        (
+            _("Personal info"),
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "user_type",
+                    "company",
+                    "auth_provider",
+                )
+            },
+        ),
         (
             _("Permissions"),
             {

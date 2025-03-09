@@ -45,3 +45,7 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
 
 class ResetPasswordSerializer(s.Serializer):
     email = s.EmailField()
+
+
+class ConfirmResetPasswordSerializer(s.Serializer):
+    token = s.CharField()

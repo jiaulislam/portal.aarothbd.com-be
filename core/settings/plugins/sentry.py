@@ -1,12 +1,18 @@
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-from ..django.base import SENTRY_DEBUG, SENTRY_DSN, SENTRY_ENV
+from core.env import env
+
+# from ..django.base import SENTRY_DEBUG, SENTRY_DSN, SENTRY_ENV
+
+SENTRY_DSN = env("SENTRY_DSN")
+SENTRY_ENV = env("SENTRY_ENV")
+SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
 
 sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    debug=SENTRY_DEBUG,
-    environment=SENTRY_ENV,
+    dsn=SENTRY_DSN,  # type: ignore
+    debug=SENTRY_DEBUG,  # type: ignore
+    environment=SENTRY_ENV,  # type: ignore
     integrations=[
         DjangoIntegration(),
     ],

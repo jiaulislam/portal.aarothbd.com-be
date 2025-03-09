@@ -4,7 +4,7 @@ from django.db import transaction
 from django.db.models.query import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
-from rest_framework.permissions import DjangoModelPermissions
+from rest_framework.permissions import AllowAny, DjangoModelPermissions
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
@@ -70,6 +70,11 @@ class ProductRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         if self.request.method == "PUT":
             return ProductUpdateSerializer
         return ProductExtendedSerializer
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [AllowAny()]
+        return [DjangoModelPermissions()]
 
     @transaction.atomic
     def update(self, request: Request, *args: Any, **kwargs: Any) -> Response:

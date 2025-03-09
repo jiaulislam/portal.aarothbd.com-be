@@ -62,6 +62,7 @@ class ProductNestedSerializer(s.ModelSerializer):
     class Meta:
         model = Product
         fields = (
+            "id",
             "name",
             "slug",
             "description",
@@ -191,6 +192,7 @@ class ProductEcomSerializer(s.ModelSerializer):
     class Meta:
         model = PaikarSaleOrder
         fields = (
+            "id",
             "product",
             "company",
             "product_grade",

@@ -1,9 +1,11 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.utils.crypto import get_random_string
 from drf_spectacular.utils import OpenApiExample, extend_schema
 from rest_framework import exceptions as e
 from rest_framework import status
@@ -16,8 +18,10 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from apps.user.constants import AuthProviderChoices
 from apps.user.services import UserService
 from core.serializers import FailResponseSerializer, SuccessResponseSerializer
+from core.utils import decode_jwt_token
 
 from ..serializers.auth_serializers_v1 import (
+    ConfirmResetPasswordSerializer,
     LoginSerializer,
     RegisterUserSerializer,
     ResetPasswordSerializer,
@@ -131,12 +135,58 @@ class ResetPasswordAPIView(GenericAPIView):
         send_mail(
             "Password Reset Request",
             email_html_message,
-            "no-reply@aarothbd.com",
+            settings.EMAIL_HOST_USER,
             [email],
             fail_silently=False,
             html_message=email_html_message,
         )
         return Response(
             {"detail": "Password reset link has been sent to your email."},
+            status=s.HTTP_200_OK,
+        )
+
+
+class ResetPasswordConfirmationAPIView(GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = ConfirmResetPasswordSerializer
+    user_service = UserService()
+
+    def post(self, request: Request, *args, **kwargs):
+        serializer = ConfirmResetPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        try:
+            payload = decode_jwt_token(serializer.validated_data["token"])
+            user_id = payload.get("user_id")
+            if not user_id:
+                raise e.ValidationError("Invalid token")
+        except Exception:
+            raise e.ValidationError("Invalid token")
+
+        user = self.user_service.get(id=user_id, auth_provider=AuthProviderChoices.EMAIL)
+        email = user.email
+        # Generate a random password
+        random_password = get_random_string(length=8)
+        user.set_password(random_password)
+        user.save()
+
+        context = {
+            "user": user,
+            "random_password": random_password,
+            "current_year": datetime.now().year,
+        }
+        email_html_message = render_to_string("change-password-email.html", context)
+
+        send_mail(
+            "Your New Password",
+            email_html_message,
+            settings.EMAIL_HOST_USER,
+            [email],
+            fail_silently=False,
+            html_message=email_html_message,
+        )
+        return Response(
+            {"detail": "A new password has been sent to your email."},
             status=s.HTTP_200_OK,
         )

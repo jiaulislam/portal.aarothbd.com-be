@@ -186,13 +186,15 @@ DRF_STANDARDIZED_ERRORS = {
 }
 
 
-# SENTRY
-SENTRY_DSN = env("SENTRY_DSN")
-SENTRY_ENV = env("SENTRY_ENV")
-SENTRY_DEBUG = env.bool("SENTRY_DEBUG", default=False)  # type: ignore
-
 # GOOGLE OAUTH2
 GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default=None)  # type: ignore
+
+# Email Configurations
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_USE_SSL = env("EMAIL_USE_SSL")
 
 from core.settings.plugins.sentry import *  # noqa: E402, F403, I001
 from core.settings.plugins.unfold import *  # noqa: E402, F403, I001

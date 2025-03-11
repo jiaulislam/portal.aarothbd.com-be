@@ -11,10 +11,6 @@ class AddressSerializer(s.ModelSerializer):
         exclude = (
             "object_id",
             "content_type",
-            "created_at",
-            "updated_at",
-            "created_by",
-            "updated_by",
             "is_active",
         ) + AUDIT_COLUMNS
         read_only_fields = ("id", "is_active")
@@ -26,9 +22,5 @@ class AddressCreateSerializer(s.ModelSerializer):
         exclude = (
             "object_id",
             "content_type",
-            "created_at",
-            "updated_at",
-            "created_by",
-            "updated_by",
             "is_active",
         ) + AUDIT_COLUMNS

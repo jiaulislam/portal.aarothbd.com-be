@@ -1,10 +1,8 @@
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from django.db.models import QuerySet
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework.request import Request
-from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 
 from apps.blog.constants import BlogStatusChoices
@@ -32,11 +30,6 @@ class BlogListCreateAPIView(ListCreateAPIView):
             status=BlogStatusChoices.PUBLISHED,
         ).order_by("-published_on")
 
-    def list(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        queryset = self.get_queryset()
-        serializer = self.get_serializer_class()(queryset, many=True)
-        return Response(serializer.data)
-
 
 class BlogRetrieveAPIView(RetrieveAPIView):
     lookup_field = "slug"
@@ -50,8 +43,3 @@ class BlogRetrieveAPIView(RetrieveAPIView):
             is_active=True,
             status=BlogStatusChoices.PUBLISHED,
         ).order_by("-published_on")
-
-    def retrieve(self, request: Request, slug: str, *args: Any, **kwargs: Any) -> Response:
-        queryset = self.get_queryset().get(slug=slug)
-        serializer = self.serializer_class(queryset)  # type: ignore
-        return Response(serializer.data)

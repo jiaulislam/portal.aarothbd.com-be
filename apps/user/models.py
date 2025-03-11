@@ -2,10 +2,12 @@ from typing import TYPE_CHECKING
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from apps.address.models import Address
 from core.models import BaseModel
 
 from .constants import AuthProviderChoices, UserTypeChoices
@@ -26,6 +28,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_("Date Joined"), default=timezone.now)
     user_type = models.CharField(max_length=55, choices=UserTypeChoices.choices, default=UserTypeChoices.CUSTOMER)
+    addresses = GenericRelation(Address, related_query_name="user_addresses")
     company = models.ForeignKey(
         "company.Company",
         on_delete=models.PROTECT,

@@ -5,8 +5,11 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, Retrieve
 from rest_framework.permissions import DjangoModelPermissions, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.serializers import BaseSerializer
 from rest_framework.views import APIView
 
+from apps.address.serializers import AddressCreateSerializer
+from apps.address.services import AddressService
 from core.pagination import ExtendedLimitOffsetPagination
 
 from ..filters import UserFilterSet
@@ -30,6 +33,7 @@ class UserListCreateAPIView(ListCreateAPIView):
     permission_classes = [DjangoModelPermissions]
 
     user_service = UserService()
+    address_service = AddressService()
 
     def get_queryset(self, **kwargs) -> QuerySet[UserType]:
         queryset = self.user_service.all(is_superuser=False, select_related=["profile", "company"])
@@ -47,8 +51,12 @@ class UserListCreateAPIView(ListCreateAPIView):
         serialized = UserSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
         groups = serialized.validated_data.pop("groups", [])
+
         instance = self.user_service.create(serialized.validated_data, request=request)
         instance.groups.set(groups)
+        # create addresses
+        address_data = serialized.validated_data.get("addresses", [])
+        self.address_service.create_user_addresses(address_data, instance, request=request)
         serialized = UserSerializer(instance=instance)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
@@ -120,8 +128,9 @@ class MeRetrieveAPIView(RetrieveAPIView):
 
     def retrieve(self, request: Request, *args, **kwargs):
         current_user_id: int = request.user.id  # type: ignore
-        queryset = self.user_service.get(id=current_user_id)
-        user = self.user_service.get_users_permissions_groups(queryset)
+        current_user = self.user_service.get(id=current_user_id)
+        user = self.user_service.get_users_permissions_groups(current_user)
+        user["addresses"] = self.user_service.get_user_addresses(current_user)
         return Response(user, status=status.HTTP_200_OK)
 
 
@@ -141,3 +150,23 @@ class UserChangePasswordAPIView(APIView):
         self.user_service.change_password(user, serializer.validated_data["new_password"])
         # TODO: send email
         return Response({"detail": "Password changed successfully."}, status=status.HTTP_200_OK)
+
+
+class UserAddressCreateAPIView(APIView):
+    serializer_class = AddressCreateSerializer
+    user_service = UserService()
+    address_service = AddressService()
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self) -> type[BaseSerializer]:
+        return self.serializer_class
+
+    def get_serializer(self, *args, **kwargs):
+        return self.get_serializer_class()(*args, **kwargs)
+
+    def post(self, request: Request, *args, **kwargs) -> Response:
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.address_service.create_user_address(serializer.validated_data, request.user, request=request)
+
+        return Response({"detail": "Address created successfully."}, status=status.HTTP_201_CREATED)

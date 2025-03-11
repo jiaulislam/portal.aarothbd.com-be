@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
+from apps.address.serializers import AddressCreateSerializer
 from apps.company.serializers.company_serializer_v1 import CompanySerializer
 
 from ..models import User, UserProfile
@@ -23,6 +24,7 @@ class UserSerializer(s.ModelSerializer[User]):
     last_login = s.DateTimeField(read_only=True)
 
     profile = UserProfileSerializer(read_only=True)
+    addresses = AddressCreateSerializer(many=True, write_only=True, required=False)
 
     def _check_password_match(self, password: str, password2: str) -> bool:
         return password == password2
@@ -54,6 +56,7 @@ class UserSerializer(s.ModelSerializer[User]):
             "last_login",
             "groups",
             "user_type",
+            "addresses",
         ]
         read_only_fields = ("is_active",)
 
@@ -75,6 +78,11 @@ class UserUpdateSerializer(s.ModelSerializer[User]):
 
 class UserDetailSerializer(s.ModelSerializer):
     profile = UserProfileSerializer(read_only=True)
+    addresses = s.SerializerMethodField()
+
+    def get_addresses(self, instance: User) -> dict[str, Any]:
+        data = AddressCreateSerializer(instance.addresses.all(), many=True).data
+        return data
 
     class Meta:
         model = get_user_model()

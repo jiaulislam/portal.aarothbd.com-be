@@ -75,7 +75,15 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         return CompanyListSerializer
 
     def get_queryset(self, **kwargs) -> QuerySet[Company]:
-        queryset = self.company_service.all(**kwargs).select_related("configuration")
+        queryset = (
+            self.company_service.all(**kwargs)
+            .select_related(
+                "configuration",
+            )
+            .prefetch_related(
+                "allowed_products",
+            )
+        )
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 
@@ -94,7 +102,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         queryset = self.get_queryset(**kwargs)
         paginate = self.pagination_class()  # type: ignore
         paginated_queryset = paginate.paginate_queryset(queryset, request)
-        serialized = self.get_serializer_class()(paginated_queryset, many=True)
+        serialized = self.get_serializer(paginated_queryset, many=True)
         return paginate.get_paginated_response(serialized.data)
 
     @transaction.atomic

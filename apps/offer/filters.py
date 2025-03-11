@@ -8,6 +8,7 @@ from .models import Offer
 class OfferFilter(BaseFilter):
     name = filters.CharFilter(field_name="name", lookup_expr="icontains")
     slug = filters.CharFilter(field_name="slug", lookup_expr="iexact")
+    company = filters.CharFilter(field_name="company__slug", lookup_expr="iexact")
 
     class Meta:
         model = Offer

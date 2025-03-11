@@ -80,6 +80,7 @@ class OrderUpdateStatusAPIView(UpdateAPIView):
     serializer_class = OrderUpdateStatusSerializer
     permission_classes = [DjangoModelPermissions]
     order_service = OrderService()
+    lookup_field = "id"
 
     def get_queryset(self):
         return self.order_service.all()

@@ -38,7 +38,7 @@ class PositiveIntegerRangeField(s.ListField):
             raise s.ValidationError("The lower bound must be less than or equal to the upper bound.")
         return data
 
-    def to_representation(self, value: Range):
+    def to_representation(self, value: Range):  # type: ignore
         _range = [value.lower, value.upper]
         return [self.child.to_representation(item) if item is not None else None for item in _range]
 

@@ -86,6 +86,7 @@ class ProductExtendedSerializer(s.ModelSerializer):
     uom = s.SerializerMethodField()
     category = s.SerializerMethodField()
     origin = s.SerializerMethodField()
+    images = s.SerializerMethodField()
 
     def get_sale_orders(self, obj: Product):
         from apps.sale_order.serializers import PaikarSaleOrderDetailSerializer
@@ -107,6 +108,13 @@ class ProductExtendedSerializer(s.ModelSerializer):
         from apps.country.serializers import CountrySerializer
 
         data = utils.get_serialized_data(CountrySerializer, obj, "origin")
+        return data
+
+    def get_images(self, obj: Product):
+        from apps.product.serializers import ProductImageSerializer
+
+        queryset = obj.images.filter(is_default=True, sale_order__isnull=True)
+        data = ProductImageSerializer(queryset, many=True).data
         return data
 
     class Meta:

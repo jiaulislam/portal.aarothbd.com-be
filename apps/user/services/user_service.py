@@ -7,6 +7,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Permission
 from django.forms import model_to_dict
 
+from core.constants.common import AUDIT_COLUMNS
 from core.exceptions import CustomException
 from core.services import BaseModelService
 
@@ -116,3 +117,7 @@ class UserService(BaseModelService[UserType]):
         user.set_password(password)
         user.save()
         return user
+
+    def get_user_addresses(self, user: UserType):
+        data = [model_to_dict(address, exclude=AUDIT_COLUMNS) for address in user.addresses.all()]
+        return data

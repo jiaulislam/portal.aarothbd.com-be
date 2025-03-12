@@ -14,7 +14,7 @@ from ..constants import BlogStatusChoices
 if TYPE_CHECKING:
     from apps.blog.models import Comment
 
-__all__ = ["Blog"]
+__all__ = ["Blog", "BlogQuerySetMixin"]
 
 
 class Blog(BaseModel):
@@ -52,3 +52,26 @@ def generate_slug(sender, instance: Blog, **kwargs):
 
     if instance.status == BlogStatusChoices.DRAFT and instance.published_on:
         instance.published_on = None
+
+
+class BlogQuerySetMixin:
+    @classmethod
+    def get_queryset(cls) -> models.QuerySet["Blog"]:
+        queryset = (
+            Blog.objects.filter(
+                is_active=True,
+                status=BlogStatusChoices.PUBLISHED,
+            )
+            .annotate(
+                comments_count=models.Count(
+                    "comments",
+                    filter=models.Q(
+                        comments__created_by__isnull=True,
+                    ),
+                )
+            )
+            .select_related("created_by", "created_by__profile", "created_by__company")
+            .prefetch_related("created_by__groups")
+            .order_by("-published_on")
+        )
+        return queryset

@@ -4,6 +4,7 @@ from core.constants.common import AUDIT_COLUMNS
 from core.utils import get_serialized_data
 
 from ..models import Blog
+from .comment_serializer import CommentSerializer
 
 __all__ = [
     "BlogBaseSerialzer",
@@ -26,12 +27,8 @@ class BlogCreateSerializer(BlogBaseSerialzer):
 
 
 class BlogListSerializer(BlogBaseSerialzer):
-    comments_count = s.SerializerMethodField()
+    comments_count = s.IntegerField(read_only=True)
     created_by = s.SerializerMethodField()
-
-    def get_comments_count(self, obj: Blog):
-        comments_count = obj.comments.filter(created_by__isnull=True).count()
-        return comments_count
 
     def get_created_by(self, obj: Blog):
         from apps.user.serializers.user_serializer_v1 import UserSerializer
@@ -49,29 +46,20 @@ class BlogListSerializer(BlogBaseSerialzer):
             "created_by",
             "published_on",
             "comments_count",
+            "list_image",
         )
 
 
 class BlogDetailSerializer(s.ModelSerializer):
     created_by = s.SerializerMethodField()
-    comments = s.SerializerMethodField()
-    comments_count = s.SerializerMethodField()
+    comments = CommentSerializer(read_only=True, many=True)
+    comments_count = s.IntegerField(read_only=True)
 
     def get_created_by(self, obj: Blog):
         from apps.user.serializers.user_serializer_v1 import UserSerializer
 
         data = get_serialized_data(UserSerializer, obj, "created_by")
         return data
-
-    def get_comments(self, obj: Blog):
-        from apps.blog.serializers import CommentSerializer
-
-        data = get_serialized_data(CommentSerializer, obj, "comments", many=True)
-        return data
-
-    def get_comments_count(self, obj: Blog):
-        comments_count = obj.comments.filter(created_by__isnull=True).count()
-        return comments_count
 
     class Meta:
         model = Blog

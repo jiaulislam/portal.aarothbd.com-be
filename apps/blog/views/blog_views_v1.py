@@ -2,12 +2,12 @@ from typing import TYPE_CHECKING
 
 from django.db.models import QuerySet
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.permissions import AllowAny
-from rest_framework.serializers import BaseSerializer
 
 from apps.blog.constants import BlogStatusChoices
 
-from ..serializers import BlogBaseSerialzer, BlogDetailSerializer, BlogListSerializer
+from ..serializers import BlogBaseSerialzer, BlogCreateSerializer, BlogDetailSerializer, BlogListSerializer
 from ..services.blog_service import BlogService
 
 if TYPE_CHECKING:
@@ -18,10 +18,11 @@ class BlogListCreateAPIView(ListCreateAPIView):
     permission_classes = [AllowAny]
     authentication_classes = []
     blog_service = BlogService()
+    parser_classes = [MultiPartParser, FormParser]
 
-    def get_serializer_class(self) -> type[BaseSerializer]:
+    def get_serializer_class(self) -> type[BlogBaseSerialzer]:
         if self.request.method == "POST":
-            return BlogBaseSerialzer
+            return BlogCreateSerializer
         return BlogListSerializer
 
     def get_queryset(self) -> QuerySet["Blog"]:

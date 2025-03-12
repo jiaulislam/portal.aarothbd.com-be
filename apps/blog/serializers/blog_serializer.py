@@ -9,6 +9,7 @@ __all__ = [
     "BlogBaseSerialzer",
     "BlogListSerializer",
     "BlogDetailSerializer",
+    "BlogCreateSerializer",
 ]
 
 
@@ -18,7 +19,13 @@ class BlogBaseSerialzer(s.ModelSerializer):
         exclude = AUDIT_COLUMNS
 
 
-class BlogListSerializer(s.ModelSerializer):
+class BlogCreateSerializer(BlogBaseSerialzer):
+    class Meta:
+        model = Blog
+        exclude = AUDIT_COLUMNS + ("slug", "published_on")
+
+
+class BlogListSerializer(BlogBaseSerialzer):
     comments_count = s.SerializerMethodField()
     created_by = s.SerializerMethodField()
 

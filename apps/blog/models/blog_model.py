@@ -67,6 +67,7 @@ class BlogQuerySetMixin:
                     "comments",
                     filter=models.Q(
                         comments__created_by__isnull=True,
+                        comments__is_active=True,
                     ),
                 )
             )

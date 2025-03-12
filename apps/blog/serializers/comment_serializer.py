@@ -10,4 +10,4 @@ __all__ = ["CommentSerializer"]
 class CommentSerializer(s.ModelSerializer):
     class Meta:
         model = Comment
-        exclude = AUDIT_COLUMNS
+        exclude = AUDIT_COLUMNS + ("blog",)

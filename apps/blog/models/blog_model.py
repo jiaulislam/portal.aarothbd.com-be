@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 from core.models import BaseModel
+from core.storage_config import upload_blog_image
 
 from ..constants import BlogStatusChoices
 
@@ -24,6 +25,8 @@ class Blog(BaseModel):
     footer = models.TextField(max_length=512, null=True, blank=True)
     status = models.CharField(max_length=100, choices=BlogStatusChoices.choices, default=BlogStatusChoices.DRAFT)
     published_on = models.DateTimeField(null=True, blank=True)
+    banner = models.ImageField(upload_to=upload_blog_image, null=True, blank=True)
+    list_image = models.ImageField(upload_to=upload_blog_image, null=True, blank=True)
 
     comments: models.QuerySet["Comment"]
 

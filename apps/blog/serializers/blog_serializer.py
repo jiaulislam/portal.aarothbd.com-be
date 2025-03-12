@@ -89,4 +89,6 @@ class BlogDetailSerializer(s.ModelSerializer):
             "created_at",
             "comments",
             "comments_count",
+            "banner",
+            "list_image",
         )

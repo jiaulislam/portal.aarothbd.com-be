@@ -25,14 +25,14 @@ class ProductCategoryListCreateAPIView(ListCreateAPIView):
 
     def list(self, request: Request, *args: Any, **kwargs: Any) -> Response:
         parent_menus = self.category_service.get_parent_categories()
-        serializer = ProductCategorySerializer(instance=parent_menus, many=True)
+        serializer = self.get_serializer(instance=parent_menus, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serializer = ProductCategorySerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         instance = self.category_service.create(serializer.validated_data, request=request)
-        serializer = ProductCategorySerializer(instance=instance)
+        serializer = self.get_serializer(instance=instance)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -46,25 +46,23 @@ class ProductCategoryRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.all()
 
-    def retrieve(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        id = kwargs.get("id")
+    def retrieve(self, request: Request, id: int, *args: Any, **kwargs: Any) -> Response:
         instance = self.category_service.find_by_id_or_parent_id(id)
-        serializer = ProductCategorySerializer(instance=instance)
+        serializer = self.get_serializer(instance=instance)
         return Response(serializer.data)
 
-    def update(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serializer = ProductCategorySerializer(data=request.data)
+    def update(self, request: Request, id: int, *args: Any, **kwargs: Any) -> Response:
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        id = kwargs.get("id")
         instance = self.category_service.find_by_id_or_parent_id(id)
         instance = self.category_service.update(instance, serializer.validated_data, request=request)
-        serializer = ProductCategorySerializer(instance=instance)
+        serializer = self.get_serializer(instance=instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class ProductCategoryUpdateStatusAPIView(UpdateAPIView):
     http_method_names = ["patch"]
-    serializer_class = ProductCategorySerializer
+    serializer_class = ProductCategoryUpdateStatusSerializer
     permission_classes = [DjangoModelPermissions]
     category_service = ProductCategoryService()
     lookup_field = "id"
@@ -72,10 +70,10 @@ class ProductCategoryUpdateStatusAPIView(UpdateAPIView):
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.all()
 
-    def partial_update(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serializer = ProductCategoryUpdateStatusSerializer(data=request.data)
+    def partial_update(self, request: Request, id: int, *args: Any, **kwargs: Any) -> Response:
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        instance = self.category_service.get(**kwargs)
+        instance = self.category_service.find_by_id_or_parent_id(id)
         instance = self.category_service.update(instance, serializer.validated_data, request=request)
-        serializer = ProductCategoryUpdateStatusSerializer(instance=instance)
+        serializer = self.get_serializer(instance=instance)
         return Response(serializer.data, status=status.HTTP_200_OK)

@@ -5,12 +5,13 @@ from uuid import uuid4
 if TYPE_CHECKING:
     from apps.blog.models import Blog
     from apps.company.models import Company
-    from apps.product.models import ProductImage
+    from apps.product.models import ProductCategory, ProductImage
 
 __all__ = [
     "upload_product_image",
     "upload_company_image",
     "upload_blog_image",
+    "upload_product_category_image",
 ]
 
 
@@ -48,5 +49,14 @@ def upload_blog_image(instance: "Blog", file_name: str):
     Upload blog images, uploading folder will be created, if not exist.
     """
     storage_path = "blog-images"
+
+    return get_upload_file_path(file_name, storage_path)
+
+
+def upload_product_category_image(instance: "ProductCategory", file_name: str):
+    """
+    Upload product category images, uploading folder will be created, if not exist.
+    """
+    storage_path = "product-category-images"
 
     return get_upload_file_path(file_name, storage_path)

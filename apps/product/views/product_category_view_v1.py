@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Any
 from django.db.models.query import QuerySet
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
+from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
 from rest_framework.response import Response
 
@@ -19,6 +20,7 @@ class ProductCategoryListCreateAPIView(ListCreateAPIView):
     serializer_class = ProductCategorySerializer
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     category_service = ProductCategoryService()
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.get_parent_categories()
@@ -42,6 +44,7 @@ class ProductCategoryRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
     category_service = ProductCategoryService()
     lookup_field = "id"
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.all()

@@ -90,7 +90,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
         return self.user_type == UserTypeChoices.CUSTOMER.value
 
     def __str__(self):
-        return self.phone
+        return self.user_name
 
 
 class UserProfile(models.Model):

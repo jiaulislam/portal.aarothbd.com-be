@@ -5,7 +5,6 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.permissions import AllowAny
 
-from ..models import BlogQuerySetMixin
 from ..serializers import BlogBaseSerialzer, BlogCreateSerializer, BlogDetailSerializer, BlogListSerializer
 from ..services.blog_service import BlogService
 
@@ -25,7 +24,7 @@ class BlogListCreateAPIView(ListCreateAPIView):
         return BlogListSerializer
 
     def get_queryset(self) -> QuerySet["Blog"]:
-        queryset = BlogQuerySetMixin.get_queryset()
+        queryset = self.blog_service.get_published_queryset()
         return queryset
 
 
@@ -37,5 +36,5 @@ class BlogRetrieveAPIView(RetrieveAPIView):
     blog_service = BlogService()
 
     def get_queryset(self) -> QuerySet["Blog"]:
-        queryset = BlogQuerySetMixin.get_queryset()
+        queryset = self.blog_service.get_published_queryset()
         return queryset

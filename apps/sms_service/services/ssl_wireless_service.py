@@ -58,7 +58,7 @@ class SSLWirelessService:
         data = {
             "api_token": self.api_token,
             "sid": self.sid,
-            "msisdn": phone_number,
+            "msisdn": f"88{phone_number}",
             "sms": message,
             "csms_id": str(uuid4()),
         }

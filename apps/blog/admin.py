@@ -27,7 +27,7 @@ class BlogAdmin(BaseAdmin):
         "is_active",
     )
     list_filter = ("status",)
-    search_fields = ("title", "description", "header", "footer")
+    search_fields = ("title", "header", "footer", "slug")
 
     inlines = (CommentInlines,)
     readonly_fields = ("created_at", "updated_at", "updated_by")

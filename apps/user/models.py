@@ -18,8 +18,8 @@ if TYPE_CHECKING:
 
 
 class User(AbstractBaseUser, BaseModel, PermissionsMixin):
-    user_name = models.CharField(max_length=88, null=True, blank=True)
-    email = models.EmailField(unique=True, null=True, blank=True)
+    user_name = models.CharField(max_length=88, unique=True, null=False, blank=False, default=str(timezone.now))
+    email = models.EmailField(null=True, blank=True)
     first_name = models.CharField(_("First Name"), max_length=88, null=True, blank=True)
     last_name = models.CharField(_("Last Name"), max_length=88, null=True, blank=True)
     phone = models.CharField(max_length=20, null=True, blank=True)
@@ -47,7 +47,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "user_name"
     REQUIRED_FIELDS = ["password"]
 
     profile: "UserProfile"

@@ -39,11 +39,22 @@ class UserSerializer(s.ModelSerializer[User]):
         response["company"] = CompanySerializer(instance=instance.company).data
         return response
 
+    def validate_email(self, value: str | None) -> str | None:
+        if get_user_model().objects.filter(email=value).exists():
+            raise ValidationError("Email already exists !", code="client_error")
+        return value
+
+    def validate_phone(self, value: str | None) -> str | None:
+        if get_user_model().objects.filter(phone=value).exists():
+            raise ValidationError("Phone number already exists !", code="client_error")
+        return value
+
     class Meta:
         model = get_user_model()
         fields = [
             "id",
             "email",
+            "phone",
             "first_name",
             "last_name",
             "is_admin",

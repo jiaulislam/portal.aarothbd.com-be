@@ -14,8 +14,8 @@ from core.exceptions.common import CustomException
 from core.serializers import FailResponseSerializer, SuccessResponseSerializer
 
 from ..serializers.auth_serializers_v1 import (
-    ConfirmResetPasswordSerializer,
     LoginSerializer,
+    OTPVerificationSerializer,
     RegisterUserSerializer,
     ResetPasswordSerializer,
 )
@@ -29,11 +29,18 @@ class RegisterUserAPIView(GenericAPIView):
     user_service = UserService()
 
     def post(self, request: Request, *args, **kwargs):
+        from sms_service.services import SSLWirelessService
+
         serialized = RegisterUserSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
         user = self.user_service.create_customer(serialized.validated_data)
-        _ = self.user_service.assign_otp_code(user)
-        # TODO: Send a SMS with OTP code
+        otp_code = self.user_service.assign_otp_code(user)
+
+        sms_service = SSLWirelessService()
+        sms_service.send_sms(
+            message=f"Your OTP code is: {otp_code}",
+            phone_number=user.phone,
+        )
         return Response(
             {"user_id": user.pk, "detail": "Successfully Registered. An OTP has been sent to your phone."},
             status=s.HTTP_201_CREATED,
@@ -113,28 +120,37 @@ class ResetPasswordAPIView(GenericAPIView):
     user_service = UserService()
 
     def post(self, request: Request, *args, **kwargs):
+        from sms_service.services import SSLWirelessService
+
         serialized = ResetPasswordSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
         user_name = serialized.validated_data["user_name"]
         user = self.user_service.get(user_name=user_name)
-        _ = self.user_service.assign_otp_code(user)
-        # TODO: need to implement send SMS
+        otp_code = self.user_service.assign_otp_code(user)
+
+        sms_service = SSLWirelessService()
+        sms_service.send_sms(
+            message=f"Your OTP code is: {otp_code}",
+            phone_number=user.phone,
+        )
         return Response(
             {"user_id": user.pk, "detail": "OTP has been sent to your phone."},
             status=s.HTTP_200_OK,
         )
 
 
-class ResetPasswordConfirmationAPIView(GenericAPIView):
+class PasswordResetOTPAPIview(GenericAPIView):
     authentication_classes = []
     permission_classes = []
-    serializer_class = ConfirmResetPasswordSerializer
+    serializer_class = OTPVerificationSerializer
     user_service = UserService()
 
     def post(self, request: Request, *args, **kwargs):
-        serializer = ConfirmResetPasswordSerializer(data=request.data)
+        serializer = OTPVerificationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         try:
+            from sms_service.services import SSLWirelessService
+
             user_id = serializer.validated_data["user_id"]
             otp_code = serializer.validated_data["otp_code"]
             user = self.user_service.get(id=user_id, otp_code=otp_code)
@@ -143,8 +159,40 @@ class ResetPasswordConfirmationAPIView(GenericAPIView):
             user.set_password(random_password)
             user.otp_code = None
             user.save()
+            sms_service = SSLWirelessService()
+            sms_service.send_sms(
+                message=f"Your new password is: {random_password}. Please change it after login.",
+                phone_number=user.phone,
+            )
             return Response(
                 {"detail": "A new password has been sent to your email."},
+                status=s.HTTP_200_OK,
+            )
+        except self.user_service.model_class.DoesNotExist:
+            exc = CustomException(detail="Invalid OTP code.")
+            exc.default_code = "invalid_otp_code"
+            exc.status_code = s.HTTP_400_BAD_REQUEST
+            raise exc
+
+
+class RegisterOTPValidationAPIView(GenericAPIView):
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = OTPVerificationSerializer
+    user_service = UserService()
+
+    def post(self, request: Request, *args, **kwargs):
+        serializer = OTPVerificationSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            user_id = serializer.validated_data["user_id"]
+            otp_code = serializer.validated_data["otp_code"]
+            user = self.user_service.get(id=user_id, otp_code=otp_code, is_active=False)
+            user.otp_code = None
+            user.is_active = True
+            user.save()
+            return Response(
+                {"detail": "Account created. Login to continue."},
                 status=s.HTTP_200_OK,
             )
         except self.user_service.model_class.DoesNotExist:

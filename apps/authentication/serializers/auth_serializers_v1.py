@@ -90,6 +90,6 @@ class ResetPasswordSerializer(s.Serializer):
     user_name = s.EmailField()
 
 
-class ConfirmResetPasswordSerializer(s.Serializer):
-    user_name = s.CharField()
+class OTPVerificationSerializer(s.Serializer):
+    user_id = s.CharField()
     otp_code = s.CharField()

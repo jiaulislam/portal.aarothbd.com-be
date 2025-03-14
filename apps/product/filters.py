@@ -33,7 +33,7 @@ class ProductCategoryFilter(BaseFilter):
 
 
 class ECommProductFilter(BaseFilter):
-    category = filters.NumberFilter(field_name="product__category_id", lookup_expr="exact")
-    brand = filters.NumberFilter(field_name="product__brand_id", lookup_expr="exact")
+    category = filters.CharFilter(field_name="product__category__slug", lookup_expr="exact")
+    brand = filters.CharFilter(field_name="product__brand__name", lookup_expr="exact")
     rate_min = filters.NumberFilter(field_name="orderlines__rate", lookup_expr="gte")
     rate_max = filters.NumberFilter(field_name="orderlines__rate", lookup_expr="lte")

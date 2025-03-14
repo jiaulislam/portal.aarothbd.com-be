@@ -40,7 +40,7 @@ class UserService(BaseModelService[UserType]):
         profile = validated_data.pop("profile", {})
         validated_data["password"] = self.hash_password(password2)
         validated_data["created_by"] = self.core_service.get_user(kwargs.get("request"))
-        validated_data["user_name"] = validated_data.get("email") or validated_data.get("phone")
+        validated_data["user_name"] = validated_data.get("phone") or validated_data.get("email")
         instance = self.model_class.objects.create(**validated_data)
         self.update_user_profile(instance, profile)
         return instance

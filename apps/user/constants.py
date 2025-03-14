@@ -11,3 +11,4 @@ class AuthProviderChoices(TextChoices):
     FACEBOOK = "facebook", "Facebook"
     GOOGLE = "google", "Google"
     EMAIL = "email", "Email"
+    USERNAME = "user_name", "Username"

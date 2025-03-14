@@ -18,9 +18,11 @@ if TYPE_CHECKING:
 
 
 class User(AbstractBaseUser, BaseModel, PermissionsMixin):
-    email = models.EmailField(unique=True, null=False, blank=False)
+    user_name = models.CharField(max_length=88, null=True, blank=True)
+    email = models.EmailField(unique=True, null=True, blank=True)
     first_name = models.CharField(_("First Name"), max_length=88, null=True, blank=True)
     last_name = models.CharField(_("Last Name"), max_length=88, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
     is_admin = models.BooleanField(
         _("Admin Status"),
         default=False,
@@ -41,6 +43,7 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
         choices=AuthProviderChoices.choices,
         default=AuthProviderChoices.EMAIL,
     )
+    otp_code = models.CharField(max_length=6, null=True, blank=True)
 
     objects = UserManager()
 
@@ -57,7 +60,8 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 
     def clean(self) -> None:
         super().clean()
-        self.email = BaseUserManager.normalize_email(self.email)
+        if self.email:
+            self.email = BaseUserManager.normalize_email(self.email)
 
     @property
     def full_name(self) -> str:
@@ -86,12 +90,11 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
         return self.user_type == UserTypeChoices.CUSTOMER.value
 
     def __str__(self):
-        return self.email
+        return self.phone
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name="profile")
-    phone = models.CharField(max_length=20, null=True, blank=True)
     bin_id = models.CharField(max_length=88, null=True, blank=True)
     tin_id = models.CharField(max_length=88, null=True, blank=True)
     emergency_contact_details = models.TextField(null=True, blank=True)
@@ -103,4 +106,4 @@ class UserProfile(models.Model):
         verbose_name_plural = "User Profiles"
 
     def __str__(self):
-        return "{} - {}".format(str(self.pk), self.user.email)
+        return "{} - {}".format(str(self.pk), self.user.phone)

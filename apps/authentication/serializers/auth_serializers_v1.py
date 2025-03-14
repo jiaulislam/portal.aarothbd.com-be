@@ -36,9 +36,23 @@ class RegisterUserSerializer(s.ModelSerializer):
         if not bool(email) and not bool(phone):
             raise s.ValidationError({"email": "Email or Phone is required!"})
 
+    def validate_email(self, value: str | None) -> str | None:
+        if not bool(value):
+            return None
+
+        # check if email already exists
+        if get_user_model().objects.filter(email=value).exists():
+            raise s.ValidationError("Email already exists!")
+
+        return value
+
     def validate_phone(self, value: str | None) -> str | None:
         if not bool(value):
             return None
+
+        # check if phone already exists
+        if get_user_model().objects.filter(phone=value).exists():
+            raise s.ValidationError("Phone number already exists!")
 
         if not value.isdigit():
             raise s.ValidationError("Phone number must contain only digits")

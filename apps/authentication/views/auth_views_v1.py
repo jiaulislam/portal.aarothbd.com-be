@@ -1,9 +1,4 @@
-from datetime import datetime, timedelta
-
-from django.conf import settings
 from django.contrib.auth import authenticate
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from drf_spectacular.utils import OpenApiExample, extend_schema
@@ -13,12 +8,10 @@ from rest_framework import status as s
 from rest_framework.generics import GenericAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
 
-from apps.user.constants import AuthProviderChoices
 from apps.user.services import UserService
+from core.exceptions.common import CustomException
 from core.serializers import FailResponseSerializer, SuccessResponseSerializer
-from core.utils import decode_jwt_token
 
 from ..serializers.auth_serializers_v1 import (
     ConfirmResetPasswordSerializer,
@@ -38,10 +31,11 @@ class RegisterUserAPIView(GenericAPIView):
     def post(self, request: Request, *args, **kwargs):
         serialized = RegisterUserSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
-        _ = self.user_service.create_customer(serialized.validated_data)
-        # TODO: customer email verification task should implement here [Celery Task]
+        user = self.user_service.create_customer(serialized.validated_data)
+        _ = self.user_service.assign_otp_code(user)
+        # TODO: Send a SMS with OTP code
         return Response(
-            {"detail": "Successfully Registered."},
+            {"user_id": user.pk, "detail": "Successfully Registered. An OTP has been sent to your phone."},
             status=s.HTTP_201_CREATED,
         )
 
@@ -63,7 +57,7 @@ class LoginAPIView(GenericAPIView):
                 name="Login Request",
                 summary="Login Request Payload",
                 description="Example of a valid request payload for login.",
-                value={"email": "admin@aarothbd.com", "password": "*****"},
+                value={"user_name": "admin@aarothbd.com", "password": "*****"},
                 response_only=False,
                 request_only=True,
             )
@@ -72,13 +66,13 @@ class LoginAPIView(GenericAPIView):
     def post(self, request: Request, *args, **kwargs) -> Response:
         serialized = LoginSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
-        email = serialized.validated_data["email"]
+        user_name = serialized.validated_data["user_name"]  # This can be email or phone number
         password = serialized.validated_data["password"]
 
-        authorized_user = authenticate(request, email=email, password=password)
-
+        authorized_user = authenticate(request, user_name=user_name, password=password)
         if authorized_user is None:
-            raise e.AuthenticationFailed("Email or Password is incorrect")
+            raise e.AuthenticationFailed("Authentication Failed !")
+
         authorized_user.last_login = timezone.now()
         authorized_user.save()
         token_service = TokenService(request, authorized_user)
@@ -121,27 +115,12 @@ class ResetPasswordAPIView(GenericAPIView):
     def post(self, request: Request, *args, **kwargs):
         serialized = ResetPasswordSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
-        email = serialized.validated_data["email"]
-        user = self.user_service.get(email=email, auth_provider=AuthProviderChoices.EMAIL)
-        token = RefreshToken.for_user(user).access_token
-        token.set_exp(lifetime=timedelta(minutes=10))
-        reset_url = f"{request.scheme}://{request.get_host()}/reset-password?token={token}"
-        context = {
-            "reset_url": reset_url,
-            "user": user,
-        }
-        email_html_message = render_to_string("reset-password-email.html", context)
-
-        send_mail(
-            "Password Reset Request",
-            email_html_message,
-            settings.EMAIL_HOST_USER,
-            [email],
-            fail_silently=False,
-            html_message=email_html_message,
-        )
+        user_name = serialized.validated_data["user_name"]
+        user = self.user_service.get(user_name=user_name)
+        _ = self.user_service.assign_otp_code(user)
+        # TODO: need to implement send SMS
         return Response(
-            {"detail": "Password reset link has been sent to your email."},
+            {"user_id": user.pk, "detail": "OTP has been sent to your phone."},
             status=s.HTTP_200_OK,
         )
 
@@ -155,38 +134,21 @@ class ResetPasswordConfirmationAPIView(GenericAPIView):
     def post(self, request: Request, *args, **kwargs):
         serializer = ConfirmResetPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-
         try:
-            payload = decode_jwt_token(serializer.validated_data["token"])
-            user_id = payload.get("user_id")
-            if not user_id:
-                raise e.ValidationError("Invalid token")
-        except Exception:
-            raise e.ValidationError("Invalid token")
-
-        user = self.user_service.get(id=user_id, auth_provider=AuthProviderChoices.EMAIL)
-        email = user.email
-        # Generate a random password
-        random_password = get_random_string(length=8)
-        user.set_password(random_password)
-        user.save()
-
-        context = {
-            "user": user,
-            "random_password": random_password,
-            "current_year": datetime.now().year,
-        }
-        email_html_message = render_to_string("change-password-email.html", context)
-
-        send_mail(
-            "Your New Password",
-            email_html_message,
-            settings.EMAIL_HOST_USER,
-            [email],
-            fail_silently=False,
-            html_message=email_html_message,
-        )
-        return Response(
-            {"detail": "A new password has been sent to your email."},
-            status=s.HTTP_200_OK,
-        )
+            user_id = serializer.validated_data["user_id"]
+            otp_code = serializer.validated_data["otp_code"]
+            user = self.user_service.get(id=user_id, otp_code=otp_code)
+            # Generate a random password
+            random_password = get_random_string(length=8)
+            user.set_password(random_password)
+            user.otp_code = None
+            user.save()
+            return Response(
+                {"detail": "A new password has been sent to your email."},
+                status=s.HTTP_200_OK,
+            )
+        except self.user_service.model_class.DoesNotExist:
+            exc = CustomException(detail="Invalid OTP code.")
+            exc.default_code = "invalid_otp_code"
+            exc.status_code = s.HTTP_400_BAD_REQUEST
+            raise exc

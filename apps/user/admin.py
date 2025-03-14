@@ -33,7 +33,7 @@ class UserTypeListFilter(admin.SimpleListFilter):
         return queryset.filter(user_type=self.value()) if self.value() else queryset
 
 
-class ProfileInline(StackedInline, InlineHelperAdmin):
+class ProfileInline(StackedInline, InlineHelperAdmin):  # type: ignore
     model = UserProfile
     can_delete = False
     show_change_link = True
@@ -41,7 +41,7 @@ class ProfileInline(StackedInline, InlineHelperAdmin):
 
 @admin.register(UserProfile)
 class ProfileAdmin(ModelAdmin):
-    list_display = ["user", "phone"]
+    list_display = ["user", "bin_id"]
 
 
 @admin.register(User)
@@ -58,7 +58,7 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
     search_fields = ("email", "first_name", "last_name", "user_type")
     inlines = [ProfileInline]
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (None, {"fields": ("user_name", "email", "phone", "password")}),
         (
             _("Personal info"),
             {
@@ -103,7 +103,7 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
     readonly_fields = AUDIT_COLUMNS
     list_per_page = 10
 
-    def save_model(self, request: HttpRequest, obj: User, form: ModelForm, change: bool) -> None:
+    def save_model(self, request: HttpRequest, obj: User, form: ModelForm, change: bool) -> None:  # type: ignore
         if change:
             obj.updated_by = request.user  # type: ignore
         else:

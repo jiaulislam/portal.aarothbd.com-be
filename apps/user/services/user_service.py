@@ -40,6 +40,7 @@ class UserService(BaseModelService[UserType]):
         profile = validated_data.pop("profile", {})
         validated_data["password"] = self.hash_password(password2)
         validated_data["created_by"] = self.core_service.get_user(kwargs.get("request"))
+        validated_data["user_name"] = validated_data.get("email") or validated_data.get("phone")
         instance = self.model_class.objects.create(**validated_data)
         self.update_user_profile(instance, profile)
         return instance
@@ -121,3 +122,9 @@ class UserService(BaseModelService[UserType]):
     def get_user_addresses(self, user: UserType):
         data = [model_to_dict(address, exclude=AUDIT_COLUMNS) for address in user.addresses.all()]
         return data
+
+    def assign_otp_code(self, user: UserType) -> str:
+        otp_code = "".join(secrets.choice(string.digits) for _ in range(6))
+        user.otp_code = otp_code
+        user.save()
+        return otp_code

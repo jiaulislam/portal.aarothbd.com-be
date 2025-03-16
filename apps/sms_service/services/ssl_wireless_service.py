@@ -71,4 +71,11 @@ class SSLWirelessService:
         self.uri = "api/v3/send-sms"
         data = self._single_sms_data(message, phone_number)
         response = self._send_request("post", data)
+        data = response.json()
+        if data.get("status") == "FAILED":
+            exc = CustomException(detail=data.get("error_message"))
+            exc.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
+            exc.default_code = "sms_send_failed"
+            capture_exception_sentry(exc)
+            raise exc
         return response.json()

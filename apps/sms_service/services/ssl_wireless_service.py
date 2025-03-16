@@ -60,7 +60,7 @@ class SSLWirelessService:
             "sid": self.sid,
             "msisdn": f"88{phone_number}",
             "sms": message,
-            "csms_id": str(uuid4().hex),
+            "csms_id": str(uuid4().hex)[:20],
         }
         return data
 

@@ -61,6 +61,11 @@ CUSTOM_APPS = [
     "apps.wishlist",
     "apps.customer_order",
     "apps.sms_service",
+    "apps.about_us",
+    "apps.business_partner",
+    "apps.contact_us",
+    "apps.home",
+    "apps.testimonial",
 ]
 
 

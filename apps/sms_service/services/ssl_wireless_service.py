@@ -76,6 +76,6 @@ class SSLWirelessService:
             exc = CustomException(detail=data.get("error_message"))
             exc.status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
             exc.default_code = "sms_send_failed"
-            capture_exception_sentry(exc)
+            capture_exception_sentry(exc, sms_body=data)
             raise exc
         return response.json()

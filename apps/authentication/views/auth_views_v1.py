@@ -29,7 +29,7 @@ class RegisterUserAPIView(GenericAPIView):
     user_service = UserService()
 
     def post(self, request: Request, *args, **kwargs):
-        from sms_service.services import SSLWirelessService
+        from apps.sms_service.services import SSLWirelessService
 
         serialized = RegisterUserSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
@@ -120,12 +120,12 @@ class ResetPasswordAPIView(GenericAPIView):
     user_service = UserService()
 
     def post(self, request: Request, *args, **kwargs):
-        from sms_service.services import SSLWirelessService
+        from apps.sms_service.services import SSLWirelessService
 
         serialized = ResetPasswordSerializer(data=request.data)
         serialized.is_valid(raise_exception=True)
-        user_name = serialized.validated_data["user_name"]
-        user = self.user_service.get(user_name=user_name)
+        phone = serialized.validated_data["phone"]
+        user = self.user_service.get(phone=phone)
         otp_code = self.user_service.assign_otp_code(user)
 
         sms_service = SSLWirelessService()
@@ -149,7 +149,7 @@ class PasswordResetOTPAPIview(GenericAPIView):
         serializer = OTPVerificationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         try:
-            from sms_service.services import SSLWirelessService
+            from apps.sms_service.services import SSLWirelessService
 
             user_id = serializer.validated_data["user_id"]
             otp_code = serializer.validated_data["otp_code"]

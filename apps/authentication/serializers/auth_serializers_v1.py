@@ -87,7 +87,7 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
 
 
 class ResetPasswordSerializer(s.Serializer):
-    user_name = s.EmailField()
+    phone = s.CharField()
 
 
 class OTPVerificationSerializer(s.Serializer):

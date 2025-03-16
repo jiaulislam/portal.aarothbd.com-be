@@ -15,6 +15,7 @@ __all__ = [
     "PaikarSaleOrderApprovalSerializer",
     "ReviewSerializer",
     "SaleOrderReviewSerializer",
+    "PaikarSaleOrderRetrieveSerializer",
 ]
 
 
@@ -52,6 +53,21 @@ class DateRangeField(s.ListField):
 
 class PaikarSaleOrderBaseModelSerializer(s.ModelSerializer):
     validity_dates = DateRangeField()
+
+    class Meta:
+        model = PaikarSaleOrder
+        exclude = AUDIT_COLUMNS
+
+
+class PaikarSaleOrderRetrieveSerializer(s.ModelSerializer):
+    validity_dates = DateRangeField()
+    product = s.SerializerMethodField()
+
+    def get_product(self, obj: PaikarSaleOrder):
+        from apps.product.serializers.product_serializer import ProductSerializer
+
+        product = ProductSerializer(obj.product)
+        return product.data
 
     class Meta:
         model = PaikarSaleOrder

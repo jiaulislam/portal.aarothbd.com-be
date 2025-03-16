@@ -2,6 +2,8 @@ import os
 from typing import TYPE_CHECKING
 from uuid import uuid4
 
+from django.db.models import Model
+
 if TYPE_CHECKING:
     from apps.blog.models import Blog
     from apps.company.models import Company
@@ -12,6 +14,9 @@ __all__ = [
     "upload_company_image",
     "upload_blog_image",
     "upload_product_category_image",
+    "upload_banners",
+    "upload_logos",
+    "upload_general_image",
 ]
 
 
@@ -58,5 +63,32 @@ def upload_product_category_image(instance: "ProductCategory", file_name: str):
     Upload product category images, uploading folder will be created, if not exist.
     """
     storage_path = "product-category-images"
+
+    return get_upload_file_path(file_name, storage_path)
+
+
+def upload_banners(instance: Model, file_name: str):
+    """
+    Upload about us banner images, uploading folder will be created, if not exist.
+    """
+    storage_path = "banners"
+
+    return get_upload_file_path(file_name, storage_path)
+
+
+def upload_logos(instance: Model, file_name: str):
+    """
+    Upload logos, uploading folder will be created, if not exist.
+    """
+    storage_path = "logos"
+
+    return get_upload_file_path(file_name, storage_path)
+
+
+def upload_general_image(instance: Model, file_name: str):
+    """
+    Upload logos, uploading folder will be created, if not exist.
+    """
+    storage_path = "general"
 
     return get_upload_file_path(file_name, storage_path)

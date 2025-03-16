@@ -13,7 +13,7 @@ class SSLWirelessService:
     def __init__(self):
         self.base_url = env("SSL_SMS_BASE_URL")
         self.api_token = env("SSL_SMS_API_TOKEN")
-        self.sid = "AAROTHBD"
+        self.sid = "AAROTHBDNONMASK"
         self.uri = None
 
     def get_full_url(self) -> str:

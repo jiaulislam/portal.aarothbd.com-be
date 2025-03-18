@@ -47,7 +47,7 @@ class ProfileAdmin(ModelAdmin):
 @admin.register(User)
 class UserAdmin(BaseUserAdmin, ModelAdmin):
     list_display = (
-        "email",
+        "user_name",
         "date_joined",
         "user_type",
         "company",
@@ -55,7 +55,7 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
         "is_superuser",
         "is_active",
     )
-    search_fields = ("email", "first_name", "last_name", "user_type")
+    search_fields = ("user_name", "email", "first_name", "last_name", "user_type")
     inlines = [ProfileInline]
     fieldsets = (
         (None, {"fields": ("user_name", "email", "phone", "password")}),

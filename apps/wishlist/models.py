@@ -1,6 +1,5 @@
-import operator
 from datetime import date
-from functools import reduce
+from logging import getLogger
 from typing import TYPE_CHECKING
 
 from django.contrib.auth import get_user_model
@@ -18,6 +17,8 @@ if TYPE_CHECKING:
 
 User = get_user_model()
 
+_logger = getLogger(__name__)
+
 
 class Wishlist(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="wishlist")
@@ -32,22 +33,23 @@ class Wishlist(BaseModel):
     def remove_product(self, product: "Product", company: "Company"):
         self.items.filter(product=product, company=company).delete()
 
-    def get_products(self):
+    def get_wishlist_active_sale_orders(self, user):
         """
         Returns:
             QuerySet: A queryset of PaikarSaleOrder objects that match the criteria.
         """
         today = date.today()
-        wishlist_items = self._get_wishlist_items()
+        wishlist_items = self._get_wishlist_items(user)
         sale_orders = self._get_sale_orders(wishlist_items, today)
         return sale_orders
 
-    def _get_wishlist_items(self):
+    def _get_wishlist_items(self, user):
         """
         Returns:
             QuerySet: A queryset of wishlist items.
         """
-        return self.items.values_list("product", "company", named=True)
+        items = self.items.filter(wishlist__user=user).values_list("product", "company", named=True)
+        return items
 
     def _get_sale_orders(self, wishlist_items, today):
         """
@@ -58,10 +60,13 @@ class Wishlist(BaseModel):
         Returns:
             QuerySet: A queryset of PaikarSaleOrder objects that match the criteria.
         """
+        if not wishlist_items.count():
+            # wishlist is empty
+            return PaikarSaleOrder.objects.none()
 
-        or_query = reduce(
-            operator.or_, (Q(product_id=item.product, company_id=item.company) for item in wishlist_items)
-        )
+        or_query = Q()
+        for item in wishlist_items:
+            or_query |= Q(product_id=item.product, company_id=item.company)
 
         queryset = (
             PaikarSaleOrder.objects.annotate(upper_bound=Upper(F("validity_dates")))  # Extract upper bound
@@ -72,6 +77,8 @@ class Wishlist(BaseModel):
                 upper_bound__gte=today,  # Check if upper bound is >= today
             )
         )
+
+        _logger.debug(queryset.query)
 
         return queryset
 

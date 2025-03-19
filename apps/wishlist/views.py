@@ -28,7 +28,7 @@ class WishlistItemListCreateAPIView(ListCreateAPIView):
     def list(self, request: Request, *args, **kwargs):
         current_user: "User" = request.user  # type: ignore
         wishlist, _ = Wishlist.objects.get_or_create(user=current_user)
-        sale_orders = wishlist.get_products()
+        sale_orders = wishlist.get_wishlist_active_sale_orders(current_user)
         serializer = ProductEcomSerializer(instance=sale_orders, many=True)
         return Response(serializer.data)
 

@@ -1,4 +1,5 @@
 from django.contrib.postgres.fields import DateRangeField
+from django.contrib.postgres.indexes import GistIndex
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -58,6 +59,9 @@ class PaikarSaleOrder(BaseModel):
         db_table = "sale_order_paikar_sale_order"
         verbose_name = "Paikar Sale Order"
         verbose_name_plural = "Paikar Sale Orders"
+        indexes = [
+            GistIndex(fields=["validity_dates"]),
+        ]
 
 
 @receiver(pre_save, sender=PaikarSaleOrder)

@@ -76,6 +76,8 @@ class Wishlist(BaseModel):
                 status=SaleOrderStatusChoices.APPROVED,  # Ensure order is approved
                 upper_bound__gte=today,  # Check if upper bound is >= today
             )
+            .select_related("product", "company")
+            .prefetch_related("orderlines", "orderlines__uom")
         )
 
         _logger.debug(queryset.query)

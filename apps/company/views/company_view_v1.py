@@ -168,7 +168,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             Response: A Response object containing the serialized company data and an HTTP 200 status code.
         """
         _company_id = kwargs.get("id")
-        queryset = self.company_service.get(id=_company_id, select_related=["configuration"])
+        queryset = self.company_service.get(id=_company_id)
         serialized = self.get_serializer_class()(instance=queryset)
         return Response(serialized.data, status=status.HTTP_200_OK)
 

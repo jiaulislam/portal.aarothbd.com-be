@@ -29,7 +29,7 @@ class UoMListCreateAPIView(ListCreateAPIView):
     pagination_class = ExtendedLimitOffsetPagination
 
     def get_queryset(self) -> QuerySet["UoM"]:
-        queryset = UoM.objects.all()
+        queryset = UoM.objects.select_related("category").all()
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 

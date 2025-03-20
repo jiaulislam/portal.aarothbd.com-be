@@ -10,7 +10,7 @@ from .models.product_category_model import ProductCategory
 from .models.product_model import Product, ProductDetail
 
 
-class ProductDetailInline(TabularInline, InlineHelperAdmin):
+class ProductDetailInline(TabularInline, InlineHelperAdmin):  # type: ignore
     model = ProductDetail
     extra = 0
     exclude = AUDIT_COLUMNS
@@ -18,11 +18,19 @@ class ProductDetailInline(TabularInline, InlineHelperAdmin):
     show_change_link = True
 
 
-class ProductImageInline(TabularInline, InlineHelperAdmin):
+class ProductImageInline(TabularInline, InlineHelperAdmin):  # type: ignore
     model = ProductImage
     extra = 0
     exclude = AUDIT_COLUMNS
     show_change_link = True
+
+
+class ProductCategoryInline(TabularInline, InlineHelperAdmin):  # type: ignore
+    model = ProductCategory
+    extra = 0
+    exclude = AUDIT_COLUMNS
+    show_change_link = True
+    fk_name = "parent"
 
 
 @admin.register(ProductDetail)
@@ -46,6 +54,7 @@ class ProductCategoryAdmin(BaseAdmin):
     search_fields = ("name",)
     list_editable = ("is_active",)
     readonly_fields = AUDIT_COLUMNS
+    inlines = (ProductCategoryInline,)
 
 
 @admin.register(Product)

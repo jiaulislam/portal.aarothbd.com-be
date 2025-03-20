@@ -9,7 +9,11 @@ from rest_framework.response import Response
 
 from core.request import Request
 
-from ..serializers.product_category_serializer import ProductCategorySerializer, ProductCategoryUpdateStatusSerializer
+from ..serializers.product_category_serializer import (
+    ProductCategoryCreateSerializer,
+    ProductCategorySerializer,
+    ProductCategoryUpdateStatusSerializer,
+)
 from ..services.product_category_service import ProductCategoryService
 
 if TYPE_CHECKING:
@@ -25,9 +29,14 @@ class ProductCategoryListCreateAPIView(ListCreateAPIView):
     def get_queryset(self) -> QuerySet["ProductCategory"]:
         return self.category_service.get_parent_categories()
 
+    def get_serializer_class(self):
+        if self.request.method == "POST":
+            return ProductCategoryCreateSerializer
+        return ProductCategorySerializer
+
     def list(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        parent_menus = self.category_service.get_parent_categories()
-        serializer = self.get_serializer(instance=parent_menus, many=True)
+        root_categories = self.get_queryset()
+        serializer = self.get_serializer(instance=root_categories, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:

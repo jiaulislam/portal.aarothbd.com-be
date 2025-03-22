@@ -9,7 +9,7 @@ class CompanyFilter(BaseFilter):
     slug = filters.CharFilter(field_name="slug", lookup_expr="icontains")
     bin_number = filters.CharFilter(field_name="bin_number", lookup_expr="icontains")
     tin_number = filters.CharFilter(field_name="tin_number", lookup_expr="icontains")
-    category = filters.NumberFilter(field_name="category", lookup_expr="exact")
+    category = filters.CharFilter(field_name="category__name", lookup_expr="icontains")
 
     order_by = OrderingFilter(
         fields=(

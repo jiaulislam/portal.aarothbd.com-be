@@ -90,6 +90,10 @@ class CompanyCategorySerializer(s.ModelSerializer):
 
 class CompanyListSerializer(s.ModelSerializer):
     category = CompanyCategorySerializer(read_only=True)
+    sale_order_count = s.SerializerMethodField()
+
+    def get_sale_order_count(self, obj: Company):
+        return obj.paikar_sale_orders.count()
 
     class Meta:
         model = Company

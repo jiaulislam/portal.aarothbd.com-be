@@ -6,7 +6,7 @@ from apps.address.models import Address
 from core.admin import BaseAdmin, InlineHelperAdmin
 from core.constants import AUDIT_COLUMNS
 
-from .models import Company, CompanyConfiguration
+from .models import Company, CompanyCategory, CompanyConfiguration
 
 
 class CompanySettingsInline(admin.TabularInline, InlineHelperAdmin):
@@ -25,6 +25,15 @@ class AddressInline(GenericStackedInline, NonrelatedTabularInline, InlineHelperA
     ct_field = "content_type"
     ct_fk_field = "object_id"
     exclude = AUDIT_COLUMNS
+
+
+@admin.register(CompanyCategory)
+class CompanyCategoryAdmin(BaseAdmin):
+    list_display = ("name", "is_active")
+    search_fields = ("name",)
+    list_filter = ("is_active",)
+    readonly_fields = AUDIT_COLUMNS
+    list_editable = ("is_active",)
 
 
 @admin.register(Company)

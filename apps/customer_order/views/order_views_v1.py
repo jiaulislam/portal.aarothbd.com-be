@@ -4,7 +4,12 @@ from django.db import transaction
 from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateAPIView,
+    UpdateAPIView,
+)
 from rest_framework.permissions import DjangoModelPermissions, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
@@ -56,7 +61,8 @@ class OrderListCreateAPIView(ListCreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class OrderRetrieveAPIView(RetrieveAPIView):
+class OrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+    http_method_names = ["get", "put"]
     permission_classes = [IsAuthenticated]
     lookup_field = "id"
     order_service = OrderService()
@@ -70,13 +76,9 @@ class OrderRetrieveAPIView(RetrieveAPIView):
             return self.order_service.all()
         return self.order_service.all(created_by=user)
 
-    def retrieve(self, request: Request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
-
 
 class OrderUpdateStatusAPIView(UpdateAPIView):
+    http_method_names = ["patch"]
     serializer_class = OrderUpdateStatusSerializer
     permission_classes = [DjangoModelPermissions]
     order_service = OrderService()

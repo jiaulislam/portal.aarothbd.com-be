@@ -6,7 +6,7 @@ from .views.order_views_v1 import (
     OrderPaymentListCreateAPIView,
     OrderPaymentReversalAPIView,
     OrderPaymentUpdateAPIView,
-    OrderRetrieveAPIView,
+    OrderRetrieveUpdateAPIView,
     OrderUpdateStatusAPIView,
 )
 
@@ -16,6 +16,6 @@ urlpatterns = [
     path(r"payments/", OrderPaymentListAPIView.as_view(), name="order-payment-list"),
     path(r"payments/<int:id>/", OrderPaymentUpdateAPIView.as_view(), name="order-payment-update"),
     path(r"orders/", OrderListCreateAPIView.as_view(), name="order-list-create"),
-    path(r"orders/<int:id>/", OrderRetrieveAPIView.as_view(), name="order-retrieve"),
+    path(r"orders/<int:id>/", OrderRetrieveUpdateAPIView.as_view(), name="order-retrieve"),
     path(r"orders/<int:id>/update-status/", OrderUpdateStatusAPIView.as_view(), name="order-update-status"),
 ]

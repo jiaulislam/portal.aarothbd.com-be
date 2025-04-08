@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 
 from django.db.models.query import QuerySet
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, UpdateAPIView
-from rest_framework.permissions import DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
+from rest_framework.permissions import AllowAny, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
@@ -25,7 +25,7 @@ from ..services import OfferService
 
 
 class OfferListCreateAPIView(ListCreateAPIView):
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
+    permission_classes = [DjangoModelPermissions]
     offer_service = OfferService()
     filterset_class = OfferFilter
     pagination_class = ExtendedLimitOffsetPagination
@@ -37,6 +37,21 @@ class OfferListCreateAPIView(ListCreateAPIView):
 
     def get_queryset(self) -> QuerySet["Offer"]:
         queryset = self.offer_service.all()
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return filterset.qs
+
+
+class EcommerceOfferListAPIView(ListCreateAPIView):
+    permission_classes = [AllowAny]
+    offer_service = OfferService()
+    filterset_class = OfferFilter
+    pagination_class = ExtendedLimitOffsetPagination
+
+    def get_serializer_class(self) -> type[BaseSerializer]:
+        return OfferListSerializer
+
+    def get_queryset(self) -> QuerySet["Offer"]:
+        queryset = self.offer_service.get_valid_offers()
         filterset = self.filterset_class(self.request.GET, queryset=queryset)
         return filterset.qs
 

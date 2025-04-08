@@ -18,6 +18,9 @@ __all__ = ["Company", "CompanyCategory"]
 class CompanyCategory(BaseModel):
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self) -> str:
+        return self.name
+
     class Meta:
         db_table = "company_company_category"
         verbose_name = "Company Category"

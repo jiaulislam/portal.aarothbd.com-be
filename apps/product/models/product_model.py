@@ -34,6 +34,7 @@ class Product(BaseModel):
         "country.Country", on_delete=models.PROTECT, related_name="country_products", null=True, blank=True
     )
 
+    rating = models.IntegerField(default=0)
     attributes = models.JSONField(blank=True, help_text="Any other attributes", default=dict)
     html = models.TextField(null=True, blank=True, help_text="HTML")
     details: models.QuerySet["ProductDetail"]

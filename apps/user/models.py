@@ -14,7 +14,7 @@ from .constants import AuthProviderChoices, UserTypeChoices
 from .manager import UserManager
 
 if TYPE_CHECKING:
-    from wishlist.models import Wishlist
+    from apps.wishlist.models import Wishlist
 
 
 class User(AbstractBaseUser, BaseModel, PermissionsMixin):

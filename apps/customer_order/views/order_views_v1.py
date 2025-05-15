@@ -164,6 +164,7 @@ class OrderPaymentReversalAPIView(UpdateAPIView):
     permission_classes = [DjangoModelPermissions]
     payment_service = OrderPaymentService()
     order_service = OrderService()
+    lookup_field = "id"
 
     def get_queryset(self):
         return self.payment_service.all(is_reversed=False)

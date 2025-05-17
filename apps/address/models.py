@@ -25,6 +25,7 @@ class Address(BaseModel):
     division = models.ForeignKey("division.Division", on_delete=models.PROTECT, related_name="address_divisions")
     country = models.ForeignKey("country.Country", on_delete=models.PROTECT, related_name="address_countries")
     address_type = models.CharField(max_length=80, choices=AddressType.choices, default=AddressType.GENERAL)
+    is_default = models.BooleanField(default=False)
 
     class Meta:
         db_table = "address_address"

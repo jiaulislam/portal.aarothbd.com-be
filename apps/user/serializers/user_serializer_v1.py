@@ -73,13 +73,15 @@ class UserSerializer(s.ModelSerializer[User]):
 
 
 class UserUpdateSerializer(s.ModelSerializer[User]):
-    profile = UserProfileSerializer(write_only=True)
+    profile = UserProfileSerializer(write_only=True, required=False)
 
     class Meta:
         model = get_user_model()
         fields = [
             "first_name",
             "last_name",
+            "email",
+            "phone",
             "profile",
             "groups",
             "company",

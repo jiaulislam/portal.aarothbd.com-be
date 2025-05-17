@@ -106,4 +106,4 @@ class UserProfile(models.Model):
         verbose_name_plural = "User Profiles"
 
     def __str__(self):
-        return "{} - {}".format(str(self.pk), self.user.phone)
+        return "{}'s Profile".format(self.user.user_name)

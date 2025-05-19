@@ -11,6 +11,8 @@ class AddressType(models.TextChoices):
     DELIVERY = "delivery", _("Delivery Address")
     CONTACT = "contact", _("Contact Address")
     GENERAL = "general", _("General Address")
+    SHIPPING = "shipping", _("Shipping Address")
+    BILLING = "billing", _("Billing Address")
 
 
 class AddressValidatedDataType(BaseSerializerValidatedDataType):

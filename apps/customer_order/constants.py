@@ -3,6 +3,7 @@ from django.db.models import TextChoices
 
 class OrderStatusChoice(TextChoices):
     PENDING = "PENDING", "Pending"
+    RETURN = "RETURN", "Return"
     CONFIRMED = "CONFIRMED", "Confirmed"
     CANCELLED = "CANCELLED", "Cancelled"
     SHIPPED = "SHIPPED", "Shipped"

@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers as s
 from rest_framework.exceptions import ValidationError
 
-from apps.address.serializers import AddressCreateSerializer
+from apps.address.serializers import AddressCreateSerializer, AddressRetrieveSerializer
 from apps.company.serializers.company_serializer_v1 import CompanySerializer
 
 from ..models import User, UserProfile
@@ -94,7 +94,7 @@ class UserDetailSerializer(s.ModelSerializer):
     addresses = s.SerializerMethodField()
 
     def get_addresses(self, instance: User) -> dict[str, Any]:
-        data = AddressCreateSerializer(instance.addresses.all(), many=True).data
+        data = AddressRetrieveSerializer(instance.addresses.all(), many=True).data
         return data
 
     class Meta:

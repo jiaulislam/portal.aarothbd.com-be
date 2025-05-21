@@ -16,6 +16,8 @@ class PaikarSaleOrderLine(BaseModel):
     rate = models.FloatField(default=0.0)
     share_commission = models.FloatField(default=0.0)
     others_charge = models.FloatField(default=0.0)
+    margin_amount = models.FloatField(default=0.0)
+    discount_amount = models.FloatField(default=0.0)
 
     remarks = models.CharField(max_length=255, null=True, blank=True)
 

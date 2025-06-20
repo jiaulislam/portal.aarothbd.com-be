@@ -3,10 +3,12 @@ from django.db.models import TextChoices
 
 class OrderStatusChoice(TextChoices):
     PENDING = "PENDING", "Pending"
+    RETURN = "RETURN", "Return"
     CONFIRMED = "CONFIRMED", "Confirmed"
     CANCELLED = "CANCELLED", "Cancelled"
     SHIPPED = "SHIPPED", "Shipped"
     DELIVERED = "DELIVERED", "Delivered"
+    PARTIAL = "PARTIAL_DELIVERED", "Partial Delivered"
 
 
 class PaymodeChoice(TextChoices):

@@ -143,6 +143,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     http_method_names = ["get", "put"]
     serializer_class = CompanyDetailSerializer
     permission_classes = [DjangoModelPermissions]
+    lookup_field = "id"
 
     company_service = CompanyService()
     company_configuration_service = CompanyConfigurationService()
@@ -209,6 +210,7 @@ class CompanyUpdateStatusAPIView(UpdateAPIView):
     http_method_names = ["patch"]
     serializer_class = CompanyUpdateStatusSerializer
     permission_classes = [DjangoModelPermissions]
+    lookup_field = "id"
 
     company_service = CompanyService()
 
@@ -252,6 +254,7 @@ class CompanyImageUploadAPIView(UpdateAPIView):
     serializer_class = CompanyImageUploadSerializer
     permission_classes = [DjangoModelPermissions]
     parser_classes = [MultiPartParser, FormParser]
+    lookup_field = "id"
 
     company_service = CompanyService()
 

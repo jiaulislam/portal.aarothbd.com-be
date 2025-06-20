@@ -16,8 +16,9 @@ class OrderLine(BaseModel):
         "sale_order.PaikarSaleOrderLine", on_delete=models.PROTECT, null=True, blank=True
     )
     offer_sale_order = models.ForeignKey("offer.Offer", on_delete=models.PROTECT, null=True, blank=True)
-    quantity = models.IntegerField(default=0)
+    order_quantity = models.IntegerField(default=0)
     discount_amount = models.FloatField(default=0)
+    deliver_quantity = models.IntegerField(default=0)
     sub_total = models.FloatField(default=0)
 
     class Meta:

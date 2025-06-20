@@ -8,6 +8,7 @@ class OrderStatusChoice(TextChoices):
     CANCELLED = "CANCELLED", "Cancelled"
     SHIPPED = "SHIPPED", "Shipped"
     DELIVERED = "DELIVERED", "Delivered"
+    PARTIAL = "PARTIAL_DELIVERED", "Partial Delivered"
 
 
 class PaymodeChoice(TextChoices):

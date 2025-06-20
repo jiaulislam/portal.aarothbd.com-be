@@ -39,7 +39,12 @@ class OrderDeliveryLine(BaseModel):
     )
     order_line = models.ForeignKey("customer_order.OrderLine", on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField(default=1)
-    amount = models.FloatField(default=1)
+    company = models.ForeignKey("company.Company", on_delete=models.PROTECT, related_name="order_delivery_lines")
+    rate = models.FloatField(default=0)
+    margin_amount = models.FloatField(default=0)
+    customer_price = models.FloatField(default=0)
+    profit_margin = models.FloatField(default=0)
+    total_amount = models.FloatField(default=1)
 
     def __str__(self):
         return f"Delivery Line for {self.order_delivery.order.order_number} on {self.order_delivery.delivery_date}"

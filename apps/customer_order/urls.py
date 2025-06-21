@@ -1,5 +1,7 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 
+from .views.delivery_views import OrderDeliveryBillViewSet, OrderDeliveryLineViewSet, OrderDeliveryViewSet
 from .views.order_views_v1 import (
     OrderListCreateAPIView,
     OrderPaymentListAPIView,
@@ -9,6 +11,11 @@ from .views.order_views_v1 import (
     OrderRetrieveUpdateAPIView,
     OrderUpdateStatusAPIView,
 )
+
+order_delivery_routers = DefaultRouter()
+order_delivery_routers.register(r"deliveries", OrderDeliveryViewSet, basename="order-delivery")
+order_delivery_routers.register(r"delivery-lines", OrderDeliveryLineViewSet, basename="order-delivery-line")
+order_delivery_routers.register(r"delivery-bills", OrderDeliveryBillViewSet, basename="order-delivery-bill")
 
 urlpatterns = [
     path(
@@ -34,4 +41,6 @@ urlpatterns = [
         OrderUpdateStatusAPIView.as_view(),
         name="order-update-status",
     ),
+    # router urls
+    *order_delivery_routers.urls,
 ]

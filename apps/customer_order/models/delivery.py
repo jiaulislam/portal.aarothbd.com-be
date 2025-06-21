@@ -13,6 +13,9 @@ if TYPE_CHECKING:
     from apps.customer_order.models import Order, OrderLine
 
 
+__all__ = ["OrderDelivery", "OrderDeliveryLine", "OrderDeliveryBill"]
+
+
 class OrderDelivery(BaseModel):
     order: Order = models.ForeignKey(
         "customer_order.Order",
@@ -67,7 +70,7 @@ class OrderDeliveryLine(BaseModel):
         db_table = "customer_order_order_delivery_line"
         verbose_name = "Order Delivery Line"
         verbose_name_plural = "Order Delivery Lines"
-        unique_togather = ("order_delivery", "order_line")
+        unique_together = ("order_delivery", "order_line")
 
 
 class OrderDeliveryBill(BaseModel):

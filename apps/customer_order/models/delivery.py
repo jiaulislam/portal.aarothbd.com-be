@@ -31,7 +31,7 @@ class OrderDelivery(BaseModel):
         default=OrderStatusChoice.PENDING,
     )
     tracking_number: Optional[str] = models.CharField(max_length=255, null=True, blank=True)
-    return_for_delivery: bool = models.ForeignKey(
+    return_for_delivery: models.QuerySet[OrderDelivery] = models.ForeignKey(
         "self", on_delete=models.SET_NULL, null=True, blank=True, related_name="return_deliveries"
     )
     delivery_lines: models.QuerySet[OrderDeliveryLine]

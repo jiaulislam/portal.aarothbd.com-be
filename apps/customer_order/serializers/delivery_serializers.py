@@ -4,7 +4,12 @@ from core.constants import AUDIT_COLUMNS
 
 from ..models import OrderDelivery, OrderDeliveryBill, OrderDeliveryLine
 
-__all__ = ["OrderDeliverySerializer", "OrderDeliveryLineSerializer", "OrderDeliveryBillSerializer"]
+__all__ = [
+    "OrderDeliverySerializer",
+    "OrderDeliveryLineSerializer",
+    "OrderDeliveryBillSerializer",
+    "OrderDeliveryRetrieveSerializer",
+]
 
 
 class OrderDeliverySerializer(serializers.ModelSerializer):
@@ -22,4 +27,13 @@ class OrderDeliveryLineSerializer(serializers.ModelSerializer):
 class OrderDeliveryBillSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderDeliveryBill
+        exclude = AUDIT_COLUMNS
+
+
+class OrderDeliveryRetrieveSerializer(serializers.ModelSerializer):
+    delivery_lines = OrderDeliveryLineSerializer(many=True, read_only=True)
+    bill = OrderDeliveryBillSerializer(read_only=True)
+
+    class Meta:
+        model = OrderDelivery
         exclude = AUDIT_COLUMNS

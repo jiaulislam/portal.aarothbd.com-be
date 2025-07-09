@@ -4,6 +4,7 @@ from core.constants.common import AUDIT_COLUMNS
 
 from ..constants import OrderStatusChoice
 from ..models import Order, OrderPayment
+from .delivery_serializers import OrderDeliveryRetrieveSerializer
 from .order_line_serializer import OrderLineCreateUpdateSerializer, OrderLineRetrieveSerializer
 
 __all__ = [
@@ -45,6 +46,7 @@ class OrderUpdateStatusSerializer(s.Serializer):
 
 class OrderRetrieveSerializer(OrderBaseModelSerializer):
     order_lines = OrderLineRetrieveSerializer(many=True, read_only=True)
+    deliveries = OrderDeliveryRetrieveSerializer(many=True)
 
     class Meta:
         model = Order

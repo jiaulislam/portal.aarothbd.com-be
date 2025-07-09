@@ -6,7 +6,7 @@ from core.constants.common import AUDIT_COLUMNS
 
 from ..models import OrderLine
 
-__all__ = ["OrderLineBaseModelSerializer", "OrderLineCreateUpdateSerializer"]
+__all__ = ["OrderLineBaseModelSerializer", "OrderLineCreateUpdateSerializer", "OrderLineRetrieveSerializer"]
 
 
 class OrderLineBaseModelSerializer(s.ModelSerializer):

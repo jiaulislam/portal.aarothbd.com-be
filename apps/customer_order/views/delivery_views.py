@@ -1,7 +1,19 @@
+import random
+import string
+from datetime import datetime
+
+from rest_framework import status
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from ..constants import OrderStatusChoice
 from ..models import OrderDelivery, OrderDeliveryBill, OrderDeliveryLine
-from ..serializers import OrderDeliveryBillSerializer, OrderDeliveryLineSerializer, OrderDeliverySerializer
+from ..serializers import (
+    OrderDeliveryBillSerializer,
+    OrderDeliveryLineSerializer,
+    OrderDeliveryRetrieveSerializer,
+    OrderDeliverySerializer,
+)
 
 
 class OrderDeliveryViewSet(ModelViewSet):
@@ -15,6 +27,38 @@ class OrderDeliveryViewSet(ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.select_related("order", "bill").prefetch_related("delivery_lines")
+
+    def generate_tracking_number(self):
+        date_part = datetime.now().strftime("%Y%m%d")
+        random_part = "".join(random.choices(string.ascii_uppercase, k=5))
+        return f"{date_part}{random_part}"
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data["tracking_number"] = self.generate_tracking_number()
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = OrderDeliveryRetrieveSerializer(instance)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        partial = kwargs.get("partial", False)  # Check if partial update is allowed
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        if serializer.validated_data.get("delivery_status") == OrderStatusChoice.SHIPPED:
+            serializer.validated_data["shipped_date"] = datetime.now().date()
+        if serializer.validated_data.get("delivery_status") == OrderStatusChoice.DELIVERED:
+            serializer.validated_data["delivery_date"] = datetime.now().date()
+            # create delivery bill
+            OrderDeliveryBill.objects.create(order_delivery=serializer.instance, total_amount=instance.total_amount)
+        serializer.save()
+        return Response(serializer.data)
 
 
 class OrderDeliveryLineViewSet(ModelViewSet):

@@ -22,8 +22,8 @@ class OrderDelivery(BaseModel):
         on_delete=models.CASCADE,
         related_name="deliveries",
     )
-    quantity: int = models.PositiveIntegerField()
-    delivery_date: models.DateField = models.DateField()
+    shipped_date: models.DateField = models.DateField(null=True, blank=True)
+    delivery_date: models.DateField = models.DateField(null=True, blank=True)
     delivery_address: Optional[str] = models.TextField(null=True, blank=True)
     delivery_status: str = models.CharField(
         max_length=255,
@@ -34,6 +34,7 @@ class OrderDelivery(BaseModel):
     return_for_delivery: models.QuerySet[OrderDelivery] = models.ForeignKey(
         "self", on_delete=models.SET_NULL, null=True, blank=True, related_name="return_deliveries"
     )
+    total_amount = models.FloatField(default=0.0)
     delivery_lines: models.QuerySet[OrderDeliveryLine]
     bill: OrderDeliveryBill
 
@@ -82,13 +83,23 @@ class OrderDeliveryBill(BaseModel):
         on_delete=models.CASCADE,
         related_name="bill",
     )
-    bill_number: str = models.CharField(max_length=255, unique=True)
-    bill_date: models.DateField = models.DateField()
+    bill_number: str = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    bill_date: models.DateField = models.DateField(null=True, blank=True)
     total_amount: float = models.FloatField(default=0.0)
     notes: Optional[str] = models.TextField(null=True, blank=True)
 
     def __str__(self) -> str:
         return f"Bill {self.bill_number} for Delivery {self.order_delivery.order.order_number}"
+
+    def save(self, *args, **kwargs):
+        from datetime import datetime
+
+        today = datetime.now()
+        if not self.bill_date:
+            self.bill_date = today.date()
+        if not self.bill_number:
+            self.bill_number = f"BILL/{today.strftime('%Y%m%d')}/{self.order_delivery.tracking_number}"
+        super().save(*args, **kwargs)
 
     class Meta:
         db_table = "customer_order_order_delivery_bill"

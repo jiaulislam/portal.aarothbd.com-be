@@ -56,7 +56,7 @@ class ProductNestedSerializer(s.ModelSerializer):
         return data
 
     def get_images(self, obj: Product):
-        queryset = obj.images.filter(is_default=True, sale_order__isnull=True)
+        queryset = obj.images.filter(is_active=True, sale_order__isnull=True)
         return ProductImageSerializer(queryset, many=True).data
 
     class Meta:

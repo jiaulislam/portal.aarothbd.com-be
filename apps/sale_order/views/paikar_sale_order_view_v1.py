@@ -19,6 +19,7 @@ from ..serializers.sale_order_serializer import (
     PaikarSaleOrderBaseModelSerializer,
     PaikarSaleOrderCreateSerializer,
     PaikarSaleOrderDetailSerializer,
+    PaikarSaleOrderRetrieveSerializer,
     PaikarSaleOrderUpdateSerializer,
 )
 from ..services import PaikarSaleOrderLineService, PaikarSaleOrderService, SaleOrderNumberService
@@ -73,7 +74,7 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
         # handle orderlines
         self.sale_order_line_service.create_orderlines(orderlines, sale_order_instance, request=request)
 
-        serialized = PaikarSaleOrderBaseModelSerializer(instance=sale_order_instance)
+        serialized = PaikarSaleOrderRetrieveSerializer(instance=sale_order_instance)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 

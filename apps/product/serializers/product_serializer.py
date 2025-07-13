@@ -76,6 +76,7 @@ class ProductNestedSerializer(s.ModelSerializer):
             "brand",
             "origin",
             "images",
+            "rating",
         )
 
 

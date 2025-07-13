@@ -21,6 +21,8 @@ class OrderDelivery(BaseModel):
         "customer_order.Order",
         on_delete=models.CASCADE,
         related_name="deliveries",
+        null=True,
+        blank=True,
     )
     shipped_date: models.DateField = models.DateField(null=True, blank=True)
     delivery_date: models.DateField = models.DateField(null=True, blank=True)

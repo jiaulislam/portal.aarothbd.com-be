@@ -66,6 +66,7 @@ CUSTOM_APPS = [
     "apps.contact_us",
     "apps.home",
     "apps.testimonial",
+    "apps.policy",
 ]
 
 

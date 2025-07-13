@@ -6,4 +6,4 @@ from .models import PolicyModel
 class PolicyModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = PolicyModel
-        fields = ["id", "title", "subtitle", "description"]
+        fields = ["id", "title", "subtitle", "description", "order"]

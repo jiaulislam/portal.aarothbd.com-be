@@ -5,5 +5,5 @@ from .serializers import PolicyModelSerializer
 
 
 class PolicyModelViewSet(viewsets.ModelViewSet):
-    queryset = PolicyModel.objects.filter(is_active=True)
+    queryset = PolicyModel.objects.filter(is_active=True).order_by("order")  # order by ascending
     serializer_class = PolicyModelSerializer

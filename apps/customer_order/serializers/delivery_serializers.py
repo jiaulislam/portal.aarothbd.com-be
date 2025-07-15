@@ -35,11 +35,11 @@ class OrderDeliveryRetrieveSerializer(serializers.ModelSerializer):
     bill = OrderDeliveryBillSerializer(read_only=True)
 
     def to_representation(self, instance):
-        from .order_serializer import OrderRetrieveSerializer
+        from .order_serializer import OrderBaseModelSerializer
 
         representation = super().to_representation(instance)
-        representation["order"] = OrderRetrieveSerializer(instance.order).data
-        representation["return_for_delivery"] = OrderRetrieveSerializer(instance.return_for_delivery).data
+        representation["order"] = OrderBaseModelSerializer(instance.order).data
+        representation["return_for_delivery"] = OrderBaseModelSerializer(instance.return_for_delivery).data
         return representation
 
     class Meta:

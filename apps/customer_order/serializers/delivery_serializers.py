@@ -38,8 +38,10 @@ class OrderDeliveryRetrieveSerializer(serializers.ModelSerializer):
         from .order_serializer import OrderBaseModelSerializer
 
         representation = super().to_representation(instance)
-        representation["order"] = OrderBaseModelSerializer(instance.order).data
-        representation["return_for_delivery"] = OrderBaseModelSerializer(instance.return_for_delivery).data
+        representation["order"] = OrderBaseModelSerializer(instance.order).data if instance.order else None
+        representation["return_for_delivery"] = (
+            OrderBaseModelSerializer(instance.return_for_delivery).data if instance.return_for_delivery else None
+        )
         return representation
 
     class Meta:

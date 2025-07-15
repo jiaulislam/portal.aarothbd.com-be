@@ -3,7 +3,6 @@ from rest_framework import serializers
 from core.constants import AUDIT_COLUMNS
 
 from ..models import OrderDelivery, OrderDeliveryBill, OrderDeliveryLine
-from .order_serializer import OrderRetrieveSerializer
 
 __all__ = [
     "OrderDeliverySerializer",
@@ -36,6 +35,8 @@ class OrderDeliveryRetrieveSerializer(serializers.ModelSerializer):
     bill = OrderDeliveryBillSerializer(read_only=True)
 
     def to_representation(self, instance):
+        from .order_serializer import OrderRetrieveSerializer
+
         representation = super().to_representation(instance)
         representation["order"] = OrderRetrieveSerializer(instance.order).data
         representation["return_for_delivery"] = OrderRetrieveSerializer(instance.return_for_delivery).data

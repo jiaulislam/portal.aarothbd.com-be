@@ -33,7 +33,7 @@ class OrderDelivery(BaseModel):
         default=OrderStatusChoice.PENDING,
     )
     tracking_number: Optional[str] = models.CharField(max_length=255, null=True, blank=True)
-    return_for_delivery: models.QuerySet[OrderDelivery] = models.ForeignKey(
+    return_for_delivery: OrderDelivery = models.ForeignKey(
         "self", on_delete=models.SET_NULL, null=True, blank=True, related_name="return_deliveries"
     )
     total_amount = models.FloatField(default=0.0)
@@ -41,7 +41,9 @@ class OrderDelivery(BaseModel):
     bill: OrderDeliveryBill
 
     def __str__(self) -> str:
-        return f"Delivery for {self.order.order_number} on {self.delivery_date}"
+        if self.order:
+            return f"Delivery for {self.order.order_number} on {self.delivery_date}"
+        return f"Return for {self.return_for_delivery.order.order_number} on {self.delivery_date}"
 
     class Meta:
         db_table = "customer_order_order_delivery"
@@ -70,7 +72,12 @@ class OrderDeliveryLine(BaseModel):
     total_amount: float = models.FloatField(default=1)
 
     def __str__(self) -> str:
-        return f"Delivery Line for {self.order_delivery.order.order_number} on {self.order_delivery.delivery_date}"
+        if self.order_delivery.order:
+            return f"Delivery Line for {self.order_delivery.order.order_number} on {self.order_delivery.delivery_date}"
+        return (
+            f"Return Line for {self.order_delivery.return_for_delivery.order.order_number} "
+            f"on {self.order_delivery.delivery_date}"
+        )
 
     class Meta:
         db_table = "customer_order_order_delivery_line"

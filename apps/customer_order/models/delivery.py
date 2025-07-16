@@ -49,6 +49,7 @@ class OrderDelivery(BaseModel):
         db_table = "customer_order_order_delivery"
         verbose_name = "Order Delivery"
         verbose_name_plural = "Order Deliveries"
+        unique_together = ("order", "tracking_number")
 
 
 class OrderDeliveryLine(BaseModel):
@@ -82,6 +83,7 @@ class OrderDeliveryLine(BaseModel):
         db_table = "customer_order_order_delivery_line"
         verbose_name = "Order Delivery Line"
         verbose_name_plural = "Order Delivery Lines"
+        unique_together = ("order_delivery", "order_line")
 
 
 class OrderDeliveryBill(BaseModel):

@@ -26,8 +26,11 @@ class PaikarSaleOrderLine(BaseModel):
         max_length=50, choices=DiscountTypeChoices.choices, default=DiscountTypeChoices.PERCENTAGE
     )  # 100
     discount_amount = models.FloatField(default=0.0)
-    # customer rate =  (rate + margin_amount) - discount_amount (upon discount type) 8900
-    # aarothbd profit =  customer rate - rate 8900 - 8000 = 900
+    customer_rate = models.FloatField(default=0.0)  # (rate + margin_amount) - discount_amount (upon discount type) 8900
+
+    @property
+    def profit(self):
+        return self.customer_rate - self.rate
 
     remarks = models.CharField(max_length=255, null=True, blank=True)
 

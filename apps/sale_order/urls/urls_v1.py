@@ -19,8 +19,9 @@ urlpatterns = [
         PaikarSaleOrderApprovalAPIView.as_view(),
         name="paikar-sale-order-approve",
     ),
+    # TODO: Need to refactor the product review to products as this is conflicting URL.
     path(
-        r"products/reviews/",
+        r"product-reviews/",
         ReviewCreateAPIView.as_view(),
         name="product-reviews-create-view",
     ),

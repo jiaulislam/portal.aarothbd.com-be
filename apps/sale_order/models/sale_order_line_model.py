@@ -3,10 +3,7 @@ from django.db import models
 
 from core.models import BaseModel
 
-
-class DiscountTypeChoices(models.TextChoices):
-    PERCENTAGE = "percentage", "Percentage"
-    FIXED = "fixed", "Fixed"
+from ..constants import DiscountTypeChoices
 
 
 class PaikarSaleOrderLine(BaseModel):

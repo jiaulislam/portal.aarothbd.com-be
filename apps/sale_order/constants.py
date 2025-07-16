@@ -16,3 +16,8 @@ class SaleOrderStatusChoices(models.TextChoices):
     INVOICED = "invoiced", "Invoiced"
     PAID = "paid", "Paid"
     PARTIALLY_PAID = "partially_paid", "Partially Paid"
+
+
+class DiscountTypeChoices(models.TextChoices):
+    PERCENTAGE = "percentage", "Percentage"
+    FIXED = "fixed", "Fixed"

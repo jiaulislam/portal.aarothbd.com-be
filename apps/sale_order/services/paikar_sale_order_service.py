@@ -1,5 +1,6 @@
 from core.services import BaseModelService
 
+from ..constants import DiscountTypeChoices
 from ..models import PaikarSaleOrder, PaikarSaleOrderLine
 
 
@@ -16,9 +17,22 @@ class PaikarSaleOrderService(BaseModelService[PaikarSaleOrder]):
 class PaikarSaleOrderLineService(BaseModelService[PaikarSaleOrderLine]):
     model_class = PaikarSaleOrderLine
 
+    def _get_customer_rate(self, orderline):
+        rate = orderline.get("rate", 0)
+        margin = orderline.get("margin_amount", 0)
+        discount_type = orderline.get("discount_type", DiscountTypeChoices.PERCENTAGE)
+        discount_amount = orderline.get("discount_amount", 0)
+
+        if discount_type == DiscountTypeChoices.FIXED:
+            return (rate + margin) - discount_amount
+        else:
+            return rate + margin - (rate * discount_amount / 100)
+
     def create_orderlines(self, orderlines, sale_order_instance, **kwargs):
         orderline_instances = []
         for orderline in orderlines:
+            customer_rate = self._get_customer_rate(orderline)
+            orderline["customer_rate"] = customer_rate
             orderline_instance = PaikarSaleOrderLine(**orderline, paikar_sale_order=sale_order_instance)
             orderline_instances.append(orderline_instance)
         self.model_class.objects.bulk_create(orderline_instances)

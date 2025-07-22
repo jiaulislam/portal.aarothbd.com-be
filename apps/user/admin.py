@@ -6,6 +6,7 @@ from django.forms import ModelForm
 from django.http import HttpRequest
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin, StackedInline
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 from core.admin import InlineHelperAdmin
 from core.constants import AUDIT_COLUMNS
@@ -46,6 +47,10 @@ class ProfileAdmin(ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin, ModelAdmin):
+    form = UserChangeForm
+    add_form = UserCreationForm
+    change_password_form = AdminPasswordChangeForm
+
     list_display = (
         "user_name",
         "date_joined",

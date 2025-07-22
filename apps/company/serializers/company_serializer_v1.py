@@ -19,6 +19,12 @@ __all__ = [
 ]
 
 
+class CompanyCategorySerializer(s.ModelSerializer):
+    class Meta:
+        model = CompanyCategory
+        exclude = AUDIT_COLUMNS
+
+
 class CompanySerializer(s.ModelSerializer):
     slug = s.SlugField(
         allow_null=True,
@@ -57,6 +63,7 @@ class CompanyUpdateSerializer(s.ModelSerializer):
 class CompanyDetailSerializer(s.ModelSerializer):
     addresses = s.SerializerMethodField()
     allowed_products = s.SerializerMethodField()
+    category = CompanyCategorySerializer(read_only=True)
 
     def get_allowed_products(self, obj: Company):
         return ProductSerializer(obj.allowed_products.all(), many=True).data
@@ -80,12 +87,6 @@ class CompanyUpdateStatusSerializer(s.ModelSerializer):
         except KeyError:
             raise ValidationError({"is_active": "'is_active' field is required !"}, code="client_error")
         return attrs
-
-
-class CompanyCategorySerializer(s.ModelSerializer):
-    class Meta:
-        model = CompanyCategory
-        exclude = AUDIT_COLUMNS
 
 
 class CompanyListSerializer(s.ModelSerializer):

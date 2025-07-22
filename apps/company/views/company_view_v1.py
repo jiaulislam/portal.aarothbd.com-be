@@ -123,7 +123,7 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         serialized = self.get_serializer_class()(data=request.data)
         serialized.is_valid(raise_exception=True)
         allowed_products = serialized.validated_data.pop("allowed_products", [])
-        company_instance = self.company_service.create(serialized.data, request=request)
+        company_instance = self.company_service.create(serialized.validated_data, request=request)
 
         # create company configuration
         configuration_data = serialized.validated_data.get("configuration", {})

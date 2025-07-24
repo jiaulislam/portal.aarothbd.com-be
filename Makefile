@@ -54,4 +54,4 @@ lint: # lint the codes
 	uv run pre-commit run --all-files -c .pre-commit-config.yaml
 
 export: # export the requirements.txt
-	uv export --no-hashes -o requirements.txt
+	uv export --no-hashes --no-annotate -o requirements.txt

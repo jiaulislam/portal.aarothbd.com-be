@@ -19,6 +19,7 @@ from ..serializers.sale_order_serializer import (
     PaikarSaleOrderBaseModelSerializer,
     PaikarSaleOrderCreateSerializer,
     PaikarSaleOrderDetailSerializer,
+    PaikarSaleOrderListSerializer,
     PaikarSaleOrderRetrieveSerializer,
     PaikarSaleOrderUpdateSerializer,
 )
@@ -40,7 +41,7 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
     def get_serializer_class(self) -> type[ModelSerializer]:
         if self.request.method == "POST":
             return PaikarSaleOrderCreateSerializer
-        return PaikarSaleOrderBaseModelSerializer
+        return PaikarSaleOrderListSerializer
 
     def get_queryset(self) -> QuerySet["PaikarSaleOrder"]:
         queryset = self.sale_order_service.all()

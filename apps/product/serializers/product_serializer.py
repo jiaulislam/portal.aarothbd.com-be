@@ -27,6 +27,12 @@ class ProductSerializer(s.ModelSerializer):
         exclude = AUDIT_COLUMNS
 
 
+class ProductBaseSerializer(s.ModelSerializer):
+    class Meta:
+        model = Product
+        exclude = AUDIT_COLUMNS
+
+
 class ProductNestedSerializer(s.ModelSerializer):
     category = s.SerializerMethodField()
     uom = s.SerializerMethodField()

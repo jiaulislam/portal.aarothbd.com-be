@@ -12,7 +12,7 @@ from ..views.product_ecomm_view_v1 import (
     EcomProductDetailAPIView,
     EcomProductListAPIView,
 )
-from ..views.product_image_view_v1 import ProductImageCreateAPIView
+from ..views.product_image_view_v1 import ProductImageCreateAPIView, ProductImageDeleteAPIView
 from ..views.product_view_v1 import ProductListCreateAPIView, ProductRetrieveUpdateAPIView, ProductUpdateStatusAPIView
 
 urlpatterns = [
@@ -32,6 +32,7 @@ urlpatterns = [
     path(r"products/", ProductListCreateAPIView.as_view(), name="product-list-create"),
     path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
     path(r"products/<str:slug>/upload-image/", ProductImageCreateAPIView.as_view(), name="product-upload-image"),
+    path(r"products/<str:slug>/remove-image/", ProductImageDeleteAPIView.as_view(), name="product-remove-image"),
     path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
     # e-commerce urls
     path(r"ecomm/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-view"),

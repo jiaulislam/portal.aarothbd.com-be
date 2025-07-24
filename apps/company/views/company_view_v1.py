@@ -192,6 +192,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         company_serialized = self.get_serializer_class()(data=request.data)
         company_serialized.is_valid(raise_exception=True)
         allowed_products = company_serialized.validated_data.pop("allowed_products", [])
+        company_serialized.validated_data.pop("slug", None)
         # get and update company
         company_instance = self.company_service.get(**kwargs)
         _ = self.company_service.update(

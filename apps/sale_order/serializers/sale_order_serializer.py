@@ -85,12 +85,19 @@ class PaikarSaleOrderListSerializer(s.ModelSerializer):
 class PaikarSaleOrderRetrieveSerializer(s.ModelSerializer):
     validity_dates = DateRangeField()
     product = s.SerializerMethodField()
+    company = s.SerializerMethodField()
 
     def get_product(self, obj: PaikarSaleOrder):
         from apps.product.serializers.product_serializer import ProductSerializer
 
         product = ProductSerializer(obj.product)
         return product.data
+
+    def get_company(self, obj: PaikarSaleOrder):
+        from apps.company.serializers.company_serializer_v1 import CompanySerializer
+
+        company = CompanySerializer(obj.company)
+        return company.data
 
     class Meta:
         model = PaikarSaleOrder
@@ -100,6 +107,14 @@ class PaikarSaleOrderRetrieveSerializer(s.ModelSerializer):
 class PaikarSaleOrderDetailSerializer(s.ModelSerializer):
     validity_dates = DateRangeField()
     orderlines = SaleOrderLineSerializer(many=True, read_only=True)
+    images = s.SerializerMethodField()
+
+    def get_images(self, obj: PaikarSaleOrder):
+        from apps.product.serializers import ProductImageSerializer
+
+        queryset = obj.product.images.filter(sale_order=obj, product=obj.product)
+        serializer = ProductImageSerializer(queryset, many=True)
+        return serializer.data
 
     class Meta:
         model = PaikarSaleOrder

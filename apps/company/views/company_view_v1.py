@@ -123,6 +123,8 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         serialized = self.get_serializer_class()(data=request.data)
         serialized.is_valid(raise_exception=True)
         allowed_products = serialized.validated_data.pop("allowed_products", [])
+        address_data = serialized.validated_data.pop("addresses", [])
+
         company_instance = self.company_service.create(serialized.validated_data, request=request)
 
         # create company configuration
@@ -131,7 +133,6 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         self.company_configuration_service.create(configuration_data, request=request)
 
         # create addresses
-        address_data = serialized.validated_data.get("addresses", [])
         self.address_service.create_company_addresses(address_data, company_instance, request=request)
         serialized = self.serializer_class(instance=company_instance)  # type: ignore
 

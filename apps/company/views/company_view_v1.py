@@ -153,7 +153,7 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         return self.company_service.all().select_related("configuration")
 
     def get_serializer_class(self) -> type[ModelSerializer[Company]]:
-        if self.request.method == "POST":
+        if self.request.method in ("PUT", "PATCH"):
             return CompanyUpdateSerializer
         return CompanyDetailSerializer
 

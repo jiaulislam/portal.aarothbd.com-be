@@ -32,7 +32,7 @@ urlpatterns = [
     path(r"products/", ProductListCreateAPIView.as_view(), name="product-list-create"),
     path(r"products/<str:slug>/", ProductRetrieveUpdateAPIView.as_view(), name="product-update-retrieve"),
     path(r"products/<str:slug>/upload-image/", ProductImageCreateAPIView.as_view(), name="product-upload-image"),
-    path(r"products/<str:slug>/remove-image/", ProductImageDeleteAPIView.as_view(), name="product-remove-image"),
+    path(r"products/<int:id>/remove-image/", ProductImageDeleteAPIView.as_view(), name="product-remove-image"),
     path(r"products/<str:slug>/update-status/", ProductUpdateStatusAPIView.as_view(), name="product-update-status"),
     # e-commerce urls
     path(r"ecomm/products/", EcomProductListAPIView.as_view(), name="ecom-product-list-view"),

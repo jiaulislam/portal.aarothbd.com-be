@@ -16,7 +16,6 @@ from ..constants import SaleOrderPrefixChoices
 from ..filters import PaikarSaleOrderFilter
 from ..serializers.sale_order_serializer import (
     PaikarSaleOrderApprovalSerializer,
-    PaikarSaleOrderBaseModelSerializer,
     PaikarSaleOrderCreateSerializer,
     PaikarSaleOrderDetailSerializer,
     PaikarSaleOrderListSerializer,
@@ -52,7 +51,7 @@ class PaikarSaleOrderListCreateAPIView(ListCreateAPIView):
         queryset = self.get_queryset()
         paginate = self.pagination_class()  # type: ignore
         paginated_queryset = paginate.paginate_queryset(queryset, request)
-        serialized = PaikarSaleOrderBaseModelSerializer(paginated_queryset, many=True)
+        serialized = self.get_serializer(paginated_queryset, many=True)
         return paginate.get_paginated_response(serialized.data)
 
     @transaction.atomic

@@ -37,6 +37,9 @@ THIRD_PARTY_APPS = [
     "debug_toolbar",
     "drf_standardized_errors",
     "auditlog",
+    "celery",
+    "django_celery_beat",
+    "django_celery_results",
 ]
 
 CUSTOM_APPS = [
@@ -211,3 +214,4 @@ from core.settings.plugins.drf import *  # noqa: E402, F403, I001
 from core.settings.plugins.jwt import *  # noqa: E402, F403, I001
 from core.settings.plugins.auditlog import *  # noqa: E402, F403, I001
 from core.settings.plugins.drf_spectacular import *  # noqa: E402, F403, I001
+from core.settings.plugins.celery import *  # noqa: E402, F403, I001

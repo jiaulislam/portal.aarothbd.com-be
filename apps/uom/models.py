@@ -29,6 +29,8 @@ class UoM(BaseModel):
         verbose_name="Unit of Measure Category",
         help_text="Conversion between Units of Measure can only occur if they belong to the same category."
         "The conversion will be made based on the ratios.",
+        null=True,
+        blank=True,
     )
     ratio = models.FloatField(
         verbose_name="Ratio",

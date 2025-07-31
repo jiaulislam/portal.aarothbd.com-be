@@ -8,7 +8,7 @@ Group=root
 WorkingDirectory=/var/www/backend.aarothbd.com
 Environment="PATH=/var/www/backend.aarothbd.com/.venv/bin"
 EnvironmentFile=/var/www/backend.aarothbd.com/.env
-ExecStart=/var/www/backend.aarothbd.com/.venv//bin/gunicorn --config /var/www/backend.aarothbd.com/gunicorn.py
+ExecStart=/var/www/backend.aarothbd.com/.venv/bin/gunicorn --config /var/www/backend.aarothbd.com/gunicorn.py
 
 [Install]
 WantedBy=multi-user.target

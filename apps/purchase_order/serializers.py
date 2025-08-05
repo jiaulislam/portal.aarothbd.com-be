@@ -10,7 +10,7 @@ class PurchaseOrderLineSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchaseOrderLine
         fields = "__all__"
-        read_only_fields = ("id", "created_at", "updated_at")
+        read_only_fields = ("id", "created_at", "updated_at", "purchase_order")
 
     def validate(self, attrs):
         if attrs.get("quantity", 0) <= 0:

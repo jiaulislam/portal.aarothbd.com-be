@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from apps.company.serializers.company_serializer_v1 import CompanySerializer
 from apps.product.serializers.product_serializer import ProductSerializer
+from core.constants.common import AUDIT_COLUMNS
 
 from .models import PurchaseOrder, PurchaseOrderLine
 
@@ -9,8 +10,8 @@ from .models import PurchaseOrder, PurchaseOrderLine
 class PurchaseOrderLineSerializer(serializers.ModelSerializer):
     class Meta:
         model = PurchaseOrderLine
-        fields = "__all__"
         read_only_fields = ("id", "created_at", "updated_at", "purchase_order")
+        exclude = AUDIT_COLUMNS
 
     def validate(self, attrs):
         if attrs.get("quantity", 0) <= 0:

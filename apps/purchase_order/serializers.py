@@ -40,18 +40,39 @@ class PurchaseOrderLineRetrieveCreateSerializer(serializers.ModelSerializer):
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
     order_lines = PurchaseOrderLineRetrieveCreateSerializer(many=True, required=True)
+    total_trade_price = serializers.SerializerMethodField()
+    total_margin_amount = serializers.SerializerMethodField()
+    total_quantity = serializers.SerializerMethodField()
+    total_mrp = serializers.SerializerMethodField()
+
+    def get_total_trade_price(self, obj) -> float:
+        return obj.total_trade_price
+
+    def get_total_margin_amount(self, obj) -> float:
+        return obj.total_margin_amount
+
+    def get_total_quantity(self, obj) -> int:
+        return obj.total_quantity
+
+    def get_total_mrp(self, obj) -> float:
+        return obj.total_mrp
 
     class Meta:
         model = PurchaseOrder
         fields = "__all__"
-        read_only_fields = ("id", "order_number", "created_at", "updated_at")
+        read_only_fields = (
+            "id",
+            "order_number",
+            "created_at",
+            "updated_at",
+            "total_trade_price",
+            "total_margin_amount",
+            "total_quantity",
+            "total_mrp",
+        )
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation["total_trade_price"] = instance.total_trade_price
-        representation["total_margin_amount"] = instance.total_margin_amount
-        representation["total_quantity"] = instance.total_quantity
-        representation["total_mrp"] = instance.total_mrp
         representation["supplier"] = CompanySerializer(instance.supplier).data
         return representation
 
@@ -67,17 +88,24 @@ class PurchaseOrderLineRetrieveSerializer(serializers.ModelSerializer):
 
 class PurchaseOrderRetrieveSerializer(serializers.ModelSerializer):
     order_lines = PurchaseOrderLineRetrieveSerializer(many=True, read_only=True)
+    supplier = CompanySerializer(read_only=True)
+    total_trade_price = serializers.SerializerMethodField()
+    total_margin_amount = serializers.SerializerMethodField()
+    total_quantity = serializers.SerializerMethodField()
+    total_mrp = serializers.SerializerMethodField()
 
     class Meta:
         model = PurchaseOrder
         fields = "__all__"
-        read_only_fields = ("id", "order_number", "created_at", "updated_at")
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation["total_trade_price"] = instance.total_trade_price
-        representation["total_margin_amount"] = instance.total_margin_amount
-        representation["total_quantity"] = instance.total_quantity
-        representation["total_mrp"] = instance.total_mrp
-        representation["supplier"] = CompanySerializer(instance.supplier).data
-        return representation
+    def get_total_trade_price(self, obj) -> float:
+        return obj.total_trade_price
+
+    def get_total_margin_amount(self, obj) -> float:
+        return obj.total_margin_amount
+
+    def get_total_quantity(self, obj) -> int:
+        return obj.total_quantity
+
+    def get_total_mrp(self, obj) -> float:
+        return obj.total_mrp

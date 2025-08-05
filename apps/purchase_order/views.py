@@ -1,12 +1,12 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import DestroyAPIView, ListCreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .filter import PurchaseOrderFilter
-from .models import PurchaseOrder
-from .serializers import PurchaseOrderRetrieveSerializer, PurchaseOrderSerializer
+from .models import PurchaseOrder, PurchaseOrderLine
+from .serializers import PurchaseOrderLineSerializer, PurchaseOrderRetrieveSerializer, PurchaseOrderSerializer
 
 
 class PurchaseOrderListCreateView(ListCreateAPIView):
@@ -57,3 +57,13 @@ class PurchaseOrderRetrieveView(RetrieveAPIView):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class PurchaseOrderLineDestroyAPIView(DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PurchaseOrderLineSerializer
+    lookup_field = "id"
+
+    def get_queryset(self):
+        queryset = PurchaseOrderLine.objects.all()
+        return queryset

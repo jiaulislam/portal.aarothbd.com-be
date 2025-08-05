@@ -2,7 +2,6 @@ from django.urls import path
 
 from .views import (
     PurchaseOrderLineCreateAPIView,
-    PurchaseOrderLineDestroyAPIView,
     PurchaseOrderListCreateView,
     PurchaseOrderRetrieveView,
 )
@@ -15,7 +14,4 @@ urlpatterns = [
         name="purchase-order-line-create",
     ),
     path(r"purchase-orders/<int:id>/", PurchaseOrderRetrieveView.as_view(), name="purchase-order-retrieve"),
-    path(
-        r"purchase-order-lines/<int:id>/", PurchaseOrderLineDestroyAPIView.as_view(), name="purchase-order-line-destroy"
-    ),
 ]

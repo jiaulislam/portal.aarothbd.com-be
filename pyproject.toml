@@ -53,13 +53,13 @@ exclude = ["*.pyi", "migrations/*.py"]
 
 [tool.ruff.lint]
 extend-select = [
-    "E", # pycodestyle errors
-    "W", # pycodestyle warnings
-    "F", # pyflakes
-    "I", # isort
-    "C", # flake8-comprehensions
-    "B", # flake8-bugbear
-    "N", # pep8-naming
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C",   # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "N",   # pep8-naming
     "T20", # flake8-print
 ]
 fixable = ["ALL"]
@@ -87,7 +87,3 @@ known-third-party = [
     "sentry-sdk",
     "drf-standardized-errors",
 ]
-
-
-[tool.pyright]
-reportIncompatibleVariableOverride = false

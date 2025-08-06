@@ -1,3 +1,4 @@
+from django.db import transaction
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView
@@ -25,6 +26,7 @@ class PurchaseOrderListCreateView(ListCreateAPIView):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @transaction.atomic
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -39,7 +41,8 @@ class PurchaseOrderListCreateView(ListCreateAPIView):
                 PurchaseOrderLine(purchase_order=purchase_order, **line_data) for line_data in order_lines_data
             ]
             PurchaseOrderLine.objects.bulk_create(order_lines)
-
+        # Update stock quantities after creating the purchase order
+        purchase_order.update_stock_quantity()
         response = PurchaseOrderSerializer(purchase_order).data
         return Response(response, status=status.HTTP_201_CREATED)
 
@@ -65,10 +68,13 @@ class PurchaseOrderLineCreateAPIView(CreateAPIView):
     lookup_field = "id"
     queryset = PurchaseOrder.objects.all()
 
+    @transaction.atomic
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         purchase_order = self.queryset.get(id=self.kwargs["id"])
         purchase_order_line = serializer.save(purchase_order=purchase_order)
+        # Update stock quantities after creating the purchase order
+        purchase_order.update_stock_quantity()
         response = PurchaseOrderLineSerializer(purchase_order_line).data
         return Response(response, status=status.HTTP_201_CREATED)

@@ -37,6 +37,15 @@ class PurchaseOrder(BaseModel):
     def total_mrp(self) -> float:
         return sum(line.mrp * line.quantity for line in self.order_lines.all())
 
+    def update_stock_quantity(self):
+        """
+        Update the stock quantity of the products in the purchase order.
+        This method should be called after the purchase order is created.
+        In the ProductStock model, find the stock entry for each product & company in the order lines
+        and update the stock quantity accordingly.
+        """
+        ...
+
     def __str__(self):
         return f"Purchase Order {self.order_number} - {self.supplier.name}"
 

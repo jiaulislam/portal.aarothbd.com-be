@@ -120,6 +120,8 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         Raises:
             ValidationError: If the provided data is not valid.
         """
+        from apps.stock.models import Stock
+
         serialized = self.get_serializer_class()(data=request.data)
         serialized.is_valid(raise_exception=True)
         allowed_products = serialized.validated_data.pop("allowed_products", [])
@@ -137,6 +139,8 @@ class CompanyListCreateAPIView(ListCreateAPIView):
         serialized = self.serializer_class(instance=company_instance)  # type: ignore
 
         company_instance.allowed_products.set(allowed_products)
+        # create default stock for allowed products
+        Stock.create_default_stock(company_instance, allowed_products)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
 
@@ -190,6 +194,8 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         Raises:
             ValidationError: If the provided data is not valid.
         """
+        from apps.stock.models import Stock
+
         company_serialized = self.get_serializer_class()(data=request.data)
         company_serialized.is_valid(raise_exception=True)
         allowed_products = company_serialized.validated_data.pop("allowed_products", [])
@@ -203,7 +209,8 @@ class CompanyRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         )
 
         company_instance.allowed_products.set(allowed_products)
-
+        # update stock for allowed products
+        Stock.create_default_stock(company_instance, allowed_products)
         response_data = {"detail": "Company Updated successfully."}
         return Response(response_data, status=status.HTTP_200_OK)
 

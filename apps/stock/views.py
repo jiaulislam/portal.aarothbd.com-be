@@ -1,8 +1,10 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from .filters import StockFilter, StockMovementFilter
 from .models import Stock, StockMovement
 from .serializers import StockMovementSerializer, StockSerializer
 
@@ -10,9 +12,13 @@ from .serializers import StockMovementSerializer, StockSerializer
 class StockListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = StockSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = StockFilter
 
     def get_queryset(self):
-        return Stock.objects.all().select_related("product", "company")
+        queryset = Stock.objects.all().select_related("product", "company")
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return filterset.qs
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
@@ -43,9 +49,13 @@ class StockRetrieveView(RetrieveAPIView):
 class StockMovementListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = StockMovementSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = StockMovementFilter
 
     def get_queryset(self):
-        return StockMovement.objects.all().select_related("stock")
+        queryset = StockMovement.objects.all().select_related("stock")
+        filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return filterset.qs
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()

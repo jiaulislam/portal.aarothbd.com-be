@@ -49,7 +49,7 @@ class PurchaseOrder(BaseModel):
 
         current_user = None
 
-        if request.user:
+        if request and request.user:
             current_user = request.user
 
         for order_line in self.order_lines.all():

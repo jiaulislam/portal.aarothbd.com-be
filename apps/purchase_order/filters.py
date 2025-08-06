@@ -6,6 +6,14 @@ from .models import PurchaseOrder
 
 
 class PurchaseOrderFilter(BaseFilter):
+    entry_type = filters.ChoiceFilter(
+        choices=[
+            ("PO", "Purchase Order"),
+            ("PR", "Purchase Return"),
+        ],
+        field_name="entry_type",
+        lookup_expr="exact",
+    )
     supplier = filters.CharFilter(field_name="supplier__name", lookup_expr="icontains")
     supplier_id = filters.NumberFilter(field_name="supplier__id")
 

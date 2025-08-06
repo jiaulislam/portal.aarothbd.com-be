@@ -1,10 +1,16 @@
 import random
 import string
-from datetime import datetime
 
 from django.db import models
+from django.utils import timezone
 
 from core.models import BaseModel
+from core.request import Request
+
+
+class EntryType(models.TextChoices):
+    PURCHASE_ORDER = "PO", "Purchase Order"
+    PURCHASE_RETURN = "PR", "Purchase Return"
 
 
 class PurchaseOrder(BaseModel):
@@ -13,12 +19,19 @@ class PurchaseOrder(BaseModel):
         "company.Company", on_delete=models.PROTECT, related_name="purchase_orders", verbose_name="Supplier"
     )
     order_date = models.DateField(verbose_name="Order Date")
+    entry_type = models.CharField(max_length=255, default=EntryType.PURCHASE_ORDER, verbose_name="Entry Type")
+    remarks = models.TextField(blank=True, null=True, verbose_name="Remarks")
+
+    order_lines: models.QuerySet["PurchaseOrderLine"]
 
     def save(self, *args, **kwargs):
         if not self.order_number:
             random_chars = "".join(random.choices(string.ascii_uppercase, k=5))
-            date_str = self.order_date.strftime("%Y%m%d") if self.order_date else datetime.now().strftime("%Y%m%d")
-            self.order_number = f"PO{date_str}{random_chars}"
+            date_str = self.order_date.strftime("%Y%m%d") if self.order_date else timezone.now().strftime("%Y%m%d")
+            if self.entry_type == EntryType.PURCHASE_ORDER:
+                self.order_number = f"PO{date_str}{random_chars}"
+            elif self.entry_type == EntryType.PURCHASE_RETURN:
+                self.order_number = f"PR{date_str}{random_chars}"
         super().save(*args, **kwargs)
 
     @property
@@ -37,7 +50,7 @@ class PurchaseOrder(BaseModel):
     def total_mrp(self) -> float:
         return sum(line.mrp * line.quantity for line in self.order_lines.all())
 
-    def update_stock_quantity(self, request=None):
+    def update_stock_quantity(self, request: Request):
         """
         Update the stock quantity of the products in the purchase order.
         This method should be called after the purchase order is created.
@@ -47,10 +60,8 @@ class PurchaseOrder(BaseModel):
         from apps.stock.constants import StockReferenceType
         from apps.stock.models import Stock
 
-        current_user = None
-
-        if request and request.user:
-            current_user = request.user
+        if not request:
+            raise ValueError("Request object is required to update stock quantities.")
 
         for order_line in self.order_lines.all():
             # Get or create stock entry for the product and supplier company
@@ -61,25 +72,40 @@ class PurchaseOrder(BaseModel):
                     "mrp": order_line.mrp,
                     "trade_price": order_line.trade_price,
                     "quantity": 0,
+                    "created_by": request.user,
+                    "updated_by": request.user,
                 },
             )
 
-            # Update stock prices if this is an existing stock entry
-            if not created:
-                stock.mrp = order_line.mrp
-                stock.trade_price = order_line.trade_price
-                stock.updated_by = current_user
-                stock.save(update_fields=["mrp", "trade_price", "last_updated", "updated_by"])
+            if self.entry_type == EntryType.PURCHASE_ORDER:
+                # Update stock prices if this is an existing stock entry
+                if not created:
+                    stock.mrp = order_line.mrp
+                    stock.trade_price = order_line.trade_price
+                    stock.updated_by = request.user
+                    stock.last_updated = timezone.now()
+                    stock.save(update_fields=["mrp", "trade_price", "last_updated", "updated_by"])
 
-            # Increase stock quantity using the Stock model's method
-            if order_line.quantity > 0:
-                stock.update_stock_quantity(
-                    order_line.quantity,
-                    reference_type=StockReferenceType.PURCHASE_ORDER,
-                    reference_id=self.id,
-                    notes=f"Purchase Order {self.order_number} \
-                          - {order_line.product.name} by {str(current_user) if current_user else 'System'}",
-                )
+                # Increase stock quantity using the Stock model's method
+                if order_line.quantity > 0:
+                    stock.update_stock_quantity(
+                        order_line.quantity,
+                        reference_type=StockReferenceType.PURCHASE_ORDER,
+                        reference_id=self.id,
+                        notes=f"Purchase Order {self.order_number} \
+                            - {order_line.product.name} by {str(request.user)}",
+                    )
+
+            if self.entry_type == EntryType.PURCHASE_RETURN:
+                # Decrease stock quantity using the Stock model's method
+                if order_line.quantity > 0:
+                    stock.update_stock_quantity(
+                        -order_line.quantity,
+                        reference_type=StockReferenceType.PURCHASE_RETURN,
+                        reference_id=self.id,
+                        notes=f"Purchase Return {self.order_number} \
+                            - {order_line.product.name} by {str(request.user)}",
+                    )
 
     def __str__(self):
         return f"Purchase Order {self.order_number} - {self.supplier.name}"

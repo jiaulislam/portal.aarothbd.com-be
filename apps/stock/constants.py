@@ -11,4 +11,4 @@ class StockReferenceType(TextChoices):
     PURCHASE_ORDER = "PURCHASE_ORDER", "Purchase Order"
     SALE_ORDER = "SALE_ORDER", "Sale Order"
     ADJUSTMENT = "ADJUSTMENT", "Manual Adjustment"
-    RETURN = "RETURN", "Return"
+    PURCHASE_RETURN = "PURCHASE_RETURN", "Purchase Return"

@@ -44,7 +44,35 @@ class PurchaseOrder(BaseModel):
         In the ProductStock model, find the stock entry for each product & company in the order lines
         and update the stock quantity accordingly.
         """
-        ...
+        from apps.stock.constants import StockReferenceType
+        from apps.stock.models import Stock
+
+        for order_line in self.order_lines.all():
+            # Get or create stock entry for the product and supplier company
+            stock, created = Stock.objects.get_or_create(
+                product=order_line.product,
+                company=self.supplier,
+                defaults={
+                    "mrp": order_line.mrp,
+                    "trade_price": order_line.trade_price,
+                    "quantity": 0,
+                },
+            )
+
+            # Update stock prices if this is an existing stock entry
+            if not created:
+                stock.mrp = order_line.mrp
+                stock.trade_price = order_line.trade_price
+                stock.save(update_fields=["mrp", "trade_price"])
+
+            # Increase stock quantity using the Stock model's method
+            if order_line.quantity > 0:
+                stock.update_stock_quantity(
+                    order_line.quantity,
+                    reference_type=StockReferenceType.PURCHASE_ORDER,
+                    reference_id=self.id,
+                    notes=f"Purchase Order {self.order_number} - {order_line.product.name}",
+                )
 
     def __str__(self):
         return f"Purchase Order {self.order_number} - {self.supplier.name}"

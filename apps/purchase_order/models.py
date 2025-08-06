@@ -37,7 +37,7 @@ class PurchaseOrder(BaseModel):
     def total_mrp(self) -> float:
         return sum(line.mrp * line.quantity for line in self.order_lines.all())
 
-    def update_stock_quantity(self):
+    def update_stock_quantity(self, request=None):
         """
         Update the stock quantity of the products in the purchase order.
         This method should be called after the purchase order is created.
@@ -46,6 +46,11 @@ class PurchaseOrder(BaseModel):
         """
         from apps.stock.constants import StockReferenceType
         from apps.stock.models import Stock
+
+        current_user = None
+
+        if request.user:
+            current_user = request.user
 
         for order_line in self.order_lines.all():
             # Get or create stock entry for the product and supplier company
@@ -63,7 +68,7 @@ class PurchaseOrder(BaseModel):
             if not created:
                 stock.mrp = order_line.mrp
                 stock.trade_price = order_line.trade_price
-                stock.save(update_fields=["mrp", "trade_price"])
+                stock.save(update_fields=["mrp", "trade_price", "last_updated", "updated_by"], updated_by=current_user)
 
             # Increase stock quantity using the Stock model's method
             if order_line.quantity > 0:
@@ -71,7 +76,8 @@ class PurchaseOrder(BaseModel):
                     order_line.quantity,
                     reference_type=StockReferenceType.PURCHASE_ORDER,
                     reference_id=self.id,
-                    notes=f"Purchase Order {self.order_number} - {order_line.product.name}",
+                    notes=f"Purchase Order {self.order_number} \
+                          - {order_line.product.name} by {str(current_user) if current_user else 'System'}",
                 )
 
     def __str__(self):

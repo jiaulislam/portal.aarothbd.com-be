@@ -68,7 +68,8 @@ class PurchaseOrder(BaseModel):
             if not created:
                 stock.mrp = order_line.mrp
                 stock.trade_price = order_line.trade_price
-                stock.save(update_fields=["mrp", "trade_price", "last_updated", "updated_by"], updated_by=current_user)
+                stock.updated_by = current_user
+                stock.save(update_fields=["mrp", "trade_price", "last_updated", "updated_by"])
 
             # Increase stock quantity using the Stock model's method
             if order_line.quantity > 0:

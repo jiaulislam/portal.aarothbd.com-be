@@ -31,7 +31,7 @@ class PurchaseOrderListCreateView(ListCreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         order_lines_data = serializer.validated_data.pop("order_lines", [])
-        purchase_order = serializer.save()
+        purchase_order: PurchaseOrder = serializer.save()
 
         # Bulk create order lines
         if order_lines_data:
@@ -57,7 +57,7 @@ class PurchaseOrderRetrieveView(RetrieveAPIView):
         return queryset
 
     def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
+        instance: PurchaseOrder = self.get_object()
         serializer = self.get_serializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -72,7 +72,7 @@ class PurchaseOrderLineCreateAPIView(CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        purchase_order = self.queryset.get(id=self.kwargs["id"])
+        purchase_order: PurchaseOrder = self.queryset.get(id=self.kwargs["id"])
         purchase_order_line = serializer.save(purchase_order=purchase_order)
         # Update stock quantities after creating the purchase order
         purchase_order.update_stock_quantity()

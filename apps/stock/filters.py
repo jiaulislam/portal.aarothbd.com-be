@@ -1,9 +1,11 @@
 from django_filters import rest_framework as filters
 
+from core.filter import BaseFilter
+
 from .models import Stock, StockMovement
 
 
-class StockFilter(filters.FilterSet):
+class StockFilter(BaseFilter):
     product = filters.CharFilter(field_name="product__name", lookup_expr="icontains")
     product_id = filters.NumberFilter(field_name="product__id")
     company = filters.CharFilter(field_name="company__name", lookup_expr="icontains")
@@ -35,7 +37,7 @@ class StockFilter(filters.FilterSet):
         ]
 
 
-class StockMovementFilter(filters.FilterSet):
+class StockMovementFilter(BaseFilter):
     stock = filters.NumberFilter(field_name="stock__id")
     product = filters.CharFilter(field_name="stock__product__name", lookup_expr="icontains")
     company = filters.CharFilter(field_name="stock__company__name", lookup_expr="icontains")

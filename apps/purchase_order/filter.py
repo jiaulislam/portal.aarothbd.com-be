@@ -1,24 +1,26 @@
-import django_filters
+from django_filters import rest_framework as filters
+
+from core.filter import BaseFilter
 
 from .models import PurchaseOrder
 
 
-class PurchaseOrderFilter(django_filters.FilterSet):
-    supplier = django_filters.CharFilter(field_name="supplier__name", lookup_expr="icontains")
-    supplier_id = django_filters.NumberFilter(field_name="supplier__id")
+class PurchaseOrderFilter(BaseFilter):
+    supplier = filters.CharFilter(field_name="supplier__name", lookup_expr="icontains")
+    supplier_id = filters.NumberFilter(field_name="supplier__id")
 
-    order_date_from = django_filters.DateFilter(field_name="order_date", lookup_expr="gte")
-    order_date_to = django_filters.DateFilter(field_name="order_date", lookup_expr="lte")
-    order_date = django_filters.DateFromToRangeFilter(field_name="order_date")
+    order_date_from = filters.DateFilter(field_name="order_date", lookup_expr="gte")
+    order_date_to = filters.DateFilter(field_name="order_date", lookup_expr="lte")
+    order_date = filters.DateFromToRangeFilter(field_name="order_date")
 
-    created_at_from = django_filters.DateTimeFilter(field_name="created_at", lookup_expr="gte")
-    created_at_to = django_filters.DateTimeFilter(field_name="created_at", lookup_expr="lte")
-    created_at = django_filters.DateFromToRangeFilter(field_name="created_at")
+    created_at_from = filters.DateTimeFilter(field_name="created_at", lookup_expr="gte")
+    created_at_to = filters.DateTimeFilter(field_name="created_at", lookup_expr="lte")
+    created_at = filters.DateFromToRangeFilter(field_name="created_at")
 
-    product = django_filters.CharFilter(field_name="order_lines__product__name", lookup_expr="icontains")
-    product_id = django_filters.NumberFilter(field_name="order_lines__product__id")
+    product = filters.CharFilter(field_name="order_lines__product__name", lookup_expr="icontains")
+    product_id = filters.NumberFilter(field_name="order_lines__product__id")
 
-    order_number = django_filters.CharFilter(field_name="order_number", lookup_expr="icontains")
+    order_number = filters.CharFilter(field_name="order_number", lookup_expr="icontains")
 
     class Meta:
         model = PurchaseOrder

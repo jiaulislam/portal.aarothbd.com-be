@@ -5,6 +5,7 @@ from django.db import models
 from core.models import BaseModel
 
 from .constants import StockMovementType, StockReferenceType
+from .managers import InStockMovementManager, OutStockMovementManager
 
 if TYPE_CHECKING:
     from apps.company.models import Company
@@ -28,6 +29,26 @@ class StockMovement(BaseModel):
         db_table = "stock_stock_movement"
         verbose_name = "Stock Movement"
         verbose_name_plural = "Stock Movements"
+        ordering = ["-created_at"]
+
+
+class StockInMovement(StockMovement):
+    objects = InStockMovementManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = "In Stock Movement"
+        verbose_name_plural = "In Stock Movements"
+        ordering = ["-created_at"]
+
+
+class StockOutMovement(StockMovement):
+    objects = OutStockMovementManager()
+
+    class Meta:
+        proxy = True
+        verbose_name = "Out Stock Movement"
+        verbose_name_plural = "Out Stock Movements"
         ordering = ["-created_at"]
 
 

@@ -5,7 +5,7 @@ from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAP
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .filter import PurchaseOrderFilter
+from .filters import PurchaseOrderFilter
 from .models import PurchaseOrder
 from .serializers import PurchaseOrderLineSerializer, PurchaseOrderRetrieveSerializer, PurchaseOrderSerializer
 

@@ -1,8 +1,14 @@
+from typing import TYPE_CHECKING, Iterable, List
+
 from django.db import models
 
 from core.models import BaseModel
 
 from .constants import StockMovementType, StockReferenceType
+
+if TYPE_CHECKING:
+    from apps.company.models import Company
+    from apps.product.models import Product
 
 
 class StockMovement(BaseModel):
@@ -36,6 +42,30 @@ class Stock(BaseModel):
     trade_price = models.FloatField(default=0.0, verbose_name="Trade Price")
     quantity = models.PositiveIntegerField(default=0, verbose_name="Quantity")
     last_updated = models.DateTimeField(auto_now=True, verbose_name="Last Updated")
+
+    @staticmethod
+    def create_default_stock(company: "Company", products: Iterable["Product"]) -> List["Stock"]:
+        """
+        Creates default stock entries for a list of products within a specified company.
+
+        For each product provided, this function ensures that a corresponding Stock object exists for the given company.
+        If a Stock entry does not already exist, it is created with default values for MRP, trade price, and quantity
+        (all set to 0).
+
+        Args:
+            company (Company): The company for which stock entries are to be created.
+            products (Iterable[Product]): An iterable of Product instances to create stock entries for.
+
+        Returns:
+            List[Stock]: A list of Stock objects corresponding to the provided products.
+        """
+        stocks = []
+        for product in products:
+            stock, _ = Stock.objects.get_or_create(
+                product=product, company=company, defaults={"mrp": 0.0, "trade_price": 0.0, "quantity": 0}
+            )
+            stocks.append(stock)
+        return stocks
 
     def update_stock_quantity(
         self,

@@ -44,6 +44,12 @@ class CompanySerializer(s.ModelSerializer):
 class CompanyCreateSerializer(s.ModelSerializer):
     configuration = CompanyConfigurationCreateSerializer(write_only=True, required=False)
     addresses = AddressCreateSerializer(many=True, write_only=True, required=False)
+    allowed_products = s.PrimaryKeyRelatedField(
+        queryset=Product.objects.all(),
+        many=True,
+        help_text="List of allowed products for this company.",
+        required=False,
+    )
 
     class Meta:
         model = Company

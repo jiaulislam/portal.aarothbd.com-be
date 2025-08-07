@@ -30,9 +30,9 @@ class PurchaseOrderLineInline(TabularInline, InlineHelperAdmin):
 
 @admin.register(PurchaseOrder)
 class PurchaseOrderAdmin(BaseAdmin):
-    list_display = ("order_number", "supplier", "order_date", "total_trade_price", "total_margin_amount")
+    list_display = ("order_number", "supplier", "order_date", "total_trade_price", "total_margin_amount", "entry_type")
     search_fields = ("order_number", "supplier__name")
-    list_filter = ("order_date", "supplier")
+    list_filter = ("order_date", "supplier", "entry_type")
     ordering = ("-order_date",)
     readonly_fields = ("order_number",)
     inlines = [PurchaseOrderLineInline]

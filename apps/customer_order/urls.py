@@ -2,6 +2,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .views.delivery_views import OrderDeliveryBillViewSet, OrderDeliveryLineViewSet, OrderDeliveryViewSet
+from .views.order_line_views import OrderLineUpdateDestroyAPIView
 from .views.order_views_v1 import (
     OrderListCreateAPIView,
     OrderPaymentListAPIView,
@@ -18,6 +19,12 @@ order_delivery_routers.register(r"delivery-lines", OrderDeliveryLineViewSet, bas
 order_delivery_routers.register(r"delivery-bills", OrderDeliveryBillViewSet, basename="order-delivery-bill")
 
 urlpatterns = [
+    # order line urls
+    path(
+        r"orders/<int:order_id>/order-lines/<int:id>/",
+        OrderLineUpdateDestroyAPIView.as_view(),
+        name="order-line-retrieve-delete",
+    ),
     path(
         r"orders/<int:order_id>/payments/",
         OrderPaymentListCreateAPIView.as_view(),

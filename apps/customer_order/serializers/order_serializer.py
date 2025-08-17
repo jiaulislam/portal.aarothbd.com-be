@@ -46,7 +46,7 @@ class OrderUpdateStatusSerializer(s.Serializer):
 
 class OrderRetrieveSerializer(OrderBaseModelSerializer):
     order_lines = OrderLineRetrieveSerializer(many=True, read_only=True)
-    deliveries = OrderDeliveryRetrieveSerializer(many=True)
+    deliveries = OrderDeliveryRetrieveSerializer(many=True, read_only=True)
 
     class Meta:
         model = Order

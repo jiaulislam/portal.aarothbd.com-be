@@ -68,6 +68,8 @@ class OrderRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     order_service = OrderService()
 
     def get_serializer_class(self) -> type[BaseSerializer[OrderBaseModelSerializer]]:
+        if self.request.method == "PUT":
+            return OrderBaseModelSerializer
         return OrderRetrieveSerializer
 
     def get_queryset(self) -> QuerySet["Order"]:
